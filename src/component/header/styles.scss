@@ -1,0 +1,399 @@
+@use './../../sass/index.scss' as *;
+
+.nav {
+  // margin-bottom: 5rem;
+
+  width: 75%;
+  margin: auto auto 5rem auto;
+  // height: 100px;
+  display: flex;
+  flex-direction: column;
+
+  font-size: 14px;
+  //active tab link
+  @include tablet {
+    width: 100%;
+  }
+  @include mobile {
+    margin: 0 auto;
+    width: 100%;
+  }
+  .actives_link {
+    display: block;
+    position: fixed;
+
+    top: 80px;
+    bottom: 0;
+    right: 0;
+
+    transition: all 0.2s ease-in-out;
+
+    border-radius: 0;
+
+    background-image: linear-gradient(
+      4deg,
+      #006a31,
+      rgba(0, 106, 49, 0.9) 45%,
+      rgba(0, 106, 49, 0.85)
+    );
+    z-index: 7777;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  //nav_top
+  &_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    @include mobile {
+      width: 90%;
+      // margin: auto;
+    }
+    @include mobilesmall {
+      width: 100%;
+      background: $green;
+    }
+    .nav_icon {
+      max-width: 170px;
+      max-height: 80px;
+      & > img {
+        max-height: 80px;
+        @include mobile {
+          height: 70px;
+        }
+      }
+      @include mobile {
+        margin-left: 15px;
+      }
+    }
+    //nav torget mobile
+    .nav_menu {
+      display: none;
+      .menu_block {
+        & > svg {
+          font-size: 25px;
+          margin-left: 10px;
+          @include mobile {
+            color: $green;
+          }
+          @include mobilesmall {
+            color: white;
+          }
+        }
+        & > svg:last-child {
+          font-size: 40px;
+
+          margin-left: 10px;
+        }
+        @include mobile {
+          margin-right: 15px;
+
+          display: flex;
+          align-items: center;
+        }
+      }
+      @include mobile {
+        display: block;
+      }
+    }
+    // nav acount
+    .nav_account {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: rgb(103, 103, 103);
+
+      cursor: pointer;
+      & > span {
+        &:hover {
+          color: $green;
+          text-decoration: underline;
+        }
+      }
+      & > svg:first-child {
+        margin-right: 5px;
+
+        font-size: 20px;
+      }
+      & > svg:last-child {
+        font-size: 25px;
+
+        margin-left: 5px;
+
+        border-left: 1px solid rgb(111, 109, 109);
+
+        padding-left: 5px;
+      }
+      @include mobile {
+        display: none;
+
+        // font-size: 20px;
+      }
+    }
+    //
+    //nav infor for check order => search =>seleted
+    .nav_info {
+      display: flex;
+      align-items: center;
+
+      @include mobile {
+        display: none;
+      }
+      //nav Search
+      .nav_search {
+        margin-left: 15px;
+        .nav_input {
+          & > input {
+            // width: 230px;
+            border-radius: 25px;
+            border: 1px solid $green;
+
+            padding: 0.8rem 2rem 0.8rem 2rem;
+          }
+        }
+        .nav_Select {
+          & > form {
+            & > input {
+              // width: 230px;
+              padding: 0.6rem 2rem 0.6rem 2rem;
+              border: 1px solid $green;
+
+              border-radius: 25px;
+            }
+          }
+        }
+      }
+      .nav_order {
+        // padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        background: $gray;
+        border-radius: 25px;
+
+        position: relative;
+        cursor: pointer;
+        .nav_block {
+          position: absolute;
+          width: 50%;
+          background: $red;
+
+          z-index: 1;
+
+          left: 0;
+          border-radius: 25px;
+
+          height: 90%;
+
+          & > span {
+            // & > svg {
+            //   margin-right: 5px;
+            // }
+          }
+        }
+        //active torget
+        // .acrives {
+        //   background: green;
+        //   border-radius: 25px;
+        // }
+        .active_left {
+          transform: translateX(2%);
+          // background: green;
+          transition: 1s ease-in-out;
+        }
+        .active_right {
+          // background: green;
+          transform: translateX(98%);
+
+          transition: 1s ease-in-out;
+        }
+        & > span {
+          padding: 0.8rem 3rem 0.8rem 3rem;
+          font-size: 14px;
+          z-index: 2;
+
+          color: rgb(27, 26, 26);
+          // text-align: center;
+        }
+      }
+    }
+  }
+  //nav link
+  &_Link {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: $green;
+
+    border-radius: 25px;
+
+    // opacity: 0;
+    // visibility: hidden;
+    @include mobile {
+      display: none;
+    }
+    .nav_carts {
+      display: flex;
+      align-items: center;
+      & > svg {
+        font-size: 25px;
+        color: white;
+        @include mobile {
+          display: none;
+        }
+      }
+      .nav_cart {
+        background: $white;
+
+        border-radius: 25px;
+
+        margin-right: 10px;
+        margin-left: 20px;
+
+        padding: 0.5rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include mobile {
+          display: none;
+        }
+        & > svg {
+          font-size: 25px;
+          color: $green;
+        }
+        & > span {
+          padding-left: 8px;
+        }
+      }
+    }
+
+    // MENULINK
+    .nav_Link-block {
+      @include mobile {
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 50%;
+
+        transform: translateX(-50%);
+      }
+      .nav_orderMobile {
+        display: none;
+        @include mobile {
+          display: block;
+        }
+        .nav_order {
+          // padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+
+          background: $gray;
+          border-radius: 25px;
+
+          position: relative;
+          cursor: pointer;
+
+          .nav_block {
+            position: absolute;
+            width: 50%;
+            background: $red;
+
+            z-index: 1;
+
+            left: 0;
+            border-radius: 25px;
+            height: 90%;
+          }
+          //active torget
+          // .acrives {
+          //   background: green;
+          //   border-radius: 25px;
+          // }
+          .active_left {
+            transform: translateX(2%);
+            // background: green;
+            transition: 1s ease-in-out;
+          }
+          .active_right {
+            // background: green;
+            transform: translateX(98%);
+
+            transition: 1s ease-in-out;
+          }
+          & > span {
+            flex: 1;
+            padding-left: 2rem;
+            /* padding: 1rem; */
+            padding-right: 2rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            font-size: 14px;
+            z-index: 2;
+
+            color: rgb(27, 26, 26);
+            // text-align: center;
+          }
+        }
+        .nav_search {
+          margin-left: 15px;
+          margin-top: 15px;
+          .nav_input {
+            & > input {
+              width: 300px;
+              border-radius: 25px;
+              border: 1px solid $green;
+
+              padding: 0.8rem 2rem 0.8rem 2rem;
+            }
+          }
+          .nav_Select {
+            & > form {
+              & > input {
+                width: 300px;
+                padding: 0.8rem 2rem 0.8rem 2rem;
+                border: 1px solid $green;
+
+                border-radius: 25px;
+              }
+            }
+          }
+        }
+        .nav_account {
+          text-align: center;
+          margin-top: 15px;
+          color: white;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          & > svg:first-child {
+            margin-right: 5px;
+            font-size: 20px;
+          }
+          & > svg:last-child {
+            margin-left: 5px;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+.activeNavBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: white;
+  height: 90px;
+}

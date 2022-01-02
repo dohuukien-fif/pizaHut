@@ -1,0 +1,82 @@
+@use './../../sass/index.scss' as *;
+.menu_Link {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  font-size: 14px;
+  @include mobile {
+    align-items: center;
+    flex-direction: column;
+  }
+  .nav_Link-block {
+    @include mobile {
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 50%;
+
+      transform: translateX(-50%);
+    }
+  }
+
+  & > li {
+    //  padding: 0.5rem;
+    width: 85px;
+    list-style: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+
+    z-index: 1;
+
+    @include mobile {
+      padding-bottom: 2rem;
+    }
+
+    &:hover {
+      background: rgb(2, 44, 2);
+
+      border-radius: 25px;
+    }
+    &:hover > .dropdow_list {
+      display: block;
+    }
+    .dropdow_list {
+      display: none;
+
+      position: absolute;
+      top: 160%;
+      left: 0;
+      background: rgb(2, 44, 2);
+      width: 300%;
+      z-index: -1;
+      @include mobile {
+        display: none;
+      }
+      .dropdow_item {
+        padding: 1rem;
+        &:hover {
+          background: $green;
+        }
+      }
+      &::before {
+        display: inline-block;
+        content: '';
+        height: 35px;
+        width: 85px;
+
+        z-index: -1;
+
+        background: rgb(2, 44, 2);
+        margin-top: -150px;
+      }
+    }
+  }
+}
