@@ -4,10 +4,10 @@ import './App.scss';
 import Headers from './component/header/index';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import HomePiza from './features/home/index';
-export interface AppProps {
-  id: number;
-  name: string;
-}
+// export interface AppProps {
+//   id: number;
+//   name: string;
+// }
 
 function App() {
   // const [count, setCount] = useState<number>(0);
