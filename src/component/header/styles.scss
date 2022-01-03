@@ -4,7 +4,7 @@
   // margin-bottom: 5rem;
 
   width: 75%;
-  margin: auto auto 5rem auto;
+  margin: auto auto 2.5rem auto;
   // height: 100px;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@
   //active tab link
   @include tablet {
     width: 100%;
+    // margin: auto auto 2rem auto;
   }
   @include mobile {
     margin: 0 auto;
@@ -22,7 +23,7 @@
     display: block;
     position: fixed;
 
-    top: 80px;
+    top: 60px;
     bottom: 0;
     right: 0;
 
@@ -47,8 +48,9 @@
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    @include mobile {
+    @include mobilesmall {
       width: 90%;
+      height: 60px;
       // margin: auto;
     }
     @include mobilesmall {
@@ -58,10 +60,18 @@
     .nav_icon {
       max-width: 170px;
       max-height: 80px;
+      @include mobilesmall {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        min-height: 60px;
+      }
       & > img {
         max-height: 80px;
         @include mobile {
-          height: 70px;
+          height: 50px;
+          line-height: 60px;
         }
       }
       @include mobile {
@@ -395,5 +405,5 @@
   right: 0;
   z-index: 100;
   background: white;
-  height: 90px;
+  height: 50px;
 }

@@ -31,7 +31,7 @@ export default function Headers(props: HeadersProps) {
     }
     return '';
   };
-  console.log('iz', setActive);
+  // console.log('iz', setActive);
 
   useEffect(() => {
     const ScrollNavBar = () => {
@@ -45,7 +45,7 @@ export default function Headers(props: HeadersProps) {
     return () => {
       window.removeEventListener('scroll', ScrollNavBar);
     };
-  }, [isScroll]);
+  }, [window.scrollY]);
   return (
     <nav className={isScroll ? 'nav activeNavBar' : 'nav'}>
       <div className="nav_top">

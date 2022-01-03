@@ -2,14 +2,25 @@
 .swiper {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2rem;
+}
+.mySwiperHome {
+  height: 400px;
+  // z-index: -1 !important;
+  @include tablet {
+    height: 400px;
+  }
+  @include mobilesmall {
+    height: 200px;
+  }
 }
 .swiper {
-  width: 90%;
-  height: 450px;
-  z-index: -1;
+  // width: 90%;
+  // height: 450px;
+  // z-index: -1 !important;
   @include mobile {
-    width: 100%;
-    height: 200px;
+    // width: 100%;
+    // height: 200px;
   }
 }
 
@@ -38,6 +49,8 @@
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+
+  z-index: -1 !important;
 }
 
 .swiper-slide img {
@@ -47,9 +60,11 @@
 
   opacity: 1;
 
+  z-index: -1 !important;
+
   border-radius: 18px;
 
-  @include mobile {
+  @include tablet {
     width: 100%;
     border-radius: 0px;
   }
@@ -84,6 +99,7 @@
   background: rgba(0, 0, 0, 0.3) !important;
   border-radius: 50% !important;
   height: 45px !important;
+  // z-index: 1 !important;
   &:hover {
     background: #32a44c !important;
   }

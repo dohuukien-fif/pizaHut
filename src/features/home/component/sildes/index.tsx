@@ -29,7 +29,7 @@ export default function Silder(props: SilderProps) {
           clickable: true,
         }}
         navigation={true}
-        className="mySwiper"
+        className="mySwiperHome"
       >
         <SwiperSlide>
           <img

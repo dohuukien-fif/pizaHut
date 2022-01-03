@@ -1,0 +1,184 @@
+@use './../../../../../sass/index.scss' as *;
+
+.newDish_item {
+  flex-basis: calc(25% - 15px);
+  margin-bottom: 20px;
+  @include mobile {
+    flex-basis: calc(50% - 15px);
+  }
+  @include mobilesmall {
+    flex-basis: 100%;
+
+    // padding-bottom: 50px;
+
+    height: 250px;
+    border-top: 1px solid rgb(233, 231, 231);
+  }
+  .newDish_block {
+    @include mobilesmall {
+      display: flex;
+      height: 80%;
+
+      margin-top: 20px;
+    }
+    .newDish_aside {
+      height: 300px;
+      transition: 0.3s all ease-in-out !important;
+
+      position: relative;
+      @include mobilesmall {
+        height: 100%;
+        flex: 1;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.8);
+        // opacity: 1;
+      }
+      &:hover > .newDish_icon {
+        opacity: 1;
+        transform: scale(1);
+
+        // opacity: 1;
+      }
+      .newDish_icon {
+        transform: scale(0);
+        transition: 0.3s all ease-in-out !important;
+
+        opacity: 0;
+        position: absolute;
+        top: 45%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+
+        // &:hover > svg {
+        //   transform: scale(1);
+        // }
+        & > svg {
+          // transform: scale(0);
+
+          cursor: pointer;
+
+          font-size: 45px;
+
+          color: rgb(231, 223, 223);
+        }
+      }
+      & > img {
+        object-fit: cover;
+        cursor: pointer;
+        height: 100%;
+        transition: 0.3s all ease-in-out !important;
+        &:hover {
+          opacity: 0.7;
+          // transform: rotate(5deg);
+          transition: 0.3s all linear;
+        }
+      }
+    }
+    .newDish_content {
+      display: flex;
+      justify-content: flex-start;
+      // padding-left: 10px;
+      align-items: flex-start;
+      flex-direction: column;
+
+      // padding-right: 15px;
+      margin-left: auto;
+      margin-right: auto;
+
+      height: 100%;
+      @include mobilesmall {
+        padding-left: 15px;
+        flex: 1.5;
+      }
+      header {
+        .newDist_top {
+          margin-bottom: 30px;
+          @include mobilesmall {
+            margin-bottom: 30px;
+          }
+          .newDish_name {
+            font-family: Nunito, sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            @include mobilesmall {
+              font-size: 17px;
+              font-weight: 600;
+              margin-bottom: 20px;
+            }
+          }
+          .newDish_detail {
+            font-size: 13px;
+
+            color: rgb(110, 105, 105);
+            @include mobilesmall {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      footer {
+        width: 100%;
+        .newDish_bottom {
+          font-size: 14px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          @include mobilesmall {
+            display: block;
+          }
+          .newDish_price {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            // & > span:first-child {
+            //   font-size: 12px;
+            //   // font-weight: 600;
+            // }
+
+            line-height: 2.5rem;
+            font-size: 13px;
+            color: rgb(83, 81, 81);
+            & > span:last-child {
+              font-size: 20px;
+              font-weight: 600;
+              @include mobilesmall {
+                font-size: 16px;
+
+                color: black;
+              }
+            }
+          }
+          .newDish_btn {
+            & > button {
+              cursor: pointer;
+
+              border-radius: 5px;
+
+              border: none;
+              outline: none;
+
+              border: 1px solid $green;
+
+              background: white;
+
+              display: flex;
+              align-items: center;
+
+              color: $green;
+              &:hover {
+                background: $red;
+                color: $white;
+              }
+              & > span {
+                padding: 5px 10px 5px 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
