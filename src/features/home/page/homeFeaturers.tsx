@@ -14,8 +14,8 @@ export interface HomeFeaturesProps {
   detail: string;
 }
 
-export default function HomeFeatures(props: HomeFeaturesProps) {
-  const [DataPiza, setDataPiza] = useState<HomeFeaturesProps[]>(dataLisst);
+export default function HomeFeatures(props: any) {
+  const [DataPiza, setDataPiza] = useState(dataLisst);
 
   console.log('data', DataPiza);
   return (
@@ -50,9 +50,7 @@ export default function HomeFeatures(props: HomeFeaturesProps) {
           {/* Thực đơn  */}
 
           <section className="menu">
-            <div className="menu_title">
-              
-            </div>
+            <div className="menu_title"></div>
             {/* piza */}
             <div className=" piza"></div>
             {/* khai vi */}
