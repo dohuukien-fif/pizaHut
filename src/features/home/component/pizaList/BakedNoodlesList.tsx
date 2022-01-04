@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HomeFeaturesProps } from './../../page/homeFeaturers';
+import { HomeFeaturesProps } from './../../page/interface';
 import BakedNoodlesItem from './../PizaItem/BakedNoodles/BakedNoodlesItem';
 import { IoMdAdd } from 'react-icons/io';
 

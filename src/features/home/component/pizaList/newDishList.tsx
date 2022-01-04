@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NewDishItem from '../PizaItem/newDish/newDishItem';
-import { HomeFeaturesProps } from './../../page/homeFeaturers';
+import { HomeFeaturesProps } from './../../page/interface';
 import './styles.scss';
 export interface NewDishLisstProps {
   data: HomeFeaturesProps[];
