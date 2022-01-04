@@ -2,7 +2,7 @@ import * as React from 'react';
 // import Silder from './component/sildes';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import HomeFeaturessss from './page/homeFeaturers';
-import { HomeFeaturesProps } from './page/homeFeaturers';
+import { HomeFeaturesProps } from './page/interface';
 export interface IAppProps {
   HomeFeaturessss: HomeFeaturesProps;
 }
