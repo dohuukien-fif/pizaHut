@@ -10,6 +10,12 @@ import AppetizerList from '../component/pizaList/AppetizerList';
 import SpaghettiList from '../component/pizaList/SpaghettiList';
 import SaladList from '../component/pizaList/SaladList';
 import DrinkList from '../component/pizaList/drinkList';
+import NavLinkTab from '../component/navLinkTab';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import TraditionalList from '../component/navLinkTab/traditional';
+import MixedList from '../component/navLinkTab/mixed';
+import StuffingList from '../component/navLinkTab/stuffing';
+import SeafoodList from '../component/navLinkTab/Seafood/seafood';
 
 export default function HomeFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
@@ -47,10 +53,37 @@ export default function HomeFeatures(props: any) {
           {/* Thực đơn  */}
 
           <section className="menu">
-            <div className="menu_title"></div>
+            <div className="menu_title">
+              <span>Thực Đơn</span>
+            </div>
             {/* piza */}
             <div className=" piza">
-              <PizaList data={DataPiza} />
+              <div className="piza_tab">
+                <div className="piza_title">
+                  <span>Pizza</span>
+                  <NavLinkTab />
+                </div>
+              </div>
+              <Routes>
+                <Route path="/*" element={<PizaList data={DataPiza} />} />
+
+                <Route path="Hai-san" element={<SeafoodList data={DataPiza} />} />
+                <Route path="/thap-cam" element={<MixedList data={DataPiza} />} />
+                <Route path="/truyen-thong" element={<StuffingList data={DataPiza} />} />
+                <Route path="/nhan-nhoi" element={<TraditionalList data={DataPiza} />} />
+
+                {/* <Route
+                    path="phim-bos"
+                    element={<Coming comingMovie={MovieLisst} />}
+                  />
+                  <Route
+                    path="phim-le"
+                    element={<Old OldMovie={MovieLisst} />}
+                  /> */}
+
+                {/* <Route path="new" element={<AnimeMovie />} /> */}
+                {/* <Route element={<CinermerMovie />} /> */}
+              </Routes>
             </div>
             {/* khai vi */}
             <div className=" Appetizer">

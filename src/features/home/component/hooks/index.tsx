@@ -2,7 +2,7 @@ export const dataLisst = [
   {
     categories: 'newDish',
     id: 1,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -10,7 +10,7 @@ export const dataLisst = [
   {
     categories: 'newDish',
     id: 2,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -18,7 +18,7 @@ export const dataLisst = [
   {
     categories: 'newDish',
     id: 3,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -26,7 +26,7 @@ export const dataLisst = [
   {
     categories: 'newDish',
     id: 4,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -34,7 +34,7 @@ export const dataLisst = [
   {
     categories: 'newDish',
     id: 5,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -42,7 +42,7 @@ export const dataLisst = [
   {
     categories: 'BakedNoodles',
     id: 1,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -50,7 +50,7 @@ export const dataLisst = [
   {
     categories: 'BakedNoodles',
     id: 2,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -58,7 +58,7 @@ export const dataLisst = [
   {
     categories: 'BakedNoodles',
     id: 3,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -66,7 +66,7 @@ export const dataLisst = [
   {
     categories: 'BakedNoodles',
     id: 4,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -74,7 +74,7 @@ export const dataLisst = [
   {
     categories: 'BakedNoodles',
     id: 5,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -83,7 +83,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 1,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -91,7 +91,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 2,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -99,7 +99,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 3,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -107,7 +107,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 4,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -115,7 +115,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 5,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -124,7 +124,7 @@ export const dataLisst = [
   {
     categories: 'Appetizer',
     id: 1,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -132,7 +132,7 @@ export const dataLisst = [
   {
     categories: 'Appetizer',
     id: 2,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -140,7 +140,7 @@ export const dataLisst = [
   {
     categories: 'Appetizer',
     id: 3,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -148,7 +148,7 @@ export const dataLisst = [
   {
     categories: 'Appetizer',
     id: 4,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -156,7 +156,7 @@ export const dataLisst = [
   {
     categories: 'Appetizer',
     id: 5,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -165,7 +165,7 @@ export const dataLisst = [
   {
     categories: 'Spaghetti',
     id: 1,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -173,7 +173,7 @@ export const dataLisst = [
   {
     categories: 'Spaghetti',
     id: 2,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -181,7 +181,7 @@ export const dataLisst = [
   {
     categories: 'Spaghetti',
     id: 3,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -189,7 +189,7 @@ export const dataLisst = [
   {
     categories: 'Spaghetti',
     id: 4,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -197,7 +197,7 @@ export const dataLisst = [
   {
     categories: 'Spaghetti',
     id: 5,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -206,7 +206,7 @@ export const dataLisst = [
   {
     categories: 'Salad',
     id: 1,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -214,7 +214,7 @@ export const dataLisst = [
   {
     categories: 'Salad',
     id: 2,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -222,7 +222,7 @@ export const dataLisst = [
   {
     categories: 'Salad',
     id: 3,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -230,7 +230,7 @@ export const dataLisst = [
   {
     categories: 'Salad',
     id: 4,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -238,7 +238,7 @@ export const dataLisst = [
   {
     categories: 'Salad',
     id: 5,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -247,7 +247,7 @@ export const dataLisst = [
   {
     categories: 'drink',
     id: 1,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -255,7 +255,7 @@ export const dataLisst = [
   {
     categories: 'drink',
     id: 2,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -263,7 +263,7 @@ export const dataLisst = [
   {
     categories: 'drink',
     id: 3,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -271,7 +271,7 @@ export const dataLisst = [
   {
     categories: 'drink',
     id: 4,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
@@ -279,7 +279,178 @@ export const dataLisst = [
   {
     categories: 'drink',
     id: 5,
-    image: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939__340.jpg',
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+
+  {
+    categories: 'Seafood',
+    id: 1,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-17.png',
+    name: 'Pizza Golden 4 Cheese',
+    price: 309000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Seafood',
+    id: 2,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/best-chatbot-templates-insurance-chatbots-finance-2.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Seafood',
+    id: 3,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-24.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Seafood',
+    id: 4,
+    image: 'hhttps://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Seafood',
+    id: 5,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/derwent-park-pizza-5.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+
+  {
+    categories: 'mixed',
+    id: 1,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-33.png',
+    price: 309000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'mixed',
+    id: 2,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-8.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'mixed',
+    id: 3,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/pepperoni-pizza-image-cuginos-pizzeria-35.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'mixed',
+    id: 4,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/pizza-prevents-cancer-find-what-more-does-20.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'mixed',
+    id: 5,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-clip-image-download-1.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+
+  {
+    categories: 'Stuffing',
+    id: 1,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/pizza-slice-duvet-cover-sale-diane-diederich-22.png',
+    price: 309000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Stuffing',
+    id: 2,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-0.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Stuffing',
+    id: 3,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-19.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Stuffing',
+    id: 4,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-19.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Stuffing',
+    id: 5,
+    image: 'https://www.freepnglogos.com/uploads/pizza-png/pizza-transparent-image-pictures-25.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+
+  {
+    categories: 'Traditional',
+    id: 1,
+    name: 'Pizza  4 Cheese Pizza ',
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/download-pepperoni-pizza-transparent-image-15.png',
+    price: 309000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Traditional',
+    id: 2,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/download-pepperoni-pizza-transparent-image-15.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Traditional',
+    id: 3,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/download-pepperoni-pizza-transparent-image-15.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Traditional',
+    id: 4,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/download-pepperoni-pizza-transparent-image-15.png',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+  },
+  {
+    categories: 'Traditional',
+    id: 5,
+    image:
+      'https://www.freepnglogos.com/uploads/pizza-png/download-pepperoni-pizza-transparent-image-15.png',
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',

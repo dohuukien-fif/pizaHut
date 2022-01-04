@@ -30,13 +30,7 @@
     transition: all 0.2s ease-in-out;
 
     border-radius: 0;
-
-    background-image: linear-gradient(
-      4deg,
-      #006a31,
-      rgba(0, 106, 49, 0.9) 45%,
-      rgba(0, 106, 49, 0.85)
-    );
+    background: linear-gradient(325deg, #006a31, rgba(0, 106, 49, 0.9) 45%, rgba(0, 106, 49, 0.85));
     z-index: 7777;
     opacity: 1;
     visibility: visible;

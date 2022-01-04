@@ -66,6 +66,9 @@
         color: gray;
 
         transition: 0.3s ease-in-out !important;
+
+        // padding: 10px;
+        margin-bottom: 30px;
         &:hover {
           background: rgb(217, 235, 217);
           color: $green;
@@ -95,6 +98,51 @@
         }
         .BakedNoodles {
           &_title {
+            margin-top: 10px;
+            margin-bottom: 30px;
+            & > span {
+              color: rgb(64, 63, 63);
+
+              font-size: 30px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .menu {
+        margin-top: 20px;
+        &_title {
+          margin-bottom: 20px;
+          & > span {
+            font-size: 30px;
+            font-weight: 600;
+            font-family: Nunito, sans-serif;
+
+            margin-top: 20px;
+
+            position: relative;
+
+            &::before {
+              position: absolute;
+              content: '';
+              height: 2px;
+              width: 20%;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: $green;
+              top: 100%;
+              margin-top: 10px;
+            }
+          }
+        }
+        .piza {
+          &_title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
             margin-top: 10px;
             margin-bottom: 30px;
             & > span {

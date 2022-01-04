@@ -51,7 +51,10 @@ export default function Headers(props: HeadersProps) {
       <div className="nav_top">
         {/* logo website */}
         <div className="nav_icon">
-          <img src="https://timlogo.com/wp-content/uploads/2018/09/logopizza.png" alt="" />
+          <img
+            src="https://image.shutterstock.com/image-vector/pizza-daily-fresh-vector-emblem-600w-1901059681.jpg"
+            alt=""
+          />
         </div>
         {/* https://vislogo.com.vn/upload/image/pizzanew.jpg */}
         {/* <span onClick={() => setisopen((x) => !x)}> kien dp</span> */}

@@ -1,0 +1,41 @@
+@use './../../../../sass/index.scss' as *;
+.tab_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .tab_Link {
+    //  width: 150px;
+    & > a {
+      text-decoration: none;
+
+      font-size: 16px;
+
+      margin-left: 5px;
+
+      padding: 5px;
+
+      color: $black;
+      &:hover {
+        color: $green;
+      }
+
+      & > span {
+        //   width: 100px;
+        //   font-size: 14px;
+      }
+    }
+    .active {
+      // background: green;
+
+      border: 1px solid $red;
+
+      color: $red;
+
+      border-radius: 25px;
+    }
+    .inactive {
+      background: red;
+    }
+  }
+}
