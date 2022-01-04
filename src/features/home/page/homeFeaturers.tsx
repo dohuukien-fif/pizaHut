@@ -5,17 +5,14 @@ import Silder from '../component/sildes';
 import SildesNew from '../component/sildes/slidesNew';
 import './styles.scss';
 import { dataLisst } from './../component/hooks/index';
-export interface HomeFeaturesProps {
-  categories: string;
-  id: number;
-  image: string;
-  name: string;
-  price: number;
-  detail: string;
-}
+import PizaList from '../component/pizaList/Piza';
+import AppetizerList from '../component/pizaList/AppetizerList';
+import SpaghettiList from '../component/pizaList/SpaghettiList';
+import SaladList from '../component/pizaList/SaladList';
+import DrinkList from '../component/pizaList/drinkList';
 
 export default function HomeFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
 
   console.log('data', DataPiza);
   return (
@@ -52,15 +49,25 @@ export default function HomeFeatures(props: any) {
           <section className="menu">
             <div className="menu_title"></div>
             {/* piza */}
-            <div className=" piza"></div>
+            <div className=" piza">
+              <PizaList data={DataPiza} />
+            </div>
             {/* khai vi */}
-            <div className=" Appetizer"></div>
+            <div className=" Appetizer">
+              <AppetizerList data={DataPiza} />
+            </div>
             {/* mỳ ý */}
-            <div className=" Spaghetti"></div>
+            <div className=" Spaghetti">
+              <SpaghettiList data={DataPiza} />
+            </div>
             {/* salad */}
-            <div className="Salad"></div>
+            <div className="Salad">
+              <SaladList data={DataPiza} />
+            </div>
             {/* nuoc uong */}
-            <div className="drink"></div>
+            <div className="drink">
+              <DrinkList data={DataPiza} />
+            </div>
           </section>
         </div>
       </div>
