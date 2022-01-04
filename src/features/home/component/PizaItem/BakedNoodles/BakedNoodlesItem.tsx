@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NewDishLisstProps from './../../pizaList/BakedNoodlesList';
-import { HomeFeaturesProps } from './../../../page/homeFeaturers';
+import { HomeFeaturesProps } from './../../../page/interface';
 import './styles.scss';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
