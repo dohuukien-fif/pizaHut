@@ -13,30 +13,30 @@ export interface SpaghettiItemProps {
 export default function SpaghettiItem({ items }: SpaghettiItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="spaghetti_item">
+      <div className="spaghetti_block">
+        <div className="spaghetti_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="spaghetti_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="spaghetti_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="spaghetti_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="spaghetti_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="spaghetti_bottom">
+              <div className="spaghetti_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="spaghetti_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

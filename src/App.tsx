@@ -4,6 +4,7 @@ import './App.scss';
 import Headers from './component/header/index';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import HomePiza from './features/home/index';
+import Footer from './component/footer';
 // export interface AppProps {
 //   id: number;
 //   name: string;
@@ -27,8 +28,8 @@ function App() {
   // ];
 
   return (
-    <>
-      <Headers />{' '}
+    <div>
+      <Headers />
       <Routes>
         <Route path="trang-chu/*" element={<HomePiza />} />
         <Route path="/" element={<Navigate replace to="Trang-chu" />} />
@@ -42,7 +43,8 @@ function App() {
         {/* <Route path="new" element={<AnimeMovie />} /> */}
         {/* <Route element={<CinermerMovie />} /> */}
       </Routes>
-    </>
+      <Footer />
+    </div>
   );
 }
 

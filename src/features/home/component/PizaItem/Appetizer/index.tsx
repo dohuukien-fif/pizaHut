@@ -13,30 +13,30 @@ export interface ApptizerItemProps {
 export default function ApptizerItem({ items }: ApptizerItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="appetizer_item">
+      <div className="appetizer_block">
+        <div className="appetizer_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="appetizer_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="appetizer_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="appetizer_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="appetizer_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="appetizer_bottom">
+              <div className="appetizer_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="appetizer_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

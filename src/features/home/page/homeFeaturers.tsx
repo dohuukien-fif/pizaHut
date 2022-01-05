@@ -16,6 +16,7 @@ import TraditionalList from '../component/navLinkTab/traditional';
 import MixedList from '../component/navLinkTab/mixed';
 import StuffingList from '../component/navLinkTab/stuffing';
 import SeafoodList from '../component/navLinkTab/Seafood/seafood';
+import Footer from '../../../component/footer';
 
 export default function HomeFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
@@ -39,7 +40,7 @@ export default function HomeFeatures(props: any) {
               <div className="newDish_title">
                 <span>Món Mới</span>
               </div>
-              <NewDishLisst data={DataPiza} />
+              {dataLisst.length === 0 ? <h1>Loading...</h1> : <NewDishLisst data={DataPiza} />}
             </div>
             {/* Nui bỏ lò */}
             <div className=" BakedNoodles">
@@ -87,23 +88,37 @@ export default function HomeFeatures(props: any) {
             </div>
             {/* khai vi */}
             <div className=" Appetizer">
+              <div className="Appetizer_title">
+                <span>Khai Vị</span>
+              </div>
               <AppetizerList data={DataPiza} />
             </div>
             {/* mỳ ý */}
             <div className=" Spaghetti">
+              <div className="Spaghetti_title">
+                <span>Mỳ Ý</span>
+              </div>
               <SpaghettiList data={DataPiza} />
             </div>
             {/* salad */}
-            <div className="Salad">
+            <div className="salad">
+              <div className="salad_title">
+                <span>Salad</span>
+              </div>
               <SaladList data={DataPiza} />
             </div>
             {/* nuoc uong */}
+
             <div className="drink">
+              <div className="drink_title">
+                <span>Thức Uống</span>
+              </div>
               <DrinkList data={DataPiza} />
             </div>
           </section>
         </div>
       </div>
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -206,13 +206,13 @@
 
     //  min-height: 200px;
     .silderl_new {
-      width: 100%;
+      width: 90%;
       height: 240px;
       flex-shrink: 0;
       transition: 0.3s all ease-in-out !important;
       // transition: 1s ease-in-out;
       &:hover {
-        transform: rotate(5deg);
+        transform: rotate(10deg);
         // transition: all 900ms linear;
       }
       @include mobile {

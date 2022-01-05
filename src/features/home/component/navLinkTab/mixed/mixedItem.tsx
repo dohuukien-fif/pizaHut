@@ -12,30 +12,30 @@ export interface MixedItemProps {
 export default function MixedItem({ items }: MixedItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="mixed_item">
+      <div className="mixed_block">
+        <div className="mixed_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="mixed_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="mixed_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="mixed_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="mixed_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="mixed_bottom">
+              <div className="mixed_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="mixed_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

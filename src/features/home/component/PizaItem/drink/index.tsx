@@ -13,30 +13,30 @@ export interface DrinkItemProps {
 export default function DrinkItem({ items }: DrinkItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="drink_item">
+      <div className="drink_block">
+        <div className="drink_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="drink_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="drink_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="drink_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="drink_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="drink_bottom">
+              <div className="drink_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="drink_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

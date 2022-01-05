@@ -13,30 +13,30 @@ export interface PizaItemProps {
 export default function PizaItem({ items }: PizaItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="pizza_item">
+      <div className="pizza_block">
+        <div className="pizza_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="pizza_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="pizza_content">
           <header>
-            <div className="newDist_top">
-              <div className="newDish_name">
+            <div className="pizza_top">
+              <div className="pizza_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="pizza_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="pizza_bottom">
+              <div className="pizza_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="pizza_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

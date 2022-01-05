@@ -13,30 +13,30 @@ export interface StuiffingItemProps {
 export default function StuiffingItem({ items }: StuiffingItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="stuffing_item">
+      <div className="stuffing_block">
+        <div className="stuffing_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="stuffing_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="stuffing_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="stuffing_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="stuffing_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="stuffing_bottom">
+              <div className="stuffing_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="stuffing_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

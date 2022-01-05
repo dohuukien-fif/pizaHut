@@ -13,7 +13,7 @@ export default function SeafoodList({ data }: SeafoodListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
   return (
     <>
-      <div className="BakedNoodles_list">
+      <div className="seafood_list">
         {data
           .filter((item) => item.categories === 'Seafood')
           .slice(0, 4)
@@ -21,22 +21,23 @@ export default function SeafoodList({ data }: SeafoodListProps) {
             <SeafoodItem key={items.id} items={items} />
           ))}
       </div>
-      {isContinent === false ? (
-        <div className="BakedNoodles_continent" onClick={() => setisContinent((x) => !x)}>
-          <p>
-            {' '}
-            xem thêm <IoMdAdd />
-          </p>
-        </div>
-      ) : (
-        <div className="BakedNoodles_list">
-          {data
-            .filter((item) => item.categories === 'Seafood')
-            .slice(4)
-            .map((items, index) => (
-              <SeafoodItem key={items.id} items={items} />
-            ))}
-        </div>
+      {data.filter((item) => item.categories === 'Seafood').length > 3 && (
+        <>
+          {isContinent === false ? (
+            <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
+              <p> xem thêm</p>
+            </div>
+          ) : (
+            <div className="newDish_list">
+              {data
+                .filter((item) => item.categories === 'Seafood')
+                .slice(4)
+                .map((items, index) => (
+                  <SeafoodItem key={items.id} items={items} />
+                ))}
+            </div>
+          )}
+        </>
       )}
     </>
   );

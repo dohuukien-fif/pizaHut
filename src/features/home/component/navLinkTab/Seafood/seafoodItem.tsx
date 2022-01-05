@@ -14,30 +14,30 @@ export interface SeafoodItemProps {
 export default function SeafoodItem({ items }: SeafoodItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="seafood_item">
+      <div className="seafood_block">
+        <div className="seafood_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="seafood_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="seafood_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="seafood_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="seafood_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="seafood_bottom">
+              <div className="seafood_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="seafood_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

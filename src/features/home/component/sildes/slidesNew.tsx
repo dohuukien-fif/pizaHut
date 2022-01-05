@@ -56,7 +56,7 @@ export default function SildesNew(props: SildesNewProps) {
           <div className="slide_aside">
             <img
               className="silderl_new"
-              src="https://media.istockphoto.com/photos/piza-and-hot-dog-picture-id510408944?b=1&k=20&m=510408944&s=170667a&w=0&h=eIIfqHjXwpi3RXxY6PGi6qIe5dZDaVq44mpJjR3ddG8="
+              src="https://www.freepnglogos.com/uploads/pizza-png/download-pepperoni-pizza-transparent-image-15.png"
               alt=""
             />
           </div>
@@ -91,7 +91,7 @@ export default function SildesNew(props: SildesNewProps) {
           <div className="slide_aside">
             <img
               className="silderl_new"
-              src="https://swall.teahub.io/photos/small/33-331908_simple-simons-pizza.jpg"
+              src="https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-19.png"
               alt=""
             />
           </div>
@@ -125,7 +125,7 @@ export default function SildesNew(props: SildesNewProps) {
           <div className="slide_aside">
             <img
               className="silderl_new"
-              src="https://swall.teahub.io/photos/small/32-327924_pizza-background.jpg"
+              src="https://www.freepnglogos.com/uploads/pizza-png/pizza-clip-image-download-1.png"
               alt=""
             />
           </div>
@@ -159,7 +159,7 @@ export default function SildesNew(props: SildesNewProps) {
           <div className="slide_aside">
             <img
               className="silderl_new"
-              src="https://swall.teahub.io/photos/small/32-327924_pizza-background.jpg"
+              src="https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-24.png"
               alt=""
             />
           </div>
@@ -193,7 +193,7 @@ export default function SildesNew(props: SildesNewProps) {
           <div className="slide_aside">
             <img
               className="silderl_new"
-              src="https://media.istockphoto.com/photos/piza-and-hot-dog-picture-id510408944?b=1&k=20&m=510408944&s=170667a&w=0&h=eIIfqHjXwpi3RXxY6PGi6qIe5dZDaVq44mpJjR3ddG8="
+              src="https://www.freepnglogos.com/uploads/pizza-png/pizza-images-download-pizza-24.png"
               alt=""
             />
           </div>

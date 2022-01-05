@@ -14,30 +14,30 @@ export interface AppProps {
 export default function App({ items }: AppProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="traditional_item">
+      <div className="traditional_block">
+        <div className="traditional_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="traditional_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="traditional_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="traditional_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="traditional_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="traditional_bottom">
+              <div className="traditional_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="traditional_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

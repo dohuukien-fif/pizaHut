@@ -18,19 +18,23 @@ export default function NewDishLisst({ data }: NewDishLisstProps) {
             <NewDishItem key={items.id} items={items} />
           ))}
       </div>
-      {isContinent === false ? (
-        <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
-          <p> xem thêm</p>
-        </div>
-      ) : (
-        <div className="newDish_list">
-          {data
-            .filter((item) => item.categories === 'newDish')
-            .slice(4)
-            .map((items, index) => (
-              <NewDishItem key={items.id} items={items} />
-            ))}
-        </div>
+      {data.filter((item) => item.categories === 'newDish').length > 3 && (
+        <>
+          {isContinent === false ? (
+            <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
+              <p> xem thêm</p>
+            </div>
+          ) : (
+            <div className="newDish_list">
+              {data
+                .filter((item) => item.categories === 'newDish')
+                .slice(4)
+                .map((items, index) => (
+                  <NewDishItem key={items.id} items={items} />
+                ))}
+            </div>
+          )}
+        </>
       )}
     </>
   );

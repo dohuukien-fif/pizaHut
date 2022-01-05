@@ -13,30 +13,30 @@ export interface SaladItemProps {
 export default function SaladItem({ items }: SaladItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="salad_item">
+      <div className="salad_block">
+        <div className="salad_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
+          <div className="salad_icon">
             <BsCart3 />
           </div>
         </div>
-        <div className="newDish_content">
+        <div className="salad_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="salad_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="salad_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="salad_bottom">
+              <div className="salad_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="salad_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>
