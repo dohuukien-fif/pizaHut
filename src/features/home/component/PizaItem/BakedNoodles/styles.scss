@@ -1,13 +1,6 @@
 @use './../../../../../sass/index.scss' as *;
-.Appetizer_list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
 
-  column-gap: 20px;
-  margin-left: 5px;
-}
-.appetizer_item {
+.newDish_item {
   display: flex;
   flex-direction: column;
   flex-basis: calc(25% - 15px);
@@ -23,7 +16,7 @@
     height: 250px;
     border-top: 1px solid rgb(233, 231, 231);
   }
-  .appetizer_block {
+  .newDish_block {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -36,7 +29,7 @@
 
       margin-top: 20px;
     }
-    .appetizer_aside {
+    .newDish_aside {
       height: 300px;
       transition: 0.3s all ease-in-out !important;
 
@@ -50,13 +43,13 @@
         // background: rgba(0, 0, 0, 0.8);
         // opacity: 1;
       }
-      &:hover > .appetizer_icon {
+      &:hover > .newDish_icon {
         opacity: 1;
         transform: scale(1);
 
         // opacity: 1;
       }
-      .appetizer_icon {
+      .newDish_icon {
         transform: scale(0);
         transition: 0.3s all ease-in-out !important;
 
@@ -80,6 +73,7 @@
         }
       }
       & > img {
+        width: 90%;
         object-fit: contain;
         cursor: pointer;
         height: 100%;
@@ -91,7 +85,7 @@
         }
       }
     }
-    .appetizer_content {
+    .newDish_content {
       display: flex;
       justify-content: flex-start;
       // padding-left: 10px;
@@ -128,7 +122,7 @@
           @include mobilesmall {
             margin-bottom: 30px;
           }
-          .appetizer_name {
+          .newDish_name {
             margin-top: auto;
 
             font-family: Nunito, sans-serif;
@@ -141,7 +135,7 @@
               margin-bottom: 20px;
             }
           }
-          .appetizer_detail {
+          .newDish_detail {
             margin-top: auto;
 
             font-size: 13px;
@@ -155,7 +149,7 @@
       }
       footer {
         width: 100%;
-        .appetizer_bottom {
+        .newDish_bottom {
           font-size: 14px;
           display: flex;
           justify-content: space-between;
@@ -167,7 +161,7 @@
           @include mobilesmall {
             display: block;
           }
-          .appetizer_price {
+          .newDish_price {
             // margin-top: auto;
 
             display: flex;
@@ -180,7 +174,7 @@
 
             line-height: 2.5rem;
             font-size: 13px;
-            color: rgb(83, 81, 81);
+            color: black;
             & > span:last-child {
               font-size: 20px;
               font-weight: 600;
@@ -191,7 +185,7 @@
               }
             }
           }
-          .appetizer_btn {
+          .newDish_btn {
             // margin-top: auto;
             & > button {
               cursor: pointer;

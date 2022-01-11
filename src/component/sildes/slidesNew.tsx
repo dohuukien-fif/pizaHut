@@ -8,7 +8,8 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './stylesNew.scss';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { formatPrice } from './../../../../utils/commen';
+import { formatPrice } from '../../utils';
+// import { formatPrice } from './../../../../utils/commen';
 // Import Swiper styles
 
 SwiperCore.use([FreeMode, Pagination, Navigation]);

@@ -20,6 +20,7 @@ picture {
 html {
   font-size: 60%;
   line-height: 3rem;
+  // scroll-behavior: smooth;
   @include mobile {
     font-size: 80%;
     line-height: 2.5rem;

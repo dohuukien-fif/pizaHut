@@ -3,6 +3,7 @@ import './stylesLink.scss';
 import { FaShippingFast, FaStore } from 'react-icons/fa';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { FcRating } from 'react-icons/fc';
+import { NavLink } from 'react-router-dom';
 export interface IAppProps {
   isorder: boolean;
   setActive: string;
@@ -16,7 +17,7 @@ export default function App({ setActive, activeTranForm, isorder }: IAppProps) {
       <ul className="menu_Link">
         <li>Khuyến mãi</li>
         <li>
-          Piza
+          <NavLink to="pizza">Pizza</NavLink>
           <div className="dropdow_list">
             <div className="dropdow_item">
               <span>mới</span>
@@ -35,12 +36,24 @@ export default function App({ setActive, activeTranForm, isorder }: IAppProps) {
             </div>
           </div>
         </li>
-        <li>Khai vị</li>
-        <li>Mỳ Ý</li>
-        <li>Nui Bỏ Lò</li>
-        <li>Salad</li>
-        <li>Tráng miệng</li>
-        <li>Thức uống</li>
+        <li>
+          <NavLink to="khai-vi">Khai vị</NavLink>
+        </li>
+        <li>
+          <NavLink to="my-y">Mỳ Ý</NavLink>
+        </li>
+        <li>
+          <NavLink to="nui-bo-lo">Nui Bỏ Lò</NavLink>
+        </li>
+        <li>
+          <NavLink to="salad">Salad</NavLink>
+        </li>
+        <li>
+          <NavLink to="trang-mieng">Tráng miệng</NavLink>
+        </li>
+        <li>
+          <NavLink to="nuoc-uong">Thức uống</NavLink>
+        </li>
       </ul>
       {/* mobile {check order => search =>seleted =>account} */}
       <div className="nav_orderMobile">

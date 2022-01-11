@@ -2,9 +2,19 @@
 
 .nav {
   // margin-bottom: 5rem;
+  // position: absolute;
+  box-shadow: 1px 0 20px 0 rgb(0 0 0 / 10%);
+  top: 0;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  background: white;
 
-  width: 75%;
-  margin: auto auto 2.5rem auto;
+  height: 140px;
+
+  width: 100%;
+  // margin: auto auto 2.5rem auto;
   // height: 100px;
   display: flex;
   flex-direction: column;
@@ -18,10 +28,30 @@
   @include mobile {
     margin: 0 auto;
     width: 100%;
+    left: 0;
+    transform: none;
+
+    height: 70px;
+  }
+  @include mobilesmall {
+    margin: 0 auto;
+    width: 100%;
+    left: 0;
+    transform: none;
+
+    height: 60px;
+  }
+  .nav_block {
+    width: 75%;
+    margin: auto;
+    @include tablet {
+      width: 100%;
+    }
   }
   .actives_link {
     display: block;
     position: fixed;
+    z-index: 1000;
 
     top: 60px;
     bottom: 0;
@@ -192,12 +222,6 @@
           border-radius: 25px;
 
           height: 90%;
-
-          & > span {
-            // & > svg {
-            //   margin-right: 5px;
-            // }
-          }
         }
         //active torget
         // .acrives {
@@ -207,13 +231,15 @@
         .active_left {
           transform: translateX(2%);
           // background: green;
-          transition: 1s ease-in-out;
+          transition: 0.5s ease-in-out !important;
         }
         .active_right {
           // background: green;
           transform: translateX(98%);
 
-          transition: 1s ease-in-out;
+          transition: 0.5s ease-in-out !important;
+
+          color: white;
         }
         & > span {
           padding: 0.8rem 3rem 0.8rem 3rem;
@@ -236,6 +262,8 @@
     background: $green;
 
     border-radius: 25px;
+
+    // height: auto;
 
     // opacity: 0;
     // visibility: hidden;
@@ -325,13 +353,13 @@
           .active_left {
             transform: translateX(2%);
             // background: green;
-            transition: 1s ease-in-out;
+            transition: 1s ease-in-out !important;
           }
           .active_right {
             // background: green;
             transform: translateX(98%);
 
-            transition: 1s ease-in-out;
+            transition: 1s ease-in-out !important;
           }
           & > span {
             flex: 1;
@@ -392,15 +420,15 @@
     }
   }
 }
-.activeNavBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: white;
-  height: 100px;
-  @include mobilesmall {
-    height: 50px;
-  }
-}
+// .activeNavBar {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 100;
+//   background: white;
+//   height: 100px;
+//   @include mobilesmall {
+//     height: 50px;
+//   }
+// }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import BakedNoodlesList from '../component/pizaList/BakedNoodlesList';
 import NewDishLisst from '../component/pizaList/newDishList';
-import Silder from '../component/sildes';
-import SildesNew from '../component/sildes/slidesNew';
+// import Silder from '../component/sildes';
+// import SildesNew from '../component/sildes/slidesNew';
 import './styles.scss';
 import { dataLisst } from './../component/hooks/index';
 import PizaList from '../component/pizaList/Piza';
@@ -17,6 +17,8 @@ import MixedList from '../component/navLinkTab/mixed';
 import StuffingList from '../component/navLinkTab/stuffing';
 import SeafoodList from '../component/navLinkTab/Seafood/seafood';
 import Footer from '../../../component/footer';
+import Silder from '../../../component/sildes';
+import SildesNew from '../../../component/sildes/slidesNew';
 
 export default function HomeFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
