@@ -7,9 +7,10 @@ import './styles.scss';
 
 export interface SeafoodListProps {
   data: HomeFeaturesProps[];
+  activeTab: string;
 }
 
-export default function SeafoodList({ data }: SeafoodListProps) {
+export default function SeafoodList({ data, activeTab }: SeafoodListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
   return (
     <>
@@ -28,7 +29,7 @@ export default function SeafoodList({ data }: SeafoodListProps) {
               <p> xem thêm</p>
             </div>
           ) : (
-            <div className="newDish_list">
+            <div className="seafood_list">
               {data
                 .filter((item) => item.categories === 'Seafood')
                 .slice(4)

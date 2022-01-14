@@ -10,4 +10,6 @@ export interface SpaghettiFeaturesProps {
   Spice: string;
   items: any[];
   more: any[];
+  vegetable: string;
+  chill: string;
 }

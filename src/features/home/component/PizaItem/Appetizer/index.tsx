@@ -17,13 +17,10 @@ export default function ApptizerItem({ items }: ApptizerItemProps) {
       <div className="appetizer_block">
         <div className="appetizer_aside">
           <img src={image} alt="" />
-          <div className="appetizer_icon">
-            <BsCart3 />
-          </div>
         </div>
         <div className="appetizer_content">
           <header>
-            <div className="newDist_top">
+            <div className="appetizer_top">
               <div className="appetizer_name">
                 <span>{name}</span>
               </div>

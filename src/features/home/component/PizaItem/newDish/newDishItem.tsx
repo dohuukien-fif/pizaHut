@@ -16,9 +16,6 @@ export default function BakedNoodlesItem({ items }: BakedNoodlesItemProps) {
       <div className="newDish_block">
         <div className="newDish_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
-            <BsCart3 />
-          </div>
         </div>
         <div className="newDish_content">
           <header>

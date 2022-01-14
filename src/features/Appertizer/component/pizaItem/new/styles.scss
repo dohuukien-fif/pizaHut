@@ -1,5 +1,5 @@
 @use './../../../../../sass/index.scss' as *;
-.new_list {
+.appertizer_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -7,7 +7,7 @@
   column-gap: 20px;
   margin-left: 5px;
 }
-.new_item {
+.appertizer_item {
   display: flex;
   flex-direction: column;
   flex-basis: calc(25% - 15px);
@@ -23,7 +23,7 @@
     height: 250px;
     border-top: 1px solid rgb(233, 231, 231);
   }
-  .new_block {
+  .appertizer_block {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -36,7 +36,7 @@
 
       margin-top: 20px;
     }
-    .new_aside {
+    .appertizer_aside {
       height: 300px;
       transition: 0.3s all ease-in-out !important;
 
@@ -50,13 +50,13 @@
         // background: rgba(0, 0, 0, 0.8);
         // opacity: 1;
       }
-      &:hover > .new_icon {
+      &:hover > .appertizer_icon {
         opacity: 1;
         transform: scale(1);
 
         // opacity: 1;
       }
-      .new_icon {
+      .appertizer_icon {
         transform: scale(0);
         transition: 0.3s all ease-in-out !important;
 
@@ -91,7 +91,7 @@
         }
       }
     }
-    .new_content {
+    .appertizer_content {
       display: flex;
       justify-content: flex-start;
       // padding-left: 10px;
@@ -118,30 +118,27 @@
         flex-direction: column;
 
         flex: 1;
-        .new_top {
-          margin-bottom: 30px;
+        .appertizer_top {
+          margin-bottom: 45px;
           display: flex;
           flex-direction: column;
 
           flex: 1;
 
-          @include mobilesmall {
-            margin-bottom: 30px;
-          }
-          .new_name {
+          .appertizer_name {
             margin-top: auto;
 
             font-family: Nunito, sans-serif;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 25px;
             @include mobilesmall {
               font-size: 17px;
               font-weight: 600;
               margin-bottom: 20px;
             }
           }
-          .new_detail {
+          .appertizer_detail {
             margin-top: auto;
 
             font-size: 13px;
@@ -155,7 +152,7 @@
       }
       footer {
         width: 100%;
-        .new_bottom {
+        .appertizer_bottom {
           font-size: 14px;
           display: flex;
           justify-content: space-between;
@@ -167,7 +164,7 @@
           @include mobilesmall {
             display: block;
           }
-          .new_price {
+          .appertizer_price {
             // margin-top: auto;
 
             display: flex;
@@ -183,7 +180,7 @@
             color: black;
             & > span:last-child {
               font-size: 20px;
-              font-weight: 600;
+              font-weight: 700;
               @include mobilesmall {
                 font-size: 16px;
 
@@ -191,7 +188,7 @@
               }
             }
           }
-          .new_btn {
+          .appertizer_btn {
             // margin-top: auto;
             & > button {
               cursor: pointer;

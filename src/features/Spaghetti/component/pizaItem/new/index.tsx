@@ -1,46 +1,80 @@
 import * as React from 'react';
-
-import './styles.scss';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { BsCart3 } from 'react-icons/bs';
+import { BsSuitClubFill } from 'react-icons/bs';
+import { GiChiliPepper } from 'react-icons/gi';
 import { formatPrice } from '../../../../../utils';
-import { SaladFeaturesProps } from '../../../../Salad/page/interface';
+
+import { SpaghettiFeaturesProps } from '../../../page/interface';
+import './styles.scss';
 
 export interface PizzaNewItemProps {
-  items: SaladFeaturesProps;
+  items: SpaghettiFeaturesProps;
   handleIds: any;
 }
 
 export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
-  const { name, image, price, detail } = items;
+  const { name, image, price, detail, vegetable, chill } = items;
   const hanndleIdNew = (newIds: number) => {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="new_item" onClick={() => hanndleIdNew(items.id)}>
-      <div className="new_block">
-        <div className="new_aside">
+    <div className="spaghetti_item" onClick={() => handleIds(items.id)}>
+      <div className="spaghetti_block">
+        <div className="spaghetti_aside">
           <img src={image} alt="" />
-          <div className="new_icon">
-            <BsCart3 />
-          </div>
+          {(chill !== '' && vegetable !== '' && (
+            <div className="rippon">
+              <div className="chill_ribbon">
+                {/* <div className="ribbon_content">
+                <span></span>
+              </div> */}
+                <GiChiliPepper />
+              </div>
+              <div className="vegetable_ribbon">
+                {/* <div className="ribbon_content">
+                <span></span>
+              </div> */}
+                <BsSuitClubFill />
+              </div>
+            </div>
+          )) ||
+            (chill !== '' && (
+              <div className="rippon">
+                <div className="chill_ribbon">
+                  {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                  <GiChiliPepper />
+                </div>
+              </div>
+            )) ||
+            (vegetable !== '' && (
+              <div className="rippon">
+                <div className="vegetable_ribbon">
+                  {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                  <BsSuitClubFill />
+                </div>
+              </div>
+            ))}
         </div>
-        <div className="new_content">
+        <div className="spaghetti_content">
           <header>
-            <div className="new_top">
-              <div className="new_name">
+            <div className="spaghetti_top">
+              <div className="spaghetti_name">
                 <span>{name}</span>
               </div>
-              <div className="new_detail">{detail}</div>
+              <div className="spaghetti_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="new_bottom">
-              <div className="new_price">
+            <div className="spaghetti_bottom">
+              <div className="spaghetti_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="new_btn">
+              <div className="spaghetti_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

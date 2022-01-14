@@ -26,9 +26,10 @@ export default function PizzaFeatures(props: any) {
   const [detailProduct, setdetailProduct] = useState<any>({});
   const [isoverlay, setisoverlay] = useState<boolean>(false);
   const [setPrice, setsetPrice] = useState<any>({
-    priceSize: 0,
-    priceMore: 0,
+    sizePrice: 0,
+    morePrice: 0,
   });
+  const [setpriceMore, setsetpriceMore] = useState<any>(0);
   const [Loading, setLoading] = useState<boolean>(false);
   // const handLink = (e: any) => {
   //   e.preventDefault();
@@ -104,6 +105,7 @@ export default function PizzaFeatures(props: any) {
       1
     );
   };
+  console.log(setPrice);
   return (
     <div className="pizza">
       <div className="pizza_container">
@@ -375,11 +377,12 @@ export default function PizzaFeatures(props: any) {
             </div>
             <div className="overlay_block">
               <div className="overlay_thumbanil">
-                <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                <Thumbnail detail={detailProduct} setPrice={setPrice} setpriceMore={setpriceMore} />
               </div>
               <div className="overlay_information">
                 <Information
                   onSubmits={handleSubmitDispachToCart}
+                  // setsetpriceMore={setsetpriceMore}
                   detail={detailProduct}
                   setsetPrice={setsetPrice}
                 />

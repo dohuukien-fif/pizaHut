@@ -6,7 +6,8 @@
   @include mobilesmall {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
     line-height: 2.5rem;
   }
 
@@ -15,7 +16,11 @@
     @include mobilesmall {
       width: calc(50% - 10px);
     }
-    & > a {
+
+    & > span {
+      cursor: pointer;
+      //   width: 100px;
+      //   font-size: 14px;
       text-decoration: none;
 
       font-size: 16px;
@@ -31,28 +36,23 @@
       &:hover {
         color: $green;
       }
-
-      & > span {
-        //   width: 100px;
-        //   font-size: 14px;
-      }
-      @include mobilesmall {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
     }
-    .active {
-      // background: green;
-
-      border: 1px solid $red;
-
-      color: $red;
-
-      border-radius: 25px;
-    }
-    .inactive {
-      background: red;
+    @include mobilesmall {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
     }
   }
+}
+.active_Tab {
+  // background: green;
+
+  border: 1px solid $red;
+
+  color: $red;
+
+  border-radius: 25px;
+}
+.inactive {
+  background: red;
 }

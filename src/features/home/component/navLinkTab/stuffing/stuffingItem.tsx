@@ -23,7 +23,7 @@ export default function StuiffingItem({ items }: StuiffingItemProps) {
         </div>
         <div className="stuffing_content">
           <header>
-            <div className="newDist_top">
+            <div className="stuffing_top">
               <div className="stuffing_name">
                 <span>{name}</span>
               </div>

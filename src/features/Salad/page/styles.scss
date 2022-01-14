@@ -1,5 +1,5 @@
 @use './../../../sass/index.scss' as *;
-.pizza {
+.salads {
   margin-top: 150px;
 
   // scroll-behavior: smooth;
@@ -14,13 +14,13 @@
     margin: auto;
     // margin-top: 100px;
   }
-  .pizza_container {
+  .salad_container {
     width: 90%;
     margin: auto;
     @include mobilesmall {
       width: 100%;
     }
-    .pizza_block {
+    .salad_block {
       width: 82%;
       margin: auto;
       @include tablet {
@@ -73,7 +73,7 @@
 
         top: 50px;
       }
-      .pizza_title {
+      .salad_title {
         padding: 0px 10px 10px 10px;
         border-bottom: 1px solid rgb(208, 205, 205);
         margin-bottom: 40px;
@@ -90,7 +90,7 @@
           }
         }
       }
-      .pizza_link {
+      .salad_link {
         // padding: 5px;
         // padding-top: 40px;
         padding-bottom: 10px;
@@ -187,7 +187,7 @@
           }
         }
       }
-      .pizza_new {
+      .salad_new {
         .new {
           .new_title {
             border-bottom: 1px solid rgb(208, 205, 205);
@@ -208,466 +208,109 @@
           }
         }
       }
-      .pizza_perfer {
-        .perfer {
-          .perfer_title {
-            border-bottom: 1px solid rgb(208, 205, 205);
-            padding: 10px 10px 15px 10px;
+    }
+  }
+  .overlay {
+    cursor: pointer;
+    background-color: rgba(68, 68, 68, 0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 7777;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms linear;
 
-            margin-bottom: 20px;
+    .overlay_wrapper {
+      // margin-top: 10px;
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+      position: absolute;
+      width: 67%;
+      height: 97%;
+      background: $white;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
+      .overlay_closes {
+        position: absolute;
 
-            @include mobilesmall {
-              align-items: flex-start;
-              justify-content: flex-start;
-              flex-direction: column;
-
-              padding: 0 0 20px 0;
-            }
-            & > span {
-              flex: 1;
-
-              font-size: 25px;
-
-              color: rgb(66, 64, 64);
-
-              font-weight: 600;
-              @include mobilesmall {
-                margin-bottom: 10px;
-              }
-
-              &:hover {
-                color: $green;
-              }
-            }
-            .perfer_size {
-              flex: 1;
-              display: flex;
-              align-items: center;
-
-              justify-content: space-around;
-
-              @include mobilesmall {
-                width: 100%;
-              }
-              .perfer_size-item {
-                display: flex;
-                align-items: center;
-
-                @include mobilesmall {
-                  // margin-left: 5px;
-
-                  // width: 100%;
-                }
-                .perfer_priceSize {
-                  display: flex;
-                  align-items: center;
-                  margin-left: 10px;
-                  @include mobilesmall {
-                    margin-left: 5px;
-                  }
-                  & > span:first-child {
-                    font-size: 16px;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                  & > span:last-child {
-                    font-size: 16px;
-
-                    font-weight: 600;
-
-                    color: $red;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                }
-
-                & > img {
-                  width: 40px;
-                  height: 40px;
-
-                  @include mobilesmall {
-                    width: 25px;
-                    height: 25px;
-                  }
-                }
-              }
-            }
+        top: 15px;
+        // left: 10px;
+        // padding-left: 20px;
+        @include tablet {
+          top: 30px;
+        }
+        & > svg {
+          font-size: 42px;
+          color: rgb(71, 70, 70);
+          @include tablet {
+            color: rgb(71, 70, 70);
           }
         }
       }
-      .pizza_seafood {
-        .seafood {
-          .seafood_title {
-            border-bottom: 1px solid rgb(208, 205, 205);
-            padding: 10px 10px 15px 10px;
+      .overlay_block {
+        display: flex;
+        padding-top: 20px;
+        height: 100%;
+        @include mobile {
+          flex-direction: column;
+        }
+        .overlay_thumbanil {
+          flex: 1;
+        }
+        .overlay_information {
+          overflow-y: auto;
+          flex: 1;
 
-            margin-bottom: 20px;
+          background: #fafafa;
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+          border-radius: 25px;
 
-            @include mobilesmall {
-              align-items: flex-start;
-              justify-content: flex-start;
-              flex-direction: column;
+          height: 95%;
+          @include mobilesmall {
+            flex: 2;
+            border-radius: 0px;
+          }
+          &::-webkit-scrollbar {
+            width: 1em;
+          }
 
-              padding: 0 0 20px 0;
-            }
-            & > span {
-              flex: 1;
-
-              font-size: 25px;
-
-              color: rgb(66, 64, 64);
-
-              font-weight: 600;
-              @include mobilesmall {
-                margin-bottom: 10px;
-              }
-
-              &:hover {
-                color: $green;
-              }
-            }
-            .seafood_size {
-              flex: 1;
-              display: flex;
-              align-items: center;
-
-              justify-content: space-around;
-
-              @include mobilesmall {
-                width: 100%;
-              }
-              .seafood_size-item {
-                display: flex;
-                align-items: center;
-
-                @include mobilesmall {
-                  // margin-left: 5px;
-
-                  // width: 100%;
-                }
-                .seafood_priceSize {
-                  display: flex;
-                  align-items: center;
-                  margin-left: 10px;
-                  @include mobilesmall {
-                    margin-left: 5px;
-                  }
-                  & > span:first-child {
-                    font-size: 16px;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                  & > span:last-child {
-                    font-size: 16px;
-
-                    font-weight: 600;
-
-                    color: $red;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                }
-
-                & > img {
-                  width: 40px;
-                  height: 40px;
-
-                  @include mobilesmall {
-                    width: 25px;
-                    height: 25px;
-                  }
-                }
-              }
-            }
+          &::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: rgb(220, 216, 216);
+            // outline: 1px solid slategrey;
           }
         }
       }
-      .pizza_mixed {
-        .mixed {
-          .mixed_title {
-            border-bottom: 1px solid rgb(208, 205, 205);
-            padding: 10px 10px 15px 10px;
-
-            margin-bottom: 20px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            @include mobilesmall {
-              align-items: flex-start;
-              justify-content: flex-start;
-              flex-direction: column;
-
-              padding: 0 0 20px 0;
-            }
-            & > span {
-              flex: 1;
-
-              font-size: 25px;
-
-              color: rgb(66, 64, 64);
-
-              font-weight: 600;
-              @include mobilesmall {
-                margin-bottom: 10px;
-              }
-
-              &:hover {
-                color: $green;
-              }
-            }
-            .mixed_size {
-              flex: 1;
-              display: flex;
-              align-items: center;
-
-              justify-content: space-around;
-
-              @include mobilesmall {
-                width: 100%;
-              }
-              .mixed_size-item {
-                display: flex;
-                align-items: center;
-
-                @include mobilesmall {
-                  // margin-left: 5px;
-
-                  // width: 100%;
-                }
-                .mixed_priceSize {
-                  display: flex;
-                  align-items: center;
-                  margin-left: 10px;
-                  @include mobilesmall {
-                    margin-left: 5px;
-                  }
-                  & > span:first-child {
-                    font-size: 16px;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                  & > span:last-child {
-                    font-size: 16px;
-
-                    font-weight: 600;
-
-                    color: $red;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                }
-
-                & > img {
-                  width: 40px;
-                  height: 40px;
-
-                  @include mobilesmall {
-                    width: 25px;
-                    height: 25px;
-                  }
-                }
-              }
-            }
-          }
-        }
+      @include mobile {
+        border-radius: 0px;
       }
-      .pizza_traditional {
-        .traditional {
-          .traditional_title {
-            border-bottom: 1px solid rgb(208, 205, 205);
-            padding: 10px 10px 15px 10px;
 
-            margin-bottom: 20px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            @include mobilesmall {
-              align-items: flex-start;
-              justify-content: flex-start;
-              flex-direction: column;
-
-              padding: 0 0 20px 0;
-            }
-            & > span {
-              flex: 1;
-
-              font-size: 25px;
-
-              color: rgb(66, 64, 64);
-
-              font-weight: 600;
-              @include mobilesmall {
-                margin-bottom: 10px;
-              }
-
-              &:hover {
-                color: $green;
-              }
-            }
-            .traditional_size {
-              flex: 1;
-              display: flex;
-              align-items: center;
-
-              justify-content: space-around;
-
-              @include mobilesmall {
-                width: 100%;
-              }
-              .traditional_size-item {
-                display: flex;
-                align-items: center;
-
-                @include mobilesmall {
-                  // margin-left: 5px;
-
-                  // width: 100%;
-                }
-                .traditional_priceSize {
-                  display: flex;
-                  align-items: center;
-                  margin-left: 10px;
-                  @include mobilesmall {
-                    margin-left: 5px;
-                  }
-                  & > span:first-child {
-                    font-size: 16px;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                  & > span:last-child {
-                    font-size: 16px;
-
-                    font-weight: 600;
-
-                    color: $red;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                }
-
-                & > img {
-                  width: 40px;
-                  height: 40px;
-
-                  @include mobilesmall {
-                    width: 25px;
-                    height: 25px;
-                  }
-                }
-              }
-            }
-          }
-        }
+      @include tablet {
+        width: 99%;
+        height: 97%;
       }
-      .pizza_stuffing {
-        .stuffing {
-          .stuffing_title {
-            border-bottom: 1px solid rgb(208, 205, 205);
-            padding: 10px 10px 15px 10px;
-
-            margin-bottom: 20px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            @include mobilesmall {
-              align-items: flex-start;
-              justify-content: flex-start;
-              flex-direction: column;
-
-              padding: 0 0 20px 0;
-            }
-            & > span {
-              flex: 1;
-
-              font-size: 25px;
-
-              color: rgb(66, 64, 64);
-
-              font-weight: 600;
-              @include mobilesmall {
-                margin-bottom: 10px;
-              }
-
-              &:hover {
-                color: $green;
-              }
-            }
-            .stuffing_size {
-              flex: 1;
-              display: flex;
-              align-items: center;
-
-              justify-content: space-around;
-
-              @include mobilesmall {
-                width: 100%;
-              }
-              .stuffing_size-item {
-                display: flex;
-                align-items: center;
-
-                .stuffing_priceSize {
-                  display: flex;
-                  align-items: center;
-                  margin-left: 10px;
-                  @include mobilesmall {
-                    margin-left: 5px;
-                  }
-                  & > span:first-child {
-                    font-size: 16px;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                  & > span:last-child {
-                    font-size: 16px;
-
-                    font-weight: 600;
-
-                    color: $red;
-                    @include mobilesmall {
-                      font-size: 12px;
-                    }
-                  }
-                }
-
-                & > img {
-                  width: 40px;
-                  height: 40px;
-
-                  @include mobilesmall {
-                    width: 25px;
-                    height: 25px;
-                  }
-                }
-              }
-            }
-          }
-        }
+      @include mobile {
+        width: 100%;
+        height: 98%;
+        overflow-y: auto;
+      }
+      @include mobilesmall {
+        width: 100%;
+        height: 100%;
       }
     }
   }
+  .activesOvelaySalad {
+    opacity: 1;
+    visibility: visible;
+  }
 }
+
+// .activeOvelay {
+//   opacity: 1;
+//   visibility: visible;
+// }

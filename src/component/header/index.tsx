@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import { FaShippingFast, FaStore } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
 import Menulink from './menuLink';
 import { MdOutlineAccountCircle, MdOutlinePlace } from 'react-icons/md';
 import { FcRating } from 'react-icons/fc';
 import './styles.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 export interface HeadersProps {}
 
 export default function Headers(props: HeadersProps) {
@@ -17,14 +17,17 @@ export default function Headers(props: HeadersProps) {
   const [isorder, setisorder] = useState<boolean>(false);
   const [isopen, setisopen] = useState<boolean>(false);
   const [isScroll, setisScroll] = useState<boolean>(false);
+  const [activeIco, setactiveIco] = useState<string>('activeIcon_left');
   const navigate = useNavigate();
   const activeTranForm = (value?: string) => {
     if (value === 'l') {
       setsetActive('active_left');
+      setactiveIco('activeIcon_left');
       setisorder(false);
     }
     if (value === 'm') {
       setsetActive('active_right');
+      setactiveIco('activeIcon_right');
       setisorder(true);
     }
     return '';
@@ -54,10 +57,12 @@ export default function Headers(props: HeadersProps) {
         <div className="nav_top">
           {/* logo website */}
           <div className="nav_icon">
-            <img
-              src="https://image.shutterstock.com/image-vector/pizza-daily-fresh-vector-emblem-600w-1901059681.jpg"
-              alt=""
-            />
+            <Link to="/">
+              <img
+                src="https://image.shutterstock.com/image-vector/pizza-daily-fresh-vector-emblem-600w-1901059681.jpg"
+                alt=""
+              />
+            </Link>
           </div>
           {/* https://vislogo.com.vn/upload/image/pizzanew.jpg */}
           {/* <span onClick={() => setisopen((x) => !x)}> kien dp</span> */}
@@ -67,13 +72,21 @@ export default function Headers(props: HeadersProps) {
               <div className={`nav_block ${setActive}`}></div>
               <span onClick={() => activeTranForm('l')}>
                 {' '}
-                <FaShippingFast />
-                Đặt giào hàng
+                <FaShippingFast
+                  className={activeIco === 'activeIcon_left' ? activeIco : 'color_icon'}
+                />
+                <span className={activeIco === 'activeIcon_left' ? activeIco : 'color_icon'}>
+                  {' '}
+                  Đặt giào hàng
+                </span>
               </span>
               <span onClick={() => activeTranForm('m')}>
                 {' '}
-                <FaStore />
-                Đặt lấy hàng
+                <FaStore className={activeIco === 'activeIcon_right' ? activeIco : 'color_icon'} />
+                <span className={activeIco === 'activeIcon_right' ? activeIco : 'color_icon'}>
+                  {' '}
+                  Đặt lấy hàng
+                </span>
               </span>
             </div>
             {/* torget input search = selectd */}
@@ -109,9 +122,13 @@ export default function Headers(props: HeadersProps) {
               <AiOutlineSearch />
               <BsCart3 />
               {isopen ? (
-                <GrClose style={{ color: 'white' }} onClick={() => setisopen((x) => !x)} />
+                <AiOutlineClose
+                  className="icon_close"
+                  style={{ color: 'white' }}
+                  onClick={() => setisopen((x) => !x)}
+                />
               ) : (
-                <FiMenu onClick={() => setisopen((x) => !x)} />
+                <FiMenu style={{ color: 'white' }} onClick={() => setisopen((x) => !x)} />
               )}
             </div>
           </div>
@@ -122,7 +139,12 @@ export default function Headers(props: HeadersProps) {
           </div>
         </div>
         <div className={isopen ? 'nav_Link actives_link' : 'nav_Link'}>
-          <Menulink setActive={setActive} activeTranForm={activeTranForm} isorder={isorder} />
+          <Menulink
+            setActive={setActive}
+            activeTranForm={activeTranForm}
+            isorder={isorder}
+            activeIco={activeIco}
+          />
           {/* menu cart */}
           <div className="nav_carts">
             <AiOutlineSearch />

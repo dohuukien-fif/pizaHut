@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PizzaFeaturesProps } from './../../../page/interface';
 import './styles.scss';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { AiOutlineArrowRight, AiFillStar } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
 import { formatPrice } from '../../../../../utils';
 
@@ -11,15 +11,22 @@ export interface PizzaPerferItemProps {
 }
 
 export default function PizzaPerferItem({ items }: PizzaPerferItemProps) {
-  const { name, image, price, detail } = items;
+  const { name, image, price, detail, selling } = items;
   return (
     <div className="perfer_item">
       <div className="perfer_block">
         <div className="perfer_aside">
           <img src={image} alt="" />
-          <div className="perfer_icon">
-            <BsCart3 />
-          </div>
+          {selling !== '' && (
+            <div className="rippon">
+              <div className="perfer_ribbon">
+                {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                <AiFillStar />
+              </div>
+            </div>
+          )}
         </div>
         <div className="perfer_content">
           <header>

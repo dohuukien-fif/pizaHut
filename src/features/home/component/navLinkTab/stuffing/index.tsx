@@ -7,9 +7,10 @@ import './styles.scss';
 
 export interface StuffingListProps {
   data: HomeFeaturesProps[];
+  activeTab: string;
 }
 
-export default function StuffingList({ data }: StuffingListProps) {
+export default function StuffingList({ data, activeTab }: StuffingListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
   return (
     <>
@@ -28,7 +29,7 @@ export default function StuffingList({ data }: StuffingListProps) {
               <p> xem thêm</p>
             </div>
           ) : (
-            <div className="newDish_list">
+            <div className="Stuffing_list">
               {data
                 .filter((item) => item.categories === 'Stuffing')
                 .slice(4)

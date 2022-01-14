@@ -10,8 +10,9 @@ import { dataLisst } from './../../../component/hooks/index';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import { AiOutlineClose } from 'react-icons/ai';
-import Thumbnail from '../../pizza/component/overlay/thumbnail';
+
 import Information from '../../pizza/component/overlay/information';
+import Thumbnail from '../component/overlay/thumbnail';
 export default function DessertFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -95,11 +96,11 @@ export default function DessertFeatures(props: any) {
     );
   };
   return (
-    <div className="pizza">
-      <div className="pizza_container">
+    <div className="dessert">
+      <div className="dessert_container">
         <Silder />
-        <div className="pizza_block">
-          <div className="pizza_new" id="section1">
+        <div className="dessert_block">
+          <div className="dessert_new" id="section1">
             <div className="new">
               <div className="new_title">
                 <span>Tráng Miệng</span>
@@ -112,7 +113,7 @@ export default function DessertFeatures(props: any) {
       {Loading ? (
         <LoadingFeatures />
       ) : (
-        <div className={isoverlay ? 'overlay activeOvelay' : 'overlay'}>
+        <div className={isoverlay ? 'overlay activesOvelayDessert' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">

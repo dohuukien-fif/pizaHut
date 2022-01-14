@@ -12,6 +12,7 @@
   flex-direction: column;
   flex-basis: calc(25% - 15px);
   margin-bottom: 20px;
+
   @include mobile {
     flex-basis: calc(50% - 15px);
   }
@@ -23,6 +24,7 @@
     height: 250px;
     border-top: 1px solid rgb(233, 231, 231);
   }
+
   .spaghetti_block {
     display: flex;
     flex-direction: column;
@@ -41,15 +43,177 @@
       transition: 0.3s all ease-in-out !important;
 
       position: relative;
+
+      .rippon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: all 3s ease-in-out !important;
+        // overflow: hidden;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+        .chill_ribbon {
+          position: relative;
+          // right: 0;
+
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          width: 50px;
+          max-height: 20px;
+
+          transition: all 3s ease-in-out !important;
+
+          cursor: pointer;
+
+          margin-bottom: 10px;
+          & > svg {
+            font-size: 20px;
+
+            color: #d50e15;
+
+            z-index: 10;
+
+            margin-right: 5px;
+
+            margin-left: 10px;
+
+            cursor: pointer;
+
+            transition: all 0.4s ease-in-out !important;
+            // &:hover > .ribbon_content {
+            //   display: block;
+            // }
+
+            // overflow: hidden;
+            &:hover {
+              color: white;
+            }
+          }
+          &::before {
+            position: absolute;
+            content: 'CAY';
+            font-size: 12px;
+            padding: 5px 0px 5px 0px;
+            // top: 0;
+            right: 0;
+            left: -70%;
+            // bottom: 0;
+            background: $red;
+            // height: 20px;
+            color: $white;
+
+            // display: none;
+            transition: all 0.3s ease-in-out !important;
+            border-radius: 25px;
+
+            text-align: center;
+
+            visibility: hidden;
+            opacity: 0;
+          }
+          &:hover:before {
+            visibility: visible;
+            opacity: 1;
+            left: -100%;
+            display: block;
+            transition: all 0.3s ease-out !important;
+          }
+          &:hover > svg {
+            color: white;
+          }
+          // .ribbon_content {
+          //   position: absolute;
+          //   display: none;
+          // }
+        }
+        //vegetablet
+
+        .vegetable_ribbon {
+          position: relative;
+          // right: 0;
+
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          width: 70px;
+          max-height: 20px;
+
+          transition: all 3s ease-in-out !important;
+
+          cursor: pointer;
+
+          margin-bottom: 10px;
+          & > svg {
+            font-size: 17px;
+
+            color: #006a31;
+
+            z-index: 10;
+
+            margin-right: 5px;
+
+            margin-left: 10px;
+
+            cursor: pointer;
+
+            transition: all 0.4s ease-in-out !important;
+            // &:hover > .ribbon_content {
+            //   display: block;
+            // }
+
+            // overflow: hidden;
+            &:hover {
+              color: white;
+            }
+          }
+          &::before {
+            position: absolute;
+            content: 'NGON PHẢI THỬ';
+            font-size: 12px;
+            padding: 5px 5px 5px 25px;
+            // top: 0;
+            right: 0;
+            left: -70%;
+            // bottom: 0;
+            background: #006a31;
+            // height: 20px;
+            color: $white;
+
+            // display: none;
+            transition: all 0.3s ease-in-out !important;
+            border-radius: 25px;
+
+            text-align: left;
+
+            visibility: hidden;
+            opacity: 0;
+          }
+          &:hover:before {
+            visibility: visible;
+            opacity: 1;
+            left: -100%;
+            display: block;
+            transition: all 0.3s ease-out !important;
+          }
+          &:hover > svg {
+            color: white;
+          }
+          // .ribbon_content {
+          //   position: absolute;
+          //   display: none;
+          // }
+        }
+      }
+
       @include mobilesmall {
         height: 100%;
         flex: 1;
       }
 
-      &:hover {
-        // background: rgba(0, 0, 0, 0.8);
-        // opacity: 1;
-      }
       &:hover > .spaghetti_icon {
         opacity: 1;
         transform: scale(1);
@@ -84,6 +248,14 @@
         cursor: pointer;
         height: 100%;
         transition: 0.3s all ease-in-out !important;
+        @include mobile {
+          height: 90%;
+          width: 80%;
+        }
+        @include mobilesmall {
+          height: 140px;
+          width: 90%;
+        }
         &:hover {
           // opacity: 0.7;
           transform: rotate(10deg);
@@ -118,16 +290,16 @@
         flex-direction: column;
 
         flex: 1;
-        .newDist_top {
-          margin-bottom: 30px;
+        @include mobilesmall {
+          flex: none;
+        }
+        .spaghetti_top {
+          margin-bottom: 45px;
           display: flex;
           flex-direction: column;
 
           flex: 1;
 
-          @include mobilesmall {
-            margin-bottom: 30px;
-          }
           .spaghetti_name {
             margin-top: auto;
 
@@ -136,9 +308,9 @@
             font-weight: 600;
             margin-bottom: 10px;
             @include mobilesmall {
-              font-size: 17px;
+              font-size: 16px;
               font-weight: 600;
-              margin-bottom: 20px;
+              margin: 0 0 15px 0;
             }
           }
           .spaghetti_detail {
@@ -149,6 +321,7 @@
             color: rgb(110, 105, 105);
             @include mobilesmall {
               font-size: 12px;
+              margin-top: 0;
             }
           }
         }
@@ -183,7 +356,7 @@
             color: black;
             & > span:last-child {
               font-size: 20px;
-              font-weight: 600;
+              font-weight: 700;
               @include mobilesmall {
                 font-size: 16px;
 

@@ -13,4 +13,5 @@ export interface PizzaFeaturesProps {
   Spice: string;
   items: any[];
   more: any[];
+  selling: string;
 }

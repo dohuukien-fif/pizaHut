@@ -24,7 +24,7 @@ export default function SeafoodItem({ items }: SeafoodItemProps) {
         </div>
         <div className="seafood_content">
           <header>
-            <div className="newDist_top">
+            <div className="seafood_top">
               <div className="seafood_name">
                 <span>{name}</span>
               </div>

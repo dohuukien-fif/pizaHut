@@ -47,6 +47,26 @@
     @include tablet {
       width: 100%;
     }
+    .activeIcon_left {
+      color: white;
+    }
+    .activeIcon_right {
+      color: white;
+    }
+    .color_icon {
+      color: black;
+    }
+    & > span {
+      // .activeIcon_left {
+      //   color: white;
+      // }
+      // .activeIcon_right {
+      //   color: white;
+      // }
+      // .color_icon {
+      //   color: black;
+      // }
+    }
   }
   .actives_link {
     display: block;
@@ -86,16 +106,20 @@
       max-height: 80px;
       @include mobilesmall {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         min-height: 60px;
+
+        flex: 1;
       }
-      & > img {
-        max-height: 80px;
-        @include mobile {
-          height: 50px;
-          line-height: 60px;
+      & > a {
+        & > img {
+          max-height: 80px;
+          @include mobile {
+            height: 50px;
+            line-height: 60px;
+          }
         }
       }
       @include mobile {
@@ -105,7 +129,13 @@
     //nav torget mobile
     .nav_menu {
       display: none;
+
       .menu_block {
+        .icon_close {
+          @include mobilesmall {
+            color: white;
+          }
+        }
         & > svg {
           font-size: 25px;
           margin-left: 10px;
@@ -127,9 +157,16 @@
           display: flex;
           align-items: center;
         }
+        @include mobilesmall {
+          justify-content: space-around;
+        }
       }
       @include mobile {
         display: block;
+      }
+      @include mobilesmall {
+        flex: 1;
+        // justify-content: space-between;
       }
     }
     // nav acount
@@ -231,13 +268,13 @@
         .active_left {
           transform: translateX(2%);
           // background: green;
-          transition: 0.5s ease-in-out !important;
+          transition: 300ms ease-in-out !important;
         }
         .active_right {
           // background: green;
           transform: translateX(98%);
 
-          transition: 0.5s ease-in-out !important;
+          transition: 300ms ease-in-out !important;
 
           color: white;
         }
@@ -312,10 +349,12 @@
       @include mobile {
         flex-direction: column;
         position: absolute;
-        top: 0;
+        // top: 0;
         left: 50%;
 
         transform: translateX(-50%);
+
+        margin-bottom: 50px;
       }
       .nav_orderMobile {
         display: none;
@@ -337,13 +376,22 @@
           .nav_block {
             position: absolute;
             width: 50%;
-            background: $red;
+            background: #d50e15;
 
             z-index: 1;
 
             left: 0;
             border-radius: 25px;
             height: 90%;
+
+            transform: translateX(5px);
+            @include mobilesmall {
+              height: 75%;
+            }
+            @include mobilesmall {
+              display: flex;
+              align-items: center;
+            }
           }
           //active torget
           // .acrives {
@@ -351,15 +399,15 @@
           //   border-radius: 25px;
           // }
           .active_left {
-            transform: translateX(2%);
+            transform: translateX(4%);
             // background: green;
-            transition: 1s ease-in-out !important;
+            transition: 300ms ease-in-out !important;
           }
           .active_right {
             // background: green;
-            transform: translateX(98%);
+            transform: translateX(96%);
 
-            transition: 1s ease-in-out !important;
+            transition: 300ms ease-in-out !important;
           }
           & > span {
             flex: 1;
@@ -372,6 +420,9 @@
             z-index: 2;
 
             color: rgb(27, 26, 26);
+            @include mobilesmall {
+              padding: 0.8rem;
+            }
             // text-align: center;
           }
         }
@@ -380,7 +431,7 @@
           margin-top: 15px;
           .nav_input {
             & > input {
-              width: 300px;
+              width: 250px;
               border-radius: 25px;
               border: 1px solid $green;
 
@@ -390,7 +441,7 @@
           .nav_Select {
             & > form {
               & > input {
-                width: 300px;
+                width: 250px;
                 padding: 0.8rem 2rem 0.8rem 2rem;
                 border: 1px solid $green;
 

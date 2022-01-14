@@ -18,7 +18,7 @@ export interface SildesNewProps {}
 export default function SildesNew(props: SildesNewProps) {
   return (
     <>
-      <h2> Khuyến mãi, Combo</h2>
+      <p> Khuyến mãi, Combo</p>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
@@ -69,7 +69,7 @@ export default function SildesNew(props: SildesNewProps) {
                   <p>Combo Piza SanWich</p>
                 </div>
                 <div className="slide_people">
-                  <p>Phù hợp 2 - 3 nguòi</p>
+                  <p>Phù hợp 2 - 3 nguời</p>
                 </div>
               </div>
             </header>
@@ -77,7 +77,7 @@ export default function SildesNew(props: SildesNewProps) {
               <div className="slide_bottom">
                 <div className="slide_price">
                   <span>Giá chỉ từ</span>
-                  <span>{formatPrice(5000000)}</span>
+                  <span>{formatPrice(500000)}</span>
                 </div>
                 <div className="slide_btn">
                   <button>
@@ -111,7 +111,7 @@ export default function SildesNew(props: SildesNewProps) {
               <div className="slide_bottom">
                 <div className="slide_price">
                   <span>Giá chỉ từ</span>
-                  <span>{formatPrice(5000000)}</span>
+                  <span>{formatPrice(500000)}</span>
                 </div>
                 <div className="slide_btn">
                   <button>
@@ -145,7 +145,7 @@ export default function SildesNew(props: SildesNewProps) {
               <div className="slide_bottom">
                 <div className="slide_price">
                   <span>Giá chỉ từ</span>
-                  <span>{formatPrice(5000000)}</span>
+                  <span>{formatPrice(500000)}</span>
                 </div>
                 <div className="slide_btn">
                   <button>
@@ -179,7 +179,7 @@ export default function SildesNew(props: SildesNewProps) {
               <div className="slide_bottom">
                 <div className="slide_price">
                   <span>Giá chỉ từ</span>
-                  <span>{formatPrice(5000000)}</span>
+                  <span>{formatPrice(500000)}</span>
                 </div>
                 <div className="slide_btn">
                   <button>
@@ -214,7 +214,7 @@ export default function SildesNew(props: SildesNewProps) {
               <div className="slide_bottom">
                 <div className="slide_price">
                   <span>Giá chỉ từ</span>
-                  <span>{formatPrice(5000000)}</span>
+                  <span>{formatPrice(500000)}</span>
                 </div>
                 <div className="slide_btn">
                   <button>
@@ -225,18 +225,6 @@ export default function SildesNew(props: SildesNewProps) {
             </footer>
           </div>
         </SwiperSlide>
-        {/* <SwiperSlide>
-     <img src="https://360boutique.vn/wp-content/uploads/2021/12/BANNER-WEB-1.jpg" alt="" />
-   </SwiperSlide>
-   <SwiperSlide>
-     <img src=" https://360boutique.vn/wp-content/uploads/2021/11/web-copy.jpg" alt="" />
-   </SwiperSlide>
-   <SwiperSlide>
-     <img src=" https://360boutique.vn/wp-content/uploads/2021/11/web-copy.jpg" alt="" />
-   </SwiperSlide>
-   <SwiperSlide>
-     <img src=" https://360boutique.vn/wp-content/uploads/2021/11/web-copy.jpg" alt="" />
-   </SwiperSlide> */}
       </Swiper>
     </>
   );

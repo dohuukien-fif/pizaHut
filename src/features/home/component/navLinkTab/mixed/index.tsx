@@ -7,9 +7,10 @@ import './styles.scss';
 
 export interface MixedListProps {
   data: HomeFeaturesProps[];
+  activeTab: string;
 }
 
-export default function MixedList({ data }: MixedListProps) {
+export default function MixedList({ data, activeTab }: MixedListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
   return (
     <>
@@ -28,7 +29,7 @@ export default function MixedList({ data }: MixedListProps) {
               <p> xem thêm</p>
             </div>
           ) : (
-            <div className="newDish_list">
+            <div className="Mixed_list">
               {data
                 .filter((item) => item.categories === 'mixed')
                 .slice(4)

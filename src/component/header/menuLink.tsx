@@ -7,17 +7,21 @@ import { NavLink } from 'react-router-dom';
 export interface IAppProps {
   isorder: boolean;
   setActive: string;
+  activeIco: string;
   activeTranForm: (value: string) => {};
 }
 
-export default function App({ setActive, activeTranForm, isorder }: IAppProps) {
+export default function App({ setActive, activeTranForm, activeIco, isorder }: IAppProps) {
   return (
     <div className="nav_Link-block">
       {/* menu link  */}
       <ul className="menu_Link">
         <li>Khuyến mãi</li>
         <li>
-          <NavLink to="pizza">Pizza</NavLink>
+          <span>
+            {' '}
+            <NavLink to="pizza">Pizza</NavLink>
+          </span>
           <div className="dropdow_list">
             <div className="dropdow_item">
               <span>mới</span>
@@ -37,22 +41,40 @@ export default function App({ setActive, activeTranForm, isorder }: IAppProps) {
           </div>
         </li>
         <li>
-          <NavLink to="khai-vi">Khai vị</NavLink>
+          <span>
+            {' '}
+            <NavLink to="khai-vi">Khai vị</NavLink>
+          </span>
         </li>
         <li>
-          <NavLink to="my-y">Mỳ Ý</NavLink>
+          <span>
+            {' '}
+            <NavLink to="my-y">Mỳ Ý</NavLink>
+          </span>
         </li>
         <li>
-          <NavLink to="nui-bo-lo">Nui Bỏ Lò</NavLink>
+          <span>
+            {' '}
+            <NavLink to="nui-bo-lo">Nui Bỏ Lò</NavLink>
+          </span>
         </li>
         <li>
-          <NavLink to="salad">Salad</NavLink>
+          <span>
+            {' '}
+            <NavLink to="salad">Salad</NavLink>
+          </span>
         </li>
         <li>
-          <NavLink to="trang-mieng">Tráng miệng</NavLink>
+          <span>
+            {' '}
+            <NavLink to="trang-mieng">Tráng miệng</NavLink>
+          </span>
         </li>
         <li>
-          <NavLink to="nuoc-uong">Thức uống</NavLink>
+          <span>
+            {' '}
+            <NavLink to="nuoc-uong">Thức uống</NavLink>
+          </span>
         </li>
       </ul>
       {/* mobile {check order => search =>seleted =>account} */}
@@ -60,10 +82,18 @@ export default function App({ setActive, activeTranForm, isorder }: IAppProps) {
         <div className="nav_order ">
           <div className={`nav_block ${setActive}`}></div>
           <span onClick={() => activeTranForm('l')}>
-            <FaShippingFast /> Đặt giao hàng
+            <FaShippingFast
+              className={activeIco === 'activeIcon_left' ? activeIco : 'color_icon'}
+            />
+            <span className={activeIco === 'activeIcon_left' ? activeIco : 'color_icon'}>
+              Đặt giao hàng
+            </span>
           </span>
           <span onClick={() => activeTranForm('m')}>
-            <FaStore /> Đặt lấy hàng
+            <FaStore className={activeIco === 'activeIcon_right' ? activeIco : 'color_icon'} />
+            <span className={activeIco === 'activeIcon_right' ? activeIco : 'color_icon'}>
+              Đặt lấy hàng
+            </span>
           </span>
         </div>
         <div className="nav_search">

@@ -17,30 +17,27 @@ export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="new_item" onClick={() => hanndleIdNew(items.id)}>
-      <div className="new_block">
-        <div className="new_aside">
+    <div className="appertizer_item" onClick={() => handleIds(items.id)}>
+      <div className="appertizer_block">
+        <div className="appertizer_aside">
           <img src={image} alt="" />
-          <div className="new_icon">
-            <BsCart3 />
-          </div>
         </div>
-        <div className="new_content">
+        <div className="appertizer_content">
           <header>
-            <div className="new_top">
-              <div className="new_name">
+            <div className="appertizer_top">
+              <div className="appertizer_name">
                 <span>{name}</span>
               </div>
-              <div className="new_detail">{detail}</div>
+              <div className="appertizer_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="new_bottom">
-              <div className="new_price">
+            <div className="appertizer_bottom">
+              <div className="appertizer_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="new_btn">
+              <div className="appertizer_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

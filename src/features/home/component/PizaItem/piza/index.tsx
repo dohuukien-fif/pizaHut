@@ -2,7 +2,7 @@ import * as React from 'react';
 import BakedNoodlesLisstProps from './../../pizaList/BakedNoodlesList';
 import { HomeFeaturesProps } from './../../../page/interface';
 import './styles.scss';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { AiOutlineArrowRight, AiFillStar } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
 import { formatPrice } from '../../../../../utils';
 
@@ -11,15 +11,22 @@ export interface PizaItemProps {
 }
 
 export default function PizaItem({ items }: PizaItemProps) {
-  const { name, image, price, detail } = items;
+  const { name, image, price, detail, selling } = items;
   return (
     <div className="pizza_item">
       <div className="pizza_block">
         <div className="pizza_aside">
           <img src={image} alt="" />
-          <div className="pizza_icon">
-            <BsCart3 />
-          </div>
+          {selling !== '' && (
+            <div className="rippon">
+              <div className="pizza_ribbon">
+                {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                <AiFillStar />
+              </div>
+            </div>
+          )}
         </div>
         <div className="pizza_content">
           <header>

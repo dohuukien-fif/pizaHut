@@ -6,9 +6,10 @@ import './styles.scss';
 import TraditionItem from './traditionalItem';
 export interface TraditionalListProps {
   data: HomeFeaturesProps[];
+  activeTab: string;
 }
 
-export default function TraditionalList({ data }: TraditionalListProps) {
+export default function TraditionalList({ data, activeTab }: TraditionalListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
   return (
     <>

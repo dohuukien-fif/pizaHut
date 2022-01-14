@@ -3,7 +3,8 @@ import BakedNoodlesLisstProps from './../../pizaList/BakedNoodlesList';
 import { HomeFeaturesProps } from './../../../page/interface';
 import './styles.scss';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { BsCart3 } from 'react-icons/bs';
+import { GiChiliPepper } from 'react-icons/gi';
+import { BsSuitClubFill } from 'react-icons/bs';
 import { formatPrice } from '../../../../../utils';
 
 export interface SpaghettiItemProps {
@@ -11,19 +12,52 @@ export interface SpaghettiItemProps {
 }
 
 export default function SpaghettiItem({ items }: SpaghettiItemProps) {
-  const { name, image, price, detail } = items;
+  const { name, image, price, detail, selling, vegetable, chill } = items;
   return (
     <div className="spaghetti_item">
       <div className="spaghetti_block">
         <div className="spaghetti_aside">
           <img src={image} alt="" />
-          <div className="spaghetti_icon">
-            <BsCart3 />
-          </div>
+          {(chill !== '' && vegetable !== '' && (
+            <div className="rippon">
+              <div className="chill_ribbon">
+                {/* <div className="ribbon_content">
+                <span></span>
+              </div> */}
+                <GiChiliPepper />
+              </div>
+              <div className="vegetable_ribbon">
+                {/* <div className="ribbon_content">
+                <span></span>
+              </div> */}
+                <BsSuitClubFill />
+              </div>
+            </div>
+          )) ||
+            (chill !== '' && (
+              <div className="rippon">
+                <div className="chill_ribbon">
+                  {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                  <GiChiliPepper />
+                </div>
+              </div>
+            )) ||
+            (vegetable !== '' && (
+              <div className="rippon">
+                <div className="vegetable_ribbon">
+                  {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                  <BsSuitClubFill />
+                </div>
+              </div>
+            ))}
         </div>
         <div className="spaghetti_content">
           <header>
-            <div className="newDist_top">
+            <div className="spaghetti_top">
               <div className="spaghetti_name">
                 <span>{name}</span>
               </div>

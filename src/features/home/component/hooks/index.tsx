@@ -70,6 +70,7 @@ export const dataLisst = [
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    selling: 'selling',
   },
   {
     categories: 'piza',
@@ -79,6 +80,7 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    selling: '',
   },
   {
     categories: 'piza',
@@ -97,6 +99,7 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    selling: 'selling',
   },
   {
     categories: 'piza',
@@ -106,6 +109,7 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    selling: '',
   },
 
   {
@@ -161,6 +165,8 @@ export const dataLisst = [
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    chill: 'chill',
+    vegetable: 'vegetable',
   },
   {
     categories: 'Spaghetti',
@@ -169,6 +175,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    vegetable: 'vegetable',
+    chill: 'chill',
   },
   {
     categories: 'Spaghetti',
@@ -177,6 +185,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    chill: '',
+    vegetable: 'vegetbale',
   },
   {
     categories: 'Spaghetti',
@@ -186,6 +196,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    chill: 'chill',
+    vegetable: '',
   },
   {
     categories: 'Spaghetti',
@@ -194,6 +206,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    vegetable: 'vegetable',
+    chill: 'chill',
   },
 
   {
@@ -204,6 +218,8 @@ export const dataLisst = [
     name: 'Pizza Golden 4 Cheese',
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    unique: 'unique',
+    selling: 'selling',
   },
   {
     categories: 'Salad',
@@ -212,6 +228,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    unique: 'unique',
+    selling: '',
   },
   {
     categories: 'Salad',
@@ -221,6 +239,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    unique: '',
+    selling: '',
   },
   {
     categories: 'Salad',
@@ -230,6 +250,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    unique: '',
+    selling: '',
   },
   {
     categories: 'Salad',
@@ -239,6 +261,8 @@ export const dataLisst = [
     name: 'Pizza  4 Cheese',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
+    unique: 'unique',
+    selling: 'selling',
   },
 
   {

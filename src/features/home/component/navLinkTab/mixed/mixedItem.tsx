@@ -22,7 +22,7 @@ export default function MixedItem({ items }: MixedItemProps) {
         </div>
         <div className="mixed_content">
           <header>
-            <div className="newDist_top">
+            <div className="mixed_top">
               <div className="mixed_name">
                 <span>{name}</span>
               </div>

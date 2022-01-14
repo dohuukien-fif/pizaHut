@@ -84,6 +84,14 @@
         cursor: pointer;
         height: 100%;
         transition: 0.3s all ease-in-out !important;
+        @include mobile {
+          width: 80%;
+          height: 90%;
+        }
+        @include mobilesmall {
+          height: 140px;
+          width: 90%;
+        }
         &:hover {
           // opacity: 0.7;
           transform: rotate(10deg);
@@ -118,27 +126,30 @@
         flex-direction: column;
 
         flex: 1;
-        .newDist_top {
-          margin-bottom: 30px;
+        @include mobilesmall {
+          flex: none;
+        }
+        .appetizer_top {
+          margin-bottom: 45px;
           display: flex;
           flex-direction: column;
 
           flex: 1;
 
-          @include mobilesmall {
-            margin-bottom: 30px;
-          }
+          // @include mobilesmall {
+          //   margin-bottom: 45px;
+          // }
           .appetizer_name {
             margin-top: auto;
 
             font-family: Nunito, sans-serif;
             font-size: 17px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             @include mobilesmall {
-              font-size: 17px;
+              font-size: 16px;
               font-weight: 600;
-              margin-bottom: 20px;
+              margin: 0 0 15px 0;
             }
           }
           .appetizer_detail {
@@ -149,6 +160,7 @@
             color: rgb(110, 105, 105);
             @include mobilesmall {
               font-size: 12px;
+              margin-top: 0;
             }
           }
         }
@@ -183,7 +195,7 @@
             color: black;
             & > span:last-child {
               font-size: 20px;
-              font-weight: 600;
+              font-weight: 700;
               @include mobilesmall {
                 font-size: 16px;
 

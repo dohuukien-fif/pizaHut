@@ -8,7 +8,7 @@ import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 export interface InformationProps {
   detail: PizzaFeaturesProps;
-  setsetPrice: Dispatch<SetStateAction<number>>;
+  setsetPrice: any;
   onSubmits: any;
 }
 
@@ -54,7 +54,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
     }));
     setsetPrice((prev: any) => ({
       ...prev,
-      priceSize: newPrice,
+      sizePrice: newPrice,
     }));
     setindexSize(newIndex);
     setnewsoles(newIndex);
@@ -64,7 +64,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
     setactivemore((x) => !x);
     setsetPrice((prev: any) => ({
       ...prev,
-      priceMore: newPrice,
+      morePrice: newPrice,
     }));
     // const nnewaaa = getmorre
     //   .filter((e: any, index: number) => (e[index] === newValue ? e.replace(e, '') : e))
@@ -111,6 +111,10 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
   console.log('ref', moreRef);
 
   const deleteMore = () => {
+    setsetPrice((prev: any) => ({
+      ...prev,
+      morePrice: 0,
+    }));
     setgetInfor((prev: any) => ({
       ...prev,
       moreName: '',

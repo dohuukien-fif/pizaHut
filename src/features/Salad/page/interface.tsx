@@ -13,4 +13,6 @@ export interface SaladFeaturesProps {
   Spice: string;
   items: any[];
   more: any[];
+  selling: string;
+  unique: string;
 }

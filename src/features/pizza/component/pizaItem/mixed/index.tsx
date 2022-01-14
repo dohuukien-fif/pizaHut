@@ -17,9 +17,6 @@ export default function PizzaMixedItem({ items }: PizzaMixedItemProps) {
       <div className="mixed_block">
         <div className="mixed_aside">
           <img src={image} alt="" />
-          <div className="mixed_icon">
-            <BsCart3 />
-          </div>
         </div>
         <div className="mixed_content">
           <header>

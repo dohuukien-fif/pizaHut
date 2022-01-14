@@ -24,7 +24,7 @@ export default function App({ items }: AppProps) {
         </div>
         <div className="traditional_content">
           <header>
-            <div className="newDist_top">
+            <div className="traditional_top">
               <div className="traditional_name">
                 <span>{name}</span>
               </div>

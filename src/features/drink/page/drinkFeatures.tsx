@@ -96,11 +96,11 @@ export default function DrinkFeatures(props: any) {
     );
   };
   return (
-    <div className="pizza">
-      <div className="pizza_container">
+    <div className="drinks">
+      <div className="drink_container">
         <Silder />
-        <div className="pizza_block">
-          <div className="pizza_new" id="section1">
+        <div className="drink_block">
+          <div className="drink_new" id="section1">
             <div className="new">
               <div className="new_title">
                 <span>Nước uống</span>
@@ -113,7 +113,7 @@ export default function DrinkFeatures(props: any) {
       {Loading ? (
         <LoadingFeatures />
       ) : (
-        <div className={isoverlay ? 'overlay activeOvelay' : 'overlay'}>
+        <div className={isoverlay ? 'overlay activesOvelayDrink' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">

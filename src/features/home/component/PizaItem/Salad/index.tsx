@@ -2,28 +2,61 @@ import * as React from 'react';
 import BakedNoodlesLisstProps from './../../pizaList/BakedNoodlesList';
 import { HomeFeaturesProps } from './../../../page/interface';
 import './styles.scss';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+
 import { BsCart3 } from 'react-icons/bs';
 import { formatPrice } from '../../../../../utils';
-
+import { AiOutlineArrowRight, AiFillStar, AiOutlineHeatMap } from 'react-icons/ai';
 export interface SaladItemProps {
   items: HomeFeaturesProps;
 }
 
 export default function SaladItem({ items }: SaladItemProps) {
-  const { name, image, price, detail } = items;
+  const { name, image, price, detail, selling, unique } = items;
   return (
     <div className="salad_item">
       <div className="salad_block">
         <div className="salad_aside">
           <img src={image} alt="" />
-          <div className="salad_icon">
-            <BsCart3 />
-          </div>
+          {(selling !== '' && unique !== '' && (
+            <div className="rippon">
+              <div className="salad_rippon">
+                {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                <AiFillStar />
+              </div>
+              <div className="unique_rippon">
+                {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                <AiOutlineHeatMap />
+              </div>
+            </div>
+          )) ||
+            (unique !== '' && (
+              <div className="rippon">
+                <div className="unique_rippon">
+                  {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                  <AiOutlineHeatMap />
+                </div>
+              </div>
+            )) ||
+            (selling !== '' && (
+              <div className="rippon">
+                <div className="salad_rippon">
+                  {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                  <AiFillStar />
+                </div>
+              </div>
+            ))}
         </div>
         <div className="salad_content">
           <header>
-            <div className="newDist_top">
+            <div className="salad_top">
               <div className="salad_name">
                 <span>{name}</span>
               </div>

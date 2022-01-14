@@ -5,9 +5,10 @@ import { IoMdAdd } from 'react-icons/io';
 import './styles.scss';
 export interface PizaListProps {
   data: HomeFeaturesProps[];
+  activeTab: string;
 }
 
-export default function PizaList({ data }: PizaListProps) {
+export default function PizaList({ data, activeTab }: PizaListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
   return (
     <>

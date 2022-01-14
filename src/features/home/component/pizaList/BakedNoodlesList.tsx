@@ -28,7 +28,7 @@ export default function BakedNoodlesList({ data }: BakedNoodlesListProps) {
               <p> xem thêm</p>
             </div>
           ) : (
-            <div className="newDish_list">
+            <div className="BakedNoodles_list">
               {data
                 .filter((item) => item.categories === 'BakedNoodles')
                 .slice(4)

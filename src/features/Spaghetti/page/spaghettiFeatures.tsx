@@ -3,7 +3,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
 import Information from '../../pizza/component/overlay/information';
-import Thumbnail from '../../pizza/component/overlay/thumbnail';
+import Thumbnail from '../component/overlay/thumbnail';
+
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
@@ -91,11 +92,11 @@ export default function SpaghettiFeatures(props: any) {
     );
   };
   return (
-    <div className="pizza">
-      <div className="pizza_container">
+    <div className="spaghetti">
+      <div className="spaghetti_container">
         <Silder />
-        <div className="pizza_block">
-          <div className="pizza_new" id="section1">
+        <div className="spaghetti_block">
+          <div className="spaghetti_new" id="section1">
             <div className="new">
               <div className="new_title">
                 <span>Mỳ Ý</span>
@@ -108,7 +109,7 @@ export default function SpaghettiFeatures(props: any) {
       {Loading ? (
         <LoadingFeatures />
       ) : (
-        <div className={isoverlay ? 'overlay activeOvelay' : 'overlay'}>
+        <div className={isoverlay ? 'overlay activesOvelaySpaghtti' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">

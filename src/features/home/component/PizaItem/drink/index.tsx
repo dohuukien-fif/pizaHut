@@ -17,13 +17,10 @@ export default function DrinkItem({ items }: DrinkItemProps) {
       <div className="drink_block">
         <div className="drink_aside">
           <img src={image} alt="" />
-          <div className="drink_icon">
-            <BsCart3 />
-          </div>
         </div>
         <div className="drink_content">
           <header>
-            <div className="newDist_top">
+            <div className="drink_top">
               <div className="drink_name">
                 <span>{name}</span>
               </div>

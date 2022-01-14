@@ -14,7 +14,7 @@ export default function PizzaPerferList({ data }: PizzaPerferListProps) {
     <>
       <div className="perfer_list">
         {data
-          .filter((item) => item.categories === 'Appetizer')
+          .filter((item) => item.categories === 'piza')
 
           .map((items, index) => (
             <PizzaPerferItem key={items.id} items={items} />

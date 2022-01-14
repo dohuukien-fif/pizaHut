@@ -17,9 +17,6 @@ export default function PizzaSeafoodItem({ items }: PizzaSeafoodItemProps) {
       <div className="seafood_block">
         <div className="seafood_aside">
           <img src={image} alt="" />
-          <div className="seafood_icon">
-            <BsCart3 />
-          </div>
         </div>
         <div className="seafood_content">
           <header>

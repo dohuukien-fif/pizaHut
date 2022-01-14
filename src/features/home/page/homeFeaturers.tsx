@@ -22,6 +22,7 @@ import SildesNew from '../../../component/sildes/slidesNew';
 
 export default function HomeFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [activeTab, setactiveTab] = useState('1');
 
   console.log('data', DataPiza);
   return (
@@ -64,29 +65,15 @@ export default function HomeFeatures(props: any) {
               <div className="piza_tab">
                 <div className="piza_title">
                   <span>Pizza</span>
-                  <NavLinkTab />
+                  <NavLinkTab setactiveTab={setactiveTab} activeTab={activeTab} />
                 </div>
               </div>
-              <Routes>
-                <Route path="/*" element={<PizaList data={DataPiza} />} />
 
-                <Route path="Hai-san" element={<SeafoodList data={DataPiza} />} />
-                <Route path="/thap-cam" element={<MixedList data={DataPiza} />} />
-                <Route path="/truyen-thong" element={<StuffingList data={DataPiza} />} />
-                <Route path="/nhan-nhoi" element={<TraditionalList data={DataPiza} />} />
-
-                {/* <Route
-                    path="phim-bos"
-                    element={<Coming comingMovie={MovieLisst} />}
-                  />
-                  <Route
-                    path="phim-le"
-                    element={<Old OldMovie={MovieLisst} />}
-                  /> */}
-
-                {/* <Route path="new" element={<AnimeMovie />} /> */}
-                {/* <Route element={<CinermerMovie />} /> */}
-              </Routes>
+              {activeTab === '1' && <PizaList data={DataPiza} activeTab={activeTab} />}
+              {activeTab === '2' && <SeafoodList data={DataPiza} activeTab={activeTab} />}
+              {activeTab === '3' && <MixedList data={DataPiza} activeTab={activeTab} />}
+              {activeTab === '4' && <StuffingList data={DataPiza} activeTab={activeTab} />}
+              {activeTab === '5' && <TraditionalList data={DataPiza} activeTab={activeTab} />}
             </div>
             {/* khai vi */}
             <div className=" Appetizer">

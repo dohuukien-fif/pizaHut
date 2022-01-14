@@ -95,11 +95,11 @@ export default function NoodleFeatures(props: any) {
     );
   };
   return (
-    <div className="pizza">
-      <div className="pizza_container">
+    <div className="noodles">
+      <div className="noodles_container">
         <Silder />
-        <div className="pizza_block">
-          <div className="pizza_new" id="section1">
+        <div className="noodles_block">
+          <div className="noodles_new" id="section1">
             <div className="new">
               <div className="new_title">
                 <span>Nui Bỏ Lò</span>
@@ -112,7 +112,7 @@ export default function NoodleFeatures(props: any) {
       {Loading ? (
         <LoadingFeatures />
       ) : (
-        <div className={isoverlay ? 'overlay activeOvelay' : 'overlay'}>
+        <div className={isoverlay ? 'overlay activesOvelayNoodles' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">

@@ -14,7 +14,7 @@
   }
   .swiper-button-prev,
   .swiper-button-next {
-    //   box-shadow: 0 2px 10px rgb(54 54 54 / 15%);
+    box-shadow: 0 2px 10px rgb(54 54 54 / 15%);
     top: 40% !important;
     width: 60px !important;
 
@@ -22,29 +22,32 @@
     background: rgba(0, 0, 0, 0.3) !important;
     border-radius: 50% !important;
     height: 60px !important;
-    // z-index: 1 !important;
+
+    @include mobilesmall {
+      height: 35px !important;
+      width: 35px !important;
+    }
     &:hover {
       background: #32a44c !important;
     }
   }
-  //   height: 240px;
-  //   .cc {
-  //     width: 80%;
-  //   }
-  //   display: flex !important;
-  //   align-items: flex-start !important;
-  //   justify-content: center !important;
-  //   @include mobilesmall {
-  //     width: 95%;
-  //   }
-  .swiper-wrapper {
-    //  width: 90% !important;
-    //  margin: auto !important;
-    //  @include mobile {
-    //    width: 100% !important;
-    //  }
-    //  overflow: hidden !important;
+  .swiper-button-next {
+    @include mobilesmall {
+      height: 35px !important;
+      width: 35px !important;
+
+      right: 20px !important;
+    }
   }
+  .swiper-button-prev {
+    @include mobilesmall {
+      height: 35px !important;
+      width: 35px !important;
+
+      left: 20px !important;
+    }
+  }
+
   .swiper-slide {
     display: flex;
     flex-direction: column;
@@ -52,25 +55,44 @@
     cursor: pointer;
 
     @include tablet {
-      // margin-right: 0px !important;
-      // width: 202px !important;
-      // width: 50% !important;
     }
     @include mobilesmall {
       flex-direction: row;
       align-items: flex-start !important;
-
-      // margin-right: 0px !important;
-      // width: 202px !important;
-      // width: 50% !important;
     }
 
     .slide_aside {
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
       @include mobilesmall {
+        display: flex;
+        justify-content: center;
+        // align-items: center;
         flex: 1.5;
+      }
+      .silderl_new {
+        width: 85%;
+        height: 240px;
+        flex-shrink: 0;
+        transition: 0.3s all ease-in-out !important;
+
+        // margin-bottom: 15px;
+        // transition: 1s ease-in-out;
+
+        &:hover {
+          transform: rotate(10deg);
+          // transition: all 900ms linear;
+        }
+
+        @include mobile {
+          width: 80%;
+          height: 140px;
+        }
+        @include mobileSpecial {
+          height: 120px;
+        }
       }
     }
 
@@ -83,7 +105,11 @@
       flex: 1;
 
       width: 100%;
+
+      margin-top: 20px;
+
       @include mobilesmall {
+        margin-top: 0;
         flex: 2;
         // flex-direction: row;
         display: block !important;
@@ -98,7 +124,7 @@
           justify-content: flex-start;
           align-items: flex-start;
 
-          margin-bottom: 3rem;
+          margin-bottom: 4rem;
 
           flex: 1;
           @include mobilesmall {
@@ -107,7 +133,7 @@
           }
           .slide_name {
             cursor: pointer;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
 
             margin-top: 1rem;
 
@@ -135,11 +161,13 @@
         .slide_bottom {
           display: flex;
           flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start;
+          justify-content: flex-end;
+          align-items: flex-end;
 
           margin-top: auto;
           @include mobilesmall {
+            justify-content: flex-start;
+            align-items: flex-start;
             flex-direction: column;
             width: 90%;
             margin: auto;
@@ -159,7 +187,7 @@
             }
             & > span:last-child {
               font-size: 20px;
-              font-weight: 600;
+              font-weight: 700;
               @include tablet {
                 font-size: 15px;
               }
@@ -188,7 +216,7 @@
               font-size: 14px;
               padding: 0.8rem 2rem 0.8rem 2rem;
 
-              border-radius: 5px;
+              border-radius: 10px;
 
               cursor: pointer;
               &:hover {
@@ -203,30 +231,5 @@
         }
       }
     }
-
-    //  min-height: 200px;
-    .silderl_new {
-      width: 90%;
-      height: 240px;
-      flex-shrink: 0;
-      transition: 0.3s all ease-in-out !important;
-      // transition: 1s ease-in-out;
-      &:hover {
-        transform: rotate(10deg);
-        // transition: all 900ms linear;
-      }
-      @include mobile {
-        width: 100%;
-      }
-    }
-    //  & > img {
-    //    height: 200px;
-    //    width: 100%;
-    //    // width: 82%;
-    //  }
   }
 }
-
-// .ccccccccccc {
-//   width: 50%;
-// }

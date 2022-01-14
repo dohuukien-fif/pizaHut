@@ -1,5 +1,8 @@
 @use './sass/' as *;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+// --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+// --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+// monospace;
 *,
 *::before,
 *::after {
@@ -20,6 +23,7 @@ picture {
 html {
   font-size: 60%;
   line-height: 3rem;
+  -webkit-tap-highlight-color: transparent;
   // scroll-behavior: smooth;
   @include mobile {
     font-size: 80%;
@@ -30,8 +34,9 @@ html {
     line-height: 2.5rem;
   }
 }
+
 body {
-  font-family: $font-family;
+  font-family: $font-family-sans-serif;
   min-height: 100vh;
   line-height: 1.5;
 }

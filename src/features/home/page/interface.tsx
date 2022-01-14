@@ -5,4 +5,8 @@ export interface HomeFeaturesProps {
   name: string;
   price: number;
   detail: string;
+  selling: string;
+  chill: string;
+  vegetable: string;
+  unique: string;
 }

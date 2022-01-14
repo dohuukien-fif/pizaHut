@@ -12,30 +12,27 @@ export interface newDishItemProps {
 export default function newDishItem({ items }: newDishItemProps) {
   const { name, image, price, detail } = items;
   return (
-    <div className="newDish_item">
-      <div className="newDish_block">
-        <div className="newDish_aside">
+    <div className="bakednooles_item">
+      <div className="bakednooles_block">
+        <div className="bakednooles_aside">
           <img src={image} alt="" />
-          <div className="newDish_icon">
-            <BsCart3 />
-          </div>
         </div>
-        <div className="newDish_content">
+        <div className="bakednooles_content">
           <header>
             <div className="newDist_top">
-              <div className="newDish_name">
+              <div className="bakednooles_name">
                 <span>{name}</span>
               </div>
-              <div className="newDish_detail">{detail}</div>
+              <div className="bakednooles_detail">{detail}</div>
             </div>
           </header>
           <footer>
-            <div className="newDish_bottom">
-              <div className="newDish_price">
+            <div className="bakednooles_bottom">
+              <div className="bakednooles_price">
                 <span>Giá chỉ từ</span>
                 <span>{formatPrice(price)}</span>
               </div>
-              <div className="newDish_btn">
+              <div className="bakednooles_btn">
                 <button>
                   <span>Mua ngay</span> <AiOutlineArrowRight />
                 </button>

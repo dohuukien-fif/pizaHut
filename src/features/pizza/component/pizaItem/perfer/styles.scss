@@ -41,6 +41,88 @@
       transition: 0.3s all ease-in-out !important;
 
       position: relative;
+
+      .rippon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: all 3s ease-in-out !important;
+        // overflow: hidden;
+        .perfer_ribbon {
+          position: relative;
+          // right: 0;
+
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          width: 50px;
+          max-height: 20px;
+
+          transition: all 3s ease-in-out !important;
+
+          cursor: pointer;
+          & > svg {
+            font-size: 17px;
+
+            color: #d50e15;
+
+            z-index: 10;
+
+            margin-right: 5px;
+
+            margin-left: 10px;
+
+            cursor: pointer;
+
+            transition: all 0.4s ease-in-out !important;
+            // &:hover > .ribbon_content {
+            //   display: block;
+            // }
+
+            // overflow: hidden;
+            &:hover {
+              color: white;
+            }
+          }
+          &::before {
+            position: absolute;
+            content: 'BÁN CHẠY';
+            font-size: 12px;
+            padding: 5px 5px 5px 15px;
+            // top: 0;
+            right: 0;
+            left: -70%;
+            // bottom: 0;
+            background: $red;
+            // height: 20px;
+            color: $white;
+
+            // display: none;
+            transition: all 0.3s ease-in-out !important;
+            border-radius: 25px;
+
+            text-align: left;
+
+            visibility: hidden;
+            opacity: 0;
+          }
+          &:hover:before {
+            visibility: visible;
+            opacity: 1;
+            left: -100%;
+            display: block;
+            transition: all 0.3s ease-out !important;
+          }
+          &:hover > svg {
+            color: white;
+          }
+          // .ribbon_content {
+          //   position: absolute;
+          //   display: none;
+          // }
+        }
+      }
+
       @include mobilesmall {
         height: 100%;
         flex: 1;
@@ -83,7 +165,17 @@
         object-fit: contain;
         cursor: pointer;
         height: 100%;
+        width: 90%;
         transition: 0.3s all ease-in-out !important;
+        @include mobile {
+          height: 90%;
+
+          width: 80%;
+        }
+        @include mobilesmall {
+          width: 90%;
+          height: 140px;
+        }
         &:hover {
           // opacity: 0.7;
           transform: rotate(10deg);
@@ -118,25 +210,25 @@
         flex-direction: column;
 
         flex: 1;
+        @include mobilesmall {
+          flex: none;
+        }
         .perfer_top {
-          margin-bottom: 30px;
+          margin-bottom: 45px;
           display: flex;
           flex-direction: column;
 
           flex: 1;
 
-          @include mobilesmall {
-            margin-bottom: 30px;
-          }
           .perfer_name {
             margin-top: auto;
 
             font-family: Nunito, sans-serif;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 25px;
             @include mobilesmall {
-              font-size: 17px;
+              font-size: 16px;
               font-weight: 600;
               margin-bottom: 20px;
             }
@@ -149,6 +241,8 @@
             color: rgb(110, 105, 105);
             @include mobilesmall {
               font-size: 12px;
+
+              margin-top: 0;
             }
           }
         }
@@ -183,7 +277,7 @@
             color: black;
             & > span:last-child {
               font-size: 20px;
-              font-weight: 600;
+              font-weight: 700;
               @include mobilesmall {
                 font-size: 16px;
 

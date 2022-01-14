@@ -15,7 +15,7 @@ export default function PizzaNewList({ data, setIdPizza }: PizzaNewListProps) {
   };
   return (
     <>
-      <div className="new_list">
+      <div className="spaghetti_list">
         {data
           .filter((item) => item.categories === 'Spaghetti')
 

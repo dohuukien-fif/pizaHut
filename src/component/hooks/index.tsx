@@ -253,7 +253,7 @@ export const dataLisst = [
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
     Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
-
+    selling: 'selling',
     size: [
       {
         name: 'Nhỏ 6',
@@ -298,6 +298,7 @@ export const dataLisst = [
           'https://thumbs.dreamstime.com/z/smoked-pork-neck-meat-product-partially-chopped-rolled-slice-beautiful-composition-decorated-leaf-lettuce-isolated-112974248.jpg',
         name: 'Thịt xông khói cắt lát',
         price: 39000,
+        selling: 'selling',
       },
       {
         id: 77,
@@ -311,6 +312,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 12,
+    selling: '',
     image:
       'https://image.shutterstock.com/image-photo/mushrooms-pizza-tomatoes-greens-600w-52469710.jpg',
     name: 'Pizza  4 Cheese',
@@ -346,6 +348,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 13,
+    selling: 'selling',
     image:
       'https://image.shutterstock.com/image-photo/italian-pizza-on-white-table-600w-1625845345.jpg',
     name: 'Pizza  4 Cheese',
@@ -381,6 +384,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 14,
+    selling: 'selling',
     image:
       'https://image.shutterstock.com/image-photo/delicious-italian-pizza-over-white-600w-669257485.jpg',
     name: 'Pizza  4 Cheese',
@@ -416,6 +420,7 @@ export const dataLisst = [
   {
     categories: 'piza',
     id: 15,
+    selling: '',
     image:
       'https://image.shutterstock.com/image-photo/meat-pizza-tomatoes-isolated-against-600w-1699835308.jpg',
     name: 'Pizza  4 Cheese',
@@ -633,6 +638,8 @@ export const dataLisst = [
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
     Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    chill: 'chill',
+    vegetable: 'vegetable',
     size: [
       {
         name: 'Nhỏ 6',
@@ -665,6 +672,8 @@ export const dataLisst = [
     image: 'https://image.shutterstock.com/image-photo/pasta-tomato-sauce-600w-773298877.jpg',
     name: 'Pizza  4 Cheese',
     price: 129000,
+    chill: '',
+    vegetable: 'vegetable',
     detail: 'Phủ phô mai Gouda thơm vàng',
     Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
     size: [
@@ -699,6 +708,8 @@ export const dataLisst = [
     image: 'https://image.shutterstock.com/image-photo/bolognase-pasta-vegan-600w-1310423953.jpg',
     name: 'Pizza  4 Cheese',
     price: 129000,
+    chill: '',
+    vegetable: 'vegetable',
     detail: 'Phủ phô mai Gouda thơm vàng',
     Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
     size: [
@@ -765,6 +776,8 @@ export const dataLisst = [
   {
     categories: 'Spaghetti',
     id: 25,
+    chill: 'chill',
+    vegetable: '',
     image: 'https://image.shutterstock.com/image-photo/background-600w-741767308.jpg',
     name: 'Pizza  4 Cheese',
     price: 129000,
@@ -806,6 +819,8 @@ export const dataLisst = [
     price: 309000,
     detail: 'Phủ phô mai Gouda thơm vàng',
     Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    unique: 'unique',
+    selling: '',
     size: [
       {
         name: 'Nhỏ 6',
@@ -837,6 +852,8 @@ export const dataLisst = [
     id: 27,
     image: 'https://image.shutterstock.com/image-photo/salad-600w-704549908.jpg',
     name: 'Pizza  4 Cheese',
+    unique: '',
+    selling: '',
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
     Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
@@ -875,6 +892,8 @@ export const dataLisst = [
     price: 129000,
     detail: 'Phủ phô mai Gouda thơm vàng',
     Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    unique: '',
+    selling: 'selling',
     size: [
       {
         name: 'Nhỏ 6',
@@ -904,6 +923,8 @@ export const dataLisst = [
   {
     categories: 'Salad',
     id: 29,
+    unique: 'unique',
+    selling: 'selling',
     image:
       'https://image.shutterstock.com/image-photo/salad-cheese-fresh-vegetables-isolated-600w-501742588.jpg',
     name: 'Pizza  4 Cheese',

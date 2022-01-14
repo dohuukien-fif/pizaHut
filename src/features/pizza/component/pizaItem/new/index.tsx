@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PizzaFeaturesProps } from './../../../page/interface';
 import './styles.scss';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { AiOutlineArrowRight, AiFillStar } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
 import { formatPrice } from '../../../../../utils';
 
@@ -12,7 +12,7 @@ export interface PizzaNewItemProps {
 }
 
 export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
-  const { name, image, price, detail } = items;
+  const { name, image, price, detail, selling } = items;
 
   const hanndleIdNew = (newIds: number) => {
     if (handleIds) handleIds(newIds);
@@ -22,9 +22,16 @@ export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
       <div className="new_block">
         <div className="new_aside">
           <img src={image} alt="" />
-          <div className="new_icon">
-            <BsCart3 />
-          </div>
+          {selling !== '' && (
+            <div className="rippon">
+              <div className="pizza_ribbon">
+                {/* <div className="ribbon_content">
+              <span></span>
+            </div> */}
+                <AiFillStar />
+              </div>
+            </div>
+          )}
         </div>
         <div className="new_content">
           <header>
