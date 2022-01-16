@@ -16,7 +16,11 @@ export default function App({ setActive, activeTranForm, activeIco, isorder }: I
     <div className="nav_Link-block">
       {/* menu link  */}
       <ul className="menu_Link">
-        <li>Khuyến mãi</li>
+        <li>
+          <span>
+            <NavLink to="/">Khuyến mãi</NavLink>
+          </span>
+        </li>
         <li>
           <span>
             {' '}

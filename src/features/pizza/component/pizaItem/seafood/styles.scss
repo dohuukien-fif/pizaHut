@@ -145,6 +145,13 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 25px;
+            cursor: pointer;
+            & > span {
+              &:hover {
+                color: $green;
+                text-decoration: underline;
+              }
+            }
             @include mobilesmall {
               font-size: 16px;
               font-weight: 600;

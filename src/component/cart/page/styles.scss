@@ -9,31 +9,210 @@
   // .active {
   //   background: red;
   // }
-  min-height: 80vh;
+  min-height: 100vh;
+  @include tablet {
+    min-height: 60vh;
+  }
+  @include mobile {
+    min-height: 80vh;
+  }
   @include mobilesmall {
-    width: 95%;
+    width: 100%;
     margin: auto;
+    // min-height: 100vh;
     // margin-top: 100px;
   }
   .cart_wrapper {
     // margin-top: 500px;
     width: 75%;
     margin: auto;
+    position: relative;
+    @include tablet {
+      width: 90%;
+    }
+    @include mobilesmall {
+      width: 100%;
+    }
     .cart_block {
       // background: black;
-      padding-top: 80px;
+      padding-top: 70px;
       margin-left: 30px;
+      @include tablet {
+        padding-top: 0px;
+        max-height: 500px;
+        overflow: scroll;
+      }
+      @include mobilesmall {
+        width: 95%;
+        padding-top: 70px;
+        margin: auto 0 auto auto;
+      }
+
       .cart_title {
         // margin-top: 100px;
         font-size: 25px;
 
         cursor: pointer;
-
+        margin-bottom: 20px;
         & > span {
-          font-weight: bold;
+          font-weight: 600;
           margin-bottom: 20px;
           &:hover {
             color: $green;
+          }
+        }
+      }
+    }
+
+    //total
+    .cart_total {
+      position: absolute;
+      right: 0;
+      margin-top: 50px;
+
+      font-weight: 600;
+
+      @include mobilesmall {
+        width: 100%;
+
+        position: sticky;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+      }
+
+      .total_title {
+        font-size: 25px;
+
+        margin-bottom: 50px;
+
+        display: flex;
+        justify-content: flex-end;
+
+        @include mobilesmall {
+          justify-content: space-between;
+
+          margin-bottom: 10px;
+
+          padding-top: 10px;
+
+          font-size: 20px;
+
+          padding-left: 20px;
+          padding-right: 20px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        & > span:first-child {
+          color: $green;
+
+          font-weight: 700;
+
+          @include mobilesmall {
+            color: $black;
+
+            font-weight: 600;
+          }
+        }
+        & > span:last-child {
+          color: $red;
+          font-weight: 700;
+
+          margin-left: 10px;
+
+          @include mobilesmall {
+            font-size: 24px;
+          }
+        }
+      }
+      .total_payload {
+        display: flex;
+
+        @include mobilesmall {
+          justify-content: space-around;
+          // flex-direction: column;
+          padding-left: 10px;
+          padding-right: 10px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        & > button {
+          padding: 12px 30px 12px 30px;
+
+          cursor: pointer;
+
+          border: none;
+
+          font-size: 15px;
+
+          color: white;
+
+          border-radius: 5px;
+
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          // & > span {
+          //   margin-left: 10px;
+          // }
+
+          @include mobilesmall {
+            // padding: 10px;
+
+            margin-bottom: 10px;
+
+            justify-content: center;
+
+            // font-size: 17px;
+          }
+          & > svg {
+            font-size: 20px;
+
+            @include mobilesmall {
+              font-size: 15px;
+            }
+          }
+        }
+        & > button:first-child {
+          background: #738c80;
+
+          border: none;
+
+          & > span {
+            margin-left: 30px;
+
+            &:hover {
+              text-decoration: underline;
+            }
+            @include mobilesmall {
+              margin-left: 5px;
+            }
+          }
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+        & > button:last-child {
+          margin-left: 20px;
+
+          border: none;
+
+          background-color: $green;
+
+          @include mobilesmall {
+            margin-left: 0;
+          }
+
+          &:hover {
+            opacity: 0.9;
+          }
+          & > span {
+            margin-right: 30px;
+
+            &:hover {
+              text-decoration: underline;
+            }
+            @include mobilesmall {
+              margin-right: 5px;
+            }
           }
         }
       }

@@ -65,7 +65,7 @@
 
             color: #d50e15;
 
-            z-index: 10;
+            z-index: 1;
 
             margin-right: 5px;
 
@@ -224,6 +224,13 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 25px;
+            cursor: pointer;
+            & > span {
+              &:hover {
+                color: $green;
+                text-decoration: underline;
+              }
+            }
             @include mobilesmall {
               font-size: 17px;
               font-weight: 600;

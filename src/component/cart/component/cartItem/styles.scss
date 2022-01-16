@@ -1,0 +1,110 @@
+@use './../../../../sass/index.scss' as *;
+.cart_item {
+  height: 140px;
+
+  //   border-bottom: 1px solid black;
+  border-top: 1px solid #e1e1e1;
+  @include mobile {
+    // width: 60%;
+    height: 100% !important;
+  }
+  .cart_blocks {
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 15px 0;
+
+    @include mobile {
+      flex-direction: column;
+    }
+    .cart_left {
+      flex: 1;
+
+      display: flex;
+      align-items: flex-start;
+
+      justify-content: flex-start;
+
+      .cart_add {
+        display: flex;
+        flex-direction: column;
+        font-size: 15px;
+
+        margin-left: 25px;
+
+        color: #666666;
+
+        //   font-weight: 500;
+
+        .cart_name {
+          font-weight: 700;
+
+          color: black;
+
+          font-size: 16px;
+        }
+      }
+      .cart_aside {
+        --size: 130px;
+        width: var(--size);
+        height: var(--size);
+        @include mobilesmall {
+          height: 110px;
+        }
+      }
+    }
+    .cart_right {
+      flex: 1;
+
+      height: 100%;
+      @include mobile {
+        width: 70%;
+      }
+      @include mobilesmall {
+        width: 100%;
+      }
+
+      // align-items: center;
+      // justify-content: center;
+      // align-items: center;
+      .right_block {
+        height: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 70%;
+        @include mobilesmall {
+          width: 90%;
+        }
+        .cart_quantity {
+          & > input {
+            height: 40px;
+            border-radius: 10px;
+
+            border: 1px solid #e1e1e1;
+
+            outline: none;
+          }
+        }
+        .cart_price {
+          & > span {
+            font-size: 20px;
+
+            font-weight: 600;
+          }
+        }
+        .cart_delete {
+          & > svg {
+            font-size: 30px;
+
+            color: #ccc;
+          }
+        }
+      }
+      // justify-content: center;
+    }
+  }
+}

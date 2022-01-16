@@ -46,7 +46,7 @@
         z-index: 500;
         // top: 60px;
 
-        top: 130px;
+        top: 140px;
 
         @include mobile {
           top: 70px;
@@ -112,6 +112,8 @@
         // padding: 5px;
         // padding-top: 40px;
         padding-bottom: 10px;
+
+        z-index: 5;
 
         // border-bottom: 1px solid rgb(213, 207, 207);
 

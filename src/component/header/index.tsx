@@ -121,14 +121,11 @@ export default function Headers(props: HeadersProps) {
             <div className="menu_block">
               <AiOutlineSearch />
               <BsCart3 />
+              <span>Giỏ hàng</span>
               {isopen ? (
-                <AiOutlineClose
-                  className="icon_close"
-                  style={{ color: 'white' }}
-                  onClick={() => setisopen((x) => !x)}
-                />
+                <AiOutlineClose className="icon_close" onClick={() => setisopen((x) => !x)} />
               ) : (
-                <FiMenu style={{ color: 'white' }} onClick={() => setisopen((x) => !x)} />
+                <FiMenu onClick={() => setisopen((x) => !x)} />
               )}
             </div>
           </div>
