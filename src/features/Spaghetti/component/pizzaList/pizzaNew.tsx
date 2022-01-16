@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 import { IoMdAdd } from 'react-icons/io';
 import PizzaNewItem from '../pizaItem/new';
-import { SaladFeaturesProps } from '../../../Salad/page/interface';
+
+import { SpaghettiFeaturesProps } from '../../page/interface';
 export interface PizzaNewListProps {
-  data: SaladFeaturesProps[];
+  data: SpaghettiFeaturesProps[];
   setIdPizza: (newId: number) => {};
 }
 
