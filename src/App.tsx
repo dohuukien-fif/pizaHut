@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './App.scss';
+import LoginFeatures from './component/auth/login';
+import RegisterFeatures from './component/auth/resgiter';
 import CartFeatures from './component/cart/index';
 import Footer from './component/footer';
 import Headers from './component/header/index';
@@ -11,6 +13,7 @@ import HomePiza from './features/home/index';
 import NoodleFeatures from './features/noodles/index';
 import PizzaFeatures from './features/pizza/index';
 import SaladFeatures from './features/Salad/index';
+import SearchFeatures from './features/Search/index';
 import SpaghettiFeatures from './features/Spaghetti/index';
 // export interface AppProps {
 //   id: number;
@@ -44,6 +47,9 @@ function App() {
       <Routes>
         <Route path="trang-chu/*" element={<HomePiza />} />
         <Route path="/" element={<Navigate replace to="Trang-chu" />} />
+        <Route path="/login" element={<LoginFeatures />} />
+        <Route path="/register" element={<RegisterFeatures />} />{' '}
+        <Route path="/search/*" element={<SearchFeatures />} />
         <Route path="/pizza/*" element={<PizzaFeatures />} />
         <Route path="/khai-vi/*" element={<AppertizerFeatures />} />
         <Route path="/salad/*" element={<SaladFeatures />} />
@@ -52,13 +58,11 @@ function App() {
         <Route path="/nuoc-uong/*" element={<DrinkFeatures />} />
         <Route path="/trang-mieng/*" element={<DessertFeatures />} />
         <Route path="/cart/*" element={<CartFeatures />} />
-
         {/* <Route path="/" element={<Navigate replace to="Trang-chu" />} />
         <Route path="/phim-bo/*" element={<SerieMovie />} />
         <Route path="/phim-le/*" element={<OldMovie />} />
         <Route path="/phim-hoat-hinh/*" element={<AnimeMovie />} />
         <Route path="/phim-chieu-rap/*" element={<CinermerMovie />} /> */}
-
         {/* <Route path="new" element={<AnimeMovie />} /> */}
         {/* <Route element={<CinermerMovie />} /> */}
       </Routes>

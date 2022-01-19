@@ -6,10 +6,12 @@
   height: 500px;
   margin-top: auto;
   //   width: 100%;
-  position: relative;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  // position: relative;
+  // bottom: 0;
+  // right: 0;
+  // left: 0;
+
+  display: block;
   @include mobile {
     height: 100%;
     // display: flex;

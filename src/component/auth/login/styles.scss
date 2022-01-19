@@ -1,0 +1,169 @@
+@use './../../../sass/index.scss' as *;
+.login {
+  margin-top: 140px;
+
+  min-height: 55vh;
+  @include tablet {
+    min-height: 60vh;
+  }
+  @include mobile {
+    min-height: 50vh;
+  }
+  @include mobilesmall {
+    min-height: 75vh;
+  }
+  .login_container {
+    margin: 180px auto 20px auto;
+
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+    border-radius: 8px;
+
+    width: 540px;
+
+    // margin-top: 20px;
+    @include tablet {
+      margin: 200px auto;
+    }
+
+    @include mobile {
+      margin: 150px auto;
+    }
+    @include mobilesmall {
+      margin: 150px auto auto auto;
+      width: 90%;
+    }
+    .login_block {
+      padding: 40px 30px 50px;
+
+      cursor: pointer;
+
+      .login_title {
+        & > h2 {
+          font-size: 30px;
+          position: relative;
+          &::before {
+            position: absolute;
+            content: '';
+
+            top: 0;
+
+            height: 2px;
+            background: #00b041;
+
+            width: 5%;
+          }
+
+          &:hover {
+            color: $green;
+          }
+        }
+      }
+      & > form {
+        .form_group {
+          display: flex;
+          flex-direction: column;
+
+          font-size: 14px;
+
+          row-gap: 10px;
+
+          margin-bottom: 15px;
+          margin-top: 15px;
+          & > label {
+            font-weight: 600;
+
+            display: flex;
+            align-items: flex-start;
+            & > svg {
+              font-size: 6px;
+
+              color: $red;
+
+              margin-left: 5px;
+            }
+          }
+          & > input {
+            border-radius: 5px;
+
+            border: 1px solid #e1e1e1;
+
+            padding: 8px 8px 8px 15px;
+
+            background: #fafafa;
+
+            outline: none;
+
+            &::placeholder {
+              // padding-left: 15px;
+              font-style: italic;
+
+              // font-weight: 500;
+            }
+          }
+        }
+        .form_forget {
+          margin-top: 50px;
+          & > label {
+            font-size: 14px;
+
+            // font-weight: 600;
+
+            color: #00addf;
+          }
+        }
+        .form_group-redirest {
+          font-size: 14px;
+
+          margin-bottom: 15px;
+          & > span {
+            & > a {
+              color: #00addf;
+
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+        & > button {
+          width: 100%;
+
+          padding: 10px;
+
+          background: $green;
+
+          border: none;
+
+          border-radius: 8px;
+
+          color: white;
+
+          border: 1px solid $green;
+
+          cursor: pointer;
+          &:hover {
+            background: white;
+
+            color: $green;
+
+            border: 1px solid $green;
+          }
+
+          & > span {
+            font-size: 17px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+            & > svg {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

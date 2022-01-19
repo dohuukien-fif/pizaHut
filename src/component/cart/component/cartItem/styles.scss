@@ -39,6 +39,10 @@
 
         //   font-weight: 500;
 
+        @include mobilesmall {
+          font-size: 14px;
+        }
+
         .cart_name {
           font-weight: 700;
 

@@ -135,6 +135,90 @@
       display: none;
 
       .menu_block {
+        .search_pizzaMobile {
+          position: relative;
+
+          & > svg {
+            font-size: 22px;
+
+            // font-weight: 700;
+
+            color: $green;
+
+            cursor: pointer;
+
+            @include mobilesmall {
+              color: $white;
+            }
+          }
+
+          & > form {
+            position: absolute;
+            top: 150%;
+            right: 0;
+
+            width: 300px;
+
+            @include mobilesmall {
+              left: 50%;
+
+              top: 200%;
+
+              transform: translateX(-50%);
+            }
+
+            .form_add {
+              position: relative;
+
+              & > button {
+                position: absolute;
+
+                right: 10px;
+
+                top: 20%;
+
+                border: none;
+
+                background: white;
+
+                cursor: pointer;
+                & > svg {
+                  // display: flex;
+                  // align-items: center;
+                  // justify-content: center;
+
+                  font-size: 20px;
+
+                  color: $green;
+
+                  margin-top: 3px;
+                }
+              }
+              & > input {
+                width: 100%;
+
+                padding: 10px;
+
+                border: 1px solid #00b041;
+
+                border-radius: 25px;
+
+                outline: none;
+
+                font-weight: 600;
+
+                padding-left: 25px;
+
+                &::placeholder {
+                  color: #8c8c8c;
+
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+
         .icon_close {
           @include mobile {
             color: $green;
@@ -324,7 +408,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    // align-items: center;
 
     background: $green;
 
@@ -340,6 +424,78 @@
     .nav_carts {
       display: flex;
       align-items: center;
+
+      .search_pizza {
+        position: relative;
+
+        & > svg {
+          font-size: 22px;
+
+          // font-weight: 700;
+
+          color: white;
+
+          cursor: pointer;
+        }
+
+        & > form {
+          position: absolute;
+          top: 150%;
+          right: 0;
+
+          width: 300px;
+
+          .form_add {
+            position: relative;
+
+            & > button {
+              position: absolute;
+
+              right: 10px;
+
+              top: 20%;
+
+              border: none;
+
+              background: white;
+
+              cursor: pointer;
+              & > svg {
+                // display: flex;
+                // align-items: center;
+                // justify-content: center;
+
+                font-size: 20px;
+
+                color: $green;
+
+                margin-top: 3px;
+              }
+            }
+            & > input {
+              width: 100%;
+
+              padding: 10px;
+
+              border: 1px solid #00b041;
+
+              border-radius: 25px;
+
+              outline: none;
+
+              font-weight: 600;
+
+              padding-left: 25px;
+
+              &::placeholder {
+                color: #8c8c8c;
+
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
       & > svg {
         font-size: 25px;
         color: white;
@@ -361,6 +517,143 @@
         align-items: center;
         justify-content: center;
 
+        position: relative;
+
+        cursor: pointer;
+
+        &:hover > .nav_miniCart {
+          display: block;
+        }
+
+        .nav_miniCart {
+          display: none;
+          position: absolute;
+          top: 100%;
+
+          background: white;
+
+          right: 0;
+
+          margin-top: 8px;
+
+          box-shadow: 0 0 15px rgb(0 0 0 / 15%);
+
+          width: 450px;
+
+          border-radius: 5px;
+          &::before {
+            top: -8px;
+            right: 5px;
+            position: absolute;
+            content: '';
+            border-bottom: 20px solid $white;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            z-index: 6;
+          }
+          &::after {
+            top: -8px;
+
+            right: 5px;
+            left: 0;
+            height: 7px;
+            position: absolute;
+            content: '';
+            background: $green;
+
+            // border-radius: 10px;
+            z-index: 5;
+          }
+          .miniCart_list {
+            .miniCart_item {
+              display: flex;
+
+              border-bottom: 1px solid #e1e1e1;
+
+              padding-top: 10px;
+              .miniCart_blocks {
+                padding: 20px 40px 20px 20px;
+                margin-left: auto;
+                margin-right: auto;
+
+                display: flex;
+
+                width: 100%;
+                .miniCart_left {
+                  flex: 1;
+
+                  display: flex;
+                  .miniCart_aside {
+                    width: 80px;
+                  }
+                }
+                .miniCart_right {
+                  flex: 3;
+                  display: flex;
+                  // justify-content: flex-end;
+                  .right_block {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    // padding-right: 10px;
+
+                    width: 100%;
+
+                    // justify-content: flex-end;
+                    // align-items: flex-end;
+                    .miniCart_add {
+                      display: flex;
+
+                      justify-content: space-between;
+
+                      padding-right: 15px;
+                      .miniCart_add-left {
+                        color: #666666;
+                        .miniCart_name {
+                          color: $black;
+
+                          font-size: 19px;
+
+                          font-weight: 600;
+                        }
+                      }
+
+                      .miniCart_delete {
+                        & > svg {
+                          font-size: 20px;
+
+                          color: #ccc;
+                        }
+                      }
+                    }
+                  }
+                  .miniCart_bottom {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .miniCart_quantity {
+                      & > span {
+                        font-size: 16px;
+                        color: rgb(132, 135, 136);
+                      }
+                    }
+                    .miniCart_price {
+                      color: $black;
+
+                      margin-top: auto;
+
+                      font-weight: 600;
+
+                      font-size: 17px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
         @include mobile {
           display: none;
         }
@@ -370,6 +663,63 @@
         }
         & > span {
           padding-left: 8px;
+        }
+
+        .miniCart_total {
+          background: #f6f6f6;
+          border-radius: 0 0 3px 3px;
+
+          // padding: 10px;
+          margin: 10px;
+
+          .miniCart_total-block {
+            padding: 15px;
+            .minicart_title {
+              display: flex;
+
+              justify-content: space-between;
+
+              font-size: 15px;
+
+              font-weight: 600;
+
+              margin-bottom: 20px;
+              margin-top: 10px;
+              & > span:last-child {
+                font-size: 20px;
+                font-weight: 700;
+
+                color: $red;
+              }
+            }
+          }
+          .miniCart_bottom {
+            width: 100%;
+            margin: auto;
+
+            & > button {
+              border-radius: 8px;
+              width: 100%;
+              margin: auto;
+
+              border: none;
+
+              background: $green;
+
+              cursor: pointer;
+
+              &:hover {
+                background: $red;
+              }
+              & > p {
+                padding: 10px;
+
+                color: $white;
+
+                font-size: 16px;
+              }
+            }
+          }
         }
       }
     }

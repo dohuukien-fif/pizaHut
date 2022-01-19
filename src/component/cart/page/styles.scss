@@ -13,9 +13,9 @@
   @include tablet {
     min-height: 60vh;
   }
-  @include mobile {
-    min-height: 80vh;
-  }
+  // @include mobile {
+  //   min-height: 80vh;
+  // }
   @include mobilesmall {
     width: 100%;
     margin: auto;
@@ -44,7 +44,7 @@
       }
       @include mobilesmall {
         width: 95%;
-        padding-top: 70px;
+        padding-top: 100px;
         margin: auto 0 auto auto;
       }
 
@@ -66,17 +66,23 @@
 
     //total
     .cart_total {
-      position: absolute;
-      right: 0;
+      // position: absolute;
+      // right: 0;
       margin-top: 50px;
 
       font-weight: 600;
 
+      margin-bottom: 50px;
+      @include mobile {
+        margin-bottom: 30px;
+      }
       @include mobilesmall {
         width: 100%;
 
         position: sticky;
         box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+
+        margin-bottom: 0px;
       }
 
       .total_title {
@@ -117,7 +123,9 @@
           font-weight: 700;
 
           margin-left: 10px;
-
+          @include mobile {
+            margin-left: 30px;
+          }
           @include mobilesmall {
             font-size: 24px;
           }
@@ -125,6 +133,7 @@
       }
       .total_payload {
         display: flex;
+        justify-content: flex-end;
 
         @include mobilesmall {
           justify-content: space-around;
@@ -147,15 +156,17 @@
 
           border-radius: 5px;
 
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
+          // display: flex;
+          // justify-content: space-around;
+          // align-items: center;
           // & > span {
           //   margin-left: 10px;
           // }
 
           @include mobilesmall {
             // padding: 10px;
+
+            border-radius: 10px;
 
             margin-bottom: 10px;
 
