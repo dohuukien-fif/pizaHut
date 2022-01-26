@@ -12,13 +12,13 @@ export default function NewDishLisst({ data }: NewDishLisstProps) {
     <>
       <div className="newDish_list">
         {data
-          .filter((item) => item.categories === 'newDish')
+          .filter((item) => item.category === 'newDish')
           .slice(0, 4)
           .map((items, index) => (
             <NewDishItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'newDish').length > 3 && (
+      {data.filter((item) => item.category === 'newDish').length > 3 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -27,7 +27,7 @@ export default function NewDishLisst({ data }: NewDishLisstProps) {
           ) : (
             <div className="newDish_list">
               {data
-                .filter((item) => item.categories === 'newDish')
+                .filter((item) => item.category === 'newDish')
                 .slice(4)
                 .map((items, index) => (
                   <NewDishItem key={items.id} items={items} />

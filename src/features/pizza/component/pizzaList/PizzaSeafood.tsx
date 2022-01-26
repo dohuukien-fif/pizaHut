@@ -13,7 +13,7 @@ export default function PizzaSeafoodList({ data }: PizzaSeafoodListProps) {
     <>
       <div className="seafood_list">
         {data
-          .filter((item) => item.categories === 'Seafood')
+          .filter((item) => item.category === 'Seafood')
 
           .map((items, index) => (
             <PizzaSeafoodItem key={items.id} items={items} />

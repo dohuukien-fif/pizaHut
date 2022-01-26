@@ -14,13 +14,13 @@ export default function PizaList({ data, activeTab }: PizaListProps) {
     <>
       <div className="pizza_list">
         {data
-          .filter((item) => item.categories === 'piza')
+          .filter((item) => item.category === 'piza')
           .slice(0, 4)
           .map((items, index) => (
             <PizaItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'piza').length > 4 && (
+      {data.filter((item) => item.category === 'piza').length > 4 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -29,7 +29,7 @@ export default function PizaList({ data, activeTab }: PizaListProps) {
           ) : (
             <div className="pizza_list">
               {data
-                .filter((item) => item.categories === 'piza')
+                .filter((item) => item.category === 'piza')
                 .slice(4)
                 .map((items, index) => (
                   <PizaItem key={items.id} items={items} />

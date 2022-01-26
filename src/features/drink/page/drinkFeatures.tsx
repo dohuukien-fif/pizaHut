@@ -12,9 +12,10 @@ import { MdCheckBox } from 'react-icons/md';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import { AiOutlineClose } from 'react-icons/ai';
 import Thumbnail from './../component/overlay/thumbnail';
+import ProductApi from './../../../api/productApi';
 import Information from './../component/overlay/information';
 export default function DrinkFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
   const [isAccountion, setisAccountion] = useState<boolean>(false);
@@ -36,6 +37,15 @@ export default function DrinkFeatures(props: any) {
   //     top: location - 150,
   //   });
   // };
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await ProductApi.get();
+        console.log('des', res);
+        setDataPiza(res);
+      } catch (err) {}
+    })();
+  }, []);
   useEffect(() => {
     const ScrollNavBar = () => {
       const widthtabletsmall = screen.width > 767 && screen.width < 1024;
@@ -97,8 +107,8 @@ export default function DrinkFeatures(props: any) {
   };
   return (
     <div className="drinks">
+      <Silder />
       <div className="drink_container">
-        <Silder />
         <div className="drink_block">
           <div className="drink_new" id="section1">
             <div className="new">

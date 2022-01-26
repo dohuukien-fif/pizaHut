@@ -13,7 +13,7 @@ export default function PizzaMixedList({ data }: PizzaMixedListProps) {
     <>
       <div className="mixed_list">
         {data
-          .filter((item) => item.categories === 'mixed')
+          .filter((item) => item.category === 'mixed')
 
           .map((items, index) => (
             <PizzaMixedItem key={items.id} items={items} />

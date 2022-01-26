@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
-import { AiOutlineSearch, AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
+import {
+  AiOutlineSearch,
+  AiOutlineClose,
+  AiOutlineLoading3Quarters,
+  AiTwotoneHome,
+  AiOutlineHome,
+} from 'react-icons/ai';
 import { FaShippingFast, FaStore } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
 import Menulink from './menuLink';
@@ -13,159 +19,13 @@ import { cartFeaturesProps } from '../cart/page/interface';
 import { formatPrice } from '../../utils';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import LoadingInput from '../loadingFeatures/loadingInput/loadingInput';
+import { dataLisst } from '../hooks';
+import { logout } from './../../app/userRedux';
+import { useSelector, useDispatch } from 'react-redux';
 export interface HeadersProps {}
 
 export default function Headers(props: HeadersProps) {
-  const [DataCart, setDataCart] = React.useState<any>([
-    {
-      product: {
-        categories: 'piza',
-        id: 11,
-        image:
-          'https://image.shutterstock.com/image-photo/plate-pizza-on-white-background-600w-1637023015.jpg',
-        name: 'Pizza Golden 4 Cheese',
-        price: 309000,
-        detail: 'Phủ phô mai Gouda thơm vàng',
-        Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
-
-        size: [
-          {
-            name: 'Nhỏ 6',
-            price: 0,
-          },
-          {
-            name: 'Vừa 9',
-            price: 80000,
-          },
-          {
-            name: 'Lớn 12',
-            price: 783000,
-          },
-        ],
-        soles: [
-          {
-            id: 1,
-
-            items: ['kien'],
-          },
-          {
-            id: 2,
-            items: ['cong', 'son'],
-          },
-          {
-            id: 3,
-            items: ['Dày', 'Mỏng giòn', 'Viền phô mai', 'Viền phô mai xúc xích'],
-          },
-        ],
-        more: [
-          {
-            id: 222,
-            images:
-              'https://image.shutterstock.com/image-photo/tomato-clipping-path-ripe-vegetable-600w-1916880149.jpg',
-            name: 'Cà chua',
-            price: 39000,
-          },
-          {
-            id: 55,
-
-            images:
-              'https://thumbs.dreamstime.com/z/smoked-pork-neck-meat-product-partially-chopped-rolled-slice-beautiful-composition-decorated-leaf-lettuce-isolated-112974248.jpg',
-            name: 'Thịt xông khói cắt lát',
-            price: 39000,
-          },
-          {
-            id: 77,
-            images:
-              'https://image.shutterstock.com/image-photo/fresh-mediterranean-cocktail-fish-on-600w-381659629.jpg',
-            name: 'Hải sản',
-            price: 39000,
-          },
-        ],
-      },
-      infor: {
-        sizeName: 'Nhỏ 6',
-        sizePrice: 360000,
-        soles: 'Dày',
-        moreName: 'Cà chua',
-        morePrice: 34000,
-      },
-      quantity: 2,
-    },
-    {
-      product: {
-        categories: 'piza',
-        id: 11,
-        image:
-          'https://image.shutterstock.com/image-photo/plate-pizza-on-white-background-600w-1637023015.jpg',
-        name: 'Pizza Golden 4 Cheese',
-        price: 309000,
-        detail: 'Phủ phô mai Gouda thơm vàng',
-        Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
-
-        size: [
-          {
-            name: 'Nhỏ 6',
-            price: 0,
-          },
-          {
-            name: 'Vừa 9',
-            price: 80000,
-          },
-          {
-            name: 'Lớn 12',
-            price: 783000,
-          },
-        ],
-        soles: [
-          {
-            id: 1,
-
-            items: ['kien'],
-          },
-          {
-            id: 2,
-            items: ['cong', 'son'],
-          },
-          {
-            id: 3,
-            items: ['Dày', 'Mỏng giòn', 'Viền phô mai', 'Viền phô mai xúc xích'],
-          },
-        ],
-        more: [
-          {
-            id: 222,
-            images:
-              'https://image.shutterstock.com/image-photo/tomato-clipping-path-ripe-vegetable-600w-1916880149.jpg',
-            name: 'Cà chua',
-            price: 39000,
-          },
-          {
-            id: 55,
-
-            images:
-              'https://thumbs.dreamstime.com/z/smoked-pork-neck-meat-product-partially-chopped-rolled-slice-beautiful-composition-decorated-leaf-lettuce-isolated-112974248.jpg',
-            name: 'Thịt xông khói cắt lát',
-            price: 39000,
-          },
-          {
-            id: 77,
-            images:
-              'https://image.shutterstock.com/image-photo/fresh-mediterranean-cocktail-fish-on-600w-381659629.jpg',
-            name: 'Hải sản',
-            price: 39000,
-          },
-        ],
-      },
-      infor: {
-        sizeName: 'Nhỏ 6',
-        sizePrice: 360000,
-        soles: 'Dày',
-        moreName: 'Cà chua',
-        morePrice: 34000,
-      },
-      quantity: 2,
-    },
-  ]);
+  const [DataCart, setDataCart] = React.useState<any>([]);
   // const { id, name } = newArrays;
   const [setActive, setsetActive] = useState<string>('');
   const [isorder, setisorder] = useState<boolean>(false);
@@ -176,6 +36,9 @@ export default function Headers(props: HeadersProps) {
   const [SearchTerm, setSearchTerm] = useState('');
   const [activeIco, setactiveIco] = useState<string>('activeIcon_left');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.user.current);
+  console.log(users.username);
   const activeTranForm = (value?: string) => {
     if (value === 'l') {
       setsetActive('active_left');
@@ -188,6 +51,11 @@ export default function Headers(props: HeadersProps) {
       setisorder(true);
     }
     return '';
+  };
+
+  const hanleLooutClick = () => {
+    const action = logout();
+    dispatch(action);
   };
   // console.log('iz', setActive);
 
@@ -210,11 +78,11 @@ export default function Headers(props: HeadersProps) {
   };
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setSearchTerm('');
+
     return new Promise<boolean>((resolve) => {
       setloading(true);
       setTimeout(() => {
-        navigate(`/search?order=${SearchTerm.replace(' ', '+')}`);
+        navigate(`/search?q=${SearchTerm}`);
         resolve(true);
         setloading(false);
       }, 1000);
@@ -266,12 +134,14 @@ export default function Headers(props: HeadersProps) {
               {isorder === false && (
                 <div className="nav_input">
                   <input type="text" placeholder="Nhập địa chỉ của bạn" />
+                  <MdOutlinePlace />
                 </div>
               )}
               {isorder === true && (
                 <div className="nav_Select">
                   <form action="/action_page.php">
-                    <input list="browsers" name="browser" placeholder="Chon cửa hàng" />
+                    <AiOutlineHome />
+                    <input list="browsers" name="browser" placeholder="Nhập cửa hàng" />
                     <datalist id="browsers">
                       <option value="The Piza Company Song Hành Explorer">
                         The Piza Company Song Hành
@@ -298,6 +168,7 @@ export default function Headers(props: HeadersProps) {
                     <div className="form_add">
                       <input
                         type="text"
+                        value={SearchTerm}
                         placeholder="Tìm kiếm sản phẩm"
                         onChange={(e) => setSearchTerm(e.target.value)}
                       />
@@ -326,13 +197,15 @@ export default function Headers(props: HeadersProps) {
           </div>
           {/* menu account mobile : none  ,  tablet : block */}
           <div className="nav_account">
+            <h1 onClick={hanleLooutClick}>locout</h1>
+            <h1>{users.username}</h1>
             <MdOutlineAccountCircle />
             <span>
-              <Link to="login">Đăng nhập</Link>
+              <Link to="/login">Đăng nhập</Link>
             </span>
             /
             <span>
-              <Link to="register">Tạo tài khoản</Link>
+              <Link to="/register">Tạo tài khoản</Link>
             </span>{' '}
             <FcRating />
           </div>
@@ -354,6 +227,7 @@ export default function Headers(props: HeadersProps) {
                     <input
                       type="text"
                       placeholder="Tìm kiếm sản phẩm"
+                      value={SearchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                     <button type="submit">
@@ -376,63 +250,75 @@ export default function Headers(props: HeadersProps) {
               <span>0</span>
 
               <div className="nav_miniCart">
-                <div className="miniCart_list">
-                  {DataCart.map((items: cartFeaturesProps, index: number) => (
-                    <div className="miniCart_item" key={index}>
-                      <div className="miniCart_blocks">
-                        <div className="miniCart_left">
-                          <div className="miniCart_aside">
-                            <img src={items.product.image} alt={items.product.name} />
+                {DataCart.length === 0 ? (
+                  <div className="flayout_cart">
+                    <h2>Rất tiếc!!! Bạn không có sản phẩm ở đây</h2>
+                    <p>
+                      Chúng tối sẽ giao hàng vói hóa đơn trên <strong>100,000đ</strong>
+                    </p>
+                  </div>
+                ) : (
+                  <div className="miniCart_list">
+                    {DataCart.map((items: cartFeaturesProps, index: number) => (
+                      <div className="miniCart_item" key={index}>
+                        <div className="miniCart_blocks">
+                          <div className="miniCart_left">
+                            <div className="miniCart_aside">
+                              <img src={items.product.image} alt={items.product.name} />
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="miniCart_right">
-                          <div className="right_block">
-                            <div className="miniCart_add">
-                              <div className="miniCart_add-left">
-                                <div className="miniCart_name">
-                                  <span>{items.product.name}</span>
+                          <div className="miniCart_right">
+                            <div className="right_block">
+                              <div className="miniCart_add">
+                                <div className="miniCart_add-left">
+                                  <div className="miniCart_name">
+                                    <span>{items.product.name}</span>
+                                  </div>
+                                  <div className="miniCart_sizeName">
+                                    <span>{`Kích thước - ${items.infor.sizeName}`}</span>
+                                  </div>
+                                  <div className="miniCart_soles">
+                                    <span>{`Đế - ${items.infor.soles}`}</span>
+                                  </div>
                                 </div>
-                                <div className="miniCart_sizeName">
-                                  <span>{`Kích thước - ${items.infor.sizeName}`}</span>
-                                </div>
-                                <div className="miniCart_soles">
-                                  <span>{`Đế - ${items.infor.soles}`}</span>
+                                <div className="miniCart_delete">
+                                  <RiDeleteBin6Fill />
                                 </div>
                               </div>
-                              <div className="miniCart_delete">
-                                <RiDeleteBin6Fill />
+                              <div className="miniCart_bottom">
+                                <div className="miniCart_quantity">
+                                  <span>Số lượng: 1</span>
+                                </div>
+                                <div className="miniCart_price">
+                                  <span>{formatPrice(items.product.price)}</span>
+                                </div>
                               </div>
-                            </div>
-                            <div className="miniCart_bottom">
-                              <div className="miniCart_quantity">
-                                <span>Số lượng: 1</span>
-                              </div>
-                              <div className="miniCart_price">
-                                <span>{formatPrice(items.product.price)}</span>
-                              </div>
-                            </div>
-                            {/* <div className="miniCart_quantity">
+                              {/* <div className="miniCart_quantity">
                           
                             </div> */}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="miniCart_total">
-                  <div className="miniCart_total-block">
-                    <div className="minicart_title">
-                      <span>Tổng Tiền:</span> <span>487.000đ</span>
-                    </div>
-                    <div className="miniCart_bottom">
-                      <button>
-                        <p>Thanh toán</p>
-                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {DataCart.length > 0 && (
+                  <div className="miniCart_total">
+                    <div className="miniCart_total-block">
+                      <div className="minicart_title">
+                        <span>Tổng Tiền:</span> <span>487.000đ</span>
+                      </div>
+                      <div className="miniCart_bottom">
+                        <button>
+                          <p>Thanh toán</p>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

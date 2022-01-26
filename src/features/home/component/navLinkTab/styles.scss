@@ -49,9 +49,10 @@
 
   border: 1px solid $red;
 
-  color: $red;
-
   border-radius: 25px;
+  & > span {
+    color: $red !important;
+  }
 }
 .inactive {
   background: red;

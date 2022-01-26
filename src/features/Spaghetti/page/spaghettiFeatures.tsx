@@ -93,8 +93,8 @@ export default function SpaghettiFeatures(props: any) {
   };
   return (
     <div className="spaghetti">
+      <Silder />
       <div className="spaghetti_container">
-        <Silder />
         <div className="spaghetti_block">
           <div className="spaghetti_new" id="section1">
             <div className="new">

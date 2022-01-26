@@ -331,22 +331,50 @@
       .nav_search {
         margin-left: 15px;
         .nav_input {
+          position: relative;
           & > input {
             // width: 230px;
             border-radius: 25px;
             border: 1px solid $green;
 
-            padding: 0.8rem 2rem 0.8rem 2rem;
+            padding: 0.8rem 2rem 0.8rem 4rem;
+
+            outline: none;
+
+            &::placeholder {
+              // margin-left: 50px;
+            }
+          }
+          & > svg {
+            position: absolute;
+            left: 5%;
+            top: 25%;
+
+            color: gray;
+
+            font-size: 20px;
+
+            // margin-right: 10px;
           }
         }
         .nav_Select {
           & > form {
+            position: relative;
             & > input {
               // width: 230px;
-              padding: 0.6rem 2rem 0.6rem 2rem;
+              padding: 0.6rem 2rem 0.6rem 4rem;
               border: 1px solid $green;
 
               border-radius: 25px;
+            }
+            & > svg {
+              position: absolute;
+              left: 5%;
+              top: 25%;
+
+              font-size: 18px;
+
+              color: gray;
             }
           }
         }
@@ -563,6 +591,22 @@
 
             // border-radius: 10px;
             z-index: 5;
+          }
+          .flayout_cart {
+            padding: 40px 40px 60px 30px;
+
+            & > h2 {
+              font-size: 20px;
+
+              margin-bottom: 15px;
+            }
+            & > p {
+              font-size: 16px;
+
+              & > strong {
+                color: $red;
+              }
+            }
           }
           .miniCart_list {
             .miniCart_item {

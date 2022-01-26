@@ -5,7 +5,11 @@
   margin-bottom: 2rem;
 }
 .mySwiperHome {
-  height: 400px;
+  height: 450px;
+
+  // background: red;
+
+  // width: 80% !important;
   // z-index: -1 !important;
   @include tablet {
     height: 400px;
@@ -13,49 +17,73 @@
   @include mobilesmall {
     height: 200px;
   }
+  .swiper-slide-active {
+    opacity: 1 !important;
+
+    transition: 2s all ease-in-out !important;
+    -webkit-animation: scale-in-hor-right 0.5s linear !important;
+    animation: scale-in-hor-right 0.5s linear !important;
+    @-webkit-keyframes scale-in-hor-right {
+      0% {
+        opacity: 0.8;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+  .swiper-slide {
+    // transition: 2s all ease-in-out !important;
+    text-align: center;
+    font-size: 18px;
+    //   background-color: rgba(0, 0, 0, 0.5);
+    min-height: 400px;
+
+    width: 80% !important;
+    // margin: auto !important;
+    //   opacity: 0.5;
+    //   padding: 20px;
+
+    //   background: transparent;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    // overflow: hidden;
+    z-index: -1 !important;
+
+    opacity: 0.5;
+    @include tablet {
+      width: 100% !important;
+    }
+  }
 }
 .swiper {
   // width: 90%;
   // height: 450px;
   // z-index: -1 !important;
+  // background-color: red;
   @include mobile {
     // width: 100%;
     // height: 200px;
   }
 }
 
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  //   background-color: rgba(0, 0, 0, 0.5);
-  min-height: 400px;
-
-  //   opacity: 0.5;
-  //   padding: 20px;
-
-  //   background: transparent;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-
-  z-index: -1 !important;
-}
-
 .swiper-slide img {
   display: block;
-  width: 82%;
+  width: 92%;
   height: 100%;
 
   opacity: 1;
@@ -63,6 +91,8 @@
   z-index: -1 !important;
 
   border-radius: 18px;
+
+  overflow: hidden;
 
   @include tablet {
     width: 100%;
@@ -104,3 +134,8 @@
     background: #32a44c !important;
   }
 }
+// .cc {
+//   opacity: 0.5;
+
+//   z-index: 5;
+// }

@@ -1,8 +1,5 @@
-export interface PizzachildrenProps {
-  items: any[];
-}
-export interface SaladFeaturesProps {
-  category: string;
+export interface Product {
+  categories: string;
   id: number;
   image: string;
   name: string;
@@ -14,5 +11,4 @@ export interface SaladFeaturesProps {
   items: any[];
   more: any[];
   selling: string;
-  unique: string;
 }

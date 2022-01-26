@@ -1,5 +1,5 @@
 export interface NoodlesFeaturesProps {
-  categories: string;
+  category: string;
   id: number;
   image: string;
   name: string;

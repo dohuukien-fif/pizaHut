@@ -14,6 +14,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Information from '../../pizza/component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
 import useSearchData from '../component/hooks/useSearchData';
+import ProductApi from './../../../api/productApi';
 export default function SearchFeatures(props: any) {
   const params = location.search;
   console.log(params);
@@ -48,7 +49,9 @@ export default function SearchFeatures(props: any) {
   // );
 
   const { dataSearch, LoadingSearch } = useSearchData(params);
+  console.log(dataSearch);
 
+  console.log('sss');
   // console.log(dataSearch);
   // const callApi = (data: any) => {
   //   return new Promise<boolean>((resolve) => {
@@ -125,14 +128,13 @@ export default function SearchFeatures(props: any) {
   };
   return (
     <div className="appertizer">
-      {' '}
+      <Silder />{' '}
       {LoadingSearch ? (
         <LoadingFeatures />
       ) : (
         <>
           {' '}
           <div className="appertizer_container">
-            <Silder />
             <div className="appertizer_block">
               <div className="appertizer_new" id="section1">
                 <div className="new">

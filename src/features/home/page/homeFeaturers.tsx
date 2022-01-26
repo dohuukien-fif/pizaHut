@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BakedNoodlesList from '../component/pizaList/BakedNoodlesList';
 import NewDishLisst from '../component/pizaList/newDishList';
 // import Silder from '../component/sildes';
@@ -19,12 +19,25 @@ import SeafoodList from '../component/navLinkTab/Seafood/seafood';
 import Footer from '../../../component/footer';
 import Silder from '../../../component/sildes';
 import SildesNew from '../../../component/sildes/slidesNew';
-
+import axios from 'axios';
+import ProductApi from './../../../api/productApi';
+import { Product } from '../../../model';
 export default function HomeFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>([]);
   const [activeTab, setactiveTab] = useState('1');
 
   console.log('data', DataPiza);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await ProductApi.get();
+        console.log('des', res);
+        setDataPiza(res);
+      } catch (err) {}
+    })();
+  }, []);
+
   return (
     <div className="container">
       <Silder />

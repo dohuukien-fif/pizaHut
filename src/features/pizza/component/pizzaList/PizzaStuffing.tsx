@@ -13,7 +13,7 @@ export default function PizzaStuffingList({ data }: PizzaStuffingListProps) {
     <>
       <div className="stuffing_list">
         {data
-          .filter((item) => item.categories === 'Stuffing')
+          .filter((item) => item.category === 'Stuffing')
 
           .map((items, index) => (
             <PizzaStuffingItem key={items.id} items={items} />

@@ -2,7 +2,7 @@ export interface PizzachildrenProps {
   items: any[];
 }
 export interface PizzaFeaturesProps {
-  categories: string;
+  category: string;
   id: number;
   image: string;
   name: string;

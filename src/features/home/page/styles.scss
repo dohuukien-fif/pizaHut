@@ -3,7 +3,7 @@
 .container {
   // margin-top: 150px;
 
-  width: 90%;
+  width: 100%;
   // height: 450px;
 
   margin: 150px auto 50px auto;
@@ -26,6 +26,8 @@
     // height: 200px;
   }
   .container_fuiter {
+    width: 90%;
+    margin: auto;
     @include tablet {
       width: 90%;
       margin: auto;

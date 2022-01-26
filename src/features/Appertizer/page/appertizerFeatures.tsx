@@ -10,11 +10,11 @@ import { dataLisst } from './../../../component/hooks/index';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import { AiOutlineClose } from 'react-icons/ai';
-
+import ProductApi from './../../../api/productApi';
 import Information from '../../pizza/component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
 export default function AppertizerFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
   const [isAccountion, setisAccountion] = useState<boolean>(false);
@@ -25,6 +25,16 @@ export default function AppertizerFeatures(props: any) {
     priceMore: 0,
   });
   const [Loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await ProductApi.get();
+        console.log('app', res);
+        setDataPiza(res);
+      } catch (err) {}
+    })();
+  }, []);
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -97,8 +107,8 @@ export default function AppertizerFeatures(props: any) {
   };
   return (
     <div className="appertizer">
+      <Silder />
       <div className="appertizer_container">
-        <Silder />
         <div className="appertizer_block">
           <div className="appertizer_new" id="section1">
             <div className="new">

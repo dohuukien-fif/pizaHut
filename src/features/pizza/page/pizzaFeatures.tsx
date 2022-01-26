@@ -18,8 +18,9 @@ import Information from '../component/overlay/information';
 import LoadingFeaturess from './../../../component/loadingFeatures/index';
 import LoadingFeatures from './../../../component/loadingFeatures/index';
 import { AiOutlineClose } from 'react-icons/ai';
+import ProductApi from './../../../api/productApi';
 export default function PizzaFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
   const [isAccountion, setisAccountion] = useState<boolean>(false);
@@ -42,6 +43,15 @@ export default function PizzaFeatures(props: any) {
   //     top: location - 150,
   //   });
   // };
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await ProductApi.get();
+        console.log('des', res);
+        setDataPiza(res);
+      } catch (err) {}
+    })();
+  }, []);
   useEffect(() => {
     const ScrollNavBar = () => {
       const widthtabletsmall = screen.width > 767 && screen.width < 1024;
@@ -108,8 +118,8 @@ export default function PizzaFeatures(props: any) {
   console.log(setPrice);
   return (
     <div className="pizza">
+      <Silder />
       <div className="pizza_container">
-        <Silder />
         <div className="pizza_block">
           <div className="pizza_title">
             <h2>Pizza</h2>

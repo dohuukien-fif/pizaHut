@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import './styles.scss';
-// import { Link } from 'react-router-dom';
-
-import { Link } from 'react-scroll';
-import Silder from '../../../component/sildes';
-import PizzaNewList from '../component/pizzaList/pizzaNew';
-
-import { dataLisst } from './../../../component/hooks/index';
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
-import LoadingFeatures from '../../../component/loadingFeatures';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-
+import LoadingFeatures from '../../../component/loadingFeatures';
+import Silder from '../../../component/sildes';
 import Information from '../../pizza/component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
+import PizzaNewList from '../component/pizzaList/pizzaNew';
+import ProductApi from './../../../api/productApi';
+import { dataLisst } from './../../../component/hooks/index';
+import './styles.scss';
+
 export default function DessertFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -25,6 +21,16 @@ export default function DessertFeatures(props: any) {
     priceMore: 0,
   });
   const [Loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await ProductApi.get();
+        console.log('des', res);
+        setDataPiza(res);
+      } catch (err) {}
+    })();
+  }, []);
+
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -97,8 +103,8 @@ export default function DessertFeatures(props: any) {
   };
   return (
     <div className="dessert">
+      <Silder />
       <div className="dessert_container">
-        <Silder />
         <div className="dessert_block">
           <div className="dessert_new" id="section1">
             <div className="new">

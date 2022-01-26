@@ -12,7 +12,7 @@ export default function PizzaTraditional({ data }: PizzaTraditionalProps) {
     <>
       <div className="traditional_list">
         {data
-          .filter((item) => item.categories === 'Traditional')
+          .filter((item) => item.category === 'Traditional')
           .map((items, index) => (
             <TraditionItem key={items.id} items={items} />
           ))}

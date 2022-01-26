@@ -13,13 +13,13 @@ export default function AppetizerList({ data }: AppetizerListProps) {
     <>
       <div className="Appetizer_list">
         {data
-          .filter((item) => item.categories === 'Appetizer')
+          .filter((item) => item.category === 'Appetizer')
           .slice(0, 4)
           .map((items, index) => (
             <ApptizerItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'Appetizer').length > 4 && (
+      {data.filter((item) => item.category === 'Appetizer').length > 4 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -28,7 +28,7 @@ export default function AppetizerList({ data }: AppetizerListProps) {
           ) : (
             <div className="Appetizer_list">
               {data
-                .filter((item) => item.categories === 'Appetizer')
+                .filter((item) => item.category === 'Appetizer')
                 .slice(4)
                 .map((items, index) => (
                   <ApptizerItem key={items.id} items={items} />

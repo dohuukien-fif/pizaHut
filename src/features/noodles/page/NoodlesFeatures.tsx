@@ -12,8 +12,9 @@ import LoadingFeatures from '../../../component/loadingFeatures';
 import { AiOutlineClose } from 'react-icons/ai';
 import Thumbnail from './../component/overlay/thumbnail';
 import Information from '../component/overlay/information';
+import ProductApi from './../../../api/productApi';
 export default function NoodleFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
   const [isAccountion, setisAccountion] = useState<boolean>(false);
@@ -35,6 +36,16 @@ export default function NoodleFeatures(props: any) {
   //     top: location - 150,
   //   });
   // };
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await ProductApi.get();
+        console.log('des', res);
+        setDataPiza(res);
+      } catch (err) {}
+    })();
+  }, []);
+
   useEffect(() => {
     const ScrollNavBar = () => {
       const widthtabletsmall = screen.width > 767 && screen.width < 1024;
@@ -96,8 +107,8 @@ export default function NoodleFeatures(props: any) {
   };
   return (
     <div className="noodles">
+      <Silder />
       <div className="noodles_container">
-        <Silder />
         <div className="noodles_block">
           <div className="noodles_new" id="section1">
             <div className="new">

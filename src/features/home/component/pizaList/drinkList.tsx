@@ -12,13 +12,13 @@ export default function drinkList({ data }: drinkListProps) {
     <>
       <div className="drink_list">
         {data
-          .filter((item) => item.categories === 'drink')
+          .filter((item) => item.category === 'drink')
           .slice(0, 4)
           .map((items, index) => (
             <DrinkItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'drink').length > 4 && (
+      {data.filter((item) => item.category === 'drink').length > 4 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -27,7 +27,7 @@ export default function drinkList({ data }: drinkListProps) {
           ) : (
             <div className="drink_list">
               {data
-                .filter((item) => item.categories === 'drink')
+                .filter((item) => item.category === 'drink')
                 .slice(4)
                 .map((items, index) => (
                   <DrinkItem key={items.id} items={items} />

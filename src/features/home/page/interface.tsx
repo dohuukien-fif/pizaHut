@@ -1,5 +1,5 @@
 export interface HomeFeaturesProps {
-  categories: string;
+  category: string;
   id: number;
   image: string;
   name: string;

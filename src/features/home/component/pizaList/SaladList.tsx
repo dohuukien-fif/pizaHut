@@ -13,13 +13,13 @@ export default function SaladList({ data }: SaladListProps) {
     <>
       <div className="Salad_list">
         {data
-          .filter((item) => item.categories === 'Salad')
+          .filter((item) => item.category === 'Salad')
           .slice(0, 4)
           .map((items, index) => (
             <SaladItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'Salad').length > 4 && (
+      {data.filter((item) => item.category === 'Salad').length > 4 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -28,7 +28,7 @@ export default function SaladList({ data }: SaladListProps) {
           ) : (
             <div className="Salad_list">
               {data
-                .filter((item) => item.categories === 'Salad')
+                .filter((item) => item.category === 'Salad')
                 .slice(4)
                 .map((items, index) => (
                   <SaladItem key={items.id} items={items} />

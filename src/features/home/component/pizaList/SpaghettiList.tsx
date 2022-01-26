@@ -13,13 +13,13 @@ export default function SpaghettiList({ data }: SpaghettiListProps) {
     <>
       <div className="Spaghetti_list">
         {data
-          .filter((item) => item.categories === 'Spaghetti')
+          .filter((item) => item.category === 'Spaghetti')
           .slice(0, 4)
           .map((items, index) => (
             <SpaghettiItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'Spaghetti').length > 4 && (
+      {data.filter((item) => item.category === 'Spaghetti').length > 4 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -28,7 +28,7 @@ export default function SpaghettiList({ data }: SpaghettiListProps) {
           ) : (
             <div className="Spaghetti_list">
               {data
-                .filter((item) => item.categories === 'Spaghetti')
+                .filter((item) => item.category === 'Spaghetti')
                 .slice(4)
                 .map((items, index) => (
                   <SpaghettiItem key={items.id} items={items} />

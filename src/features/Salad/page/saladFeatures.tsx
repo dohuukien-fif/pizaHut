@@ -7,9 +7,10 @@ import Thumbnail from '../component/overlay/thumbnail';
 
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
+import ProductApi from './../../../api/productApi';
 import './styles.scss';
 export default function SaladFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
   const [isAccountion, setisAccountion] = useState<boolean>(false);
@@ -31,6 +32,15 @@ export default function SaladFeatures(props: any) {
   //     top: location - 150,
   //   });
   // };
+  useEffect(() => {
+    (async () => {
+      try {
+        const res: any = await ProductApi.get();
+        console.log('des', res);
+        setDataPiza(res);
+      } catch (err) {}
+    })();
+  }, []);
   useEffect(() => {
     const ScrollNavBar = () => {
       const widthtabletsmall = screen.width > 767 && screen.width < 1024;
@@ -92,8 +102,8 @@ export default function SaladFeatures(props: any) {
   };
   return (
     <div className="salads">
+      <Silder />
       <div className="salad_container">
-        <Silder />
         <div className="salad_block">
           <div className="salad_new" id="section1">
             <div className="new">

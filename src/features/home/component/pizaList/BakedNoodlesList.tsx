@@ -15,13 +15,13 @@ export default function BakedNoodlesList({ data }: BakedNoodlesListProps) {
     <>
       <div className="BakedNoodles_list">
         {data
-          .filter((item) => item.categories === 'BakedNoodles')
+          .filter((item) => item.category === 'BakedNoodles')
           .slice(0, 4)
           .map((items, index) => (
             <BakedNoodlesItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'BakedNoodles').length > 4 && (
+      {data.filter((item) => item.category === 'BakedNoodles').length > 4 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -30,7 +30,7 @@ export default function BakedNoodlesList({ data }: BakedNoodlesListProps) {
           ) : (
             <div className="BakedNoodles_list">
               {data
-                .filter((item) => item.categories === 'BakedNoodles')
+                .filter((item) => item.category === 'BakedNoodles')
                 .slice(4)
                 .map((items, index) => (
                   <BakedNoodlesItem key={items.id} items={items} />

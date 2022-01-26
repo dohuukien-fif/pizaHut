@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.scss';
 import LoginFeatures from './component/auth/login';
 import RegisterFeatures from './component/auth/resgiter';
@@ -19,12 +19,17 @@ import SpaghettiFeatures from './features/Spaghetti/index';
 //   id: number;
 //   name: string;
 // }
-
+import { useSelector } from 'react-redux';
 function App() {
+  const navigate = useNavigate();
+  // const users = JSON.parse(localStorage.getItem('user'));
+  // const booleaUser = !!users;
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+  // const isloginin = JSON.parse(localStorage.getItem('user'));
+  // const haslogin = Boolean(isloginin);
   // const [count, setCount] = useState<number>(0);
   // function call(n: number) {
   //   return n;
@@ -40,13 +45,21 @@ function App() {
   //     name: 'cong',
   //   },
   // ];
-
+  // useEffect(() => {
+  //   {
+  //     isloginin ? navigate('trang-chu') : navigate('/login');
+  //   }
+  // }, []);
   return (
     <div>
       <Headers />
       <Routes>
         <Route path="trang-chu/*" element={<HomePiza />} />
         <Route path="/" element={<Navigate replace to="Trang-chu" />} />
+        {/* <Route path="/login">
+          {user ? <Navigate replace to="Trang-chu" /> :element={<LoginFeatures />}}
+        </Route> */}
+        {/* <Route ></Route> */}
         <Route path="/login" element={<LoginFeatures />} />
         <Route path="/register" element={<RegisterFeatures />} />{' '}
         <Route path="/search/*" element={<SearchFeatures />} />
