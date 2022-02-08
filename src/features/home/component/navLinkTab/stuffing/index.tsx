@@ -16,13 +16,13 @@ export default function StuffingList({ data, activeTab }: StuffingListProps) {
     <>
       <div className="Stuffing_list">
         {data
-          .filter((item) => item.categories === 'Stuffing')
+          .filter((item) => item.category === 'Stuffing')
           .slice(0, 4)
           .map((items, index) => (
             <StuiffingItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'Stuffing').length > 3 && (
+      {data.filter((item) => item.category === 'Stuffing').length > 3 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -31,7 +31,7 @@ export default function StuffingList({ data, activeTab }: StuffingListProps) {
           ) : (
             <div className="Stuffing_list">
               {data
-                .filter((item) => item.categories === 'Stuffing')
+                .filter((item) => item.category === 'Stuffing')
                 .slice(4)
                 .map((items, index) => (
                   <StuiffingItem key={items.id} items={items} />

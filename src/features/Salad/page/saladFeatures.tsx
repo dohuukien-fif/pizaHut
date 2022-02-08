@@ -4,7 +4,7 @@ import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
 import Information from '../../pizza/component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
-
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import ProductApi from './../../../api/productApi';
@@ -21,6 +21,7 @@ export default function SaladFeatures(props: any) {
     priceMore: 0,
   });
   const [Loading, setLoading] = useState<boolean>(false);
+  const [LoadingList, setLoadingList] = useState<boolean>(true);
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -34,10 +35,12 @@ export default function SaladFeatures(props: any) {
   // };
   useEffect(() => {
     (async () => {
+      setLoadingList(true);
       try {
         const res: any = await ProductApi.get();
         console.log('des', res);
         setDataPiza(res);
+        setLoadingList(false);
       } catch (err) {}
     })();
   }, []);
@@ -110,7 +113,11 @@ export default function SaladFeatures(props: any) {
               <div className="new_title">
                 <span>Salad</span>
               </div>
-              <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
         </div>

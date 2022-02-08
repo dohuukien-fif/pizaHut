@@ -23,10 +23,10 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
   const [activemore, setactivemore] = useState<boolean>(false);
   const [getInfor, setgetInfor] = useState<any>({
     sizeName: '' || 'Nhỏ 6',
-    sizePrice: undefined || 0,
+    sizePrice: 0,
     soles: '' || 'Dày',
     moreName: '',
-    morePrice: '',
+    morePrice: 0,
   });
 
   const moreRef = useRef<any>(false);
@@ -62,6 +62,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
 
   const handleMore = (newValue: string, newPrice: number) => {
     setactivemore((x) => !x);
+    console.log('ccc', newPrice);
     setsetPrice((prev: any) => ({
       ...prev,
       morePrice: newPrice,

@@ -14,6 +14,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import Thumbnail from './../component/overlay/thumbnail';
 import ProductApi from './../../../api/productApi';
 import Information from './../component/overlay/information';
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 export default function DrinkFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -26,6 +27,7 @@ export default function DrinkFeatures(props: any) {
     priceMore: 0,
   });
   const [Loading, setLoading] = useState<boolean>(false);
+  const [LoadingList, setLoadingList] = useState<boolean>(true);
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -39,10 +41,12 @@ export default function DrinkFeatures(props: any) {
   // };
   useEffect(() => {
     (async () => {
+      setLoadingList(true);
       try {
         const res: any = await ProductApi.get();
         console.log('des', res);
         setDataPiza(res);
+        setLoadingList(false);
       } catch (err) {}
     })();
   }, []);
@@ -115,7 +119,11 @@ export default function DrinkFeatures(props: any) {
               <div className="new_title">
                 <span>Nước uống</span>
               </div>
-              <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
         </div>

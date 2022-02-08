@@ -10,9 +10,8 @@ export interface PizzaNewListProps {
 
 export default function PizzaNewList({ data, setIdPizza }: PizzaNewListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
-
-  const handleId = (newId: number) => {
-    if (setIdPizza) setIdPizza(newId);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
   };
   return (
     <>
@@ -21,7 +20,7 @@ export default function PizzaNewList({ data, setIdPizza }: PizzaNewListProps) {
           .filter((item) => item.category === 'piza')
 
           .map((items, index) => (
-            <PizzaNewItem handleIds={handleId} key={items.id} items={items} />
+            <PizzaNewItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

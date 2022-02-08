@@ -13,6 +13,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import ProductApi from './../../../api/productApi';
 import Information from '../../pizza/component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 export default function AppertizerFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -25,13 +26,16 @@ export default function AppertizerFeatures(props: any) {
     priceMore: 0,
   });
   const [Loading, setLoading] = useState<boolean>(false);
+  const [Loadingappertizer, setLoadingappertizer] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
+      setLoadingappertizer(true);
       try {
         const res: any = await ProductApi.get();
-        console.log('app', res);
+        console.log('des', res);
         setDataPiza(res);
+        setLoadingappertizer(false);
       } catch (err) {}
     })();
   }, []);
@@ -115,7 +119,11 @@ export default function AppertizerFeatures(props: any) {
               <div className="new_title">
                 <span>Khai vị</span>
               </div>
-              <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              {Loadingappertizer ? (
+                <LoadingListss />
+              ) : (
+                <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
 import {
@@ -22,6 +22,8 @@ import LoadingInput from '../loadingFeatures/loadingInput/loadingInput';
 import { dataLisst } from '../hooks';
 import { logout } from './../../app/userRedux';
 import { useSelector, useDispatch } from 'react-redux';
+import { cartItemCount, cartItemSelector, Cartitem, cartAddress } from './../cart/cartSelected';
+import { setOrder, setAddress } from './../../app/cartRedux';
 export interface HeadersProps {}
 
 export default function Headers(props: HeadersProps) {
@@ -32,23 +34,31 @@ export default function Headers(props: HeadersProps) {
   const [isopen, setisopen] = useState<boolean>(false);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [isOpenSearch, setisOpenSearch] = useState(false);
+  const [Error, setError] = useState<string>('');
   const [loading, setloading] = useState(false);
   const [SearchTerm, setSearchTerm] = useState('');
   const [activeIco, setactiveIco] = useState<string>('activeIcon_left');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.current);
-  console.log(users.username);
+  const count = useSelector(cartItemCount);
+  const users = useSelector((state: any) => state.user.current);
+  const dataCart = useSelector(cartItemSelector);
+  const CartAddress = useSelector(cartAddress);
+  const priceItem = useSelector(Cartitem);
+  const deboun: any = useRef(null);
+
   const activeTranForm = (value?: string) => {
     if (value === 'l') {
       setsetActive('active_left');
       setactiveIco('activeIcon_left');
       setisorder(false);
+      dispatch(setOrder('Đặt giao hàng'));
     }
     if (value === 'm') {
       setsetActive('active_right');
       setactiveIco('activeIcon_right');
       setisorder(true);
+      dispatch(setOrder('Đặt lấy hàng'));
     }
     return '';
   };
@@ -90,6 +100,27 @@ export default function Headers(props: HeadersProps) {
 
     // navigate({ search: SearchTerm.trim("") });
     // location.search(`${SearchTerm}`);
+  };
+  const handleChangeInput = (e: any) => {
+    // const values = e.target.value;
+    const values = e.target.value;
+    if (deboun.current) {
+      clearTimeout(deboun.current);
+    }
+    deboun.current = setTimeout(() => {
+      dispatch(setAddress(values));
+    }, 500);
+  };
+
+  const handlePay = () => {
+    if (dataCart.length === 0) {
+      setError('vui lòng mua hàng ');
+    }
+    if (CartAddress === '') {
+      setError('vui lòng nhập địa chỉ của bạn');
+    }
+
+    return setError('');
   };
   return (
     <nav className="nav">
@@ -133,7 +164,11 @@ export default function Headers(props: HeadersProps) {
             <div className="nav_search">
               {isorder === false && (
                 <div className="nav_input">
-                  <input type="text" placeholder="Nhập địa chỉ của bạn" />
+                  <input
+                    type="text"
+                    placeholder="Nhập địa chỉ của bạn"
+                    onChange={handleChangeInput}
+                  />
                   <MdOutlinePlace />
                 </div>
               )}
@@ -141,7 +176,12 @@ export default function Headers(props: HeadersProps) {
                 <div className="nav_Select">
                   <form action="/action_page.php">
                     <AiOutlineHome />
-                    <input list="browsers" name="browser" placeholder="Nhập cửa hàng" />
+                    <input
+                      list="browsers"
+                      name="browser"
+                      placeholder="Nhập cửa hàng"
+                      onChange={handleChangeInput}
+                    />
                     <datalist id="browsers">
                       <option value="The Piza Company Song Hành Explorer">
                         The Piza Company Song Hành
@@ -186,7 +226,10 @@ export default function Headers(props: HeadersProps) {
                   </form>
                 )}
               </div>
-              <BsCart3 />
+              <div className="icon_cart">
+                <BsCart3 />
+                <span>{count}</span>
+              </div>
               <span>Giỏ hàng</span>
               {isopen ? (
                 <AiOutlineClose className="icon_close" onClick={() => setisopen((x) => !x)} />
@@ -198,7 +241,7 @@ export default function Headers(props: HeadersProps) {
           {/* menu account mobile : none  ,  tablet : block */}
           <div className="nav_account">
             <h1 onClick={hanleLooutClick}>locout</h1>
-            <h1>{users.username}</h1>
+            <h1>{users?.username}</h1>
             <MdOutlineAccountCircle />
             <span>
               <Link to="/login">Đăng nhập</Link>
@@ -246,11 +289,12 @@ export default function Headers(props: HeadersProps) {
             </div>
             <div className="nav_cart" onClick={handleClickLinkCart}>
               <BsCart3 />
+
               <span>Giỏ hàng</span>
-              <span>0</span>
+              <span>{count}</span>
 
               <div className="nav_miniCart">
-                {DataCart.length === 0 ? (
+                {dataCart?.length === 0 ? (
                   <div className="flayout_cart">
                     <h2>Rất tiếc!!! Bạn không có sản phẩm ở đây</h2>
                     <p>
@@ -259,7 +303,7 @@ export default function Headers(props: HeadersProps) {
                   </div>
                 ) : (
                   <div className="miniCart_list">
-                    {DataCart.map((items: cartFeaturesProps, index: number) => (
+                    {dataCart?.map((items: any, index: number) => (
                       <div className="miniCart_item" key={index}>
                         <div className="miniCart_blocks">
                           <div className="miniCart_left">
@@ -275,12 +319,22 @@ export default function Headers(props: HeadersProps) {
                                   <div className="miniCart_name">
                                     <span>{items.product.name}</span>
                                   </div>
-                                  <div className="miniCart_sizeName">
-                                    <span>{`Kích thước - ${items.infor.sizeName}`}</span>
-                                  </div>
-                                  <div className="miniCart_soles">
-                                    <span>{`Đế - ${items.infor.soles}`}</span>
-                                  </div>
+                                  {items.product.size.name && (
+                                    <div className="miniCart_sizeName">
+                                      <span>{`Kích thước - ${items.product.size.name}`}</span>
+                                    </div>
+                                  )}
+
+                                  {items.product.soles && (
+                                    <div className="miniCart_soles">
+                                      <span>{`Đế - ${items.product.soles}`}</span>
+                                    </div>
+                                  )}
+                                  {items.product.more.name && (
+                                    <div className="miniCart_more">
+                                      <span>{`Thếm nhân - ${items.product.more.name}`}</span>
+                                    </div>
+                                  )}
                                 </div>
                                 <div className="miniCart_delete">
                                   <RiDeleteBin6Fill />
@@ -291,7 +345,14 @@ export default function Headers(props: HeadersProps) {
                                   <span>Số lượng: 1</span>
                                 </div>
                                 <div className="miniCart_price">
-                                  <span>{formatPrice(items.product.price)}</span>
+                                  <span>
+                                    {formatPrice(
+                                      (items.product.price +
+                                        items.product.size.price +
+                                        items.product.more.price) *
+                                        items.quantity
+                                    )}
+                                  </span>
                                 </div>
                               </div>
                               {/* <div className="miniCart_quantity">
@@ -305,14 +366,14 @@ export default function Headers(props: HeadersProps) {
                   </div>
                 )}
 
-                {DataCart.length > 0 && (
+                {dataCart.length > 0 && (
                   <div className="miniCart_total">
                     <div className="miniCart_total-block">
                       <div className="minicart_title">
-                        <span>Tổng Tiền:</span> <span>487.000đ</span>
+                        <span>Tổng Tiền:</span> <span>{formatPrice(priceItem)}</span>
                       </div>
                       <div className="miniCart_bottom">
-                        <button>
+                        <button onClick={handlePay}>
                           <p>Thanh toán</p>
                         </button>
                       </div>

@@ -2,27 +2,13 @@ import axios from 'axios';
 // const TOKEN = JSON.parse(localStorage.getItem('user') || '');
 
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:8000/api',
-  headers: {
-    'Content-Type': 'application/json',
-
-    //the token is a variable which holds the token
-  },
+  baseURL: 'https://api-pizza-home.herokuapp.com/api',
+  
 });
-axiosClient.interceptors.request.use(
-  function (config: any) {
-    // Do something before request is sent
-    // config.headers.Authorization = 'AUTH_TOKEN';
-
-    return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
-
-// Add a response interceptor
+axiosClient.interceptors.request.use(async (config) => {
+  // Handle token here ...
+  return config;
+});
 axiosClient.interceptors.response.use(
   (response) => {
     if (response && response.data) {

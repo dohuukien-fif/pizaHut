@@ -16,13 +16,13 @@ export default function SeafoodList({ data, activeTab }: SeafoodListProps) {
     <>
       <div className="seafood_list">
         {data
-          .filter((item) => item.categories === 'Seafood')
+          .filter((item) => item.category === 'Seafood')
           .slice(0, 4)
           .map((items, index) => (
             <SeafoodItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'Seafood').length > 3 && (
+      {data.filter((item) => item.category === 'Seafood').length > 3 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -31,7 +31,7 @@ export default function SeafoodList({ data, activeTab }: SeafoodListProps) {
           ) : (
             <div className="seafood_list">
               {data
-                .filter((item) => item.categories === 'Seafood')
+                .filter((item) => item.category === 'Seafood')
                 .slice(4)
                 .map((items, index) => (
                   <SeafoodItem key={items.id} items={items} />

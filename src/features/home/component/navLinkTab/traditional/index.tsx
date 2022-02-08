@@ -15,13 +15,13 @@ export default function TraditionalList({ data, activeTab }: TraditionalListProp
     <>
       <div className="Traditional_list">
         {data
-          .filter((item) => item.categories === 'Traditional')
+          .filter((item) => item.category === 'Traditional')
           .slice(0, 4)
           .map((items, index) => (
             <TraditionItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'Traditional').length > 3 && (
+      {data.filter((item) => item.category === 'Traditional').length > 3 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -30,7 +30,7 @@ export default function TraditionalList({ data, activeTab }: TraditionalListProp
           ) : (
             <div className="newDish_list">
               {data
-                .filter((item) => item.categories === 'Traditional')
+                .filter((item) => item.category === 'Traditional')
                 .slice(4)
                 .map((items, index) => (
                   <TraditionItem key={items.id} items={items} />

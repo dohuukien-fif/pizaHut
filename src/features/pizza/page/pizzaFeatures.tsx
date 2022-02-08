@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import './styles.scss';
+import React, { useEffect, useState } from 'react';
+import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import { useDispatch } from 'react-redux';
 // import { Link } from 'react-router-dom';
-
 import { Link } from 'react-scroll';
+import { addProduct } from '../../../app/cartRedux';
 import Silder from '../../../component/sildes';
+import Information from '../component/overlay/information';
+import Thumbnail from '../component/overlay/thumbnail';
+import PizzaMixedList from '../component/pizzaList/PizzaMixed';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import PizzaPerferList from '../component/pizzaList/PizzaPerfer';
 import PizzaSeafoodList from '../component/pizzaList/PizzaSeafood';
-import PizzaMixedList from '../component/pizzaList/PizzaMixed';
-import PizzaTraditional from '../component/pizzaList/pizzaTraditional';
 import PizzaStuffingList from '../component/pizzaList/PizzaStuffing';
-import { dataLisst } from './../../../component/hooks/index';
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
-import { PizzaFeaturesProps } from './interface';
-import Thumbnail from '../component/overlay/thumbnail';
-import Information from '../component/overlay/information';
-import LoadingFeaturess from './../../../component/loadingFeatures/index';
-import LoadingFeatures from './../../../component/loadingFeatures/index';
-import { AiOutlineClose } from 'react-icons/ai';
+import PizzaTraditional from '../component/pizzaList/pizzaTraditional';
 import ProductApi from './../../../api/productApi';
+import LoadingFeatures from './../../../component/loadingFeatures/index';
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
+import './styles.scss';
+
 export default function PizzaFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -32,6 +32,10 @@ export default function PizzaFeatures(props: any) {
   });
   const [setpriceMore, setsetpriceMore] = useState<any>(0);
   const [Loading, setLoading] = useState<boolean>(false);
+  const [LoadingList, setLoadingList] = useState<boolean>(true);
+  const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -45,10 +49,12 @@ export default function PizzaFeatures(props: any) {
   // };
   useEffect(() => {
     (async () => {
+      setLoadingList(true);
       try {
         const res: any = await ProductApi.get();
         console.log('des', res);
         setDataPiza(res);
+        setLoadingList(false);
       } catch (err) {}
     })();
   }, []);
@@ -87,6 +93,22 @@ export default function PizzaFeatures(props: any) {
   }, [window.innerWidth]);
 
   ///handle Id
+
+  // const paramId: number = Number(location.pathname?.split('/')[2]);
+  // useEffect(() => {
+  //   const fetchId = async () => {
+  //     try {
+  //       const res: any = await ProductApi.getById(paramId);
+
+  //       console.log(res);
+  //       setdetailProduct(res);
+
+  //       setisoverlay(true);
+  //       setLoading(false);
+  //     } catch (err) {}
+  //   };
+  //   fetchId();
+  // }, []);
   function setIdPizza(newId: number): any {
     setLoading(true);
     return new Promise((resolve) => {
@@ -102,18 +124,31 @@ export default function PizzaFeatures(props: any) {
   //handleSubmit
 
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
-    console.log(
-      'product',
-      detailProduct,
-      'infor',
-      newValue,
-      'note',
-      values,
-      'total',
-      detailProduct.price + (setPrice.priceSize + setPrice.priceMore),
-      'quantity',
-      1
-    );
+    setLoadingOverlay(true);
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        const action = addProduct({
+          id: detailProduct.id,
+          product: {
+            ...detailProduct,
+            size: { name: newValue.sizeName, price: newValue.sizePrice },
+            soles: [newValue.soles],
+            more: { name: newValue.moreName, price: newValue.morePrice },
+          },
+          note: values,
+          quantity: 1,
+        });
+
+        dispatch(action);
+        resolve(true);
+        setisoverlay(false);
+        setLoadingOverlay(false);
+        setsetPrice({
+          sizePrice: 0,
+          morePrice: 0,
+        });
+      }, 2000);
+    });
   };
   console.log(setPrice);
   return (
@@ -215,7 +250,11 @@ export default function PizzaFeatures(props: any) {
               <div className="new_title">
                 <span>Mới</span>
               </div>
-              <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
           <div className="pizza_perfer" id="section2">
@@ -246,7 +285,7 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              <PizzaPerferList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <PizzaPerferList data={DataPiza} />}
             </div>
           </div>
           <div className="pizza_seafood" id="section3">
@@ -277,7 +316,7 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              <PizzaSeafoodList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <PizzaSeafoodList data={DataPiza} />}
             </div>
           </div>
           <div className="pizza_mixed" id="section4">
@@ -308,7 +347,7 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              <PizzaMixedList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <PizzaMixedList data={DataPiza} />}
             </div>
           </div>
           <div className="pizza_traditional" id="section5">
@@ -339,7 +378,7 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              <PizzaTraditional data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <PizzaTraditional data={DataPiza} />}
             </div>
           </div>
           <div className="pizza_stuffing" id="section6">
@@ -370,7 +409,7 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              <PizzaStuffingList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <PizzaStuffingList data={DataPiza} />}
             </div>
           </div>
         </div>
@@ -382,10 +421,20 @@ export default function PizzaFeatures(props: any) {
         <div className={isoverlay ? 'overlay activeOvelay' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
+
             <div className="overlay_closes">
-              <AiOutlineClose onClick={() => setisoverlay(false)} />
+              {LoadingOverlay ? (
+                <div className="loading_featurees">
+                  <AiOutlineLoading3Quarters />
+                </div>
+              ) : (
+                <>
+                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                </>
+              )}
             </div>
             <div className="overlay_block">
+              {' '}
               <div className="overlay_thumbanil">
                 <Thumbnail detail={detailProduct} setPrice={setPrice} setpriceMore={setpriceMore} />
               </div>

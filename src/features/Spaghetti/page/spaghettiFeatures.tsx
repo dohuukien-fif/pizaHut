@@ -8,9 +8,10 @@ import Thumbnail from '../component/overlay/thumbnail';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
-
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
+import ProductApi from './../../../api/productApi';
 export default function SpaghettiFeatures(props: any) {
-  const [DataPiza, setDataPiza] = useState<any>(dataLisst);
+  const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
   const [isAccountion, setisAccountion] = useState<boolean>(false);
@@ -21,6 +22,7 @@ export default function SpaghettiFeatures(props: any) {
     priceMore: 0,
   });
   const [Loading, setLoading] = useState<boolean>(false);
+  const [LoadingList, setLoadingList] = useState<boolean>(true);
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -32,6 +34,17 @@ export default function SpaghettiFeatures(props: any) {
   //     top: location - 150,
   //   });
   // };
+  useEffect(() => {
+    (async () => {
+      setLoadingList(true);
+      try {
+        const res: any = await ProductApi.get();
+        console.log('des', res);
+        setDataPiza(res);
+        setLoadingList(false);
+      } catch (err) {}
+    })();
+  }, []);
   useEffect(() => {
     const ScrollNavBar = () => {
       const widthtabletsmall = screen.width > 767 && screen.width < 1024;
@@ -101,7 +114,11 @@ export default function SpaghettiFeatures(props: any) {
               <div className="new_title">
                 <span>Mỳ Ý</span>
               </div>
-              <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
         </div>

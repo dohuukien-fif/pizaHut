@@ -1,0 +1,160 @@
+@use './../../../sass/index.scss' as *;
+.checkout {
+  margin-top: 140px;
+
+  max-width: 1140px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  min-height: 70vh;
+
+  .checkout_swapper {
+    margin: 170px auto 0 auto;
+
+    .checkout_btn {
+      margin-bottom: 30px;
+
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      & > button {
+        padding: 10px 0;
+
+        width: 230px;
+
+        margin-right: 10px;
+
+        font-size: 17px;
+
+        border: none;
+        border-radius: 10px;
+
+        background: $green;
+
+        color: $white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & > svg:first-child {
+          margin-right: 10px;
+        }
+        & > svg:last-child {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .checkout_progress {
+      display: flex;
+      justify-content: center;
+      //step
+      .active {
+        .step_number {
+          & > span {
+            background: #00b041;
+
+            color: white !important;
+          }
+        }
+        .step_name {
+          & > p {
+            color: #00b041;
+          }
+        }
+      }
+      .step:not(:nth-child(1)) {
+        margin: 0 72px;
+
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .step_number {
+          z-index: 1;
+
+          & > span {
+            position: relative;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            height: 50px;
+            width: 50px;
+
+            border-radius: 50%;
+
+            font-size: 15px;
+
+            border: 1px solid #e1e1e1;
+
+            color: $black;
+
+            &::before {
+              content: '';
+              position: absolute;
+              height: 1px;
+              left: -180px;
+              border-top: 1px dashed #000;
+
+              width: 180px;
+            }
+          }
+        }
+        .step_name {
+          font-size: 15px;
+
+          font-weight: 500;
+
+          color: #738c80;
+
+          margin-top: 15px;
+        }
+      }
+      .step:first-child {
+        margin: 0 70px;
+
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .step_number {
+          & > span {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            height: 50px;
+            width: 50px;
+
+            border-radius: 50%;
+
+            color: $black;
+
+            font-size: 15px;
+            // background: $white;
+
+            border: 1px solid #e1e1e1;
+          }
+        }
+        .step_name {
+          font-size: 14px;
+
+          font-weight: 500;
+
+          margin-top: 15px;
+
+          color: #738c80;
+        }
+      }
+    }
+    .activeBtn {
+      display: none;
+    }
+  }
+}

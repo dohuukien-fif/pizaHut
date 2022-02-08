@@ -21,19 +21,22 @@ import Silder from '../../../component/sildes';
 import SildesNew from '../../../component/sildes/slidesNew';
 import axios from 'axios';
 import ProductApi from './../../../api/productApi';
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 import { Product } from '../../../model';
 export default function HomeFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [activeTab, setactiveTab] = useState('1');
-
+  const [LoadingList, setLoadingList] = useState<boolean>(true);
   console.log('data', DataPiza);
 
   useEffect(() => {
+    setLoadingList(true);
     (async () => {
       try {
         const res: any = await ProductApi.get();
         console.log('des', res);
         setDataPiza(res);
+        setLoadingList(false);
       } catch (err) {}
     })();
   }, []);
@@ -56,14 +59,14 @@ export default function HomeFeatures(props: any) {
               <div className="newDish_title">
                 <span>Món Mới</span>
               </div>
-              {dataLisst.length === 0 ? <h1>Loading...</h1> : <NewDishLisst data={DataPiza} />}
+              {LoadingList ? <LoadingListss /> : <NewDishLisst data={DataPiza} />}
             </div>
             {/* Nui bỏ lò */}
             <div className=" BakedNoodles">
               <div className="BakedNoodles_title">
                 <span>Nui Bỏ Lò</span>
               </div>
-              <BakedNoodlesList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <BakedNoodlesList data={DataPiza} />}
             </div>
           </section>
 
@@ -93,21 +96,21 @@ export default function HomeFeatures(props: any) {
               <div className="Appetizer_title">
                 <span>Khai Vị</span>
               </div>
-              <AppetizerList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <AppetizerList data={DataPiza} />}
             </div>
             {/* mỳ ý */}
             <div className=" Spaghetti">
               <div className="Spaghetti_title">
                 <span>Mỳ Ý</span>
               </div>
-              <SpaghettiList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <SpaghettiList data={DataPiza} />}
             </div>
             {/* salad */}
             <div className="salad">
               <div className="salad_title">
                 <span>Salad</span>
               </div>
-              <SaladList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <SaladList data={DataPiza} />}
             </div>
             {/* nuoc uong */}
 
@@ -115,7 +118,7 @@ export default function HomeFeatures(props: any) {
               <div className="drink_title">
                 <span>Thức Uống</span>
               </div>
-              <DrinkList data={DataPiza} />
+              {LoadingList ? <LoadingListss /> : <DrinkList data={DataPiza} />}
             </div>
           </section>
         </div>

@@ -4,21 +4,19 @@ export interface LoadingInputProps {}
 
 export default function LoadingInput(props: LoadingInputProps) {
   return (
-    <div className="ll">
-      <div className="lds-spinnerrr">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+    <div className="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   );
 }

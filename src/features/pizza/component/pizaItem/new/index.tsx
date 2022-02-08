@@ -5,7 +5,7 @@ import './styles.scss';
 import { AiOutlineArrowRight, AiFillStar } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
 import { formatPrice } from '../../../../../utils';
-
+import { useNavigate } from 'react-router-dom';
 export interface PizzaNewItemProps {
   items: PizzaFeaturesProps;
   handleIds: any;

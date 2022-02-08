@@ -20,6 +20,7 @@ import SpaghettiFeatures from './features/Spaghetti/index';
 //   name: string;
 // }
 import { useSelector } from 'react-redux';
+import CheckOutFeatures from './component/checkOut/page/CheckOut';
 function App() {
   const navigate = useNavigate();
   // const users = JSON.parse(localStorage.getItem('user'));
@@ -60,10 +61,11 @@ function App() {
           {user ? <Navigate replace to="Trang-chu" /> :element={<LoginFeatures />}}
         </Route> */}
         {/* <Route ></Route> */}
-        <Route path="/login" element={<LoginFeatures />} />
+        <Route path="login" element={<LoginFeatures />} />
         <Route path="/register" element={<RegisterFeatures />} />{' '}
         <Route path="/search/*" element={<SearchFeatures />} />
         <Route path="/pizza/*" element={<PizzaFeatures />} />
+        <Route path="/CheckOut/*" element={<CheckOutFeatures />} />
         <Route path="/khai-vi/*" element={<AppertizerFeatures />} />
         <Route path="/salad/*" element={<SaladFeatures />} />
         <Route path="/my-y/*" element={<SpaghettiFeatures />} />

@@ -18,6 +18,11 @@ export interface productProps {
   Spice: string;
   items: any[];
   more: any[];
+  quantity: number;
+}
+export interface moreProps {
+  name: string;
+  price: number;
 }
 export interface cartFeaturesProps {
   categories: string;
@@ -30,8 +35,10 @@ export interface cartFeaturesProps {
   soles: any[];
   Spice: string;
   items: any[];
-  more: any[];
+  more: any;
   product: productProps;
   quantity: number;
   infor: inforProps;
+  note: string;
+  cart: any;
 }

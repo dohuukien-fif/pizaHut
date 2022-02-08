@@ -16,13 +16,13 @@ export default function MixedList({ data, activeTab }: MixedListProps) {
     <>
       <div className="Mixed_list">
         {data
-          .filter((item) => item.categories === 'mixed')
+          .filter((item) => item.category === 'mixed')
           .slice(0, 4)
           .map((items, index) => (
             <MixedItem key={items.id} items={items} />
           ))}
       </div>
-      {data.filter((item) => item.categories === 'mixed').length > 3 && (
+      {data.filter((item) => item.category === 'mixed').length > 3 && (
         <>
           {isContinent === false ? (
             <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
@@ -31,7 +31,7 @@ export default function MixedList({ data, activeTab }: MixedListProps) {
           ) : (
             <div className="Mixed_list">
               {data
-                .filter((item) => item.categories === 'mixed')
+                .filter((item) => item.category === 'mixed')
                 .slice(4)
                 .map((items, index) => (
                   <MixedItem key={items.id} items={items} />

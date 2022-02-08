@@ -10,6 +10,8 @@
   //   background: red;
   // }
   width: 100%;
+
+  min-height: 100vh;
   @include mobilesmall {
     width: 95%;
     margin: auto;
@@ -775,12 +777,20 @@
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 20px;
+
       .overlay_closes {
         position: absolute;
 
         top: 15px;
         // left: 10px;
         // padding-left: 20px;
+        .loading_featurees {
+          position: absolute;
+          left: 20px;
+          & > svg {
+            font-size: 30px;
+          }
+        }
         @include tablet {
           top: 30px;
         }
@@ -796,6 +806,8 @@
         display: flex;
         padding-top: 20px;
         height: 100%;
+
+        z-index: 10;
         @include mobile {
           flex-direction: column;
         }

@@ -10,7 +10,7 @@ const ProductApi = {
     const url = '/products';
     return axiosClient.get(url);
   },
-  getById(id: string): Promise<Product> {
+  getById(id: number): Promise<Product> {
     const url = `/products/${id}`;
     return axiosClient.get(url);
   },

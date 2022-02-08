@@ -36,20 +36,20 @@ export const login: any = createAsyncThunk('users/login', async (payload: any) =
   console.log(data);
   //save data local
   localStorage.setItem('token', data.accessToken);
-  localStorage.setItem('users', JSON.stringify(data.others));
+  localStorage.setItem('dm', JSON.stringify(data.others));
   return data.others;
 });
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    current: JSON.parse(localStorage.getItem('users') || '') || {},
+    current: JSON.parse(localStorage.getItem('dm')) || {},
     setting: {},
     loading: false,
   },
   reducers: {
     logout(state) {
       //clear local
-      localStorage.removeItem('users');
+      localStorage.removeItem('dm');
       localStorage.removeItem('token');
       state.current = {};
     },

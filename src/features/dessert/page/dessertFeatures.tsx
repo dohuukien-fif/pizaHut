@@ -8,6 +8,7 @@ import PizzaNewList from '../component/pizzaList/pizzaNew';
 import ProductApi from './../../../api/productApi';
 import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 
 export default function DessertFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
@@ -21,12 +22,15 @@ export default function DessertFeatures(props: any) {
     priceMore: 0,
   });
   const [Loading, setLoading] = useState<boolean>(false);
+  const [LoadingList, setLoadingList] = useState<boolean>(true);
   useEffect(() => {
     (async () => {
+      setLoadingList(true);
       try {
         const res: any = await ProductApi.get();
         console.log('des', res);
         setDataPiza(res);
+        setLoadingList(false);
       } catch (err) {}
     })();
   }, []);
@@ -111,7 +115,11 @@ export default function DessertFeatures(props: any) {
               <div className="new_title">
                 <span>Tráng Miệng</span>
               </div>
-              <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
         </div>
