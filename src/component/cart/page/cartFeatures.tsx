@@ -38,6 +38,9 @@ export default function CartFeatures(props: any) {
     if (CartAddress === '') {
       return setError('vui lòng nhập địa chỉ của bạn !');
     }
+    if (dataCart.length > 0 && CartAddress !== '') {
+      navigate('/CheckOut');
+    }
 
     return setError('');
   };
