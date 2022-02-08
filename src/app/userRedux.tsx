@@ -42,7 +42,7 @@ export const login: any = createAsyncThunk('users/login', async (payload: any) =
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    current: JSON.parse(localStorage.getItem('dm')) || {},
+    current: JSON.parse(localStorage.getItem('dm') || '') || {},
     setting: {},
     loading: false,
   },
