@@ -23,11 +23,7 @@ export interface PayloadFeaturesProps {
   handleBackbefore: any;
 }
 
-export default function PayloadFeatures({
-  numbers,
-  handleClic,
-  handleBackbefore,
-}: PayloadFeaturesProps) {
+export default function PayloadFeatures({ numbers, handleClic, handleBackbefore }: any) {
   const quantitys = useSelector(quantity);
   const CartAddresss = useSelector(cartAddress);
   const cartAddressOlds = useSelector(cartAddressOld);

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { formatPrice } from '../../../../utils';
-import { PizzaFeaturesProps } from '../../page/interface';
+import { HomeFeaturesProps } from '../../page/interface';
 import './styles.scss';
 export interface ThumbnailProps {
-  detail: PizzaFeaturesProps;
+  detail: HomeFeaturesProps;
   setPrice: any;
   setpriceMore: any;
 }
