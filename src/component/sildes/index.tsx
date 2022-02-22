@@ -37,7 +37,7 @@ export default function Silder(props: SilderProps) {
       spaceBetween={-70}
       centeredSlides={true}
       autoplay={{
-        delay: 4000,
+        delay: 8000,
         disableOnInteraction: false,
       }}
       // autoplay={{
