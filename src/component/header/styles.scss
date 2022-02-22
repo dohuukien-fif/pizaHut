@@ -350,9 +350,6 @@
             &:focus {
               border: 1px solid $green;
             }
-            &::placeholder {
-              // margin-left: 50px;
-            }
           }
           & > svg {
             position: absolute;
@@ -647,8 +644,7 @@
             &::-webkit-scrollbar {
               width: 10px;
             }
-            &::-webkit-scrollbar-track {
-            }
+
             &::-webkit-scrollbar-thumb {
               background-color: rgb(211, 206, 206);
               border-radius: 5px;
