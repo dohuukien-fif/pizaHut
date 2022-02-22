@@ -92,8 +92,7 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
     }
   };
 
-  console.log('INFORSTORE', INFORSTORE);
-  console.log('INFORSTOREssssss', isform, isStore, number);
+
   React.useEffect(() => {
     (() => {
       // if (cartItemSelectors.length === 0) {
