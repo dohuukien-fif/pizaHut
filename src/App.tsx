@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.scss';
+import AccountFeatures from './component/auth/detailCheckOut/index';
 import LoginFeatures from './component/auth/login';
 import RegisterFeatures from './component/auth/resgiter';
 import CartFeatures from './component/cart/index';
+import CheckOutFeatures from './component/checkOut/page/CheckOut';
 import Footer from './component/footer';
 import Headers from './component/header/index';
 import AppertizerFeatures from './features/Appertizer/index';
@@ -15,12 +17,6 @@ import PizzaFeatures from './features/pizza/index';
 import SaladFeatures from './features/Salad/index';
 import SearchFeatures from './features/Search/index';
 import SpaghettiFeatures from './features/Spaghetti/index';
-// export interface AppProps {
-//   id: number;
-//   name: string;
-// }
-import { useSelector } from 'react-redux';
-import CheckOutFeatures from './component/checkOut/page/CheckOut';
 function App() {
   const navigate = useNavigate();
   // const users = JSON.parse(localStorage.getItem('user'));
@@ -72,6 +68,7 @@ function App() {
         <Route path="/nui-bo-lo/*" element={<NoodleFeatures />} />
         <Route path="/nuoc-uong/*" element={<DrinkFeatures />} />
         <Route path="/trang-mieng/*" element={<DessertFeatures />} />
+        <Route path="/tai-khoan/*" element={<AccountFeatures />} />
         <Route path="/cart/*" element={<CartFeatures />} />
         {/* <Route path="/" element={<Navigate replace to="Trang-chu" />} />
         <Route path="/phim-bo/*" element={<SerieMovie />} />

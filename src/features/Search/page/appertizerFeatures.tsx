@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import './styles.scss';
-// import { Link } from 'react-router-dom';
-
-import { Link } from 'react-scroll';
-import Silder from '../../../component/sildes';
-import PizzaNewList from '../component/pizzaList/pizzaNew';
-
-import { dataLisst } from './../../../component/hooks/index';
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
+import React, { useEffect, useRef, useState } from 'react';
+import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../../app/cartRedux';
 import LoadingFeatures from '../../../component/loadingFeatures';
-import { AiOutlineClose } from 'react-icons/ai';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Information from '../../pizza/component/overlay/information';
-import Thumbnail from '../component/overlay/thumbnail';
+import Silder from '../../../component/sildes';
+import Information from './../component/overlay/information';
 import useSearchData from '../component/hooks/useSearchData';
-import ProductApi from './../../../api/productApi';
+import Thumbnail from '../component/overlay/thumbnail';
+import PizzaNewList from '../component/pizzaList/pizzaNew';
+import { dataLisst } from './../../../component/hooks/index';
+import './styles.scss';
+
 export default function SearchFeatures(props: any) {
   const params = location.search;
   console.log(params);
+  const dispatch = useDispatch();
   const [isloading, setisloading] = useState(true);
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
 
@@ -31,7 +28,9 @@ export default function SearchFeatures(props: any) {
     priceSize: 0,
     priceMore: 0,
   });
+  const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const [Loading, setLoading] = useState<boolean>(false);
+  const closeRef = useRef(null);
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -46,10 +45,11 @@ export default function SearchFeatures(props: any) {
 
   // const setdata = DataPiza.filter((items: any) =>
   //   items.categories?.toLowerCase().includes(params.replace('+', ' ')?.split('=')[1]?.toLowerCase())
-  // );
+  // );'
+  console.log('object', params.replace('+', ' ')?.split('=')[1]);
 
   const { dataSearch, LoadingSearch } = useSearchData(params);
-  console.log(dataSearch);
+  console.log('data', dataSearch);
 
   console.log('sss');
   // console.log(dataSearch);
@@ -113,19 +113,42 @@ export default function SearchFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
-    console.log(
-      'product',
-      detailProduct,
-      'infor',
-      newValue,
-      'note',
-      values,
-      'total',
-      detailProduct.price + (setPrice.priceSize + setPrice.priceMore),
-      'quantity',
-      1
-    );
+    setLoadingOverlay(true);
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        const action = addProduct({
+          id: detailProduct.id,
+          product: {
+            ...detailProduct,
+            size: { name: newValue.sizeName, price: newValue.sizePrice },
+            soles: [newValue.soles],
+            more: { name: newValue.moreName, price: newValue.morePrice },
+          },
+          note: values,
+          quantity: 1,
+        });
+
+        dispatch(action);
+        resolve(true);
+        setisoverlay(false);
+        setLoadingOverlay(false);
+        setsetPrice({
+          sizePrice: 0,
+          morePrice: 0,
+        });
+      }, 2000);
+    });
   };
+  useEffect(() => {
+    const hanndleWindowClose = (e: any) => {
+      if (e.target === closeRef.current) {
+        setisoverlay(false);
+      }
+    };
+    window.addEventListener('click', hanndleWindowClose);
+
+    return () => window.removeEventListener('click', hanndleWindowClose);
+  }, []);
   return (
     <div className="appertizer">
       <Silder />{' '}
@@ -149,11 +172,22 @@ export default function SearchFeatures(props: any) {
           {Loading ? (
             <LoadingFeatures />
           ) : (
-            <div className={isoverlay ? 'overlay activesOvelayappertizer' : 'overlay'}>
+            <div
+              ref={closeRef}
+              className={isoverlay ? 'overlay activesOvelayappertizer' : 'overlay'}
+            >
               <div className="overlay_wrapper">
                 {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
                 <div className="overlay_closes">
-                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                  {LoadingOverlay ? (
+                    <div className="loading_featurees">
+                      <AiOutlineLoading3Quarters />
+                    </div>
+                  ) : (
+                    <>
+                      <AiOutlineClose onClick={() => setisoverlay(false)} />
+                    </>
+                  )}
                 </div>
                 <div className="overlay_block">
                   <div className="overlay_thumbanil">

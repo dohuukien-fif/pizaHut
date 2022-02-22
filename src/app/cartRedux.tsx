@@ -20,6 +20,7 @@ const cartSlice = createSlice({
       } else {
         state.products.push(newCart);
         state.note = newCart.note;
+        state.quantity = newCart.quantity;
       }
     },
     setquantity: (state: any, action) => {
@@ -27,6 +28,7 @@ const cartSlice = createSlice({
       const index = state.products.findIndex((x: any) => x.id === newCart.id);
       if (index >= 0) {
         state.products[index].quantity = newCart.quantity;
+        state.quantity += newCart.quantity;
       }
     },
     setOrder: (state: any, action) => {

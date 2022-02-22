@@ -203,7 +203,7 @@
 
       position: absolute;
       width: 67%;
-      height: 97%;
+      height: 70%;
       background: $white;
       top: 50%;
       left: 50%;
@@ -213,6 +213,8 @@
         position: absolute;
 
         top: 15px;
+
+        right: -50px;
         // left: 10px;
         // padding-left: 20px;
         @include tablet {
@@ -220,7 +222,7 @@
         }
         & > svg {
           font-size: 42px;
-          color: rgb(71, 70, 70);
+          color: rgb(236, 229, 229);
           @include tablet {
             color: rgb(71, 70, 70);
           }

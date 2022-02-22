@@ -7,8 +7,10 @@
     width: 85%;
     margin: auto;
   }
-  .overlay_name {
+  .overlay_names {
     margin-bottom: 10px;
+    margin-top: 15px;
+
     text-transform: none;
     & > span {
       font-size: 25px;
@@ -22,9 +24,9 @@
       &::before {
         position: absolute;
         content: '';
-        height: 1px;
+        height: 2px;
         background: $green;
-        width: 10%;
+        width: 15%;
         top: 0;
         // margin-bottom: 20px;
       }

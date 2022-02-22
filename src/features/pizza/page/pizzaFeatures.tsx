@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
@@ -35,7 +35,7 @@ export default function PizzaFeatures(props: any) {
   const [LoadingList, setLoadingList] = useState<boolean>(true);
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const dispatch = useDispatch();
-
+  const closeRef = useRef(null);
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -151,6 +151,17 @@ export default function PizzaFeatures(props: any) {
     });
   };
   console.log(setPrice);
+
+  useEffect(() => {
+    const hanndleWindowClose = (e: any) => {
+      if (e.target === closeRef.current) {
+        setisoverlay(false);
+      }
+    };
+    window.addEventListener('click', hanndleWindowClose);
+
+    return () => window.removeEventListener('click', hanndleWindowClose);
+  }, []);
   return (
     <div className="pizza">
       <Silder />
@@ -285,7 +296,11 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              {LoadingList ? <LoadingListss /> : <PizzaPerferList data={DataPiza} />}
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaPerferList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
           <div className="pizza_seafood" id="section3">
@@ -316,7 +331,11 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              {LoadingList ? <LoadingListss /> : <PizzaSeafoodList data={DataPiza} />}
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaSeafoodList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
           <div className="pizza_mixed" id="section4">
@@ -347,7 +366,11 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              {LoadingList ? <LoadingListss /> : <PizzaMixedList data={DataPiza} />}
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaMixedList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
           <div className="pizza_traditional" id="section5">
@@ -378,7 +401,11 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              {LoadingList ? <LoadingListss /> : <PizzaTraditional data={DataPiza} />}
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaTraditional data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
           <div className="pizza_stuffing" id="section6">
@@ -409,7 +436,11 @@ export default function PizzaFeatures(props: any) {
                   </div>
                 </div>
               </div>
-              {LoadingList ? <LoadingListss /> : <PizzaStuffingList data={DataPiza} />}
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaStuffingList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
         </div>
@@ -418,7 +449,7 @@ export default function PizzaFeatures(props: any) {
       {Loading ? (
         <LoadingFeatures />
       ) : (
-        <div className={isoverlay ? 'overlay activeOvelay' : 'overlay'}>
+        <div className={isoverlay ? 'overlay activeOvelay' : 'overlay'} ref={closeRef}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
 

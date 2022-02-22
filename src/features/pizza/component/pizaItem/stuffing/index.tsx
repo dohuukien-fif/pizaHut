@@ -8,12 +8,16 @@ import { formatPrice } from '../../../../../utils';
 
 export interface PizzaStuffingItemProps {
   items: PizzaFeaturesProps;
+  handleIds: any;
 }
 
-export default function PizzaStuffingItem({ items }: PizzaStuffingItemProps) {
+export default function PizzaStuffingItem({ items, handleIds }: PizzaStuffingItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="stuffing_item">
+    <div className="stuffing_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="stuffing_block">
         <div className="stuffing_aside">
           <img src={image} alt="" />

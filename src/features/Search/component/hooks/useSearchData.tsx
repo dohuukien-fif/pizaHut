@@ -9,7 +9,14 @@ export default function useSearchData(data: any) {
   React.useEffect(() => {
     setLoading(true);
     const setdaSearchApi = async () => {
-      const res: any = await ProductApi.getdata(data?.replace('+', ' ')?.split('=')[1]);
+      const res: any = await ProductApi.get();
+      const newRess = await res.filter((items: any) =>
+        items.category
+          ?.toLowerCase()
+          .includes(data.replace('+', ' ')?.split('=')[1].trim().toLowerCase())
+      );
+
+      console.log('resssssssssssssssss', newRess);
 
       // const setdata = res.filter((items: any) =>
       //   items.categories
@@ -17,7 +24,7 @@ export default function useSearchData(data: any) {
       //     .includes(data.replace('+', ' ')?.split('=')[1]?.toLowerCase())
       // );
 
-      setproduct(res);
+      setproduct(newRess);
       setLoading(false);
     };
     setdaSearchApi();

@@ -1,11 +1,27 @@
 import * as React from 'react';
 
-export interface InputFeildProps {}
+import PropTypes from 'prop-types';
 
-export default function InputFeild(props: InputFeildProps) {
+import { useController, Control } from 'react-hook-form';
+
+export interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  control: Control<any>;
+  label?: string;
+}
+
+export default function InputFeild({ name, control, label, ...inputProps }: InputFieldProps) {
+  const {
+    field: { value, onChange, onBlur, ref },
+    fieldState: { invalid, error },
+  } = useController({
+    name,
+    control,
+  });
+
   return (
-    <div>
-      <h1>kien</h1>
-    </div>
+    <>
+      <input type="text" name={name} value={value} onChange={onChange} onBlur={onBlur} />
+    </>
   );
 }

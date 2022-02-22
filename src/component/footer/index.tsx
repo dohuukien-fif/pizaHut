@@ -11,7 +11,7 @@ export default function Footer(props: FooterProps) {
       <div className="footer_block">
         <div className="footer_logo">
           <img
-            src="https://image.shutterstock.com/image-vector/pizza-daily-fresh-vector-emblem-600w-1901059681.jpg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScjgFeNhO-stVJM0eWVR5k7mjPL3rd0V459Q&usqp=CAU"
             alt=""
           />
         </div>

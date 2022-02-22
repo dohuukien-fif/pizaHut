@@ -121,14 +121,14 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
   return (
     <form onSubmit={handleSubmit}>
       <div className="ovelay_info">
-        <div className="overlay_name">
+        <div className="overlay_names">
           <span>{name}</span>
         </div>
         <div className="overlay_choose">
           <p>
             {`Kich thước ${
               size !== undefined && new Array(size[indexSize]).map((item) => item.name)
-            } - ${(soles !== undefined && index) || 'Dày'}`}
+            } `}
           </p>
         </div>
         <div className="overlay_spice">
@@ -157,7 +157,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
             ))}
           </div>
         </div>
-        <div className="overlay_soles">
+        {/* <div className="overlay_soles">
           <div className="soles_title">
             <p>ĐẾ</p>
           </div>
@@ -178,8 +178,8 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
                 </div>
               ))}
           </div>
-        </div>
-        <div className="overlay_more">
+        </div> */}
+        {/* <div className="overlay_more">
           <div className="more_title">
             <span>THÊM NHÂN</span>
           </div>
@@ -224,7 +224,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
         <div className="overlay_note">
           <div className="note_title">
             <span>GHI CHÚ</span>

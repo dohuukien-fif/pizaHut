@@ -8,12 +8,16 @@ import { formatPrice } from '../../../../../utils';
 
 export interface PizzaSeafoodItemProps {
   items: PizzaFeaturesProps;
+  handleIds: any;
 }
 
-export default function PizzaSeafoodItem({ items }: PizzaSeafoodItemProps) {
+export default function PizzaSeafoodItem({ items, handleIds }: PizzaSeafoodItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="seafood_item">
+    <div className="seafood_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="seafood_block">
         <div className="seafood_aside">
           <img src={image} alt="" />

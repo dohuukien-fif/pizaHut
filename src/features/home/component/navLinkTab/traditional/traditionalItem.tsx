@@ -9,12 +9,16 @@ import { HomeFeaturesProps } from '../../../page/interface';
 
 export interface AppProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function App({ items }: AppProps) {
+export default function App({ items, handleIds }: AppProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="traditional_item">
+    <div className="traditional_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="traditional_block">
         <div className="traditional_aside">
           <img src={image} alt="" />

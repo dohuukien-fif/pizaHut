@@ -4,10 +4,14 @@ import { HomeFeaturesProps } from './../../page/interface';
 import { IoMdAdd } from 'react-icons/io';
 export interface drinkListProps {
   data: HomeFeaturesProps[];
+  setIdPizza: (newId: number) => {};
 }
 
-export default function drinkList({ data }: drinkListProps) {
+export default function drinkList({ data, setIdPizza }: drinkListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="drink_list">
@@ -15,7 +19,7 @@ export default function drinkList({ data }: drinkListProps) {
           .filter((item) => item.category === 'drink')
           .slice(0, 4)
           .map((items, index) => (
-            <DrinkItem key={items.id} items={items} />
+            <DrinkItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {data.filter((item) => item.category === 'drink').length > 4 && (
@@ -30,7 +34,7 @@ export default function drinkList({ data }: drinkListProps) {
                 .filter((item) => item.category === 'drink')
                 .slice(4)
                 .map((items, index) => (
-                  <DrinkItem key={items.id} items={items} />
+                  <DrinkItem key={items.id} items={items} handleIds={hanndleIdNew} />
                 ))}
             </div>
           )}

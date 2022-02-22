@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import UserRedux from './userRedux';
 import cartReducer from './cartRedux';
-
+import checkOutRedux from '../component/checkOut/checkOutRedux';
 const rootReducer: any = {
   user: UserRedux,
   cart: cartReducer,
+  checkout: checkOutRedux,
 };
 const store: any = configureStore({
   reducer: rootReducer,

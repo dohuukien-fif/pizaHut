@@ -9,12 +9,17 @@ import { formatPrice } from '../../../../../utils';
 
 export interface SpaghettiItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function SpaghettiItem({ items }: SpaghettiItemProps) {
+export default function SpaghettiItem({ items, handleIds }: SpaghettiItemProps) {
   const { name, image, price, detail, selling, vegetable, chill } = items;
+
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="spaghetti_item">
+    <div className="spaghetti_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="spaghetti_block">
         <div className="spaghetti_aside">
           <img src={image} alt="" />

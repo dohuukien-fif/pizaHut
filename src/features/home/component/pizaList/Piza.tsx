@@ -6,10 +6,14 @@ import './styles.scss';
 export interface PizaListProps {
   data: HomeFeaturesProps[];
   activeTab: string;
+  setIdPizza: (newId: number) => {};
 }
 
-export default function PizaList({ data, activeTab }: PizaListProps) {
+export default function PizaList({ data, activeTab, setIdPizza }: PizaListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="pizza_list">
@@ -17,7 +21,7 @@ export default function PizaList({ data, activeTab }: PizaListProps) {
           .filter((item) => item.category === 'piza')
           .slice(0, 4)
           .map((items, index) => (
-            <PizaItem key={items.id} items={items} />
+            <PizaItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {data.filter((item) => item.category === 'piza').length > 4 && (
@@ -32,7 +36,7 @@ export default function PizaList({ data, activeTab }: PizaListProps) {
                 .filter((item) => item.category === 'piza')
                 .slice(4)
                 .map((items, index) => (
-                  <PizaItem key={items.id} items={items} />
+                  <PizaItem key={items.id} items={items} handleIds={hanndleIdNew} />
                 ))}
             </div>
           )}

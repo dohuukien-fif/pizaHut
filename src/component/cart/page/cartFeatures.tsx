@@ -13,6 +13,7 @@ import {
   cartItemSelector,
   cartItemTotal,
   cartAddress,
+  cartStore
 } from '../cartSelected';
 import { useSelector } from 'react-redux';
 import { formatPrice } from '../../../utils';
@@ -21,6 +22,7 @@ export default function CartFeatures(props: any) {
   const priceItem = useSelector(Cartitem);
   const total = useSelector(cartItemTotal);
   const count = useSelector(cartItemCount);
+  // const count = useSelector(cartItemCount);
   const [Error, setError] = React.useState<string>('');
   const dataCart = useSelector(cartItemSelector);
   const CartAddress = useSelector(cartAddress);
@@ -35,10 +37,10 @@ export default function CartFeatures(props: any) {
     if (dataCart.length === 0) {
       return setError('vui lòng mua hàng ! ');
     }
-    if (CartAddress === '') {
-      return setError('vui lòng nhập địa chỉ của bạn !');
-    }
-    if (dataCart.length > 0 && CartAddress !== '') {
+    // if (cartStore === '') {
+    //   return setError('vui lòng nhập địa chỉ của bạn !');
+    // }
+    if (dataCart.length > 0) {
       navigate('/CheckOut');
     }
 

@@ -8,12 +8,16 @@ import { formatPrice } from '../../../../../utils';
 import { AiOutlineArrowRight, AiFillStar, AiOutlineHeatMap } from 'react-icons/ai';
 export interface SaladItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function SaladItem({ items }: SaladItemProps) {
+export default function SaladItem({ items, handleIds }: SaladItemProps) {
   const { name, image, price, detail, selling, unique } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="salad_item">
+    <div className="salad_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="salad_block">
         <div className="salad_aside">
           <img src={image} alt="" />

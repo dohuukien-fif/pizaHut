@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import React, { useEffect, useRef, useState } from 'react';
+import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
-import Information from '../../pizza/component/overlay/information';
+import Information from './../component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
 import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import ProductApi from './../../../api/productApi';
 import './styles.scss';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../../app/cartRedux';
 export default function SaladFeatures(props: any) {
+  const dispatch = useDispatch();
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
@@ -20,8 +23,10 @@ export default function SaladFeatures(props: any) {
     priceSize: 0,
     priceMore: 0,
   });
+  const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const [Loading, setLoading] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
+  const closeRef = useRef(null);
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -90,19 +95,43 @@ export default function SaladFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
-    console.log(
-      'product',
-      detailProduct,
-      'infor',
-      newValue,
-      'note',
-      values,
-      'total',
-      detailProduct.price + (setPrice.priceSize + setPrice.priceMore),
-      'quantity',
-      1
-    );
+    setLoadingOverlay(true);
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        const action = addProduct({
+          id: detailProduct.id,
+          product: {
+            ...detailProduct,
+            size: { name: newValue.sizeName, price: newValue.sizePrice },
+            soles: [newValue.soles],
+            more: { name: newValue.moreName, price: newValue.morePrice },
+          },
+          note: values,
+          quantity: 1,
+        });
+
+        dispatch(action);
+        resolve(true);
+        setisoverlay(false);
+        setLoadingOverlay(false);
+        setsetPrice({
+          sizePrice: 0,
+          morePrice: 0,
+        });
+      }, 2000);
+    });
   };
+
+  useEffect(() => {
+    const hanndleWindowClose = (e: any) => {
+      if (e.target === closeRef.current) {
+        setisoverlay(false);
+      }
+    };
+    window.addEventListener('click', hanndleWindowClose);
+
+    return () => window.removeEventListener('click', hanndleWindowClose);
+  }, []);
   return (
     <div className="salads">
       <Silder />
@@ -125,11 +154,19 @@ export default function SaladFeatures(props: any) {
       {Loading ? (
         <LoadingFeatures />
       ) : (
-        <div className={isoverlay ? 'overlay activesOvelaySalad' : 'overlay'}>
+        <div ref={closeRef} className={isoverlay ? 'overlay activesOvelaySalad' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">
-              <AiOutlineClose onClick={() => setisoverlay(false)} />
+              {LoadingOverlay ? (
+                <div className="loading_featurees">
+                  <AiOutlineLoading3Quarters />
+                </div>
+              ) : (
+                <>
+                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                </>
+              )}
             </div>
             <div className="overlay_block">
               <div className="overlay_thumbanil">

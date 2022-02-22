@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import React, { useEffect, useRef, useState } from 'react';
+import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
-import Information from '../../pizza/component/overlay/information';
+import Information from './../component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import ProductApi from './../../../api/productApi';
 import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
 import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
-
+import { addProduct } from '../../../app/cartRedux';
+import { useDispatch } from 'react-redux';
 export default function DessertFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -23,6 +24,9 @@ export default function DessertFeatures(props: any) {
   });
   const [Loading, setLoading] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
+  const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const closeRef = useRef(null);
   useEffect(() => {
     (async () => {
       setLoadingList(true);
@@ -92,19 +96,43 @@ export default function DessertFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
-    console.log(
-      'product',
-      detailProduct,
-      'infor',
-      newValue,
-      'note',
-      values,
-      'total',
-      detailProduct.price + (setPrice.priceSize + setPrice.priceMore),
-      'quantity',
-      1
-    );
+    setLoadingOverlay(true);
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        const action = addProduct({
+          id: detailProduct.id,
+          product: {
+            ...detailProduct,
+            size: { name: newValue.sizeName, price: newValue.sizePrice },
+            soles: [newValue.soles],
+            more: { name: newValue.moreName, price: newValue.morePrice },
+          },
+          note: values,
+          quantity: 1,
+        });
+
+        dispatch(action);
+        resolve(true);
+        setisoverlay(false);
+        setLoadingOverlay(false);
+        setsetPrice({
+          sizePrice: 0,
+          morePrice: 0,
+        });
+      }, 2000);
+    });
   };
+
+  useEffect(() => {
+    const hanndleWindowClose = (e: any) => {
+      if (e.target === closeRef.current) {
+        setisoverlay(false);
+      }
+    };
+    window.addEventListener('click', hanndleWindowClose);
+
+    return () => window.removeEventListener('click', hanndleWindowClose);
+  }, []);
   return (
     <div className="dessert">
       <Silder />
@@ -127,11 +155,19 @@ export default function DessertFeatures(props: any) {
       {Loading ? (
         <LoadingFeatures />
       ) : (
-        <div className={isoverlay ? 'overlay activesOvelayDessert' : 'overlay'}>
+        <div ref={closeRef} className={isoverlay ? 'overlay activesOvelayDessert' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">
-              <AiOutlineClose onClick={() => setisoverlay(false)} />
+              {LoadingOverlay ? (
+                <div className="loading_featurees">
+                  <AiOutlineLoading3Quarters />
+                </div>
+              ) : (
+                <>
+                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                </>
+              )}
             </div>
             <div className="overlay_block">
               <div className="overlay_thumbanil">

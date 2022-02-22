@@ -279,6 +279,10 @@
             line-height: 2.5rem;
             font-size: 13px;
             color: black;
+
+            & > span:first-child {
+              color: rgb(110, 105, 105);
+            }
             & > span:last-child {
               font-size: 20px;
               font-weight: 700;
@@ -294,7 +298,7 @@
             & > button {
               cursor: pointer;
 
-              border-radius: 5px;
+              border-radius: 10px;
 
               border: none;
               outline: none;
@@ -307,12 +311,14 @@
               align-items: center;
 
               color: $green;
+
+              transition: 300ms ease-in-out !important;
               &:hover {
                 background: $red;
                 color: $white;
               }
               & > span {
-                padding: 5px 10px 5px 10px;
+                padding: 5px 8px 5px 8px;
               }
             }
           }

@@ -152,6 +152,10 @@
               text-decoration: underline;
             }
           }
+
+          .slide_people {
+            color: rgb(101, 100, 100);
+          }
         }
       }
 
@@ -162,7 +166,7 @@
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
-          align-items: flex-end;
+          align-items: center;
 
           margin-top: auto;
           @include mobilesmall {
@@ -184,6 +188,9 @@
             margin-top: auto;
             @include mobilesmall {
               margin-bottom: 20px;
+            }
+            & > span:first-child {
+              color: rgb(101, 100, 100);
             }
             & > span:last-child {
               font-size: 20px;
@@ -213,12 +220,14 @@
               background: white;
               color: $green;
 
-              font-size: 14px;
-              padding: 0.8rem 2rem 0.8rem 2rem;
+              font-size: 15px;
+              padding: 0.7rem 1.5rem 0.7rem 1.5rem;
 
               border-radius: 10px;
 
               cursor: pointer;
+
+              transition: 300ms ease-in-out !important;
               &:hover {
                 background: $red;
                 color: white;

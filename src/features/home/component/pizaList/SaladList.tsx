@@ -5,10 +5,14 @@ import { IoMdAdd } from 'react-icons/io';
 import './styles.scss';
 export interface SaladListProps {
   data: HomeFeaturesProps[];
+  setIdPizza: (newId: number) => {};
 }
 
-export default function SaladList({ data }: SaladListProps) {
+export default function SaladList({ data, setIdPizza }: SaladListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="Salad_list">
@@ -16,7 +20,7 @@ export default function SaladList({ data }: SaladListProps) {
           .filter((item) => item.category === 'Salad')
           .slice(0, 4)
           .map((items, index) => (
-            <SaladItem key={items.id} items={items} />
+            <SaladItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {data.filter((item) => item.category === 'Salad').length > 4 && (
@@ -31,7 +35,7 @@ export default function SaladList({ data }: SaladListProps) {
                 .filter((item) => item.category === 'Salad')
                 .slice(4)
                 .map((items, index) => (
-                  <SaladItem key={items.id} items={items} />
+                  <SaladItem key={items.id} items={items} handleIds={hanndleIdNew} />
                 ))}
             </div>
           )}

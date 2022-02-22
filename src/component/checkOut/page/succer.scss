@@ -1,0 +1,147 @@
+@use './../../../sass/index.scss' as *;
+.succer {
+  max-width: 1000px;
+
+  margin-right: auto;
+  margin-left: auto;
+  .succer_swapper {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    .succer_block {
+      display: flex;
+
+      column-gap: 15px;
+
+      padding: 30px;
+
+      .succer_left {
+        flex: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & > img {
+          width: 70%;
+        }
+      }
+
+      .succer_right {
+        flex: 1.5;
+
+        .succer_right-top {
+          font-size: 14px;
+          .succer_warning {
+            display: flex;
+            align-items: center;
+
+            padding: 20px;
+
+            font-size: 15px;
+
+            background: rgb(224, 236, 224);
+
+            & > svg {
+              margin-left: 15px;
+              margin-right: 10px;
+
+              font-size: 25px;
+
+              color: rgb(38, 117, 38);
+            }
+            & > p {
+              color: rgb(106, 201, 106);
+
+              font-weight: 600;
+              font-size: 17px;
+            }
+          }
+
+          .succer_companny {
+            padding: 20px 0 30px 0;
+
+            font-size: 18px;
+            font-weight: 700;
+
+            color: rgb(40, 127, 40);
+          }
+        }
+
+        .succer_right-bottom {
+          font-size: 14px;
+          font-weight: 600;
+
+          .succer_code {
+            margin-bottom: 15px;
+
+            & > span:last-child {
+              font-size: 28px;
+              font-weight: 700;
+              margin-left: 5px;
+            }
+          }
+          .succer_check {
+            margin-bottom: 15px;
+            & > a {
+              text-decoration: none;
+
+              color: #36d6d6;
+
+              margin-left: 5px;
+            }
+            & > span:last-child {
+              font-size: 28px;
+              font-weight: 700;
+            }
+          }
+          .succer_support {
+            margin-bottom: 20px;
+            & > span:last-child {
+              font-weight: 700;
+
+              color: rgb(236, 62, 62);
+
+              margin-left: 5px;
+            }
+          }
+          .succer_eat {
+            margin-bottom: 15px;
+
+            font-weight: 700;
+
+            color: rgb(79, 77, 77);
+          }
+          .succer_btn {
+            display: flex;
+            justify-content: center;
+
+            margin-top: 25px;
+
+            & > button {
+              border: 2px solid green;
+              border-radius: 7px;
+
+              outline: none;
+
+              background: $white;
+              color: $green;
+
+              padding: 5px 10px;
+
+              cursor: pointer;
+
+              &:hover {
+                opacity: 0.7;
+              }
+
+              & > svg {
+                margin-right: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

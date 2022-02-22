@@ -7,10 +7,14 @@ import './styles.scss';
 
 export interface BakedNoodlesListProps {
   data: HomeFeaturesProps[];
+  setIdPizza: (newId: number) => {};
 }
 
-export default function BakedNoodlesList({ data }: BakedNoodlesListProps) {
+export default function BakedNoodlesList({ data, setIdPizza }: BakedNoodlesListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="BakedNoodles_list">
@@ -18,7 +22,7 @@ export default function BakedNoodlesList({ data }: BakedNoodlesListProps) {
           .filter((item) => item.category === 'BakedNoodles')
           .slice(0, 4)
           .map((items, index) => (
-            <BakedNoodlesItem key={items.id} items={items} />
+            <BakedNoodlesItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {data.filter((item) => item.category === 'BakedNoodles').length > 4 && (
@@ -33,7 +37,7 @@ export default function BakedNoodlesList({ data }: BakedNoodlesListProps) {
                 .filter((item) => item.category === 'BakedNoodles')
                 .slice(4)
                 .map((items, index) => (
-                  <BakedNoodlesItem key={items.id} items={items} />
+                  <BakedNoodlesItem key={items.id} items={items} handleIds={hanndleIdNew} />
                 ))}
             </div>
           )}

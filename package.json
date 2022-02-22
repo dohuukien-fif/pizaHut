@@ -8,6 +8,7 @@
     "start": "vite"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "@reduxjs/toolkit": "^1.7.1",
     "@types/react-scroll": "^1.8.3",
     "axios": "^0.25.0",

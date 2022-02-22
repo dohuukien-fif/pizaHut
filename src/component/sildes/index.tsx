@@ -36,6 +36,10 @@ export default function Silder(props: SilderProps) {
       loop={true}
       spaceBetween={-70}
       centeredSlides={true}
+      autoplay={{
+        delay: 4000,
+        disableOnInteraction: false,
+      }}
       // autoplay={{
       //   delay: 2500,
       //   disableOnInteraction: false,
@@ -63,7 +67,7 @@ export default function Silder(props: SilderProps) {
         },
         1025: {
           slidesPerView: 'auto',
-          spaceBetween: -50,
+          spaceBetween: -70,
         },
       }}
       pagination={{

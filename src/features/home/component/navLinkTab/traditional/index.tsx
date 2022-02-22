@@ -7,10 +7,14 @@ import TraditionItem from './traditionalItem';
 export interface TraditionalListProps {
   data: HomeFeaturesProps[];
   activeTab: string;
+  setIdPizza: (newId: number) => {};
 }
 
-export default function TraditionalList({ data, activeTab }: TraditionalListProps) {
+export default function TraditionalList({ data, activeTab, setIdPizza }: TraditionalListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="Traditional_list">
@@ -18,7 +22,7 @@ export default function TraditionalList({ data, activeTab }: TraditionalListProp
           .filter((item) => item.category === 'Traditional')
           .slice(0, 4)
           .map((items, index) => (
-            <TraditionItem key={items.id} items={items} />
+            <TraditionItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {data.filter((item) => item.category === 'Traditional').length > 3 && (
@@ -33,7 +37,7 @@ export default function TraditionalList({ data, activeTab }: TraditionalListProp
                 .filter((item) => item.category === 'Traditional')
                 .slice(4)
                 .map((items, index) => (
-                  <TraditionItem key={items.id} items={items} />
+                  <TraditionItem key={items.id} items={items} handleIds={hanndleIdNew} />
                 ))}
             </div>
           )}

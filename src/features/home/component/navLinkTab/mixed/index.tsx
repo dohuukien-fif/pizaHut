@@ -7,11 +7,15 @@ import './styles.scss';
 
 export interface MixedListProps {
   data: HomeFeaturesProps[];
-  activeTab: string;
+
+  setIdPizza: (newId: number) => {};
 }
 
-export default function MixedList({ data, activeTab }: MixedListProps) {
+export default function MixedList({ data, setIdPizza }: MixedListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="Mixed_list">
@@ -19,7 +23,7 @@ export default function MixedList({ data, activeTab }: MixedListProps) {
           .filter((item) => item.category === 'mixed')
           .slice(0, 4)
           .map((items, index) => (
-            <MixedItem key={items.id} items={items} />
+            <MixedItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {data.filter((item) => item.category === 'mixed').length > 3 && (
@@ -34,7 +38,7 @@ export default function MixedList({ data, activeTab }: MixedListProps) {
                 .filter((item) => item.category === 'mixed')
                 .slice(4)
                 .map((items, index) => (
-                  <MixedItem key={items.id} items={items} />
+                  <MixedItem key={items.id} items={items} handleIds={hanndleIdNew} />
                 ))}
             </div>
           )}

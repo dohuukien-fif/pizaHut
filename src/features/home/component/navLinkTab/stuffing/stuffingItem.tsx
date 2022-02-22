@@ -8,12 +8,16 @@ import { HomeFeaturesProps } from '../../../page/interface';
 
 export interface StuiffingItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function StuiffingItem({ items }: StuiffingItemProps) {
+export default function StuiffingItem({ items, handleIds }: StuiffingItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="stuffing_item">
+    <div className="stuffing_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="stuffing_block">
         <div className="stuffing_aside">
           <img src={image} alt="" />

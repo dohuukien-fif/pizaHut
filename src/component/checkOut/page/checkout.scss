@@ -13,11 +13,11 @@
     margin: 170px auto 0 auto;
 
     .checkout_btn {
-      margin-bottom: 30px;
-
       display: flex;
       justify-content: flex-end;
       align-items: center;
+
+      margin-bottom: 30px;
       & > button {
         padding: 10px 0;
 
@@ -37,12 +37,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
         & > svg:first-child {
           margin-right: 10px;
         }
         & > svg:last-child {
           margin-left: 10px;
         }
+      }
+      .btn-back {
+        background: rgb(138, 138, 138);
       }
     }
 
@@ -156,5 +160,11 @@
     .activeBtn {
       display: none;
     }
+    .actibeblock {
+      display: block;
+    }
   }
+}
+.activenone {
+  display: none !important;
 }

@@ -6,9 +6,13 @@ import PizzaStuffingItem from '../pizaItem/stuffing';
 
 export interface PizzaStuffingListProps {
   data: PizzaFeaturesProps[];
+  setIdPizza: (newId: number) => {};
 }
 
-export default function PizzaStuffingList({ data }: PizzaStuffingListProps) {
+export default function PizzaStuffingList({ data, setIdPizza }: PizzaStuffingListProps) {
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="stuffing_list">
@@ -16,7 +20,7 @@ export default function PizzaStuffingList({ data }: PizzaStuffingListProps) {
           .filter((item) => item.category === 'Stuffing')
 
           .map((items, index) => (
-            <PizzaStuffingItem key={items.id} items={items} />
+            <PizzaStuffingItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

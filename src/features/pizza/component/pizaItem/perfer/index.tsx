@@ -8,12 +8,16 @@ import { formatPrice } from '../../../../../utils';
 
 export interface PizzaPerferItemProps {
   items: PizzaFeaturesProps;
+  handleIds: any;
 }
 
-export default function PizzaPerferItem({ items }: PizzaPerferItemProps) {
+export default function PizzaPerferItem({ items, handleIds }: PizzaPerferItemProps) {
   const { name, image, price, detail, selling } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="perfer_item">
+    <div className="perfer_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="perfer_block">
         <div className="perfer_aside">
           <img src={image} alt="" />

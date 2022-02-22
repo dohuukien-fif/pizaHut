@@ -8,12 +8,16 @@ import { formatPrice } from '../../../../../utils';
 
 export interface PizaItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function PizaItem({ items }: PizaItemProps) {
+export default function PizaItem({ items, handleIds }: PizaItemProps) {
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   const { name, image, price, detail, selling } = items;
   return (
-    <div className="pizza_item">
+    <div className="pizza_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="pizza_block">
         <div className="pizza_aside">
           <img src={image} alt="" />

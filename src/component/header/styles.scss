@@ -1,9 +1,11 @@
 @use './../../sass/index.scss' as *;
-
+.activeNav {
+  box-shadow: 1px 0 20px 0 rgb(0 0 0 / 10%);
+}
 .nav {
   // margin-bottom: 5rem;
   // position: absolute;
-  box-shadow: 1px 0 20px 0 rgb(0 0 0 / 10%);
+
   top: 0;
   position: fixed;
   left: 50%;
@@ -55,17 +57,6 @@
     }
     .color_icon {
       color: black;
-    }
-    & > span {
-      // .activeIcon_left {
-      //   color: white;
-      // }
-      // .activeIcon_right {
-      //   color: white;
-      // }
-      // .color_icon {
-      //   color: black;
-      // }
     }
   }
   .actives_link {
@@ -350,12 +341,15 @@
           & > input {
             // width: 230px;
             border-radius: 25px;
-            border: 1px solid $green;
+            border: 1px solid gray;
 
-            padding: 0.8rem 2rem 0.8rem 4rem;
+            padding: 0.5rem 2rem 0.5rem 4rem;
 
             outline: none;
 
+            &:focus {
+              border: 1px solid $green;
+            }
             &::placeholder {
               // margin-left: 50px;
             }
@@ -377,10 +371,16 @@
             position: relative;
             & > input {
               // width: 230px;
-              padding: 0.6rem 2rem 0.6rem 4rem;
-              border: 1px solid $green;
+              padding: 0.5rem 2rem 0.5rem 4rem;
+              border: 1px solid gray;
 
               border-radius: 25px;
+
+              outline: none;
+
+              &:focus {
+                border: 1px solid $green;
+              }
             }
             & > svg {
               position: absolute;
@@ -405,6 +405,7 @@
 
         position: relative;
         cursor: pointer;
+
         .nav_block {
           position: absolute;
           width: 50%;
@@ -415,7 +416,7 @@
           left: 0;
           border-radius: 25px;
 
-          height: 90%;
+          height: 85%;
         }
         //active torget
         // .acrives {
@@ -436,7 +437,7 @@
           color: white;
         }
         & > span {
-          padding: 0.8rem 3rem 0.8rem 3rem;
+          padding: 0.6rem 2rem 0.6rem 2rem;
           font-size: 14px;
           z-index: 2;
 
@@ -446,6 +447,7 @@
       }
     }
   }
+
   //nav link
   &_Link {
     width: 100%;
@@ -453,7 +455,7 @@
     justify-content: space-between;
     // align-items: center;
 
-    background: $green;
+    background: #006a31;
 
     border-radius: 25px;
 
@@ -563,6 +565,19 @@
         position: relative;
 
         cursor: pointer;
+        .nav_cart-count {
+          margin-left: 15px;
+
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+
+          font-size: 15px;
+
+          color: $white;
+
+          background: #d50e15;
+        }
 
         &:hover > .nav_miniCart {
           display: block;
@@ -584,6 +599,7 @@
           width: 450px;
 
           border-radius: 5px;
+
           &::before {
             top: -8px;
             right: 5px;

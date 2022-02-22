@@ -7,12 +7,16 @@ import { BsCart3 } from 'react-icons/bs';
 import { formatPrice } from '../../../../../utils';
 export interface newDishItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function newDishItem({ items }: newDishItemProps) {
+export default function newDishItem({ items, handleIds }: newDishItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="bakednooles_item">
+    <div className="bakednooles_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="bakednooles_block">
         <div className="bakednooles_aside">
           <img src={image} alt="" />

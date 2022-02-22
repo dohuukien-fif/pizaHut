@@ -190,7 +190,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
           </div>
           <div className="more_list">
             {more?.map((items, index) => (
-              <div className="more_wrapper">
+              <div className="more_wrapper" key={index}>
                 <div
                   key={items.id}
                   className="more_item"

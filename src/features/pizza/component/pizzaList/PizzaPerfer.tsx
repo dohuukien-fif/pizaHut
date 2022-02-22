@@ -6,10 +6,14 @@ import PizzaPerferItem from '../pizaItem/perfer';
 
 export interface PizzaPerferListProps {
   data: PizzaFeaturesProps[];
+  setIdPizza: (newId: number) => {};
 }
 
-export default function PizzaPerferList({ data }: PizzaPerferListProps) {
+export default function PizzaPerferList({ data, setIdPizza }: PizzaPerferListProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="perfer_list">
@@ -17,7 +21,7 @@ export default function PizzaPerferList({ data }: PizzaPerferListProps) {
           .filter((item) => item.category === 'piza')
 
           .map((items, index) => (
-            <PizzaPerferItem key={items.id} items={items} />
+            <PizzaPerferItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

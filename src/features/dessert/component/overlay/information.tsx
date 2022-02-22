@@ -179,52 +179,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
               ))}
           </div>
         </div>
-        <div className="overlay_more">
-          <div className="more_title">
-            <span>THÊM NHÂN</span>
-          </div>
-          <div className="more_list">
-            {more?.map((items, index) => (
-              <div className="more_wrapper">
-                <div
-                  key={items.id}
-                  className="more_item"
-                  onClick={() => handleMore(items.name, items.price)}
-                >
-                  <div
-                    className={
-                      getInfor.moreName === items.name
-                        ? 'more_item-block actimore'
-                        : 'more_item-block'
-                    }
-                  >
-                    <div className="more_aside">
-                      <img src={items.images} alt="" />
-                    </div>
-                    <div className="more_name">
-                      <p>{items.name}</p>
-                    </div>
-                    <div className="more_price">
-                      <p>{`+ ${items.price}`}</p>
-                    </div>
-                    <div className="more_icon">
-                      {getInfor.moreName === items.name ? (
-                        <BsFillCheckCircleFill className="activeIcon" />
-                      ) : (
-                        <IoMdAddCircle />
-                      )}
-                    </div>
-                  </div>{' '}
-                </div>
-                {getInfor.moreName === items.name && (
-                  <div className="more_delete" onClick={deleteMore}>
-                    <p>Xóa</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+
         <div className="overlay_note">
           <div className="note_title">
             <span>GHI CHÚ</span>

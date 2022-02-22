@@ -8,12 +8,16 @@ import { formatPrice } from '../../../../../utils';
 
 export interface ApptizerItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function ApptizerItem({ items }: ApptizerItemProps) {
+export default function ApptizerItem({ items, handleIds }: ApptizerItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="appetizer_item">
+    <div className="appetizer_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="appetizer_block">
         <div className="appetizer_aside">
           <img src={image} alt="" />

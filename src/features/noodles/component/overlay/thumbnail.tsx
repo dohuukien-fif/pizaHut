@@ -11,7 +11,7 @@ export default function Thumbnail({ detail, setPrice }: ThumbnailProps) {
   const { image, price } = detail;
   const updatePrice = setPrice !== 0 ? price + (setPrice.priceSize + setPrice.priceMore) : price;
   return (
-    <div className="thumbnail_aside">
+    <div className="thumbnail_asidess">
       <div className="thumbnail_image">
         <img src={image} alt="" />
       </div>

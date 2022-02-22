@@ -30,7 +30,6 @@ function CartItem({ items }: CartItemProps) {
   return (
     <div className="cart_item">
       <div className="cart_blocks">
-
         <div className="cart_left">
           <div className="cart_aside">
             <img src={product.image} alt={product.name} />
@@ -40,15 +39,21 @@ function CartItem({ items }: CartItemProps) {
             <div className="cart_name">
               <span>{product.name}</span>
             </div>
-            <div className="cart_sizeName">
-              <span>{`Kích thước - ${product.size.name}`}</span>
-            </div>
-            <div className="cart_soles">
-              <span>{`Đế - ${product.soles}`}</span>
-            </div>
-            <div className="cart_more">
-              <span>{`Thêm nhân - ${product.more.name}`}</span>
-            </div>
+            {Object.values(product.size).every((e) => e !== '') && (
+              <div className="cart_sizeName">
+                <span>{`Kích thước - ${product.size.name}`}</span>
+              </div>
+            )}
+            {product.soles.length > 0 && (
+              <div className="cart_soles">
+                <span>{`Đế - ${product.soles}`}</span>
+              </div>
+            )}
+            {Object.values(product.more).every((e) => e !== '') && (
+              <div className="cart_more">
+                <span>{`Thêm nhân - ${product.more.name}`}</span>
+              </div>
+            )}
           </div>
         </div>
         <div className="cart_right">

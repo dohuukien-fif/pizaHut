@@ -8,12 +8,16 @@ import { formatPrice } from '../../../../../utils';
 
 export interface DrinkItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function DrinkItem({ items }: DrinkItemProps) {
+export default function DrinkItem({ items, handleIds }: DrinkItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="drink_item">
+    <div className="drink_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="drink_block">
         <div className="drink_aside">
           <img src={image} alt="" />

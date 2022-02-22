@@ -9,12 +9,16 @@ import { HomeFeaturesProps } from '../../../page/interface';
 
 export interface SeafoodItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function SeafoodItem({ items }: SeafoodItemProps) {
+export default function SeafoodItem({ items, handleIds }: SeafoodItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="seafood_item">
+    <div className="seafood_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="seafood_block">
         <div className="seafood_aside">
           <img src={image} alt="" />

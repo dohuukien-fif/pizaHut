@@ -6,7 +6,7 @@
   width: 100%;
   // height: 450px;
 
-  margin: 150px auto 50px auto;
+  margin: 160px auto 50px auto;
 
   min-height: 100vh;
   // position: relative;
@@ -48,7 +48,7 @@
 
           color: rgb(74, 72, 72);
 
-          font-weight: 650;
+          font-weight: 600;
 
           margin-bottom: 30px;
 
@@ -347,6 +347,114 @@
         }
       }
     }
+  }
+  .overlay {
+    cursor: pointer;
+    background-color: rgba(68, 68, 68, 0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 7777;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms linear;
+
+    .overlay_wrapper {
+      // margin-top: 10px;
+
+      position: absolute;
+      width: 67%;
+      height: 97%;
+      background: $white;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
+
+      .overlay_closes {
+        position: absolute;
+
+        top: 15px;
+        // left: 10px;
+        // padding-left: 20px;
+        .loading_featurees {
+          position: absolute;
+          left: 20px;
+          & > svg {
+            font-size: 30px;
+          }
+        }
+        @include tablet {
+          top: 30px;
+        }
+        & > svg {
+          font-size: 42px;
+          color: rgb(71, 70, 70);
+          @include tablet {
+            color: rgb(71, 70, 70);
+          }
+        }
+      }
+      .overlay_block {
+        display: flex;
+        padding-top: 20px;
+        height: 100%;
+
+        z-index: 10;
+        @include mobile {
+          flex-direction: column;
+        }
+        .overlay_thumbanil {
+          flex: 1;
+        }
+        .overlay_information {
+          overflow-y: auto;
+          flex: 1;
+
+          background: #fafafa;
+
+          border-radius: 25px;
+
+          height: 95%;
+          @include mobilesmall {
+            flex: 2;
+            border-radius: 0px;
+          }
+          &::-webkit-scrollbar {
+            width: 1em;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: rgb(220, 216, 216);
+            // outline: 1px solid slategrey;
+          }
+        }
+      }
+      @include mobile {
+        border-radius: 0px;
+      }
+
+      @include tablet {
+        width: 99%;
+        height: 97%;
+      }
+      @include mobile {
+        width: 100%;
+        height: 98%;
+        overflow-y: auto;
+      }
+      @include mobilesmall {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .activeOvelay {
+    opacity: 1;
+    visibility: visible;
   }
 }
 .active_tab {

@@ -23,12 +23,29 @@ import { dataLisst } from '../hooks';
 import { logout } from './../../app/userRedux';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartItemCount, cartItemSelector, Cartitem, cartAddress } from './../cart/cartSelected';
-import { setOrder, setAddress } from './../../app/cartRedux';
+import { setOrder, setAddress, setStore } from './../checkOut/checkOutRedux';
 export interface HeadersProps {}
 
 export default function Headers(props: HeadersProps) {
   const [DataCart, setDataCart] = React.useState<any>([]);
   // const { id, name } = newArrays;
+  const [store, setstore] = React.useState<any[]>([
+    {
+      stores: 'THE PIZZA COMPANY SONG HÀNH',
+      address: '81 song hành,P An phú , Quận 2 ,HCM',
+      phone: '0969757507',
+    },
+    {
+      stores: 'THE PIZZA COMPANY NGUYỄN THỊ MINH KHAI',
+      address: '81 song hành,P An phú , Quận 2 ,HCM',
+      phone: '0969757507',
+    },
+    {
+      stores: 'THE PIZZA COMPANY 333 LÊ VĂN SỸ',
+      address: '81 song hành,P An phú , Quận 2 ,HCM',
+      phone: '0969757507',
+    },
+  ]);
   const [setActive, setsetActive] = useState<string>('');
   const [isorder, setisorder] = useState<boolean>(false);
   const [isopen, setisopen] = useState<boolean>(false);
@@ -46,7 +63,7 @@ export default function Headers(props: HeadersProps) {
   const CartAddress = useSelector(cartAddress);
   const priceItem = useSelector(Cartitem);
   const deboun: any = useRef(null);
-
+  const inputRef = useRef<any>('');
   const activeTranForm = (value?: string) => {
     if (value === 'l') {
       setsetActive('active_left');
@@ -101,6 +118,17 @@ export default function Headers(props: HeadersProps) {
     // navigate({ search: SearchTerm.trim("") });
     // location.search(`${SearchTerm}`);
   };
+  const handleChangeselected = (e: any) => {
+    const values = e.target.value;
+
+    console.log('values', values, 'ref', inputRef.current.label);
+    dispatch(
+      setStore({
+        store: values,
+        address: inputRef.current.label,
+      })
+    );
+  };
   const handleChangeInput = (e: any) => {
     // const values = e.target.value;
     const values = e.target.value;
@@ -123,14 +151,14 @@ export default function Headers(props: HeadersProps) {
     return setError('');
   };
   return (
-    <nav className="nav">
+    <nav className={isScroll ? 'nav activeNav' : 'nav'}>
       <div className="nav_block">
         <div className="nav_top">
           {/* logo website */}
           <div className="nav_icon">
             <Link to="/">
               <img
-                src="https://image.shutterstock.com/image-vector/pizza-daily-fresh-vector-emblem-600w-1901059681.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScjgFeNhO-stVJM0eWVR5k7mjPL3rd0V459Q&usqp=CAU"
                 alt=""
               />
             </Link>
@@ -174,24 +202,19 @@ export default function Headers(props: HeadersProps) {
               )}
               {isorder === true && (
                 <div className="nav_Select">
-                  <form action="/action_page.php">
+                  <form>
                     <AiOutlineHome />
                     <input
+                      onChange={handleChangeselected}
                       list="browsers"
-                      name="browser"
                       placeholder="Nhập cửa hàng"
-                      onChange={handleChangeInput}
                     />
                     <datalist id="browsers">
-                      <option value="The Piza Company Song Hành Explorer">
-                        The Piza Company Song Hành
-                      </option>
-                      <option value="The Piza Company Estella">The Piza Company Estella</option>
-                      <option value="The Piza Nguyễn Thị Minh Khai">
-                        The Piza Nguyễn Thị Minh Khai
-                      </option>
-                      <option value="The Piza Company Lê Van Sỹ">The Piza Company Lê Van Sỹ</option>
-                      <option value="The Piza Company Hậu Giang">The Piza Company Hậu Giang</option>
+                      {store.map((items, index) => (
+                        <option ref={inputRef} value={items.stores}>
+                          {items.address}
+                        </option>
+                      ))}
                     </datalist>
                   </form>
                 </div>
@@ -291,7 +314,7 @@ export default function Headers(props: HeadersProps) {
               <BsCart3 />
 
               <span>Giỏ hàng</span>
-              <span>{count}</span>
+              <span className="nav_cart-count">{count}</span>
 
               <div className="nav_miniCart">
                 {dataCart?.length === 0 ? (

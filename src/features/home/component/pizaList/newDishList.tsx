@@ -4,10 +4,14 @@ import { HomeFeaturesProps } from './../../page/interface';
 import './styles.scss';
 export interface NewDishLisstProps {
   data: HomeFeaturesProps[];
+  setIdPizza: (newId: number) => {};
 }
 
-export default function NewDishLisst({ data }: NewDishLisstProps) {
+export default function NewDishLisst({ data, setIdPizza }: NewDishLisstProps) {
   const [isContinent, setisContinent] = useState<boolean>(false);
+  const hanndleIdNew = (newIds: number) => {
+    if (setIdPizza) setIdPizza(newIds);
+  };
   return (
     <>
       <div className="newDish_list">
@@ -15,7 +19,7 @@ export default function NewDishLisst({ data }: NewDishLisstProps) {
           .filter((item) => item.category === 'newDish')
           .slice(0, 4)
           .map((items, index) => (
-            <NewDishItem key={items.id} items={items} />
+            <NewDishItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {data.filter((item) => item.category === 'newDish').length > 3 && (
@@ -30,7 +34,7 @@ export default function NewDishLisst({ data }: NewDishLisstProps) {
                 .filter((item) => item.category === 'newDish')
                 .slice(4)
                 .map((items, index) => (
-                  <NewDishItem key={items.id} items={items} />
+                  <NewDishItem key={items.id} items={items} handleIds={hanndleIdNew} />
                 ))}
             </div>
           )}

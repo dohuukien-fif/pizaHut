@@ -7,12 +7,16 @@ import { formatPrice } from '../../../../../utils';
 import { HomeFeaturesProps } from '../../../page/interface';
 export interface MixedItemProps {
   items: HomeFeaturesProps;
+  handleIds: any;
 }
 
-export default function MixedItem({ items }: MixedItemProps) {
+export default function MixedItem({ items, handleIds }: MixedItemProps) {
   const { name, image, price, detail } = items;
+  const hanndleIdNew = (newIds: number) => {
+    if (handleIds) handleIds(newIds);
+  };
   return (
-    <div className="mixed_item">
+    <div className="mixed_item" onClick={() => hanndleIdNew(items.id)}>
       <div className="mixed_block">
         <div className="mixed_aside">
           <img src={image} alt="" />
