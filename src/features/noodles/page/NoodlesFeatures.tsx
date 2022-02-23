@@ -1,19 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './styles.scss';
-// import { Link } from 'react-router-dom';
-
-import { Link } from 'react-scroll';
-import Silder from '../../../component/sildes';
-import PizzaNewList from '../component/pizzaList/pizzaNew';
-import { useDispatch } from 'react-redux';
-import { dataLisst } from './../../../component/hooks/index';
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
-import LoadingFeatures from '../../../component/loadingFeatures';
+import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
-import Thumbnail from './../component/overlay/thumbnail';
-import Information from '../component/overlay/information';
-import ProductApi from './../../../api/productApi';
+import { useDispatch } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
+import LoadingFeatures from '../../../component/loadingFeatures';
+import Silder from '../../../component/sildes';
+import Information from '../component/overlay/information';
+import PizzaNewList from '../component/pizzaList/pizzaNew';
+import ProductApi from './../../../api/productApi';
+// import { Link } from 'react-router-dom';
+import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
+import Thumbnail from './../component/overlay/thumbnail';
+import './styles.scss';
 export default function NoodleFeatures(props: any) {
   const dispatch = useDispatch();
   const [DataPiza, setDataPiza] = useState<any>([]);
@@ -28,6 +25,7 @@ export default function NoodleFeatures(props: any) {
   });
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const [Loading, setLoading] = useState<boolean>(false);
+  const [LoadingList, setLoadingList] = useState<boolean>(true);
   const closeRef = useRef(null);
   // const handLink = (e: any) => {
   //   e.preventDefault();
@@ -42,10 +40,12 @@ export default function NoodleFeatures(props: any) {
   // };
   useEffect(() => {
     (async () => {
+      setLoadingList(true);
       try {
         const res: any = await ProductApi.get();
         console.log('des', res);
         setDataPiza(res);
+        setLoadingList(false);
       } catch (err) {}
     })();
   }, []);
@@ -143,7 +143,11 @@ export default function NoodleFeatures(props: any) {
               <div className="new_title">
                 <span>Nui Bỏ Lò</span>
               </div>
-              <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              {LoadingList ? (
+                <LoadingListss />
+              ) : (
+                <PizzaNewList data={DataPiza} setIdPizza={setIdPizza} />
+              )}
             </div>
           </div>
         </div>

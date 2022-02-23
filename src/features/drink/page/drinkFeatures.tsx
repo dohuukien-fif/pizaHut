@@ -109,9 +109,9 @@ export default function DrinkFeatures(props: any) {
           id: detailProduct.id,
           product: {
             ...detailProduct,
-            size: { name: newValue.sizeName, price: newValue.sizePrice },
-            soles: [newValue.soles],
-            more: { name: newValue.moreName, price: newValue.morePrice },
+            size: {},
+            soles: [],
+            more: {},
           },
           note: values,
           quantity: 1,

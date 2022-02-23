@@ -39,21 +39,23 @@ function CartItem({ items }: CartItemProps) {
             <div className="cart_name">
               <span>{product.name}</span>
             </div>
-            {Object.values(product.size).every((e) => e !== '') && (
-              <div className="cart_sizeName">
-                <span>{`Kích thước - ${product.size.name}`}</span>
-              </div>
-            )}
+            {Object.keys(product.size).length > 0 &&
+              Object.values(product.size).every((e) => e !== '') && (
+                <div className="cart_sizeName">
+                  <span>{`Kích thước - ${product.size.name}`}</span>
+                </div>
+              )}
             {product.soles.length > 0 && (
               <div className="cart_soles">
                 <span>{`Đế - ${product.soles}`}</span>
               </div>
             )}
-            {Object.values(product.more).every((e) => e !== '') && (
-              <div className="cart_more">
-                <span>{`Thêm nhân - ${product.more.name}`}</span>
-              </div>
-            )}
+            {Object.keys(product.more).length > 0 &&
+              Object.values(product.more).every((e) => e !== '') && (
+                <div className="cart_more">
+                  <span>{`Thêm nhân - ${product.more.name}`}</span>
+                </div>
+              )}
           </div>
         </div>
         <div className="cart_right">
@@ -75,7 +77,9 @@ function CartItem({ items }: CartItemProps) {
               <span>
                 {' '}
                 {formatPrice(
-                  (items.product.price + items.product.size.price + items.product.more.price) *
+                  (items.product?.price +
+                    (Object.keys(items.product?.size).length > 0 && items.product?.size?.price) +
+                    (Object.keys(items.product?.more).length > 0 && items.product?.more?.price)) *
                     items.quantity
                 )}
               </span>
