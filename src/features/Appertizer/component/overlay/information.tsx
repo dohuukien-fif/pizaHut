@@ -124,13 +124,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
         <div className="overlay_name">
           <span>{name}</span>
         </div>
-        <div className="overlay_choose">
-          <p>
-            {`Kich thước ${
-              size !== undefined && new Array(size[indexSize]).map((item) => item.name)
-            } - ${(soles !== undefined && index) || 'Dày'}`}
-          </p>
-        </div>
+
         <div className="overlay_spice">
           <span>{Spice}</span>
         </div>

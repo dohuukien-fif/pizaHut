@@ -243,6 +243,181 @@ export const dataLisst = [
       },
     ],
   },
+  {
+    categories: 'BakedNoodles',
+    id: 6,
+    image:
+      'https://image.shutterstock.com/image-photo/asian-style-chicken-stirfry-vegetables-600w-524949211.jpg',
+    name: 'Pizza Golden 4 Cheese',
+    price: 309000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+    Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    size: [
+      {
+        name: 'Nhỏ 6',
+        price: 783000,
+      },
+      {
+        name: 'Vừa 9',
+        price: 783000,
+      },
+      {
+        name: 'Lớn 12',
+        price: 783000,
+      },
+    ],
+    soles: [
+      {
+        items: ['Dày', 'Mỏng giòn'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai xúc xích'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai', 'Viền phô mai xúc xích'],
+      },
+    ],
+  },
+  {
+    categories: 'BakedNoodles',
+    id: 7,
+    image:
+      'https://image.shutterstock.com/image-photo/asian-style-chicken-stirfry-vegetables-600w-486741370.jpg',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+    Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    size: [
+      {
+        name: 'Nhỏ 6',
+        price: 783000,
+      },
+      {
+        name: 'Vừa 9',
+        price: 783000,
+      },
+      {
+        name: 'Lớn 12',
+        price: 783000,
+      },
+    ],
+    soles: [
+      {
+        items: ['Dày', 'Mỏng giòn'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai xúc xích'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai', 'Viền phô mai xúc xích'],
+      },
+    ],
+  },
+  {
+    categories: 'BakedNoodles',
+    id: 8,
+    image:
+      'https://image.shutterstock.com/image-photo/shakshuka-jewish-cuisine-eggs-tomatoes-600w-1344344255.jpg',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+    Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    size: [
+      {
+        name: 'Nhỏ 6',
+        price: 783000,
+      },
+      {
+        name: 'Vừa 9',
+        price: 783000,
+      },
+      {
+        name: 'Lớn 12',
+        price: 783000,
+      },
+    ],
+    soles: [
+      {
+        items: ['Dày', 'Mỏng giòn'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai xúc xích'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai', 'Viền phô mai xúc xích'],
+      },
+    ],
+  },
+  {
+    categories: 'BakedNoodles',
+    id: 9,
+    image:
+      'https://image.shutterstock.com/image-photo/spaghetti-pasta-rich-creamy-tomato-600w-1764409199.jpg',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+    Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    size: [
+      {
+        name: 'Nhỏ 6',
+        price: 783000,
+      },
+      {
+        name: 'Vừa 9',
+        price: 783000,
+      },
+      {
+        name: 'Lớn 12',
+        price: 783000,
+      },
+    ],
+    soles: [
+      {
+        items: ['Dày', 'Mỏng giòn'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai xúc xích'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai', 'Viền phô mai xúc xích'],
+      },
+    ],
+  },
+  {
+    categories: 'BakedNoodles',
+    id: 10,
+    image:
+      'https://image.shutterstock.com/image-photo/japanese-soba-noodle-salad-teriyaki-600w-1751540351.jpg',
+    name: 'Pizza  4 Cheese',
+    price: 129000,
+    detail: 'Phủ phô mai Gouda thơm vàng',
+    Spice: 'Tôm, cua, mực và nghêu với sốt Marinara',
+    size: [
+      {
+        name: 'Nhỏ 6',
+        price: 783000,
+      },
+      {
+        name: 'Vừa 9',
+        price: 783000,
+      },
+      {
+        name: 'Lớn 12',
+        price: 783000,
+      },
+    ],
+    soles: [
+      {
+        items: ['Dày', 'Mỏng giòn'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai xúc xích'],
+      },
+      {
+        items: ['Dày', 'Mỏng giòn', 'Viền phô mai', 'Viền phô mai xúc xích'],
+      },
+    ],
+  },
 
   {
     categories: 'piza',

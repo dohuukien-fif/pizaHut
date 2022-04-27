@@ -11,9 +11,12 @@ export interface LoginFeaturesProps {}
 
 export default function LoginFeatures(props: LoginFeaturesProps) {
   const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [passwords, setPassword] = React.useState<any>();
   const dispatch = useDispatch();
   // const users = useSelector((state) => state.user);
+  const password = Number(passwords);
+  console.log('passs', typeof password);
+  console.log('usser', typeof username);
   const navigate = useNavigate();
   const handleClick = async (e: any) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ export default function LoginFeatures(props: LoginFeaturesProps) {
 
       const action = login({ username, password });
       const user = await dispatch(action).unwrap();
-      console.log(user);
+      console.log('user', user);
       navigate('/');
       //close Dialog
       // const { closeDialog } = props;
@@ -57,7 +60,7 @@ export default function LoginFeatures(props: LoginFeaturesProps) {
                 Mật khẩu <GiJusticeStar />
               </label>
               <input
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: any) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Nhập mật khẩu của bạn tại đây"
               />

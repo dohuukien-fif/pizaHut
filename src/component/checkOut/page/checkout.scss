@@ -54,15 +54,28 @@
       display: flex;
       justify-content: center;
       //step
+
+      width: 95%;
+      margin-right: auto;
+      margin-left: auto;
       .active {
+        @include mobile {
+          flex: 2 !important;
+          background: #006a31 !important;
+        }
         .step_number {
           & > span {
             background: #00b041;
 
             color: white !important;
+
+            @include mobile {
+              background: #006a31 !important;
+            }
           }
         }
         .step_name {
+          display: block !important;
           & > p {
             color: #00b041;
           }
@@ -75,6 +88,18 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @include mobile {
+          margin: 0;
+
+          flex: 1;
+
+          background: #00b041;
+
+          flex-direction: row;
+
+          align-items: flex-start;
+        }
 
         .step_number {
           z-index: 1;
@@ -97,6 +122,13 @@
 
             color: $black;
 
+            @include mobile {
+              height: 50px;
+              width: 50px;
+
+              border: none;
+            }
+
             &::before {
               content: '';
               position: absolute;
@@ -105,6 +137,10 @@
               border-top: 1px dashed #000;
 
               width: 180px;
+
+              @include mobile {
+                display: none;
+              }
             }
           }
         }
@@ -116,6 +152,10 @@
           color: #738c80;
 
           margin-top: 15px;
+
+          @include mobile {
+            display: none;
+          }
         }
       }
       .step:first-child {
@@ -125,6 +165,18 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @include mobile {
+          margin: 0;
+
+          flex: 1;
+
+          background: #00b041;
+
+          flex-direction: row;
+
+          align-items: flex-start;
+        }
 
         .step_number {
           & > span {
@@ -144,6 +196,13 @@
             // background: $white;
 
             border: 1px solid #e1e1e1;
+
+            @include mobile {
+              height: 50px;
+              width: 50px;
+
+              border: none;
+            }
           }
         }
         .step_name {
@@ -154,6 +213,8 @@
           margin-top: 15px;
 
           color: #738c80;
+
+          display: none;
         }
       }
     }

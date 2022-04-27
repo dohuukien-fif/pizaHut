@@ -5,14 +5,16 @@ import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { GrAdd } from 'react-icons/gr';
 import { GoDash } from 'react-icons/go';
 import './styles.scss';
+
+import { removeProduct, setquantity } from '../../../../app/cartRedux';
 import { useDispatch } from 'react-redux';
-import { setquantity } from '../../../../app/cartRedux';
 export interface CartItemProps {
   items: any;
 }
 
 function CartItem({ items }: CartItemProps) {
   const { product, quantity } = items;
+
   console.log(product, quantity);
   const [quatitys, setquatity] = React.useState(quantity === 0 ? 1 : quantity);
   const dispatch = useDispatch();
@@ -27,6 +29,10 @@ function CartItem({ items }: CartItemProps) {
     };
     hanndlequanntity();
   }, [quatitys, dispatch]);
+  const handleDeleteCart = (id: number) => {
+    const action = removeProduct(id);
+    dispatch(action);
+  };
   return (
     <div className="cart_item">
       <div className="cart_blocks">
@@ -85,7 +91,7 @@ function CartItem({ items }: CartItemProps) {
               </span>
             </div>
             <div className="cart_delete">
-              <RiDeleteBin6Fill />
+              <RiDeleteBin6Fill onClick={() => handleDeleteCart(items.id)} />
             </div>
           </div>
         </div>

@@ -29,6 +29,7 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
   const [active, setActive] = React.useState<string>('active');
   const [number, setnumber] = React.useState<number>(0);
   const [isInfor, setisInfor] = React.useState<boolean>();
+  const [isDialogOrder, setisDialogOrder] = React.useState<boolean>(false);
 
   const [isform, setisform] = React.useState<any>({
     fullName: '',
@@ -92,7 +93,6 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
     }
   };
 
-
   React.useEffect(() => {
     (() => {
       // if (cartItemSelectors.length === 0) {
@@ -136,6 +136,10 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
   const handleSubmits = (value: any) => {
     setisStore(value);
   };
+  const handleisDialogOrder = () => {
+    setisDialogOrder(true);
+  };
+
   return (
     <div className="checkout">
       <div className="checkout_swapper">
@@ -176,7 +180,16 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
         </div>
         <div className="checkout_content">
           <Routes>
-            <Route path="/*" element={<OrderFeatues />} />
+            <Route
+              path="/*"
+              element={
+                <OrderFeatues
+                  setisDialogOrder={setisDialogOrder}
+                  handleClic={handleClic}
+                  isDialogOrder={isDialogOrder}
+                />
+              }
+            />
             <Route
               path="loginForm"
               element={
@@ -224,7 +237,7 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
               <AiOutlineArrowLeft />
               Tiếp tục
             </button>
-            <button className="btn_payload" onClick={handleClic}>
+            <button className="btn_payload" onClick={handleisDialogOrder}>
               Thanh toán
               <AiOutlineArrowRight />
             </button>

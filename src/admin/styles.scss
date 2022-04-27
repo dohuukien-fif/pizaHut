@@ -1,0 +1,119 @@
+@use './../sass/index.scss' as *;
+.admin {
+  min-height: 70vh;
+
+  display: flex;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 1000;
+
+  background-color: #fff;
+  .active {
+    left: 0;
+  }
+  &__left {
+    width: 300px;
+    max-width: 300px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: rgb(86, 85, 85);
+
+    padding: 15px;
+
+    overflow-y: scroll;
+
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    @include mobile {
+      position: fixed;
+      right: 0;
+
+      left: -100%;
+
+      transition: 0.5s ease-in-out !important;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &__right {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: auto;
+    .admin__right--navTop {
+      .admin__right--block {
+        margin-left: auto;
+
+        margin-right: 50px;
+
+        display: flex;
+        align-items: center;
+
+        column-gap: 15px;
+
+        font-size: 14px;
+
+        @include mobile {
+          margin-right: 10px;
+        }
+
+        .admin__openTab {
+          display: none;
+
+          & > svg {
+            font-size: 25px;
+          }
+
+          @include tablet {
+            display: block;
+          }
+        }
+      }
+
+      display: flex;
+
+      min-height: 70px;
+
+      border-bottom: 1px solid rgb(220, 216, 216);
+
+      .admin__right--theme {
+        & > svg {
+          font-size: 30px;
+        }
+      }
+
+      .admin__right--account {
+        .creater__account {
+          font-size: 14px;
+
+          display: flex;
+          column-gap: 5px;
+
+          & > a {
+            color: black;
+            & > span {
+              text-decoration: underline;
+            }
+          }
+        }
+        & > img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
 import Information from './../component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
@@ -23,6 +23,7 @@ export default function SpaghettiFeatures(props: any) {
     priceSize: 0,
     priceMore: 0,
   });
+  const userInfor = useSelector((state: any) => state.user.current);
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const [Loading, setLoading] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
@@ -95,6 +96,10 @@ export default function SpaghettiFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      alert('vui    long   đăng   nhập');
+      return;
+    }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
@@ -102,9 +107,9 @@ export default function SpaghettiFeatures(props: any) {
           id: detailProduct.id,
           product: {
             ...detailProduct,
-            size: { name: newValue.sizeName, price: newValue.sizePrice },
-            soles: [newValue.soles],
-            more: { name: newValue.moreName, price: newValue.morePrice },
+            size: {},
+            soles: [],
+            more: {},
           },
           note: values,
           quantity: 1,

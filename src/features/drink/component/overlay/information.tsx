@@ -23,7 +23,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
   const [activemore, setactivemore] = useState<boolean>(false);
   const [getInfor, setgetInfor] = useState<any>({
     sizeName: '' || 'Nhỏ 6',
-    sizePrice: undefined || 0,
+
     soles: '' || 'Dày',
     moreName: '',
     morePrice: '',

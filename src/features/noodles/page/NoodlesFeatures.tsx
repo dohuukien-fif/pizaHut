@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
@@ -13,6 +13,7 @@ import Thumbnail from './../component/overlay/thumbnail';
 import './styles.scss';
 export default function NoodleFeatures(props: any) {
   const dispatch = useDispatch();
+  const userInfor = useSelector((state: any) => state.user.current);
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
@@ -96,6 +97,10 @@ export default function NoodleFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      alert('vui    long   đăng   nhập');
+      return;
+    }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
@@ -103,9 +108,9 @@ export default function NoodleFeatures(props: any) {
           id: detailProduct.id,
           product: {
             ...detailProduct,
-            size: { name: newValue.sizeName, price: newValue.sizePrice },
-            soles: [newValue.soles],
-            more: { name: newValue.moreName, price: newValue.morePrice },
+            size: {},
+            soles: [],
+            more: {},
           },
           note: values,
           quantity: 1,

@@ -1,0 +1,181 @@
+.sideBar__main,
+.sideBar__list,
+.sideBar__useful,
+.sideBar__user,
+.sideBar__theme {
+  margin-top: 15px;
+}
+
+//main
+.sideBar__main {
+  .sideBar__main--title {
+    font-size: 16px;
+    color: rgb(96, 92, 92);
+
+    margin: 10px 0;
+  }
+  .sideBar__main-content {
+    padding-left: 5px;
+    .sideBar__main--group {
+      display: flex;
+      align-items: center;
+
+      column-gap: 10px;
+
+      & > svg {
+        font-size: 25px;
+      }
+    }
+  }
+}
+//main
+.sideBar__main {
+  .sideBar__main--title {
+    font-size: 16px;
+    color: rgb(96, 92, 92);
+
+    margin: 10px 0;
+  }
+  .sideBar__main--content {
+    .sideBar__main--group {
+      display: flex;
+      align-items: center;
+
+      column-gap: 15px;
+
+      padding: 10px;
+
+      cursor: pointer;
+
+      &:hover {
+        background: #7f6be1;
+        color: white;
+
+        border-radius: 5px;
+      }
+
+      &:hover > svg {
+        color: white;
+      }
+      & > svg {
+        font-size: 25px;
+
+        color: #6d52f2;
+      }
+    }
+  }
+}
+
+//list
+.sideBar__list {
+  .sideBar__list--title {
+    font-size: 16px;
+    color: rgb(96, 92, 92);
+
+    margin: 5px 0;
+  }
+  .sideBar__list--content {
+    .sideBar__list--group {
+      display: flex;
+      align-items: center;
+
+      column-gap: 15px;
+
+      padding: 10px;
+
+      cursor: pointer;
+
+      &:hover {
+        background: #7f6be1;
+        color: white;
+
+        border-radius: 5px;
+      }
+
+      &:hover > svg {
+        color: white;
+      }
+      & > svg {
+        font-size: 25px;
+        color: #6d52f2;
+      }
+    }
+  }
+}
+
+//useful
+.sideBar__useful {
+  .sideBar__useful--title {
+    font-size: 16px;
+    color: rgb(96, 92, 92);
+
+    margin: 5px 0;
+  }
+  .sideBar__useful--content {
+    .sideBar__useful--group {
+      display: flex;
+      align-items: center;
+
+      column-gap: 15px;
+
+      padding: 10px;
+
+      cursor: pointer;
+
+      &:hover {
+        background: #7f6be1;
+        color: white;
+
+        border-radius: 5px;
+      }
+
+      &:hover > svg {
+        color: white;
+      }
+
+      & > svg {
+        font-size: 25px;
+
+        color: #6d52f2;
+      }
+    }
+  }
+}
+//user
+.sideBar__user {
+  .sideBar__user--title {
+    font-size: 16px;
+    color: rgb(96, 92, 92);
+
+    margin: 5px 0;
+  }
+  .sideBar__user--content {
+    .sideBar__user--group {
+      display: flex;
+      align-items: center;
+
+      column-gap: 15px;
+
+      padding: 10px;
+
+      cursor: pointer;
+
+      &:hover {
+        background: #7f6be1;
+        color: white;
+
+        border-radius: 5px;
+      }
+
+      &:hover > svg {
+        color: white;
+      }
+
+      & > svg {
+        font-size: 25px;
+
+        color: #6d52f2;
+      }
+    }
+  }
+}

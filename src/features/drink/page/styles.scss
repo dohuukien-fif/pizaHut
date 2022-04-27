@@ -220,11 +220,20 @@
         @include tablet {
           top: 30px;
         }
+
         & > svg {
           font-size: 42px;
           color: rgb(236, 229, 229);
           @include tablet {
             color: rgb(71, 70, 70);
+          }
+        }
+
+        .loading_featurees {
+          & > svg {
+            color: rgb(236, 229, 229);
+
+            font-size: 35px;
           }
         }
       }

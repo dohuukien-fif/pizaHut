@@ -10,7 +10,7 @@ import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
 import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 import { addProduct } from '../../../app/cartRedux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 export default function DessertFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -22,6 +22,7 @@ export default function DessertFeatures(props: any) {
     priceSize: 0,
     priceMore: 0,
   });
+  const userInfor = useSelector((state: any) => state.user.current);
   const [Loading, setLoading] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
@@ -96,6 +97,10 @@ export default function DessertFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      alert('vui    long   đăng   nhập');
+      return;
+    }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
@@ -103,9 +108,9 @@ export default function DessertFeatures(props: any) {
           id: detailProduct.id,
           product: {
             ...detailProduct,
-            size: { name: newValue.sizeName, price: newValue.sizePrice },
-            soles: [newValue.soles],
-            more: { name: newValue.moreName, price: newValue.morePrice },
+            size: {},
+            soles: [],
+            more: {},
           },
           note: values,
           quantity: 1,

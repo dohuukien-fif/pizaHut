@@ -13,6 +13,10 @@
   margin-left: auto;
   margin-bottom: 50px;
 
+  .activeOverlay {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
   &_wrapper {
     margin: 0 auto;
 
@@ -194,6 +198,217 @@
                   font-weight: 500;
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  }
+  .order_dialog {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 7777;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms linear;
+
+    .order_dialog_swapper {
+      // margin-top: 10px;
+
+      position: absolute;
+
+      width: 67%;
+      height: 80%;
+      background: $white;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      border-radius: 10px;
+
+      display: flex;
+
+      @include mobile {
+        flex-direction: column;
+        height: 100%;
+
+        width: 90%;
+
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -10%);
+        border-radius: 10px;
+
+        overflow-x: auto;
+      }
+      @include mobilesmall {
+        width: 100%;
+        height: 100%;
+
+        top: 0%;
+        left: 0%;
+        transform: translate(0%, 0%);
+
+        border-radius: 0px;
+      }
+
+      .order_close {
+        position: absolute;
+
+        right: 20px;
+        top: 2px;
+
+        & > svg {
+          font-size: 30px;
+        }
+      }
+      .order_dialog-left {
+        flex: 1;
+
+        @include mobile {
+          margin-bottom: 20px;
+        }
+
+        .order_dialog-right-adside {
+          height: 100%;
+          & > img {
+            width: 100%;
+            height: 100%;
+
+            border-top-left-radius: 10px;
+
+            @include mobilesmall {
+              border-top-left-radius: 0px;
+            }
+          }
+        }
+      }
+
+      .order_dialog-right {
+        flex: 1;
+
+        .order_dialog-right-swapper {
+          padding: 25px;
+
+          @include mobilesmall {
+            padding: 0;
+          }
+
+          .order_dialog-right-title {
+            font-size: 35px;
+            font-weight: 800;
+
+            color: $green;
+
+            & > p {
+              text-align: center;
+            }
+          }
+
+          .order_dialog-right-body {
+            margin-bottom: 50px;
+
+            @include mobile {
+              padding: 10px;
+            }
+
+            @include mobilesmall {
+              margin-bottom: 10px;
+            }
+            .order_dialog-right-group {
+              display: flex;
+
+              column-gap: 15px;
+              margin-top: 30px;
+
+              font-size: 15px;
+
+              .order_dialog-right-length {
+                & > span {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  height: 30px;
+                  width: 30px;
+
+                  background: #d30e15;
+                  color: $white;
+
+                  border-radius: 50%;
+                }
+              }
+            }
+          }
+
+          .order_dialog-right-btn {
+            display: flex;
+            column-gap: 10px;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+
+            @include mobile {
+              flex-direction: column;
+              row-gap: 20px;
+            }
+
+            @include mobilesmall {
+              position: sticky;
+              bottom: 0;
+
+              flex-direction: column;
+
+              row-gap: 0px;
+
+              margin-bottom: 0px;
+            }
+
+            & > button {
+              flex: 1;
+
+              padding: 12px 10px;
+
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+
+              column-gap: 10px;
+
+              color: white;
+
+              outline: none;
+
+              border-radius: 8px;
+              border: none;
+
+              cursor: pointer;
+
+              @include mobilesmall {
+                border-radius: 0px;
+                justify-content: center;
+              }
+              & > span {
+                &:hover {
+                  color: $black;
+                }
+              }
+
+              & > svg {
+                font-size: 25px;
+              }
+            }
+
+            & > button:first-child {
+              background: #d30e15;
+            }
+            & > button:last-child {
+              background: #006a31;
             }
           }
         }

@@ -206,7 +206,14 @@
 
           color: white;
 
-          border-radius: 5px;
+          border-radius: 10px;
+
+          display: flex;
+          align-items: center;
+
+          @include mobilesmall {
+            padding: 12px 20px;
+          }
 
           // display: flex;
           // justify-content: space-around;

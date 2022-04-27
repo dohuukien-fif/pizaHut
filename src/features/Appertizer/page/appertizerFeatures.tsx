@@ -9,15 +9,18 @@ import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import LoadingFeatures from '../../../component/loadingFeatures';
-import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import ProductApi from './../../../api/productApi';
 import Information from './../component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
 import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 export default function AppertizerFeatures(props: any) {
   const dispatch = useDispatch();
+  const userInfor = useSelector((state: any) => state.user.current);
+
+  console.log('[[userInformmmmm]]', userInfor);
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
@@ -104,6 +107,10 @@ export default function AppertizerFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      alert('vui    long   đăng   nhập');
+      return;
+    }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
@@ -111,9 +118,9 @@ export default function AppertizerFeatures(props: any) {
           id: detailProduct.id,
           product: {
             ...detailProduct,
-            size: { name: newValue.sizeName, price: newValue.sizePrice },
-            soles: [newValue.soles],
-            more: { name: newValue.moreName, price: newValue.morePrice },
+            size: {},
+            soles: [],
+            more: {},
           },
           note: values,
           quantity: 1,
@@ -167,7 +174,15 @@ export default function AppertizerFeatures(props: any) {
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">
-              <AiOutlineClose onClick={() => setisoverlay(false)} />
+              {LoadingOverlay ? (
+                <div className="loading_featurees">
+                  <AiOutlineLoading3Quarters />
+                </div>
+              ) : (
+                <>
+                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                </>
+              )}
             </div>
             <div className="overlay_block">
               <div className="overlay_thumbanil">

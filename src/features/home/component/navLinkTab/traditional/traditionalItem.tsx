@@ -22,9 +22,6 @@ export default function App({ items, handleIds }: AppProps) {
       <div className="traditional_block">
         <div className="traditional_aside">
           <img src={image} alt="" />
-          <div className="traditional_icon">
-            <BsCart3 />
-          </div>
         </div>
         <div className="traditional_content">
           <header>

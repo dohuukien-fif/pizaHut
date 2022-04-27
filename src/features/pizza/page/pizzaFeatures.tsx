@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { Link } from 'react-scroll';
 import { addProduct } from '../../../app/cartRedux';
@@ -30,6 +30,7 @@ export default function PizzaFeatures(props: any) {
     sizePrice: 0,
     morePrice: 0,
   });
+  const userInfor = useSelector((state: any) => state.user.current);
   const [setpriceMore, setsetpriceMore] = useState<any>(0);
   const [Loading, setLoading] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
@@ -124,6 +125,10 @@ export default function PizzaFeatures(props: any) {
   //handleSubmit
 
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      alert('vui    long   đăng   nhập');
+      return;
+    }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {

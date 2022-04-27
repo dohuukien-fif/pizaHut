@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import './App.scss';
 import AccountFeatures from './component/auth/detailCheckOut/index';
 import LoginFeatures from './component/auth/login';
+import Prodfile from './component/auth/profile';
 import RegisterFeatures from './component/auth/resgiter';
 import CartFeatures from './component/cart/index';
 import CheckOutFeatures from './component/checkOut/page/CheckOut';
@@ -17,6 +18,7 @@ import PizzaFeatures from './features/pizza/index';
 import SaladFeatures from './features/Salad/index';
 import SearchFeatures from './features/Search/index';
 import SpaghettiFeatures from './features/Spaghetti/index';
+import AdminFeatures from './admin/index';
 function App() {
   const navigate = useNavigate();
   // const users = JSON.parse(localStorage.getItem('user'));
@@ -47,6 +49,7 @@ function App() {
   //     isloginin ? navigate('trang-chu') : navigate('/login');
   //   }
   // }, []);
+  const isUser = true;
   return (
     <div>
       <Headers />
@@ -58,6 +61,8 @@ function App() {
         </Route> */}
         {/* <Route ></Route> */}
         <Route path="login" element={<LoginFeatures />} />
+        <Route path="/profile" element={<Prodfile />} />
+        <Route path="/" element={<Navigate replace to="trang-chu" />} />
         <Route path="/register" element={<RegisterFeatures />} />{' '}
         <Route path="/search/*" element={<SearchFeatures />} />
         <Route path="/pizza/*" element={<PizzaFeatures />} />
@@ -68,6 +73,7 @@ function App() {
         <Route path="/nui-bo-lo/*" element={<NoodleFeatures />} />
         <Route path="/nuoc-uong/*" element={<DrinkFeatures />} />
         <Route path="/trang-mieng/*" element={<DessertFeatures />} />
+        <Route path="/admin/*" element={<AdminFeatures />} />
         <Route path="/tai-khoan/*" element={<AccountFeatures />} />
         <Route path="/cart/*" element={<CartFeatures />} />
         {/* <Route path="/" element={<Navigate replace to="Trang-chu" />} />

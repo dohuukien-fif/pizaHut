@@ -8,7 +8,7 @@ export interface NewDishLisstProps {
 }
 
 export default function NewDishLisst({ data, setIdPizza }: NewDishLisstProps) {
-  const [isContinent, setisContinent] = useState<boolean>(false);
+  const [isContinent, setisContinent] = useState<number>(4);
   const hanndleIdNew = (newIds: number) => {
     if (setIdPizza) setIdPizza(newIds);
   };
@@ -17,28 +17,15 @@ export default function NewDishLisst({ data, setIdPizza }: NewDishLisstProps) {
       <div className="newDish_list">
         {data
           .filter((item) => item.category === 'newDish')
-          .slice(0, 4)
+          .slice(0, isContinent)
           .map((items, index) => (
             <NewDishItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
-      {data.filter((item) => item.category === 'newDish').length > 3 && (
-        <>
-          {isContinent === false ? (
-            <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
-              <p> xem thêm</p>
-            </div>
-          ) : (
-            <div className="newDish_list">
-              {data
-                .filter((item) => item.category === 'newDish')
-                .slice(4)
-                .map((items, index) => (
-                  <NewDishItem key={items.id} items={items} handleIds={hanndleIdNew} />
-                ))}
-            </div>
-          )}
-        </>
+      {isContinent <= data.filter((item) => item.category === 'newDish').length && (
+        <div className="newDish_continent" onClick={() => setisContinent((x) => x + 4)}>
+          <p> xem thêm</p>
+        </div>
       )}
     </>
   );

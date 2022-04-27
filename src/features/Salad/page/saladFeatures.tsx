@@ -9,7 +9,7 @@ import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import ProductApi from './../../../api/productApi';
 import './styles.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 export default function SaladFeatures(props: any) {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ export default function SaladFeatures(props: any) {
     priceSize: 0,
     priceMore: 0,
   });
+  const userInfor = useSelector((state: any) => state.user.current);
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const [Loading, setLoading] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
@@ -95,6 +96,10 @@ export default function SaladFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      alert('vui    long   đăng   nhập');
+      return;
+    }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
@@ -103,8 +108,8 @@ export default function SaladFeatures(props: any) {
           product: {
             ...detailProduct,
             size: { name: newValue.sizeName, price: newValue.sizePrice },
-            soles: [newValue.soles],
-            more: { name: newValue.moreName, price: newValue.morePrice },
+            soles: [],
+            more: {},
           },
           note: values,
           quantity: 1,

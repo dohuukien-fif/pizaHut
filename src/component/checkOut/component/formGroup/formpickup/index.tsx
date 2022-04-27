@@ -37,6 +37,7 @@ export default function FormPickup({
   handleBackbefore,
   setisforms,
 }: FormPickupProps) {
+  const Errrr = React.useRef<any>();
   const dispatch = useDispatch();
   const CARTSTORE = useSelector(cartStore);
   const [values, setvalue] = React.useState<any>({
@@ -226,6 +227,15 @@ export default function FormPickup({
       handleClic();
     }
   };
+
+  React.useEffect(() => {
+    if (error !== '') {
+      Errrr.current = setTimeout(() => {
+        seterror('');
+      }, 5000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [error]);
   // const { isSubmitting } = form.formState;
   return (
     <div className="receiver_content">
@@ -272,13 +282,12 @@ export default function FormPickup({
                 <label>Chọn xuất quá đơn đỏ</label>
               </div>
             </div>
+            {infors === 'time' && (
+              <div className="form_group" style={{ marginTop: '20px' }}>
+                <Inputfeild control={control} name="time" />
+              </div>
+            )}
           </div>
-
-          {infors === 'time' && (
-            <div className="form_group">
-              <Inputfeild control={control} name="time" />
-            </div>
-          )}
         </div>
         {/* RECEIVER_RIGHT */}
         <div className="receiver_right">

@@ -15,10 +15,11 @@ import Thumbnail from './../component/overlay/thumbnail';
 import ProductApi from './../../../api/productApi';
 import Information from './../component/overlay/information';
 import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 export default function DrinkFeatures(props: any) {
   const dispatch = useDispatch();
+  const userInfor = useSelector((state: any) => state.user.current);
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
 
   const [DataPiza, setDataPiza] = useState<any>([]);
@@ -102,6 +103,10 @@ export default function DrinkFeatures(props: any) {
     });
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      alert('vui    long   đăng   nhập');
+      return;
+    }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {

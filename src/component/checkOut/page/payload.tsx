@@ -40,6 +40,8 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
   const [active, setactive] = React.useState<string>('money');
   const [isChecked, setisChecked] = React.useState<boolean>(false);
   console.log('stroe', cartStores);
+
+  console.log('Number.isInteger', Number.isFinite(1));
   // console.log('nonono', JSON.parse(cartAddressOlds));
   const [codeDiscount, setcodeDiscount] = React.useState<string>('');
   const [discounts, setdiscount] = React.useState<any[]>([
@@ -114,7 +116,7 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
       day: dataday,
       time: datahour,
       product: DataCart,
-      total: NEWTOAL,
+      total: NEWTOAL < 0 ? 0 : NEWTOAL,
       discount: Total - NEWTOAL,
       order: cartOrders,
       store: cartStores,
@@ -305,7 +307,7 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
               </div>
               <div className="payload_right-bottom-total">
                 <span>Tổng tiền</span>
-                <span>{formatPrice(NEWTOAL) || '0d'}</span>
+                <span>{formatPrice(NEWTOAL < 0 ? 0 : NEWTOAL) || '0d'}</span>
               </div>
             </div>
           </div>

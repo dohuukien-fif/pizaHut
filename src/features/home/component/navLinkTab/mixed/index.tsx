@@ -12,7 +12,7 @@ export interface MixedListProps {
 }
 
 export default function MixedList({ data, setIdPizza }: MixedListProps) {
-  const [isContinent, setisContinent] = useState<boolean>(false);
+  const [isContinent, setisContinent] = useState<number>(4);
   const hanndleIdNew = (newIds: number) => {
     if (setIdPizza) setIdPizza(newIds);
   };
@@ -21,28 +21,15 @@ export default function MixedList({ data, setIdPizza }: MixedListProps) {
       <div className="Mixed_list">
         {data
           .filter((item) => item.category === 'mixed')
-          .slice(0, 4)
+          .slice(0, isContinent)
           .map((items, index) => (
             <MixedItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
-      {data.filter((item) => item.category === 'mixed').length > 3 && (
-        <>
-          {isContinent === false ? (
-            <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
-              <p> xem thêm</p>
-            </div>
-          ) : (
-            <div className="Mixed_list">
-              {data
-                .filter((item) => item.category === 'mixed')
-                .slice(4)
-                .map((items, index) => (
-                  <MixedItem key={items.id} items={items} handleIds={hanndleIdNew} />
-                ))}
-            </div>
-          )}
-        </>
+      {isContinent <= data.filter((item) => item.category === 'mixed').length && (
+        <div className="newDish_continent" onClick={() => setisContinent((x) => x + 4)}>
+          <p> xem thêm</p>
+        </div>
       )}
     </>
   );

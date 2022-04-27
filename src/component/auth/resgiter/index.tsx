@@ -10,22 +10,24 @@ import { register } from './../../../app/userRedux';
 export interface RegisterFeaturesProps {}
 
 export default function RegisterFeatures(props: RegisterFeaturesProps) {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState<string>('');
+  const [password, setPassword] = React.useState<number>();
   const [email, setEmail] = React.useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const users = useSelector((state) => state.user);
 
+  console.log(username, password);
   const handleClick = async (e: any) => {
     e.preventDefault();
     try {
       //set userName = email
 
-      const action = register({ username, password, email });
+      const action = register({ username, password });
       const user = await dispatch(action).unwrap();
       console.log(user);
 
+      navigate('/');
       //close Dialog
       // const { closeDialog } = props;
       // if (closeDialog) {
@@ -82,7 +84,7 @@ export default function RegisterFeatures(props: RegisterFeaturesProps) {
               </label>
               <input
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: any) => setPassword(e.target.value)}
                 placeholder="Nhập mật khẩu của bạn tại đây"
               />
             </div>

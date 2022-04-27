@@ -21,9 +21,6 @@ export default function StuiffingItem({ items, handleIds }: StuiffingItemProps) 
       <div className="stuffing_block">
         <div className="stuffing_aside">
           <img src={image} alt="" />
-          <div className="stuffing_icon">
-            <BsCart3 />
-          </div>
         </div>
         <div className="stuffing_content">
           <header>

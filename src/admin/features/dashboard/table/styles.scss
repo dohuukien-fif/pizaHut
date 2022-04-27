@@ -1,0 +1,86 @@
+.dashboard__table--item:last-child {
+  border: none;
+}
+.dashboard__table--item {
+  display: flex;
+  align-items: center;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgb(223, 217, 217);
+
+  .dashboard__tables--left {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    .dashboard__table--tracking {
+      flex: 1;
+      font-weight: 700;
+    }
+    .dashboard__table--product {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+
+      & > img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+  .dashboard__tables--right {
+    flex: 2;
+
+    display: flex;
+
+    .dashboard__table--status {
+      & > span {
+        padding: 10px;
+        background: #bc7f30;
+        border-radius: 5px;
+
+        color: white;
+      }
+      .refund {
+        background: #bc1309;
+      }
+
+      .shipping {
+        background: #30a544;
+      }
+
+      .succerss {
+        background: #2790f2;
+      }
+    }
+    .dashboard__table--date,
+    .dashboard__table--amount,
+    .dashboard__table--payment,
+    .dashboard__table--status {
+      flex: 1;
+    }
+
+    .dashboard__table--amount {
+      & > span {
+        font-weight: 700;
+      }
+    }
+    .dashboard__table--payment {
+      & > span {
+        padding: 10px 5px;
+
+        background: green;
+
+        border-radius: 5px;
+
+        color: white;
+      }
+      .pickup {
+        background: rgb(217, 56, 56);
+      }
+    }
+  }
+}

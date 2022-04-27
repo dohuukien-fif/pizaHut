@@ -11,7 +11,7 @@ export interface TraditionalListProps {
 }
 
 export default function TraditionalList({ data, activeTab, setIdPizza }: TraditionalListProps) {
-  const [isContinent, setisContinent] = useState<boolean>(false);
+  const [isContinent, setisContinent] = useState<number>(4);
   const hanndleIdNew = (newIds: number) => {
     if (setIdPizza) setIdPizza(newIds);
   };
@@ -20,28 +20,15 @@ export default function TraditionalList({ data, activeTab, setIdPizza }: Traditi
       <div className="Traditional_list">
         {data
           .filter((item) => item.category === 'Traditional')
-          .slice(0, 4)
+          .slice(0, isContinent)
           .map((items, index) => (
             <TraditionItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
-      {data.filter((item) => item.category === 'Traditional').length > 3 && (
-        <>
-          {isContinent === false ? (
-            <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
-              <p> xem thêm</p>
-            </div>
-          ) : (
-            <div className="newDish_list">
-              {data
-                .filter((item) => item.category === 'Traditional')
-                .slice(4)
-                .map((items, index) => (
-                  <TraditionItem key={items.id} items={items} handleIds={hanndleIdNew} />
-                ))}
-            </div>
-          )}
-        </>
+      {isContinent <= data.filter((item) => item.category === 'Traditional').length && (
+        <div className="newDish_continent" onClick={() => setisContinent((x) => x + 4)}>
+          <p> xem thêm</p>
+        </div>
       )}
     </>
   );

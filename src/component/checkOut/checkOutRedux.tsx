@@ -13,7 +13,7 @@ const cartSlice = createSlice({
     store: '' || {},
     address: '',
     addressOld: localStorage.getItem('GOGO')
-      ? JSON.parse(localStorage.getItem('GOGO') || '') || {}
+      ? JSON.parse(localStorage.getItem('GOGO') || '')
       : undefined,
     checked: false,
   },

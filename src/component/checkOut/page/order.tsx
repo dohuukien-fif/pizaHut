@@ -1,13 +1,27 @@
 import * as React from 'react';
-import { AiFillClockCircle, AiFillCheckCircle } from 'react-icons/ai';
+import {
+  AiFillClockCircle,
+  AiFillCheckCircle,
+  AiOutlineCloseCircle,
+  AiOutlineArrowRight,
+} from 'react-icons/ai';
 import './order.scss';
 import { cartOrder, cartAddress } from './../../cart/cartSelected';
 import { useSelector, useDispatch } from 'react-redux';
 import { setOrder, setAddress } from './../../../app/cartRedux';
+import { MdOutlineDoNotTouch } from 'react-icons/md';
 
-export interface IOrderFeatuesProps {}
+export interface IOrderFeatuesProps {
+  isDialogOrder: React.SetStateAction<any>;
+  handleClic: any;
+  setisDialogOrder: any;
+}
 
-export default function OrderFeatues(props: IOrderFeatuesProps) {
+export default function OrderFeatues({
+  handleClic,
+  isDialogOrder,
+  setisDialogOrder,
+}: IOrderFeatuesProps) {
   const CartOrders = useSelector(cartOrder);
   const dispatch = useDispatch();
   const handleClickOrder = (newValue: string) => {
@@ -17,6 +31,10 @@ export default function OrderFeatues(props: IOrderFeatuesProps) {
     if (newValue === 'Đặt lấy hàng') {
       dispatch(setOrder('Đặt lấy hàng'));
     }
+  };
+
+  const handleClickClose = () => {
+    setisDialogOrder(false);
   };
   return (
     <div className="order">
@@ -96,6 +114,96 @@ export default function OrderFeatues(props: IOrderFeatuesProps) {
               className={CartOrders === 'Đặt lấy hàng' ? 'tick_check activeCheck' : 'tick_check'}
             >
               <AiFillCheckCircle />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={isDialogOrder ? 'order_dialog activeOverlay' : 'order_dialog'}>
+        <div className="order_dialog_swapper">
+          <div className="order_close">
+            <AiOutlineCloseCircle onClick={handleClickClose} />
+          </div>
+          <div className="order_dialog-left">
+            <div className="order_dialog-right-adside">
+              <img
+                src="https://stc.shopiness.vn/deal/2019/12/13/6/3/5/f/1576222478368_540.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="order_dialog-right">
+            <div className="order_dialog-right-swapper">
+              <div className="order_dialog-right-title">
+                <p>GIAO HÀNG MIỄN CHẠM</p>
+              </div>
+
+              <div className="order_dialog-right-body">
+                <div className="order_dialog-right-group">
+                  <div className="order_dialog-right-length">
+                    <span>1</span>
+                  </div>
+                  <div className="order_dialog-right-content">
+                    <span>
+                      Nhân viên giao hàng (NVGH) sử dụng găng tay , khẩu trang và để khử khuẩn (ĐKK)
+                      trong quá trình giao hàng
+                    </span>
+                  </div>
+                </div>
+                <div className="order_dialog-right-group">
+                  <div className="order_dialog-right-length">
+                    <span>2</span>
+                  </div>
+                  <div className="order_dialog-right-content">
+                    <span>
+                      NVGH đặt hộp bánh lên ĐKK cùng với tiền thừa (nếu có) trước cửa nhà khách hàng
+                    </span>
+                  </div>
+                </div>
+                <div className="order_dialog-right-group">
+                  <div className="order_dialog-right-length">
+                    <span>3</span>
+                  </div>
+                  <div className="order_dialog-right-content">
+                    <span>
+                      Giữ khoảng cách vị trí bánh ít nhất 02 mét cho tới khi khách nhận bánh và đặt
+                      tiền thanh toán lên ĐKK
+                    </span>
+                  </div>
+                </div>
+                <div className="order_dialog-right-group">
+                  <div className="order_dialog-right-length">
+                    <span>4</span>
+                  </div>
+                  <div className="order_dialog-right-content">
+                    <span>
+                      Xịt vệ sinh ĐKK, hotbag, thùng xe và tiền mặt nhận từ khách ( nếu có) khi về
+                      tới nhà hàng
+                    </span>
+                  </div>
+                </div>
+                <div className="order_dialog-right-group">
+                  <div className="order_dialog-right-length">
+                    <span>5</span>
+                  </div>
+                  <div className="order_dialog-right-content">
+                    <span>
+                      NVGH xịt khử khuẩn toàn thân trước khi vào nhà hàng để an toàn cho đơn giao kế
+                      tiếp
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="order_dialog-right-btn">
+                <button onClick={handleClic}>
+                  <MdOutlineDoNotTouch />
+                  <span>Giao hàng miễn chạm</span>
+                </button>
+                <button onClick={handleClic}>
+                  <span>Không cần & Tiếp tục</span>
+                  <AiOutlineArrowRight />
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,34 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { BsCart3 } from 'react-icons/bs';
-import { FiMenu } from 'react-icons/fi';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  AiOutlineSearch,
   AiOutlineClose,
-  AiOutlineLoading3Quarters,
-  AiTwotoneHome,
   AiOutlineHome,
+  AiOutlineLoading3Quarters,
+  AiOutlineSearch,
 } from 'react-icons/ai';
+import { BsCart3 } from 'react-icons/bs';
 import { FaShippingFast, FaStore } from 'react-icons/fa';
-import { GrClose } from 'react-icons/gr';
-import Menulink from './menuLink';
-import { MdOutlineAccountCircle, MdOutlinePlace } from 'react-icons/md';
 import { FcRating } from 'react-icons/fc';
-import './styles.scss';
-import { useNavigate, Link } from 'react-router-dom';
-import { cartFeaturesProps } from '../cart/page/interface';
-import { formatPrice } from '../../utils';
+import { FiMenu } from 'react-icons/fi';
+import { MdOutlineAccountCircle, MdOutlinePlace } from 'react-icons/md';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
-import LoadingInput from '../loadingFeatures/loadingInput/loadingInput';
-import { dataLisst } from '../hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { formatPrice } from '../../utils';
 import { logout } from './../../app/userRedux';
-import { useSelector, useDispatch } from 'react-redux';
-import { cartItemCount, cartItemSelector, Cartitem, cartAddress } from './../cart/cartSelected';
-import { setOrder, setAddress, setStore } from './../checkOut/checkOutRedux';
+import { cartAddress, Cartitem, cartItemCount, cartItemSelector } from './../cart/cartSelected';
+import { setAddress, setOrder, setStore } from './../checkOut/checkOutRedux';
+import Menulink from './menuLink';
+import './styles.scss';
+import { removeProduct } from './../../app/cartRedux';
 export interface HeadersProps {}
 
 export default function Headers(props: HeadersProps) {
   const [DataCart, setDataCart] = React.useState<any>([]);
   // const { id, name } = newArrays;
+  const userInfor = useSelector((state: any) => state.user.current);
+
+  console.log('[userInfor]', userInfor);
   const [store, setstore] = React.useState<any[]>([
     {
       stores: 'THE PIZZA COMPANY SONG HÀNH',
@@ -52,18 +51,29 @@ export default function Headers(props: HeadersProps) {
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [isOpenSearch, setisOpenSearch] = useState(false);
   const [Error, setError] = useState<string>('');
+  const [openMenuAccount, setopenMenuAccount] = useState(false);
   const [loading, setloading] = useState(false);
   const [SearchTerm, setSearchTerm] = useState('');
   const [activeIco, setactiveIco] = useState<string>('activeIcon_left');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const count = useSelector(cartItemCount);
-  const users = useSelector((state: any) => state.user.current);
+  const closeRef = useRef(null);
   const dataCart = useSelector(cartItemSelector);
   const CartAddress = useSelector(cartAddress);
   const priceItem = useSelector(Cartitem);
   const deboun: any = useRef(null);
   const inputRef = useRef<any>('');
+
+  const handleOpenMenuAccount = () => {
+    setopenMenuAccount((x) => !x);
+  };
+
+  const handleDeleteCart = (id: string) => {
+    const action = removeProduct(id);
+    dispatch(action);
+  };
+
   const activeTranForm = (value?: string) => {
     if (value === 'l') {
       setsetActive('active_left');
@@ -150,8 +160,19 @@ export default function Headers(props: HeadersProps) {
 
     return setError('');
   };
+
+  useEffect(() => {
+    const hanndleWindowClose = (e: any) => {
+      if (e.target === closeRef.current) {
+        setopenMenuAccount(false);
+      }
+    };
+    window.addEventListener('click', hanndleWindowClose);
+
+    return () => window.removeEventListener('click', hanndleWindowClose);
+  }, []);
   return (
-    <nav className={isScroll ? 'nav activeNav' : 'nav'}>
+    <nav className={isScroll ? 'nav activeNav' : 'nav'} ref={closeRef}>
       <div className="nav_block">
         <div className="nav_top">
           {/* logo website */}
@@ -250,7 +271,7 @@ export default function Headers(props: HeadersProps) {
                 )}
               </div>
               <div className="icon_cart">
-                <BsCart3 />
+                <BsCart3 onClick={handleClickLinkCart} />
                 <span>{count}</span>
               </div>
               <span>Giỏ hàng</span>
@@ -263,16 +284,41 @@ export default function Headers(props: HeadersProps) {
           </div>
           {/* menu account mobile : none  ,  tablet : block */}
           <div className="nav_account">
-            <h1 onClick={hanleLooutClick}>locout</h1>
-            <h1>{users?.username}</h1>
-            <MdOutlineAccountCircle />
-            <span>
-              <Link to="/login">Đăng nhập</Link>
-            </span>
-            /
-            <span>
-              <Link to="/register">Tạo tài khoản</Link>
-            </span>{' '}
+            {userInfor && (
+              <>
+                <div className="nav_account_figust">
+                  <img
+                    src={
+                      userInfor?.image ||
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxsIVGXUz77jSd-Zgau2ZqRpL_STVm4gbxWQ&usqp=CAU'
+                    }
+                    alt=""
+                    onClick={handleOpenMenuAccount}
+                  />
+                  <div
+                    className={openMenuAccount ? 'nav_acount-menu active_menu' : 'nav_acount-menu'}
+                  >
+                    <p onClick={hanleLooutClick}>Locout</p>
+                    <p>Profile</p>
+                  </div>
+                </div>
+                <h3>{userInfor?.username}</h3>
+              </>
+            )}
+
+            {!userInfor && (
+              <>
+                {' '}
+                <MdOutlineAccountCircle />
+                <span>
+                  <Link to="/login">Đăng nhập</Link>
+                </span>
+                /
+                <span>
+                  <Link to="/register">Tạo tài khoản</Link>
+                </span>{' '}
+              </>
+            )}
             <FcRating />
           </div>
         </div>
@@ -342,24 +388,29 @@ export default function Headers(props: HeadersProps) {
                                   <div className="miniCart_name">
                                     <span>{items.product.name}</span>
                                   </div>
-                                  {items.product.size.name && (
-                                    <div className="miniCart_sizeName">
-                                      <span>{`Kích thước - ${items.product.size.name}`}</span>
-                                    </div>
-                                  )}
+                                  {Object.keys(items.product.size).length > 0 &&
+                                    Object.values(items.product.size).every((e) => e !== '') && (
+                                      <div className="miniCart_sizeName">
+                                        <span>{`Kích thước - ${items.product.size.name}`}</span>
+                                      </div>
+                                    )}
 
-                                  {items.product.soles && (
+                                  {items.product.soles.length > 0 && (
                                     <div className="miniCart_soles">
                                       <span>{`Đế - ${items.product.soles}`}</span>
                                     </div>
                                   )}
-                                  {items.product.more.name && (
-                                    <div className="miniCart_more">
-                                      <span>{`Thếm nhân - ${items.product.more.name}`}</span>
-                                    </div>
-                                  )}
+                                  {Object.keys(items.product.more).length > 0 &&
+                                    Object.values(items.product.more).every((e) => e !== '') && (
+                                      <div className="miniCart_more">
+                                        <span>{`Thếm nhân - ${items.product.more.name}`}</span>
+                                      </div>
+                                    )}
                                 </div>
-                                <div className="miniCart_delete">
+                                <div
+                                  className="miniCart_delete"
+                                  onClick={() => handleDeleteCart(items.id)}
+                                >
                                   <RiDeleteBin6Fill />
                                 </div>
                               </div>
@@ -371,8 +422,10 @@ export default function Headers(props: HeadersProps) {
                                   <span>
                                     {formatPrice(
                                       (items.product.price +
-                                        items.product.size.price +
-                                        items.product.more.price) *
+                                        (Object.keys(items.product.size).length > 0 &&
+                                          items.product.size.price) +
+                                        (Object.keys(items.product.more).length > 0 &&
+                                          items.product.more.price)) *
                                         items.quantity
                                     )}
                                   </span>

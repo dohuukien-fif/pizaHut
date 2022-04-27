@@ -1,0 +1,95 @@
+.delivery {
+  margin: 20px auto;
+
+  width: 95%;
+
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .delivery__swapper {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    min-height: 80vh;
+
+    padding: 20px;
+
+    min-width: 750px;
+
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .delivery__title {
+      font-size: 25px;
+      font-weight: 700;
+
+      margin: 10px 0;
+    }
+    .delivery__table {
+      font-size: 14px;
+      .delivery__top {
+        display: flex;
+
+        padding: 15px;
+
+        border: 1px solid rgb(223, 221, 221);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        & > span {
+          flex: 1;
+
+          font-weight: 700;
+          font-size: 16px;
+        }
+      }
+      .delivery__body {
+        display: flex;
+        flex-direction: column;
+
+        row-gap: 10px;
+
+        border: 1px solid rgb(223, 221, 221);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        .delivery__item {
+          display: flex;
+
+          padding: 15px;
+
+          border-bottom: 1px solid rgb(223, 221, 221);
+
+          font-weight: 700;
+
+          color: rgb(78, 76, 76);
+
+          .delivery__status {
+            & > span {
+              background: #2790f2;
+
+              padding: 10px;
+
+              color: white;
+
+              border-radius: 5px;
+            }
+          }
+          .delivery__stt,
+          .delivery__user,
+          .delivery__email,
+          .delivery__quatity,
+          .delivery__price,
+          .delivery__status {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}

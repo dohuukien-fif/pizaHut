@@ -10,7 +10,7 @@ export interface PizaListProps {
 }
 
 export default function PizaList({ data, activeTab, setIdPizza }: PizaListProps) {
-  const [isContinent, setisContinent] = useState<boolean>(false);
+  const [isContinent, setisContinent] = useState<number>(4);
   const hanndleIdNew = (newIds: number) => {
     if (setIdPizza) setIdPizza(newIds);
   };
@@ -19,28 +19,15 @@ export default function PizaList({ data, activeTab, setIdPizza }: PizaListProps)
       <div className="pizza_list">
         {data
           .filter((item) => item.category === 'piza')
-          .slice(0, 4)
+          .slice(0, isContinent)
           .map((items, index) => (
             <PizaItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
-      {data.filter((item) => item.category === 'piza').length > 4 && (
-        <>
-          {isContinent === false ? (
-            <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
-              <p> xem thêm</p>
-            </div>
-          ) : (
-            <div className="pizza_list">
-              {data
-                .filter((item) => item.category === 'piza')
-                .slice(4)
-                .map((items, index) => (
-                  <PizaItem key={items.id} items={items} handleIds={hanndleIdNew} />
-                ))}
-            </div>
-          )}
-        </>
+      {isContinent <= data.filter((item) => item.category === 'piza').length && (
+        <div className="newDish_continent" onClick={() => setisContinent((x) => x + 4)}>
+          <p> xem thêm</p>
+        </div>
       )}
     </>
   );

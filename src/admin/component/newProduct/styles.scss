@@ -1,0 +1,227 @@
+@use './../../../sass/index.scss' as *;
+.newProduct {
+  width: 95%;
+
+  margin: 20px auto;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &__swapper {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    padding: 20px;
+
+    min-height: 70vh;
+
+    font-size: 14px;
+
+    @include mobile {
+      padding: 10px;
+    }
+    .newProduct__title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    & > form {
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+
+      margin-bottom: 20px;
+      .newProduct__group {
+        display: flex;
+        flex-direction: column;
+
+        row-gap: 5px;
+
+        & > img {
+          width: 300px;
+
+          @include mobile {
+            width: 100%;
+          }
+        }
+
+        & > input {
+          height: 40px;
+
+          border-radius: 5px;
+
+          border: 1px solid gray;
+        }
+        & > input[type='file'] {
+          display: none;
+        }
+
+        & > label {
+          font-weight: 700;
+          font-size: 16px;
+
+          margin-bottom: 10px;
+
+          & > span {
+            background: green;
+            padding: 10px;
+
+            color: white;
+          }
+
+          & > button {
+            background: rgb(112, 112, 207);
+            color: white;
+
+            cursor: pointer;
+
+            &:hover {
+              opacity: 0.7;
+              color: black;
+            }
+          }
+
+          & > strong {
+            color: red;
+          }
+        }
+      }
+      .newProduct__coutine {
+        display: flex;
+        flex-direction: column;
+
+        row-gap: 20px;
+        .newProduct__group {
+          display: flex;
+          flex-direction: column;
+
+          row-gap: 20px;
+
+          .newProduct__checkbox {
+            & > label {
+              font-weight: 700;
+              & > strong {
+                color: red;
+              }
+            }
+          }
+          .newProduct__input {
+            display: flex;
+            flex-direction: column;
+
+            column-gap: 10px;
+
+            row-gap: 10px;
+
+            width: 100%;
+
+            .newProduct__input--left {
+              display: flex;
+              flex-direction: column;
+              & > label {
+                font-weight: 700;
+                font-size: 16px;
+                & > strong {
+                  color: red;
+                }
+              }
+
+              & > input {
+                height: 40px;
+
+                border-radius: 5px;
+
+                border: 1px solid gray;
+
+                margin-top: 10px;
+              }
+
+              & > button {
+                margin-top: 10px;
+
+                padding: 10px;
+
+                cursor: pointer;
+
+                border: 1px solid gray;
+              }
+            }
+            .newProduct__input--right {
+              font-size: 14px;
+
+              margin-right: 1px;
+
+              .newProduct__list {
+                border: 1px solid rgb(195, 192, 192);
+                .newProduct__item {
+                  display: flex;
+                  align-items: flex-start;
+                  flex-direction: row;
+
+                  column-gap: 10px;
+
+                  margin-top: 10px;
+
+                  border-bottom: 1px solid rgb(221, 216, 216);
+
+                  padding: 5px;
+
+                  .newProduct__index {
+                    background: green;
+                    color: white;
+
+                    border-radius: 50%;
+
+                    & > span {
+                      height: 20px;
+                      width: 20px;
+
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    }
+                  }
+                  .newProduct__content {
+                    .newProduct__name {
+                      & > span:first-child {
+                        font-weight: 700;
+
+                        margin-right: 5px;
+                      }
+                    }
+                    .newProduct__price {
+                      & > span:first-child {
+                        font-weight: 700;
+                        margin-right: 5px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .newProduct__btn {
+        & > button {
+          padding: 10px;
+
+          background: blue;
+
+          color: white;
+
+          border-radius: 5px;
+
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+}

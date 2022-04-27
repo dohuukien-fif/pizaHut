@@ -5,7 +5,7 @@ import { IoMdAdd } from 'react-icons/io';
 import PizzaNewItem from '../pizaItem/new';
 export interface PizzaNewListProps {
   data: NoodlesFeaturesProps[];
-  setIdPizza: (newId: number) => {};
+  setIdPizza: any;
 }
 
 export default function PizzaNewList({ data, setIdPizza }: PizzaNewListProps) {

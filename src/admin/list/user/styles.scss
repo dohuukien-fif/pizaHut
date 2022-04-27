@@ -1,0 +1,92 @@
+.user {
+  width: 95%;
+
+  margin: 30px auto;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .user__swapper {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    min-height: 80vh;
+
+    padding: 20px;
+
+    min-width: 750px;
+
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .user__title {
+      font-size: 25px;
+      font-weight: 700;
+
+      margin: 10px 0;
+    }
+    .user__list {
+      font-size: 14px;
+      .user__table--top {
+        display: flex;
+
+        border: 1px solid rgb(231, 225, 225);
+
+        padding: 15px;
+
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        & > span {
+          flex: 1;
+
+          font-size: 16px;
+          font-weight: 700;
+        }
+      }
+      .user__table--body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+
+        border: 1px solid rgb(231, 225, 225);
+
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        .user__table--item {
+          display: flex;
+
+          padding: 15px;
+
+          border-bottom: 1px solid rgb(231, 225, 225);
+
+          .user__table--status {
+            flex: 1;
+            & > span {
+              background: #f2f9f3;
+              padding: 10px;
+
+              border-radius: 5px;
+
+              color: #236825;
+
+              font-weight: 600;
+            }
+          }
+          .user__table--stt,
+          .user__table--user,
+          .user__table--email {
+            flex: 1;
+
+            & > span {
+              font-weight: 700;
+              color: rgb(74, 74, 74);
+            }
+          }
+        }
+      }
+    }
+  }
+}

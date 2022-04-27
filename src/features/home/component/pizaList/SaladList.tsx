@@ -9,7 +9,7 @@ export interface SaladListProps {
 }
 
 export default function SaladList({ data, setIdPizza }: SaladListProps) {
-  const [isContinent, setisContinent] = useState<boolean>(false);
+  const [isContinent, setisContinent] = useState<number>(4);
   const hanndleIdNew = (newIds: number) => {
     if (setIdPizza) setIdPizza(newIds);
   };
@@ -18,28 +18,15 @@ export default function SaladList({ data, setIdPizza }: SaladListProps) {
       <div className="Salad_list">
         {data
           .filter((item) => item.category === 'Salad')
-          .slice(0, 4)
+          .slice(0, isContinent)
           .map((items, index) => (
             <SaladItem key={items.id} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
-      {data.filter((item) => item.category === 'Salad').length > 4 && (
-        <>
-          {isContinent === false ? (
-            <div className="newDish_continent" onClick={() => setisContinent((x) => !x)}>
-              <p> xem thêm</p>
-            </div>
-          ) : (
-            <div className="Salad_list">
-              {data
-                .filter((item) => item.category === 'Salad')
-                .slice(4)
-                .map((items, index) => (
-                  <SaladItem key={items.id} items={items} handleIds={hanndleIdNew} />
-                ))}
-            </div>
-          )}
-        </>
+      {isContinent <= data.filter((item) => item.category === 'Salad').length && (
+        <div className="newDish_continent" onClick={() => setisContinent((x) => x + 4)}>
+          <p> xem thêm</p>
+        </div>
       )}
     </>
   );
