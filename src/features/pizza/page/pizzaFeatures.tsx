@@ -472,7 +472,7 @@ export default function PizzaFeatures(props: any) {
             <div className="overlay_block">
               {' '}
               <div className="overlay_thumbanil">
-                <Thumbnail detail={detailProduct} setPrice={setPrice} setpriceMore={setpriceMore} />
+                <Thumbnail detail={detailProduct} setPrice={setPrice} />
               </div>
               <div className="overlay_information">
                 <Information
