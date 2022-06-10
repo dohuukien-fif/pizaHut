@@ -5,10 +5,9 @@ import './styles.scss';
 export interface ThumbnailProps {
   detail: PizzaFeaturesProps;
   setPrice: any;
-  setpriceMore: React.Dispatch<string>;
 }
 
-export default function Thumbnail({ detail, setPrice, setpriceMore }: ThumbnailProps) {
+export default function Thumbnail({ detail, setPrice }: ThumbnailProps) {
   const { image, price } = detail;
   const updatePrice =
     setPrice.sizePrice !== 0

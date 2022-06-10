@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
-import LoadingFeatures from '../../../component/loadingFeatures';
-import Silder from '../../../component/sildes';
-import Information from './../component/overlay/information';
-import Thumbnail from '../component/overlay/thumbnail';
-import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
-import PizzaNewList from '../component/pizzaList/pizzaNew';
-import { dataLisst } from './../../../component/hooks/index';
-import ProductApi from './../../../api/productApi';
-import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct } from '../../../app/cartRedux';
+import ProductApi from '../../../../../api/productApi';
+import { addProduct } from '../../../../../app/cartRedux';
+import LoadingFeatures from '../../../../../component/loadingFeatures';
+import Silder from '../../../../../component/sildes';
+import PizzaNewList from '../../pizzaList/pizzaNew';
+import Information from '../component/overlay/information';
+import Thumbnail from '../component/overlay/thumbnail';
+import LoadingListss from './../../../../../component/loadingFeatures/loadingList/index';
 export default function SaladFeatures(props: any) {
   const dispatch = useDispatch();
   const [DataPiza, setDataPiza] = useState<any>([]);

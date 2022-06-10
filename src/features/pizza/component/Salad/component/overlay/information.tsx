@@ -1,11 +1,12 @@
 import React, { SetStateAction, useState, Dispatch, ChangeEventHandler, useRef } from 'react';
-import { formatPrice } from '../../../../utils';
+
 import { SaladFeaturesProps } from './../../page/interface';
 import './stylesInfor.scss';
 import { IoMdAddCircle } from 'react-icons/io';
 import { BiRadioCircleMarked } from 'react-icons/bi';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
+import { formatPrice } from '../../../../../../utils';
 export interface InformationProps {
   detail: SaladFeaturesProps;
   setsetPrice: Dispatch<SetStateAction<number>>;

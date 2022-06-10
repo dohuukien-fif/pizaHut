@@ -4,7 +4,7 @@ import { SaladFeaturesProps } from './../../../page/interface';
 import './styles.scss';
 import { AiOutlineArrowRight, AiOutlineHeatMap, AiFillStar } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
-import { formatPrice } from '../../../../../utils';
+import { formatPrice } from '../../../../../../../utils';
 
 export interface PizzaNewItemProps {
   items: SaladFeaturesProps;

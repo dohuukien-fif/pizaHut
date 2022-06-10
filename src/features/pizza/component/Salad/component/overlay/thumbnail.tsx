@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { formatPrice } from '../../../../utils';
+import { formatPrice } from '../../../../../../utils';
+
 import { SaladFeaturesProps } from '../../page/interface';
 import './styles.scss';
 export interface ThumbnailProps {
