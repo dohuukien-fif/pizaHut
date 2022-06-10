@@ -20,7 +20,7 @@ export default function AppetizerList({ data, setIdPizza }: AppetizerListProps) 
           .filter((item) => item.category === 'Appetizer')
           .slice(0, isContinent)
           .map((items, index) => (
-            <ApptizerItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <ApptizerItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {isContinent <= data.filter((item) => item.category === 'Appetizer').length && (

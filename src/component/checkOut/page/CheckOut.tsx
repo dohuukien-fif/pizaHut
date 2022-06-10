@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './checkout.scss';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import OrderFeatues from './order';
 import LoginFeatures from './../page/Login';
 import InformationFearutes from './infomation';
@@ -16,7 +16,9 @@ export interface CheckOutFeaturesProps {}
 
 export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
   const location = useLocation();
-  console.log(location);
+  console.log('[location]', location);
+  const userInfor = useSelector((state: any) => state.user.current);
+  const isUserInfor = Boolean(Object.keys(userInfor).length);
   const dispatch = useDispatch();
   const CartOrders = useSelector(cartOrder);
   const CartAddresss = useSelector(cartAddress);
@@ -92,19 +94,24 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
       });
     }
   };
-
+  console.log(number);
   React.useEffect(() => {
     (() => {
       // if (cartItemSelectors.length === 0) {
       //   return navigete('/');
       // }
-      if (number === 1 && LOGINS === false) {
+
+      if (number === 1 && isUserInfor === false) {
+        localStorage.setItem('URL__LOGIN', JSON.stringify('/CheckOut/Thong-tin'));
+        setnumber(2);
         return navigete('/login');
-      } else if (number === 1 && CartOrders !== '') {
+      } else if (number === 1 && isUserInfor === true) {
         setActive('active');
-        return navigete('/CheckOut/loginForm');
+        setnumber(2);
+
+        return navigete('/CheckOut/Thong-tin');
       }
-      if (number === 2 && LOGINS === true) {
+      if (number === 2 && isUserInfor === true) {
         setActive('active');
         return navigete('/CheckOut/Thong-tin');
       }
@@ -118,7 +125,7 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
         setActive('active');
         return navigete('/CheckOut/Thanh-toan');
       }
-      if (number === 4 && CartOrders !== '' && LOGINS === true && CartAddresss !== '') {
+      if (number === 4 && CartOrders !== '' && isUserInfor === true && CartAddresss !== '') {
         return navigete('/CheckOut/Hoa-don');
       } else {
         setnumber(0);
@@ -231,6 +238,7 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
             {/* <Route element={<CinermerMovie />} /> */}
           </Routes>
         </div>
+
         {location.pathname === '/CheckOut' && (
           <div className="checkout_btn">
             <button className="btn_continue" onClick={handleBackHome}>

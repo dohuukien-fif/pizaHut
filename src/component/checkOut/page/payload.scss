@@ -4,6 +4,10 @@
 
   margin-left: auto;
   margin-right: auto;
+  @include mobile {
+    width: 100%;
+  }
+
   &_swapper {
     width: 100%;
     height: 100%;
@@ -12,6 +16,12 @@
 
       display: flex;
       column-gap: 30px;
+
+      @include mobile {
+        flex-direction: column;
+
+        padding: 10px;
+      }
       .payload_left {
         flex: 2;
         .payload_left-top {
@@ -98,6 +108,12 @@
                 border: 2px solid rgb(27, 182, 27) !important;
                 .payload_left-pay-infor {
                   border-left: 2px solid rgb(27, 182, 27) !important;
+
+                  @include mobile {
+                    border-left: none !important;
+
+                    border-top: 2px solid rgb(27, 182, 27) !important;
+                  }
                 }
               }
 
@@ -122,6 +138,12 @@
                 // padding: 15px;
 
                 border-radius: 5px;
+
+                @include mobile {
+                  flex-direction: column;
+
+                  padding: 10px;
+                }
                 .payload_left-pay-icon {
                   flex: 1;
 
@@ -141,6 +163,12 @@
                   border-left: 2px solid rgb(222, 225, 222);
 
                   padding: 15px;
+
+                  @include mobile {
+                    border-left: none;
+
+                    border-top: 2px solid rgb(222, 225, 222);
+                  }
                   & > p:first-child {
                     font-size: 15px;
                     font-weight: 700;

@@ -9,7 +9,7 @@ import './styles.scss';
 
 export interface PizzaNewItemProps {
   items: SpaghettiFeaturesProps;
-  handleIds: any;
+  handleIds: (newIds: any) => void;
 }
 
 export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
@@ -18,7 +18,7 @@ export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="spaghetti_item" onClick={() => handleIds(items.id)}>
+    <div className="spaghetti_item" onClick={() => handleIds(items.orderId)}>
       <div className="spaghetti_block">
         <div className="spaghetti_aside">
           <img src={image} alt="" />

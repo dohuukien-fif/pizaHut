@@ -16,6 +16,10 @@
 
       padding: 30px;
 
+      @include mobile {
+        flex-direction: column;
+        padding: 10px;
+      }
       .succer_left {
         flex: 1;
 

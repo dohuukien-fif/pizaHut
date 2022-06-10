@@ -1,8 +1,7 @@
 @use './../../../sass/index.scss' as *;
 .loginAdmin {
-  margin-top: 140px;
-
   min-height: 55vh;
+
   @include tablet {
     min-height: 60vh;
   }

@@ -14,13 +14,17 @@ const ProductApi = {
     const url = `/products/${id}`;
     return axiosClient.get(url);
   },
+  getParam(params: any) {
+    const url = '/products';
+    return axiosClient.get(url, { params });
+  },
 
   add(data: Product): Promise<Product> {
     const url = '/products';
     return axiosClient.post(url, data);
   },
-  getdata(data: Product): Promise<Product> {
-    const url = `/products/search?q=${data}`;
+  searchData(data: Product): Promise<Product> {
+    const url = `/search?q=${data}`;
     return axiosClient.get(url);
   },
 

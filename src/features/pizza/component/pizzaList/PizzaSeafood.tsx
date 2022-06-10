@@ -20,7 +20,7 @@ export default function PizzaSeafoodList({ data, setIdPizza }: PizzaSeafoodListP
           .filter((item) => item.category === 'Seafood')
 
           .map((items, index) => (
-            <PizzaSeafoodItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <PizzaSeafoodItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

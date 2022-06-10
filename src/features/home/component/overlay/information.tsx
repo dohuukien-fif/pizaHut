@@ -28,9 +28,9 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
     moreName: '',
     morePrice: 0,
   });
-
+  const checkCategory = ['piza', 'newDish'];
   const moreRef = useRef<any>(false);
-  const { name, size, soles, Spice, price, more } = detail;
+  const { name, size, soles, Spice, price, more, category } = detail;
   //handle thêm
   const handleClickSoles = (valueName: any, index: number) => {
     setindexSoles(index);
@@ -97,17 +97,16 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
     }
   };
   //onsubmit info
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (onSubmits) onSubmits(getInfor, values);
+
+    if (checkCategory.includes(category)) {
+      return onSubmits(getInfor, values);
+    }
+
+    if (onSubmits) onSubmits(values);
     setvalue('');
-    setgetInfor({
-      sizeName: '',
-      sizePrice: undefined,
-      soles: '',
-      moreName: '',
-      morePrice: '',
-    });
   };
   console.log('ref', moreRef);
 
@@ -123,6 +122,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
     }));
   };
   console.log(getmorre);
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="ovelay_info">
@@ -144,92 +144,96 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
             <span>{`+ ${getInfor.moreName}`}</span>
           </div>
         )}
-
-        <div className="overlay_size">
-          <div className="size_title">
-            <p>KÍCH THƯỚC</p>
-          </div>
-          <div className="size_list">
-            {size?.map((items: HomeFeaturesProps, index: number) => (
-              <div
-                key={items.id}
-                className={getStyles(index)}
-                onClick={() => handleClickSize(items.price, items.name, index)}
-              >
-                <p>{items.name}</p>
-                <p> {items.price > 0 && `+ ${formatPrice(items.price)}`}</p>
+        {checkCategory.includes(category) && (
+          <>
+            <div className="overlay_size">
+              <div className="size_title">
+                <p>KÍCH THƯỚC</p>
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="overlay_soles">
-          <div className="soles_title">
-            <p>ĐẾ</p>
-          </div>
-          <div className="soles_list">
-            {soles
-              ?.filter((e) => e.items[newsoles])
-              ?.find((e: any) => e)
-              ?.items.map((item: any, index: number) => (
-                <div
-                  key={index}
-                  className="soles_item"
-                  onClick={() => handleClickSoles(item, index)}
-                >
-                  <div className="soles_checkbox">
-                    <BiRadioCircleMarked className={getStylesCheckBox(index)} />
-                  </div>
-                  <label>{item}</label>
-                </div>
-              ))}
-          </div>
-        </div>
-        <div className="overlay_more">
-          <div className="more_title">
-            <span>THÊM NHÂN</span>
-          </div>
-          <div className="more_list">
-            {more?.map((items, index) => (
-              <div className="more_wrapper" key={index}>
-                <div
-                  key={items.id}
-                  className="more_item"
-                  onClick={() => handleMore(items.name, items.price)}
-                >
+              <div className="size_list">
+                {size?.map((items: HomeFeaturesProps, index: number) => (
                   <div
-                    className={
-                      getInfor.moreName === items.name
-                        ? 'more_item-block actimore'
-                        : 'more_item-block'
-                    }
+                    key={items.id}
+                    className={getStyles(index)}
+                    onClick={() => handleClickSize(items.price, items.name, index)}
                   >
-                    <div className="more_aside">
-                      <img src={items.images} alt="" />
-                    </div>
-                    <div className="more_name">
-                      <p>{items.name}</p>
-                    </div>
-                    <div className="more_price">
-                      <p>{`+ ${items.price}`}</p>
-                    </div>
-                    <div className="more_icon">
-                      {getInfor.moreName === items.name ? (
-                        <BsFillCheckCircleFill className="activeIcon" />
-                      ) : (
-                        <IoMdAddCircle />
-                      )}
-                    </div>
-                  </div>{' '}
-                </div>
-                {getInfor.moreName === items.name && (
-                  <div className="more_delete" onClick={deleteMore}>
-                    <p>Xóa</p>
+                    <p>{items.name}</p>
+                    <p> {items.price > 0 && `+ ${formatPrice(items.price)}`}</p>
                   </div>
-                )}
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+            <div className="overlay_soles">
+              <div className="soles_title">
+                <p>ĐẾ</p>
+              </div>
+              <div className="soles_list">
+                {soles
+                  ?.filter((e) => e.items[newsoles])
+                  ?.find((e: any) => e)
+                  ?.items.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className="soles_item"
+                      onClick={() => handleClickSoles(item, index)}
+                    >
+                      <div className="soles_checkbox">
+                        <BiRadioCircleMarked className={getStylesCheckBox(index)} />
+                      </div>
+                      <label>{item}</label>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div className="overlay_more">
+              <div className="more_title">
+                <span>THÊM NHÂN</span>
+              </div>
+              <div className="more_list">
+                {more?.map((items, index) => (
+                  <div className="more_wrapper" key={index}>
+                    <div
+                      key={items.id}
+                      className="more_item"
+                      onClick={() => handleMore(items.name, items.price)}
+                    >
+                      <div
+                        className={
+                          getInfor.moreName === items.name
+                            ? 'more_item-block actimore'
+                            : 'more_item-block'
+                        }
+                      >
+                        <div className="more_aside">
+                          <img src={items.images} alt="" />
+                        </div>
+                        <div className="more_name">
+                          <p>{items.name}</p>
+                        </div>
+                        <div className="more_price">
+                          <p>{`+ ${items.price}`}</p>
+                        </div>
+                        <div className="more_icon">
+                          {getInfor.moreName === items.name ? (
+                            <BsFillCheckCircleFill className="activeIcon" />
+                          ) : (
+                            <IoMdAddCircle />
+                          )}
+                        </div>
+                      </div>{' '}
+                    </div>
+                    {getInfor.moreName === items.name && (
+                      <div className="more_delete" onClick={deleteMore}>
+                        <p>Xóa</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
         <div className="overlay_note">
           <div className="note_title">
             <span>GHI CHÚ</span>

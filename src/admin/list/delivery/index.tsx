@@ -1,43 +1,43 @@
 import * as React from 'react';
+import OrderApi from '../../../api/OrderApi';
 import { formatPrice } from '../../../utils';
 import './styles.scss';
+
+import { OrderProps } from '../../../model';
+import { useNavigate } from 'react-router-dom';
 export interface DeliveryFeaturesProps {}
 
 export default function DeliveryFeatures(props: DeliveryFeaturesProps) {
-  const data = [
-    {
-      id: 1,
-      name: 'huu  kien',
-      email: 'huukien009@gmail.com',
-      quatity: 1,
-      price: 544544,
-      status: 'Shipping',
-    },
-    {
-      id: 1,
-      name: 'huu  kien',
-      email: 'huukien009@gmail.com',
-      quatity: 1,
-      price: 544544,
-      status: 'Succers',
-    },
-    {
-      id: 1,
-      name: 'huu  kien',
-      email: 'huukien009@gmail.com',
-      quatity: 1,
-      price: 544544,
-      status: 'Succers',
-    },
-    {
-      id: 1,
-      name: 'huu  kien',
-      email: 'huukien009@gmail.com',
-      quatity: 1,
-      price: 544544,
-      status: 'Succers',
-    },
-  ];
+  const [data, setData] = React.useState<OrderProps[]>();
+  const navigete = useNavigate();
+  const [pagination, setPagination] = React.useState<any>({
+    page: 1,
+    limit: 10,
+    totalRow: 1,
+  });
+  const [filter, setfilter] = React.useState<any>({
+    page: 1,
+    limit: 10,
+  });
+  React.useEffect(() => {
+    (async () => {
+      const res: any = await OrderApi.getParamDelivery(filter);
+      console.log(res);
+      setData(res.data);
+      setPagination(res.pagination);
+    })();
+  }, [filter]);
+  console.log(data);
+  const handleChanPage = (newPage: number) => {
+    console.log(newPage);
+    setfilter((prev: any) => ({
+      ...prev,
+      page: newPage,
+    }));
+  };
+  const handleIdOrder = (id: string) => {
+    console.log(id);
+  };
   return (
     <div className="delivery">
       <div className="delivery__swapper">
@@ -45,40 +45,67 @@ export default function DeliveryFeatures(props: DeliveryFeaturesProps) {
           <span>Delivery</span>
         </div>
         <div className="delivery__table">
-          <div className="delivery__top">
-            <span>STT</span>
-            <span>User</span>
-            <span>Email</span>
-            <span>Quatity</span>
-            <span>Price</span>
-            <span>Status</span>
-          </div>
-          <div className="delivery__body">
-            {data
-              .filter((isStatus) => isStatus.status === 'Succers')
-              .map((item, idex) => (
-                <div className="delivery__item">
-                  <div className="delivery__stt">
-                    <span>{idex}</span>
-                  </div>
-                  <div className="delivery__user">
-                    <span>{item.name}</span>
-                  </div>
-                  <div className="delivery__email">
-                    <span>{item.email}</span>
-                  </div>
-                  <div className="delivery__quatity">
-                    <span>{item.quatity}</span>
-                  </div>
-                  <div className="delivery__price">
-                    <span>{formatPrice(item.price)}</span>
-                  </div>
-                  <div className="delivery__status">
-                    <span>{item.status}</span>
-                  </div>
-                </div>
-              ))}
-          </div>
+          {data?.length === 0 ? (
+            <div>khonng</div>
+          ) : (
+            <>
+              {' '}
+              <div className="delivery__top">
+                <span>STT</span>
+                <span>User</span>
+
+                <span>Quatity</span>
+                <span>Price</span>
+                <span>Status</span>
+                <span>Action</span>
+              </div>
+              <div className="delivery__body">
+                {data?.map((item: any, idex: any) => (
+                  <>
+                    {item.products.map((items: OrderProps, idexs: number) => (
+                      <div className="delivery__item" key={idex}>
+                        <div className="delivery__stt">
+                          <span>{idex}</span>
+                        </div>
+                        <div className="delivery__user">
+                          <span>{item.user.userName}</span>
+                        </div>
+
+                        <div className="delivery__quatity">
+                          <span>{items.quantity}</span>
+                        </div>
+                        <div className="delivery__price">
+                          <span>{formatPrice(item.amount)}</span>
+                        </div>
+                        <div className="delivery__status">
+                          <span>{item.status}</span>
+                        </div>
+                        <div className="delivery__action">
+                          <button onClick={() => handleIdOrder(items._id)}>
+                            <span>View</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <div className="delivery__pagination">
+          {Array.from({ length: Math.ceil(pagination.totalRow / pagination.limit + 1) }, (v, i) => (
+            <>
+              {i > 0 && (
+                <button
+                  className={pagination.page === i ? 'activePagination' : ''}
+                  onClick={() => handleChanPage(i)}
+                >
+                  {i}
+                </button>
+              )}
+            </>
+          ))}
         </div>
       </div>
     </div>

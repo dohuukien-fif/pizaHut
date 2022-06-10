@@ -67,7 +67,6 @@ export default function Silder(props: SilderProps) {
         },
         1025: {
           slidesPerView: 'auto',
-          spaceBetween: -70,
         },
       }}
       pagination={{

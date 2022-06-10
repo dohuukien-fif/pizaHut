@@ -195,7 +195,7 @@ export default function OrderFeatues({
               </div>
 
               <div className="order_dialog-right-btn">
-                <button onClick={handleClic}>
+                <button  onClick={handleClic}>
                   <MdOutlineDoNotTouch />
                   <span>Giao hàng miễn chạm</span>
                 </button>

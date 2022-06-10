@@ -3,7 +3,7 @@ import './stylesLink.scss';
 import { FaShippingFast, FaStore } from 'react-icons/fa';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { FcRating } from 'react-icons/fc';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 export interface IAppProps {
   isorder: boolean;
   setActive: string;
@@ -28,19 +28,29 @@ export default function App({ setActive, activeTranForm, activeIco, isorder }: I
           </span>
           <div className="dropdow_list">
             <div className="dropdow_item">
-              <span>mới</span>
+              <Link to="/pizza/newDish">
+                <span>mới</span>
+              </Link>
             </div>
             <div className="dropdow_item">
-              <span>Công thức Đặc Biết</span>
+              <Link to="/pizza/special">
+                <span>Công thức Đặc Biết</span>
+              </Link>
             </div>
             <div className="dropdow_item">
-              <span>Hải Sản Cao Cấp</span>
+              <Link to="/pizza/seafood">
+                <span>Hải Sản Cao Cấp</span>
+              </Link>
             </div>
             <div className="dropdow_item">
-              <span>Truyền Thống</span>
+              <Link to="/pizza/stuffing">
+                <span>Truyền Thống</span>
+              </Link>
             </div>
             <div className="dropdow_item">
-              <span>Nhâp nhồi</span>
+              <Link to="/pizza/traditional">
+                <span>Nhâp nhồi</span>
+              </Link>
             </div>
           </div>
         </li>

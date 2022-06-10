@@ -1,12 +1,14 @@
 import axios, { AxiosRequestConfig } from 'axios';
 // const TOKEN = JSON.parse(localStorage.getItem('user') || '');
 import { useSelector } from 'react-redux';
-
+import queryString from 'query-string';
 const axiosClient = axios.create({
+  // https://api-pizza-home.herokuapp.com/
   baseURL: 'https://api-pizza-home.herokuapp.com/api',
   headers: {
-    'Content-Type': 'application/json',
+    'Content-type': 'application/json',
   },
+  paramsSerializer: (params) => queryString.stringify(params),
 });
 
 axiosClient.interceptors.request.use(async (config) => {

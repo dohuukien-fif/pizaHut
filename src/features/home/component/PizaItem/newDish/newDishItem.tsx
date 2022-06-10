@@ -16,7 +16,7 @@ export default function BakedNoodlesItem({ items, handleIds }: BakedNoodlesItemP
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="newDish_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="newDish_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="newDish_block">
         <div className="newDish_aside">
           <img src={image} alt="" />

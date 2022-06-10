@@ -8,7 +8,7 @@ import { formatPrice } from '../../../../../utils';
 
 export interface PizzaNewItemProps {
   items: SaladFeaturesProps;
-  handleIds: any;
+  handleIds: (newIds: any) => void;
 }
 
 export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
@@ -17,7 +17,7 @@ export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="salad_item" onClick={() => handleIds(items.id)}>
+    <div className="salad_item" onClick={() => handleIds(items.orderId)}>
       <div className="salad_block">
         <div className="salad_aside">
           <img src={image} alt="" />

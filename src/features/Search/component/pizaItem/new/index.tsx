@@ -8,7 +8,7 @@ import { formatPrice } from '../../../../../utils';
 
 export interface PizzaNewItemProps {
   items: AppertizerFeaturesProps;
-  handleIds: any;
+  handleIds: (newIds: any) => void;
 }
 
 export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
@@ -17,7 +17,7 @@ export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="appertizer_item" onClick={() => handleIds(items.id)}>
+    <div className="appertizer_item" onClick={() => handleIds(items.orderId)}>
       <div className="appertizer_block">
         <div className="appertizer_aside">
           <img src={image} alt="" />

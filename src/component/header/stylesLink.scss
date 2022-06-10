@@ -86,6 +86,13 @@
       }
       .dropdow_item {
         padding: 1rem;
+
+        & > a {
+          text-decoration: none;
+          & > span {
+            color: white;
+          }
+        }
         &:hover {
           background: $green;
         }

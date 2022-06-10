@@ -1,0 +1,193 @@
+@use './../../../../sass/index.scss' as *;
+.viewCustomers {
+  width: 95%;
+  margin: 0 auto;
+
+  &__swapper {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 14px;
+
+    margin: 5px;
+
+    .viewCustomers__title {
+      font-size: 20px;
+      font-weight: 700;
+
+      margin: 15px;
+    }
+    .viewCustomer__body {
+      display: flex;
+      align-items: center;
+
+      @include tablet {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .viewCustomers__right {
+        .viewCustomers__user {
+          .viewCustomers__name {
+            display: flex;
+
+            column-gap: 10px;
+
+            & > span:first-child {
+              font-weight: 700;
+
+              & > strong {
+                color: red;
+                margin-left: 2px;
+              }
+            }
+          }
+        }
+        .viewCustomers__product {
+          .viewCustomers__telephone,
+          .viewCustomers__address,
+          .viewCustomers__amount,
+          .viewCustomers__total {
+            display: flex;
+
+            column-gap: 10px;
+
+            margin-top: 10px;
+            & > span:first-child {
+              font-weight: 700;
+
+              & > strong {
+                color: red;
+                margin-left: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .viewCustomers__table {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    margin: 5px;
+
+    overflow-x: scroll;
+
+    min-width: 800px;
+
+    .viewCustomers__table--top {
+      display: flex;
+      align-items: center;
+
+      padding: 10px;
+
+      font-size: 14px;
+
+      border: 1px solid rgb(211, 204, 204);
+
+      .viewCustomers__table--top--left {
+        flex: 1;
+
+        display: flex;
+
+        & > span {
+          flex: 1;
+          font-weight: 700;
+        }
+      }
+      .viewCustomers__table--top--right {
+        flex: 1;
+        display: flex;
+
+        & > span {
+          flex: 1;
+          font-weight: 700;
+        }
+      }
+    }
+    .viewCustomers__list {
+      border: 1px solid rgb(211, 204, 204);
+
+      min-height: 50vh;
+
+      min-width: 800px;
+      overflow-x: scroll;
+
+      .viewCustomers__item {
+        display: flex;
+        align-items: center;
+
+        font-size: 14px;
+
+        padding: 10px;
+
+        border-bottom: 1px solid rgb(211, 204, 204);
+
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.7;
+          box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+        }
+        .viewCustomers__item--left {
+          flex: 1;
+
+          display: flex;
+          align-items: center;
+
+          .viewCustomers__code {
+            flex: 1;
+            font-weight: 600;
+          }
+          .viewCustomers__products {
+            flex: 2;
+
+            display: flex;
+            align-items: center;
+
+            column-gap: 10px;
+
+            & > img {
+              width: 50px;
+              height: 50px;
+            }
+            & > span {
+              font-weight: 600;
+            }
+          }
+        }
+        .viewCustomers__item--right {
+          flex: 1;
+
+          display: flex;
+          .viewCustomers__date,
+          .viewCustomer__price,
+          .viewCustomer__quantity,
+          .viewCustomer__amount {
+            flex: 1;
+          }
+          .viewCustomers__date {
+            display: flex;
+            flex-direction: column;
+          }
+          .viewCustomer__price {
+            font-weight: 600;
+          }
+          .viewCustomer__amount {
+            font-size: 17px;
+            font-weight: 700;
+
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,15 @@
+@use './../../../sass/index.scss' as *;
 .product {
   font-size: 14px;
 
-  width: 95%;
+  width: 97%;
 
-  margin: 20px auto;
+  margin: 30px auto;
 
   overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
 
   &::-webkit-scrollbar {
     display: none;
@@ -16,8 +20,17 @@
 
     margin-bottom: 20px;
     .product__title--left {
-      font-size: 25px;
-      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+
+      & > span:first-child {
+        font-size: 25px;
+        font-weight: 700;
+      }
+      & > span:last-child {
+        font-size: 15px;
+        font-weight: 600;
+      }
     }
     .product__title--right {
       & > a {
@@ -43,10 +56,40 @@
     }
   }
   .product__body {
+    display: flex;
+
+    @include tablet {
+      flex-direction: column;
+    }
     .product__filter {
+      max-width: 350px;
+      width: 350px;
+
+      min-height: 100vh;
+
       margin-bottom: 50px;
+
+      box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+      border-radius: 10px;
+      background-color: #fff;
+
+      padding: 10px;
+
+      margin-left: 5px;
+      margin-right: 5px;
+      @include tablet {
+        max-width: 100%;
+        width: 100%;
+
+        min-height: 200px;
+      }
     }
     .product__table {
+      box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+      border-radius: 10px;
+      background-color: #fff;
+
+      flex: 1;
       .product__talet--title {
         display: flex;
 
@@ -117,7 +160,7 @@
               & > button {
                 border: none;
 
-                background: white;
+                background: transparent;
                 & > span {
                   background: green;
                   color: white;
@@ -136,6 +179,32 @@
           }
         }
       }
+    }
+  }
+  .products__pagination {
+    margin-left: auto;
+
+    margin-top: 10px;
+
+    .activePagination {
+      background: blue;
+      color: white;
+
+      border: 1px solid rgb(17, 17, 165);
+    }
+    & > button {
+      height: 30px;
+      width: 30px;
+
+      margin-left: 5px;
+
+      background: white;
+
+      border: 1px solid rgb(196, 192, 192);
+
+      cursor: pointer;
+
+      font-size: 13px;
     }
   }
 }

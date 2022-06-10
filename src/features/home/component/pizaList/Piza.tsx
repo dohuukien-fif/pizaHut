@@ -18,10 +18,10 @@ export default function PizaList({ data, activeTab, setIdPizza }: PizaListProps)
     <>
       <div className="pizza_list">
         {data
-          .filter((item) => item.category === 'piza')
-          .slice(0, isContinent)
-          .map((items, index) => (
-            <PizaItem key={items.id} items={items} handleIds={hanndleIdNew} />
+          ?.filter((item) => item?.category === 'piza')
+          ?.slice(0, isContinent)
+          ?.map((items, index) => (
+            <PizaItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {isContinent <= data.filter((item) => item.category === 'piza').length && (

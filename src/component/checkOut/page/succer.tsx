@@ -5,6 +5,7 @@ import './succer.scss';
 import { cartcode } from './../../cart/cartSelected';
 import { useSelector } from 'react-redux';
 import { checkProducts } from './../../cart/cartSelected';
+import OrderApi from '../../../api/OrderApi';
 export interface SuccerFeaturesProps {}
 
 export default function SuccerFeatures(props: SuccerFeaturesProps) {
@@ -14,6 +15,12 @@ export default function SuccerFeatures(props: SuccerFeaturesProps) {
   console.log('CartCode', CartCode);
   const { code } = checkProductss;
 
+  React.useEffect(() => {
+    (async () => {
+      const res = await OrderApi.getAll();
+      console.log('[resresresv]', res);
+    })();
+  });
   const navigate = useNavigate();
 
   const handleBackHome = () => {

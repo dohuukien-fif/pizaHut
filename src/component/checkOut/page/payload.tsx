@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartFeaturesProps } from '../../cart/page/interface';
 import { formatPrice } from '../../../utils';
 import { addCheckOut } from '../checkOutRedux';
+import { removeCart } from '../../../app/cartRedux';
+import OrderApi from '../../../api/OrderApi';
 export interface PayloadFeaturesProps {
   numbers: any;
   handleClic: any;
@@ -24,6 +26,7 @@ export interface PayloadFeaturesProps {
 }
 
 export default function PayloadFeatures({ numbers, handleClic, handleBackbefore }: any) {
+  const userInfor = useSelector((state: any) => state.user.current);
   const quantitys = useSelector(quantity);
   const CartAddresss = useSelector(cartAddress);
   const cartAddressOlds = useSelector(cartAddressOld);
@@ -108,10 +111,10 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
   const hanndleClick = () => {
     setcodeDiscount(ValueRef.current.value);
   };
-  const setCheckOutData = () => {
+  const setCheckOutData = async () => {
     handleClic();
 
-    const action = addCheckOut({
+    const action = await addCheckOut({
       code: Math.floor(Math.random() * 4000) + 100,
       day: dataday,
       time: datahour,
@@ -122,8 +125,26 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
       store: cartStores,
       address: cartcheckeds ? CartAddresss : cartAddressOlds,
     });
-
     dispatch(action);
+    // dispatch(removeCart());
+
+    await OrderApi.add({
+      userId: userInfor._id,
+      code: Math.floor(Math.random() * 4000) + 100,
+      day: dataday,
+      time: datahour,
+
+      products: DataCart,
+      amount: NEWTOAL < 0 ? 0 : NEWTOAL,
+      discount: Total - NEWTOAL,
+      order: cartOrders,
+      store: cartStores,
+      address: cartcheckeds ? CartAddresss : cartAddressOlds,
+      status: 'pending',
+      user: {
+        userName: userInfor.username,
+      },
+    });
   };
   return (
     <div className="payload">

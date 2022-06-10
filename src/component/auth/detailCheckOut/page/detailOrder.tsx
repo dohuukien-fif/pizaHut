@@ -3,18 +3,53 @@ import { CheckOutFeaturesProps } from './interface';
 import './detaiFeatures.scss';
 import { formatPrice } from '../../../../utils';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkProducts, cartItemTotal } from './../../../cart/cartSelected';
+import { UpdateCart } from './../../../../component/checkOut/checkOutRedux';
+import { useNavigate } from 'react-router-dom';
+import { updateProduct } from '../../../../app/cartRedux';
 export interface DetailOrderProps {}
 
 export default function DetailOrder(props: any) {
   const checkProductss = useSelector(checkProducts);
-
+  const dispatch = useDispatch();
+  const navigete = useNavigate();
   console.log('checkProductss', checkProductss);
 
   const dates = new Date();
   const dataday = `${dates.getDate()}/${dates.getMonth() + 1}/${dates.getFullYear()}`;
   const datahour = `${dates.getHours()}:${dates.getMinutes() + 1}:${dates.getSeconds()}`;
+
+  const setProduct = useSelector((state: any) => state.checkout.updateCart);
+  const setcheckout = useSelector((state: any) => state.checkout.products);
+  const setCart = useSelector((state: any) => state.cart.products);
+  console.log('[setProduct]', setProduct);
+  console.log('[setcheckout]', setcheckout);
+  console.log('[setCart]', setCart);
+  const handleClickUpdateCart = (code: number) => {
+    const action = UpdateCart(code);
+    dispatch(action);
+
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        navigete('/checkOut');
+        resolve(true);
+      }, 2000);
+    });
+  };
+
+  const handleClickGoBack = () => {
+    navigete(-1);
+  };
+
+  React.useEffect(() => {
+    (() => {
+      const actionCart = updateProduct(setProduct);
+
+      dispatch(actionCart);
+    })();
+  }, [setProduct]);
+
   return (
     <>
       <div className="detailOrder">
@@ -154,12 +189,12 @@ export default function DetailOrder(props: any) {
 
               <div className="detailOrder_end">
                 <div className="detailOrder_btn">
-                  <button>
+                  <button onClick={handleClickGoBack}>
                     <AiOutlineArrowLeft />
                     <span>Quay lại</span>
                   </button>
 
-                  <button>
+                  <button onClick={() => handleClickUpdateCart(items?.code)}>
                     <AiOutlineArrowLeft />
                     <span>Đặt lại đơn hàng</span>
                   </button>

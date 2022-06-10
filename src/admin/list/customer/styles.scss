@@ -1,7 +1,7 @@
 .customers {
   width: 95%;
 
-  margin: 30px auto;
+  margin: 10px auto;
 
   overflow-x: scroll;
 
@@ -21,15 +21,65 @@
 
     overflow-x: scroll;
 
+    display: flex;
+    flex-direction: column;
+
     &::-webkit-scrollbar {
       display: none;
     }
+    .customers__search {
+      position: relative;
 
+      border: 1px solid rgb(222, 220, 220);
+
+      max-width: 450px;
+
+      height: 60px;
+
+      margin-bottom: 30px;
+
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+
+      padding: 0 30px;
+
+      display: flex;
+      align-items: center;
+
+      column-gap: 15px;
+
+      font-size: 16px;
+
+      background: #f7faff;
+      & > input {
+        border: none;
+
+        background: #f7faff;
+        &:focus {
+          border: none;
+
+          outline: none;
+        }
+      }
+      & > button {
+        background: #f7faff;
+
+        border: none;
+
+        cursor: pointer;
+        & > svg {
+          font-size: 20px;
+          color: rgb(76, 74, 74);
+        }
+      }
+    }
     .customers__title {
       font-size: 25px;
       font-weight: 700;
 
-      margin: 10px 0;
+      margin: 15px 0;
     }
     .customers__list {
       font-size: 14px;
@@ -65,6 +115,7 @@
 
           border-bottom: 1px solid rgb(231, 225, 225);
 
+          color: rgb(74, 74, 74);
           .customers__table--status {
             flex: 1;
             & > span {
@@ -82,15 +133,52 @@
           .customers__table--user,
           .customers__table--email,
           .customers__table--totalOder,
-          .customers__table--totalSpend {
+          .customers__table--totalSpend,
+          .customers__table--action {
             flex: 1;
 
             & > span {
               font-weight: 700;
-              color: rgb(74, 74, 74);
+            }
+            & > button {
+              padding: 10px;
+
+              color: white;
+
+              background: green;
+
+              border: none;
+
+              cursor: pointer;
             }
           }
         }
+      }
+    }
+    .customers__pagination {
+      margin-left: auto;
+
+      margin-top: 10px;
+
+      .activePagination {
+        background: blue;
+        color: white;
+
+        border: 1px solid rgb(17, 17, 165);
+      }
+      & > button {
+        height: 30px;
+        width: 30px;
+
+        margin-left: 5px;
+
+        background: white;
+
+        border: 1px solid rgb(196, 192, 192);
+
+        cursor: pointer;
+
+        font-size: 13px;
       }
     }
   }

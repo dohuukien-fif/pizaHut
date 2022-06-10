@@ -16,6 +16,11 @@ export default function RegisterFeatures(props: RegisterFeaturesProps) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const users = useSelector((state) => state.user);
+  const LOCOLSTORAGE__LOGIN =
+    localStorage.getItem('URL__LOGIN') && localStorage.getItem('URL__LOGIN');
+  const LOCOLSTORAGE__REDIREST =
+    localStorage.getItem('URL__LOGIN') && localStorage.getItem('URL__LOGIN');
+  console.log('[LOCOLSTORAGE]', LOCOLSTORAGE__LOGIN);
 
   console.log(username, password);
   const handleClick = async (e: any) => {
@@ -27,16 +32,25 @@ export default function RegisterFeatures(props: RegisterFeaturesProps) {
       const user = await dispatch(action).unwrap();
       console.log(user);
 
-      navigate('/');
+      if (LOCOLSTORAGE__REDIREST) {
+        localStorage.removeItem('URL__REDIREST');
+        return navigate(JSON.parse(LOCOLSTORAGE__REDIREST));
+      }
+
+      if (LOCOLSTORAGE__LOGIN) {
+        localStorage.removeItem('URL__LOGIN');
+        return navigate(JSON.parse(LOCOLSTORAGE__LOGIN));
+      } else {
+        navigate('/login');
+      }
       //close Dialog
       // const { closeDialog } = props;
       // if (closeDialog) {
       //   closeDialog();
       // }
     } catch (error) {
-      // enqueueSnackbar(error.message, { variant: 'error' });
+      alert('vui lòng kiểm  tra lại  thông  tin');
       console.log('esss', error);
-      navigate('/login');
     }
   };
   return (

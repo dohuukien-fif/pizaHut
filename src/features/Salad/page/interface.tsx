@@ -15,4 +15,5 @@ export interface SaladFeaturesProps {
   more: any[];
   selling: string;
   unique: string;
+  orderId: any;
 }

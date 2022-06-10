@@ -1,0 +1,160 @@
+@use './../../../sass/index.scss' as *;
+.edit {
+  width: 95%;
+  margin: 0 auto;
+
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__swapper {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    padding: 15px;
+
+    font-size: 14px;
+
+    .edit__title {
+      font-weight: 700;
+      font-size: 20px;
+
+      padding: 10px 20px;
+
+      margin-bottom: 20px;
+    }
+    .edit__form {
+      & > form {
+        width: 100%;
+
+        .edit__group {
+          display: flex;
+          flex-direction: column;
+
+          row-gap: 5px;
+
+          margin-top: 10px;
+
+          & > label {
+            font-weight: 600;
+          }
+          & > input {
+            height: 40px;
+          }
+          & > span {
+            font-weight: 700;
+          }
+        }
+        .edit__group--checkBox {
+          display: flex;
+          align-items: center;
+
+          margin-top: 10px;
+
+          & > label {
+            font-weight: 600;
+          }
+          & > input {
+            height: 40px;
+          }
+
+          & > input[type='file'] {
+            display: none;
+          }
+          & > span {
+            font-weight: 700;
+          }
+        }
+
+        .edit__input {
+          display: flex;
+
+          column-gap: 20px;
+
+          .edit__input--left {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            row-gap: 10px;
+
+            #file {
+              display: none;
+            }
+
+            & > label {
+              margin: 10px 0;
+              font-weight: 700;
+              & > span {
+                padding: 10px;
+                background: blue;
+
+                color: white;
+              }
+            }
+            & > input {
+              height: 40px;
+            }
+            & > button {
+              padding: 10px;
+
+              background: blue;
+
+              color: white;
+
+              border: none;
+
+              cursor: pointer;
+            }
+          }
+          .edit__input--right {
+            flex: 1;
+            .edit__list {
+              .edit__item {
+                display: flex;
+                column-gap: 10px;
+
+                .edit__index {
+                  font-weight: 700;
+                }
+
+                .edit__content {
+                  .edit__name {
+                    & > span:first-child {
+                      font-weight: 700;
+
+                      margin-right: 10px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .edit__btn {
+          & > button {
+            cursor: pointer;
+
+            border: none;
+
+            padding: 10px;
+
+            background: blue;
+
+            margin-top: 10px;
+
+            color: white;
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -51,8 +51,8 @@ export default function DrinkFeatures(props: any) {
       setLoadingList(true);
       try {
         const res: any = await ProductApi.get();
-        console.log('des', res);
-        setDataPiza(res);
+
+        setDataPiza(res.data);
         setLoadingList(false);
       } catch (err) {}
     })();
@@ -95,7 +95,7 @@ export default function DrinkFeatures(props: any) {
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.id === newId));
+        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
         setisoverlay(true);
         setLoading(false);
         resolve(true);
@@ -111,7 +111,7 @@ export default function DrinkFeatures(props: any) {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
         const action = addProduct({
-          id: detailProduct.id,
+          id: detailProduct.orderId,
           product: {
             ...detailProduct,
             size: {},

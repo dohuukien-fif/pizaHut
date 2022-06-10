@@ -1,7 +1,34 @@
 .filterPrice {
-  & > select {
-    width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-    border: 1px solid black;
+  column-gap: 10px;
+
+  .filterPrice__title {
+    font-weight: 700;
+    font-size: 20px;
+
+    margin: 10px;
+  }
+  .filterPrice__content {
+    .activeAsc {
+      background: blue;
+      color: white;
+    }
+    .activedesc {
+      background: blue;
+      color: white;
+    }
+    & > button {
+      background-color: white;
+
+      padding: 10px 30px;
+
+      border: 1px solid rgb(231, 225, 225);
+
+      cursor: pointer;
+    }
   }
 }

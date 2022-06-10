@@ -1,0 +1,54 @@
+.orders__tab {
+  display: flex;
+
+  column-gap: 10px;
+
+  margin-bottom: 20px;
+
+  overflow: hidden;
+  .order__all,
+  .order__dispatch,
+  .order__completed {
+    padding: 10px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+
+      height: 3px;
+      width: 0;
+
+      background: red;
+
+      bottom: 0;
+
+      transition: 300ms ease-in-out !important;
+    }
+  }
+  .active {
+    &::before {
+      width: 100%;
+
+      animation: tab 300ms linear !important;
+
+      @keyframes tab {
+        0% {
+          left: -100%;
+          width: 0;
+        }
+        100% {
+          left: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

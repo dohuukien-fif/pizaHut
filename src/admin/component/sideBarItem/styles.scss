@@ -43,8 +43,6 @@
 
       column-gap: 15px;
 
-      padding: 10px;
-
       cursor: pointer;
 
       &:hover {
@@ -54,13 +52,28 @@
         border-radius: 5px;
       }
 
-      &:hover > svg {
+      &:hover > a > svg {
         color: white;
       }
-      & > svg {
-        font-size: 25px;
+      &:hover > a > p {
+        color: white;
+      }
+      & > a {
+        display: flex;
+        align-items: center;
 
-        color: #6d52f2;
+        column-gap: 15px;
+
+        padding: 10px;
+
+        text-decoration: none;
+        & > svg {
+          font-size: 25px;
+          color: #6d52f2;
+        }
+        & > p {
+          color: rgb(96, 92, 92);
+        }
       }
     }
   }
@@ -76,13 +89,6 @@
   }
   .sideBar__list--content {
     .sideBar__list--group {
-      display: flex;
-      align-items: center;
-
-      column-gap: 15px;
-
-      padding: 10px;
-
       cursor: pointer;
 
       &:hover {
@@ -91,13 +97,28 @@
 
         border-radius: 5px;
       }
-
-      &:hover > svg {
+      &:hover > a > p {
         color: white;
       }
-      & > svg {
-        font-size: 25px;
-        color: #6d52f2;
+      &:hover > a > svg {
+        color: white;
+      }
+      & > a {
+        display: flex;
+        align-items: center;
+
+        column-gap: 15px;
+
+        padding: 10px;
+
+        text-decoration: none;
+        & > svg {
+          font-size: 25px;
+          color: #6d52f2;
+        }
+        & > p {
+          color: rgb(96, 92, 92);
+        }
       }
     }
   }
@@ -118,8 +139,6 @@
 
       column-gap: 15px;
 
-      padding: 10px;
-
       cursor: pointer;
 
       &:hover {
@@ -129,14 +148,28 @@
         border-radius: 5px;
       }
 
-      &:hover > svg {
+      &:hover > a > svg {
         color: white;
       }
+      &:hover > a > p {
+        color: white;
+      }
+      & > a {
+        display: flex;
+        align-items: center;
 
-      & > svg {
-        font-size: 25px;
+        column-gap: 15px;
 
-        color: #6d52f2;
+        padding: 10px;
+
+        text-decoration: none;
+        & > svg {
+          font-size: 25px;
+          color: #6d52f2;
+        }
+        & > p {
+          color: rgb(96, 92, 92);
+        }
       }
     }
   }
@@ -156,8 +189,6 @@
 
       column-gap: 15px;
 
-      padding: 10px;
-
       cursor: pointer;
 
       &:hover {
@@ -167,14 +198,45 @@
         border-radius: 5px;
       }
 
-      &:hover > svg {
+      &:hover > a > svg {
         color: white;
       }
+      &:hover > a > p {
+        color: white;
+      }
+      &:hover > .sideBar__user--link > svg {
+        color: white;
+      }
+      &:hover > .sideBar__user--link > p {
+        color: white;
+      }
+      .sideBar__user--link {
+        display: flex;
+        align-items: center;
 
-      & > svg {
-        font-size: 25px;
+        column-gap: 15px;
 
-        color: #6d52f2;
+        padding: 10px;
+
+        text-decoration: none;
+        & > svg {
+          font-size: 25px;
+          color: #6d52f2;
+        }
+        & > p {
+          color: rgb(96, 92, 92);
+        }
+      }
+
+      & > a {
+        display: flex;
+        align-items: center;
+
+        column-gap: 15px;
+
+        padding: 10px;
+
+        text-decoration: none;
       }
     }
   }

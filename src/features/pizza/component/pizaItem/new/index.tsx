@@ -8,7 +8,7 @@ import { formatPrice } from '../../../../../utils';
 import { useNavigate } from 'react-router-dom';
 export interface PizzaNewItemProps {
   items: PizzaFeaturesProps;
-  handleIds: any;
+  handleIds: (newIds: any) => void;
 }
 
 export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
@@ -18,7 +18,7 @@ export default function PizzaNewItem({ items, handleIds }: PizzaNewItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="new_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="new_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="new_block">
         <div className="new_aside">
           <img src={image} alt="" />

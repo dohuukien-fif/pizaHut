@@ -9,7 +9,7 @@
 
   border-bottom: 1px solid rgb(223, 217, 217);
 
-  .dashboard__tables--left {
+  .dashboard__table--left {
     flex: 1;
 
     display: flex;
@@ -31,7 +31,7 @@
       }
     }
   }
-  .dashboard__tables--right {
+  .dashboard__table--right {
     flex: 2;
 
     display: flex;
@@ -49,11 +49,11 @@
       }
 
       .shipping {
-        background: #30a544;
+        background: #2790f2;
       }
 
       .succerss {
-        background: #2790f2;
+        background: #30a544;
       }
     }
     .dashboard__table--date,

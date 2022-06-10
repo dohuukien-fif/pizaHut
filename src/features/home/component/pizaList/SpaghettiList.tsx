@@ -20,7 +20,7 @@ export default function SpaghettiList({ data, setIdPizza }: SpaghettiListProps) 
           .filter((item) => item.category === 'Spaghetti')
           .slice(0, isContinent)
           .map((items, index) => (
-            <SpaghettiItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <SpaghettiItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {isContinent <= data.filter((item) => item.category === 'Spaghetti').length && (

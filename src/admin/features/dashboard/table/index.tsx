@@ -9,6 +9,8 @@ export interface table {
   amount: number;
   payment: string;
   status: string;
+  products: any;
+  day: string;
 }
 
 export interface TableProps {
@@ -18,21 +20,28 @@ export interface TableProps {
 export default function Table({ item }: TableProps) {
   return (
     <div className="dashboard__table--item">
-      <div className="dashboard__tables--left">
+      <div className="dashboard__table--left">
         <div className="dashboard__table--tracking">
           <span>{item.code}</span>
         </div>
         <div className="dashboard__table--product">
-          <img src={item.image} alt="" />
-          <span>{`${item.product.charAt(0).toLocaleUpperCase()}${item.product.slice(1)}`}</span>
+          {new Array(item?.products[0]).map((items: any, idx: number) => (
+            <React.Fragment key={idx}>
+              <img src={items.product.image} alt="" />
+              <span>{items?.product?.name}</span>
+            </React.Fragment>
+          ))}
         </div>
       </div>
-      <div className="dashboard__tables--right">
+      <div className="dashboard__table--right">
         <div className="dashboard__table--date">
-          <span>{item.date}</span>
+          <span>{item.day}</span>
         </div>
         <div className="dashboard__table--amount">
           <span>{formatPrice(item.amount)}</span>
+        </div>
+        <div className="dashboard__table--payment">
+          <span>dat giao hang</span>
         </div>
         {item.payment === 'dat giao hang' && (
           <div className="dashboard__table--payment">
@@ -45,7 +54,7 @@ export default function Table({ item }: TableProps) {
           </div>
         )}
 
-        {item.status === 'Pending' && (
+        {item.status === 'pending' && (
           <div className="dashboard__table--status">
             <span>{item.status}</span>
           </div>

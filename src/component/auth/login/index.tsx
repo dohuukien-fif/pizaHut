@@ -18,6 +18,13 @@ export default function LoginFeatures(props: LoginFeaturesProps) {
   console.log('passs', typeof password);
   console.log('usser', typeof username);
   const navigate = useNavigate();
+
+  const LOCOLSTORAGE__LOGIN =
+    localStorage.getItem('URL__LOGIN') && localStorage.getItem('URL__LOGIN');
+  const LOCOLSTORAGE__REDIREST =
+    localStorage.getItem('URL__REDIREST') && localStorage.getItem('URL__REDIREST');
+  console.log('[LOCOLSTORAGE]', LOCOLSTORAGE__LOGIN);
+
   const handleClick = async (e: any) => {
     e.preventDefault();
     try {
@@ -26,7 +33,19 @@ export default function LoginFeatures(props: LoginFeaturesProps) {
       const action = login({ username, password });
       const user = await dispatch(action).unwrap();
       console.log('user', user);
-      navigate('/');
+
+      if (LOCOLSTORAGE__REDIREST) {
+        localStorage.removeItem('URL__REDIREST');
+        return navigate(JSON.parse(LOCOLSTORAGE__REDIREST));
+      }
+
+      if (LOCOLSTORAGE__LOGIN) {
+        localStorage.removeItem('URL__LOGIN');
+        return navigate(JSON.parse(LOCOLSTORAGE__LOGIN));
+      } else {
+        navigate('/');
+      }
+
       //close Dialog
       // const { closeDialog } = props;
       // if (closeDialog) {
@@ -35,6 +54,8 @@ export default function LoginFeatures(props: LoginFeaturesProps) {
     } catch (error) {
       // enqueueSnackbar(error.message, { variant: 'error' });
       console.log('esss', error);
+
+      alert('vui lòng kiểm tra  lại mật khẩu khoặc tài khoản');
     }
   };
   return (

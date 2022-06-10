@@ -6,6 +6,54 @@
   &::-webkit-scrollbar {
     display: none;
   }
+  .user__search {
+    position: relative;
+
+    border: 1px solid rgb(222, 220, 220);
+
+    max-width: 450px;
+
+    height: 60px;
+
+    margin-bottom: 30px;
+
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+
+    column-gap: 15px;
+
+    font-size: 16px;
+
+    background: #f7faff;
+    & > input {
+      border: none;
+
+      background: #f7faff;
+      &:focus {
+        border: none;
+
+        outline: none;
+      }
+    }
+    & > button {
+      background: #f7faff;
+
+      border: none;
+
+      cursor: pointer;
+      & > svg {
+        font-size: 20px;
+        color: rgb(76, 74, 74);
+      }
+    }
+  }
   .user__swapper {
     box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
     border-radius: 10px;
@@ -18,6 +66,9 @@
     min-width: 750px;
 
     overflow-x: scroll;
+
+    display: flex;
+    flex-direction: column;
 
     &::-webkit-scrollbar {
       display: none;
@@ -62,8 +113,29 @@
 
           border-bottom: 1px solid rgb(231, 225, 225);
 
+          color: rgb(74, 74, 74);
+
           .user__table--status {
             flex: 1;
+
+            display: flex;
+
+            column-gap: 10px;
+            .aciveView {
+              background: rgb(148, 205, 148);
+              color: black;
+            }
+            & > button {
+              border: none;
+
+              background: green;
+
+              padding: 10px;
+
+              color: white;
+
+              cursor: pointer;
+            }
             & > span {
               background: #f2f9f3;
               padding: 10px;
@@ -75,6 +147,15 @@
               font-weight: 600;
             }
           }
+          .user__table--user {
+            display: flex;
+
+            column-gap: 10px;
+            & > img {
+              height: 30px;
+              width: 30px;
+            }
+          }
           .user__table--stt,
           .user__table--user,
           .user__table--email {
@@ -82,10 +163,35 @@
 
             & > span {
               font-weight: 700;
-              color: rgb(74, 74, 74);
             }
           }
         }
+      }
+    }
+    .user__pagination {
+      margin-left: auto;
+
+      margin-top: 10px;
+
+      .activePagination {
+        background: blue;
+        color: white;
+
+        border: 1px solid rgb(17, 17, 165);
+      }
+      & > button {
+        height: 30px;
+        width: 30px;
+
+        margin-left: 5px;
+
+        background: white;
+
+        border: 1px solid rgb(196, 192, 192);
+
+        cursor: pointer;
+
+        font-size: 13px;
       }
     }
   }

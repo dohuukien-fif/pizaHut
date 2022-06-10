@@ -17,7 +17,7 @@ export default function SaladItem({ items, handleIds }: SaladItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="salad_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="salad_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="salad_block">
         <div className="salad_aside">
           <img src={image} alt="" />

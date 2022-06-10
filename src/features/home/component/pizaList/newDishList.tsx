@@ -19,7 +19,7 @@ export default function NewDishLisst({ data, setIdPizza }: NewDishLisstProps) {
           .filter((item) => item.category === 'newDish')
           .slice(0, isContinent)
           .map((items, index) => (
-            <NewDishItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <NewDishItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {isContinent <= data.filter((item) => item.category === 'newDish').length && (

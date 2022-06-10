@@ -29,9 +29,9 @@ export const Cartitem = createSelector(cartItemSelector, (cartItem) =>
   cartItem.reduce(
     (total: number, item: any) =>
       total +
-      (item.product?.price +
-        (Object.keys(item.product.size).length > 0 && item.product.size.price) +
-        (Object.keys(item.product.more).length > 0 && item.product.more.price)) *
+      (Number(item.product?.price) +
+        (((Object.keys(item.product.size).length > 0 && item.product.size.price) || 0) +
+          (Object.keys(item.product.more).length > 0 && item.product.more.price) || 0)) *
         item.quantity,
     0
   )

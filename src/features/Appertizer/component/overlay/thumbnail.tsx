@@ -4,12 +4,17 @@ import { AppertizerFeaturesProps } from '../../page/interface';
 import './styles.scss';
 export interface ThumbnailProps {
   detail: AppertizerFeaturesProps;
-  setPrice: any;
+  Price: any;
 }
 
-export default function Thumbnail({ detail, setPrice }: ThumbnailProps) {
+export default function Thumbnail({ detail, Price }: ThumbnailProps) {
   const { image, price } = detail;
-  const updatePrice = setPrice !== 0 ? price + (setPrice.priceSize + setPrice.priceMore) : price;
+  const updatePrice =
+    (Price.priceSize && Price.priceMore) !== 0
+      ? price + (Number(Price.priceSize) + Number(Price.priceMore))
+      : price;
+
+  console.log('setPrice', Price);
   return (
     <div className="thumbnail_aside">
       <div className="thumbnail_image">

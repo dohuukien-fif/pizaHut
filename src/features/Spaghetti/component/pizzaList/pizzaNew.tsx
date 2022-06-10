@@ -21,7 +21,7 @@ export default function PizzaNewList({ data, setIdPizza }: PizzaNewListProps) {
           .filter((item) => item.category === 'Spaghetti')
 
           .map((items, index) => (
-            <PizzaNewItem key={items.id} items={items} handleIds={handleId} />
+            <PizzaNewItem key={index} items={items} handleIds={handleId} />
           ))}
       </div>
     </>

@@ -13,11 +13,13 @@ export default function Filter({ onChanges }: FilterProps) {
     };
     onChanges(newValue);
   };
-  const handleChangePrice = (value: string) => {
-    const newValue = {
-      _sort: value,
+  const handleChangePrice = (newValue: any) => {
+    const newValues = {
+      _sort: newValue.name,
+      _order: newValue.value,
     };
-    onChanges(newValue);
+
+    onChanges(newValues);
   };
   return (
     <div className="Filter">

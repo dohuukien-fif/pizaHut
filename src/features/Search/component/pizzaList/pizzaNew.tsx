@@ -17,7 +17,7 @@ export default function PizzaNewList({ data, setIdPizza }: PizzaNewListProps) {
     <>
       <div className="appertizer_list">
         {data.map((items, index) => (
-          <PizzaNewItem key={items.id} items={items} handleIds={handleId} />
+          <PizzaNewItem key={index} items={items} handleIds={handleId} />
         ))}
       </div>
     </>

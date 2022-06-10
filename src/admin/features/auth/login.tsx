@@ -5,7 +5,7 @@ import { GiJusticeStar } from 'react-icons/gi';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 // import { unwrap } from '@reduxjs/toolkit';
-import { login } from './../../../app/userRedux';
+import { login } from './../../../app/userReduxAdmin';
 import './login.scss';
 export interface LoginFeaturesProps {}
 
@@ -26,7 +26,7 @@ export default function LoginFeatures(props: LoginFeaturesProps) {
       const action = login({ username, password });
       const user = await dispatch(action).unwrap();
       console.log('user', user);
-      navigate('/');
+      navigate('/admin');
       //close Dialog
       // const { closeDialog } = props;
       // if (closeDialog) {

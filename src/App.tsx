@@ -19,6 +19,11 @@ import SaladFeatures from './features/Salad/index';
 import SearchFeatures from './features/Search/index';
 import SpaghettiFeatures from './features/Spaghetti/index';
 import AdminFeatures from './admin/index';
+import PizanewDishFeatures from './features/pizza/component/pageDropDow/page/newDish';
+import PizaStuffingFeatures from './features/pizza/component/pageDropDow/page/stuffing';
+import PizaSpeicalFeatures from './features/pizza/component/pageDropDow/page/special';
+import PizaTraditioalFeatures from './features/pizza/component/pageDropDow/page/traditional';
+import PizaSeafoodFeatures from './features/pizza/component/pageDropDow/page/seafood';
 function App() {
   const navigate = useNavigate();
   // const users = JSON.parse(localStorage.getItem('user'));
@@ -49,6 +54,7 @@ function App() {
   //     isloginin ? navigate('trang-chu') : navigate('/login');
   //   }
   // }, []);
+
   const isUser = true;
   return (
     <div>
@@ -66,6 +72,11 @@ function App() {
         <Route path="/register" element={<RegisterFeatures />} />{' '}
         <Route path="/search/*" element={<SearchFeatures />} />
         <Route path="/pizza/*" element={<PizzaFeatures />} />
+        <Route path="/pizza/newDish/*" element={<PizanewDishFeatures />} />
+        <Route path="/pizza/stuffing/*" element={<PizaStuffingFeatures />} />
+        <Route path="/pizza/special/*" element={<PizaSpeicalFeatures />} />
+        <Route path="/pizza/tranditional/*" element={<PizaTraditioalFeatures />} />
+        <Route path="/pizza/seafood/*" element={<PizaSeafoodFeatures />} />
         <Route path="/CheckOut/*" element={<CheckOutFeatures />} />
         <Route path="/khai-vi/*" element={<AppertizerFeatures />} />
         <Route path="/salad/*" element={<SaladFeatures />} />

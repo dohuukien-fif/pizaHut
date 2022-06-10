@@ -1,0 +1,226 @@
+.admin__dark {
+  .admin__left {
+    background-color: #212022;
+    color: white !important;
+    .sideBar__container {
+      .sideBar__swapper {
+        .sideBar__main {
+          .sideBar__main--content {
+            .sideBar__main--group {
+              background-color: #212022;
+
+              &:hover {
+                background: #7f6be1;
+                color: white;
+
+                border-radius: 5px;
+              }
+              & > a > p {
+                color: white !important;
+              }
+            }
+          }
+        }
+        .sideBar__list {
+          .sideBar__list--content {
+            .sideBar__list--group {
+              background-color: #212022;
+              &:hover {
+                background: #7f6be1;
+                color: white;
+
+                border-radius: 5px;
+              }
+              & > a > p {
+                color: white !important;
+              }
+            }
+          }
+        }
+        .sideBar__useful {
+          .sideBar__useful--content {
+            .sideBar__useful--group {
+              background-color: #212022;
+
+              &:hover {
+                background: #7f6be1;
+                color: white;
+
+                border-radius: 5px;
+              }
+              & > a > p {
+                color: white !important;
+              }
+            }
+          }
+        }
+        .sideBar__user {
+          .sideBar__user--content {
+            .sideBar__user--group {
+              background-color: #212022;
+
+              &:hover {
+                background: #7f6be1;
+                color: white;
+
+                border-radius: 5px;
+              }
+              & > a > p {
+                color: white !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //admin--right
+  .admin__right {
+    background-color: #212022;
+
+    .admin__right--navTop {
+      color: white;
+
+      .admin__right--block {
+        .admin__right--account {
+          color: white;
+          .creater__account {
+            & > a {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    //dashoard
+
+    .dashboard {
+      .dashboard__top {
+        .dashboard__group {
+          background-color: #2e2d2e;
+
+          color: white;
+        }
+      }
+      .dashboard__body {
+        .dashboard__body--swapper {
+          background-color: #2e2d2e;
+          color: white;
+
+          .dashboard__body--title {
+            color: white;
+          }
+          .dashboard__table--list {
+            color: white;
+          }
+        }
+      }
+    }
+    //user
+    .user {
+      .user__swapper {
+        background-color: #2e2d2e;
+
+        .user__title {
+          color: white;
+        }
+        .user__list {
+          color: white;
+
+          .user__table--body {
+            .user__table--item {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    //customers
+    .customers {
+      .customers__swapper {
+        background-color: #2e2d2e;
+
+        .customers__title {
+          color: white;
+        }
+        .customers__list {
+          color: white;
+
+          .customers__table--body {
+            .customers__table--item {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    //delivery
+    .delivery {
+      .delivery__swapper {
+        background-color: #2e2d2e;
+
+        .delivery__title {
+          color: white;
+        }
+
+        .delivery__table {
+          .delivery__top {
+            color: white;
+          }
+          .delivery__body {
+            .delivery__item {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    //product
+    .product {
+      .product__title {
+        color: white;
+      }
+      .product__body {
+        .product__table {
+          background-color: #2e2d2e;
+
+          color: white;
+        }
+      }
+    }
+    //profile
+    .profileAdmin {
+      .profileAdmin_container {
+        background-color: #2e2d2e;
+        .profileAdmin_block {
+          color: white;
+        }
+      }
+    }
+    //order
+    .orders {
+      .orders__swapper {
+        background-color: #2e2d2e;
+        color: white;
+      }
+    }
+    //view
+    .view {
+      .view__swapper {
+        background-color: #2e2d2e;
+        color: white;
+      }
+      .view__total {
+        background-color: #2e2d2e;
+        color: white;
+      }
+    }
+    //newProduct
+    .newProduct {
+      .newProduct__swapper {
+        background-color: #2e2d2e;
+        color: white;
+      }
+    }
+  }
+}

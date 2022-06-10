@@ -20,6 +20,9 @@ import { setAddress, setOrder, setStore } from './../checkOut/checkOutRedux';
 import Menulink from './menuLink';
 import './styles.scss';
 import { removeProduct } from './../../app/cartRedux';
+import NavTop from './nav/navTop';
+import { StoreProps } from './interface';
+import MinniCartItem from './miniCartItem';
 export interface HeadersProps {}
 
 export default function Headers(props: HeadersProps) {
@@ -28,7 +31,7 @@ export default function Headers(props: HeadersProps) {
   const userInfor = useSelector((state: any) => state.user.current);
 
   console.log('[userInfor]', userInfor);
-  const [store, setstore] = React.useState<any[]>([
+  const [store, setstore] = React.useState<StoreProps[]>([
     {
       stores: 'THE PIZZA COMPANY SONG HÀNH',
       address: '81 song hành,P An phú , Quận 2 ,HCM',
@@ -122,6 +125,8 @@ export default function Headers(props: HeadersProps) {
         navigate(`/search?q=${SearchTerm}`);
         resolve(true);
         setloading(false);
+        setSearchTerm('');
+        setisOpenSearch(false);
       }, 1000);
     });
 
@@ -171,157 +176,48 @@ export default function Headers(props: HeadersProps) {
 
     return () => window.removeEventListener('click', hanndleWindowClose);
   }, []);
-  return (
-    <nav className={isScroll ? 'nav activeNav' : 'nav'} ref={closeRef}>
-      <div className="nav_block">
-        <div className="nav_top">
-          {/* logo website */}
-          <div className="nav_icon">
-            <Link to="/">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScjgFeNhO-stVJM0eWVR5k7mjPL3rd0V459Q&usqp=CAU"
-                alt=""
-              />
-            </Link>
-          </div>
-          {/* https://vislogo.com.vn/upload/image/pizzanew.jpg */}
-          {/* <span onClick={() => setisopen((x) => !x)}> kien dp</span> */}
-          {/* check order */}
-          <div className="nav_info">
-            <div className="nav_order">
-              <div className={`nav_block ${setActive}`}></div>
-              <span onClick={() => activeTranForm('l')}>
-                {' '}
-                <FaShippingFast
-                  className={activeIco === 'activeIcon_left' ? activeIco : 'color_icon'}
-                />
-                <span className={activeIco === 'activeIcon_left' ? activeIco : 'color_icon'}>
-                  {' '}
-                  Đặt giào hàng
-                </span>
-              </span>
-              <span onClick={() => activeTranForm('m')}>
-                {' '}
-                <FaStore className={activeIco === 'activeIcon_right' ? activeIco : 'color_icon'} />
-                <span className={activeIco === 'activeIcon_right' ? activeIco : 'color_icon'}>
-                  {' '}
-                  Đặt lấy hàng
-                </span>
-              </span>
-            </div>
-            {/* torget input search = selectd */}
-            <div className="nav_search">
-              {isorder === false && (
-                <div className="nav_input">
-                  <input
-                    type="text"
-                    placeholder="Nhập địa chỉ của bạn"
-                    onChange={handleChangeInput}
-                  />
-                  <MdOutlinePlace />
-                </div>
-              )}
-              {isorder === true && (
-                <div className="nav_Select">
-                  <form>
-                    <AiOutlineHome />
-                    <input
-                      onChange={handleChangeselected}
-                      list="browsers"
-                      placeholder="Nhập cửa hàng"
-                    />
-                    <datalist id="browsers">
-                      {store.map((items, index) => (
-                        <option ref={inputRef} value={items.stores}>
-                          {items.address}
-                        </option>
-                      ))}
-                    </datalist>
-                  </form>
-                </div>
-              )}
-            </div>
-          </div>
-          {/* menu mobile {search , cart ,menu tab} */}
-          <div className="nav_menu">
-            <div className="menu_block">
-              <div className="search_pizzaMobile">
-                <AiOutlineSearch onClick={() => setisOpenSearch((x) => !x)} />
-                {isOpenSearch && (
-                  <form onSubmit={handleSubmit}>
-                    <div className="form_add">
-                      <input
-                        type="text"
-                        value={SearchTerm}
-                        placeholder="Tìm kiếm sản phẩm"
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                      />
-                      <button type="submit">
-                        {' '}
-                        {loading ? (
-                          <div className="loading_featurees">
-                            <AiOutlineLoading3Quarters />
-                          </div>
-                        ) : (
-                          <AiOutlineSearch />
-                        )}
-                      </button>
-                    </div>
-                  </form>
-                )}
-              </div>
-              <div className="icon_cart">
-                <BsCart3 onClick={handleClickLinkCart} />
-                <span>{count}</span>
-              </div>
-              <span>Giỏ hàng</span>
-              {isopen ? (
-                <AiOutlineClose className="icon_close" onClick={() => setisopen((x) => !x)} />
-              ) : (
-                <FiMenu onClick={() => setisopen((x) => !x)} />
-              )}
-            </div>
-          </div>
-          {/* menu account mobile : none  ,  tablet : block */}
-          <div className="nav_account">
-            {userInfor && (
-              <>
-                <div className="nav_account_figust">
-                  <img
-                    src={
-                      userInfor?.image ||
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxsIVGXUz77jSd-Zgau2ZqRpL_STVm4gbxWQ&usqp=CAU'
-                    }
-                    alt=""
-                    onClick={handleOpenMenuAccount}
-                  />
-                  <div
-                    className={openMenuAccount ? 'nav_acount-menu active_menu' : 'nav_acount-menu'}
-                  >
-                    <p onClick={hanleLooutClick}>Locout</p>
-                    <p>Profile</p>
-                  </div>
-                </div>
-                <h3>{userInfor?.username}</h3>
-              </>
-            )}
 
-            {!userInfor && (
-              <>
-                {' '}
-                <MdOutlineAccountCircle />
-                <span>
-                  <Link to="/login">Đăng nhập</Link>
-                </span>
-                /
-                <span>
-                  <Link to="/register">Tạo tài khoản</Link>
-                </span>{' '}
-              </>
-            )}
-            <FcRating />
-          </div>
-        </div>
+  useEffect(() => {
+    const hanndleWindowClose = (e: any) => {
+      if (window.innerWidth > 700) {
+        setisopen(false);
+      }
+    };
+
+    window.addEventListener('resize', hanndleWindowClose);
+
+    return () => window.removeEventListener('resize', hanndleWindowClose);
+  }, [window.innerWidth]);
+  const checkCategory = ['piza', 'newDish'];
+
+  return (
+    <nav className={isScroll ? 'nav activeNav' : 'nav'}>
+      <div className="nav_block">
+        <NavTop
+          closeRef={closeRef}
+          setActive={setActive}
+          activeIco={activeIco}
+          isorder={isorder}
+          activeTranForm={activeTranForm}
+          handleChangeInput={handleChangeInput}
+          handleChangeselected={handleChangeselected}
+          store={store}
+          inputRef={inputRef}
+          isOpenSearch={isOpenSearch}
+          setisOpenSearch={setisOpenSearch}
+          handleSubmit={handleSubmit}
+          SearchTerm={SearchTerm}
+          setSearchTerm={setSearchTerm}
+          loading={loading}
+          handleClickLinkCart={handleClickLinkCart}
+          count={count}
+          setisopen={setisopen}
+          isopen={isopen}
+          userInfor={userInfor}
+          handleOpenMenuAccount={handleOpenMenuAccount}
+          openMenuAccount={openMenuAccount}
+          hanleLooutClick={hanleLooutClick}
+        />
         <div className={isopen ? 'nav_Link actives_link' : 'nav_Link'}>
           <Menulink
             setActive={setActive}
@@ -360,10 +256,12 @@ export default function Headers(props: HeadersProps) {
               <BsCart3 />
 
               <span>Giỏ hàng</span>
-              <span className="nav_cart-count">{count}</span>
+              <span className="nav_cart-count">
+                {Object.keys(userInfor).length === 0 ? 0 : count}
+              </span>
 
               <div className="nav_miniCart">
-                {dataCart?.length === 0 ? (
+                {dataCart?.length === 0 || Object.keys(userInfor).length === 0 ? (
                   <div className="flayout_cart">
                     <h2>Rất tiếc!!! Bạn không có sản phẩm ở đây</h2>
                     <p>
@@ -373,76 +271,17 @@ export default function Headers(props: HeadersProps) {
                 ) : (
                   <div className="miniCart_list">
                     {dataCart?.map((items: any, index: number) => (
-                      <div className="miniCart_item" key={index}>
-                        <div className="miniCart_blocks">
-                          <div className="miniCart_left">
-                            <div className="miniCart_aside">
-                              <img src={items.product.image} alt={items.product.name} />
-                            </div>
-                          </div>
-
-                          <div className="miniCart_right">
-                            <div className="right_block">
-                              <div className="miniCart_add">
-                                <div className="miniCart_add-left">
-                                  <div className="miniCart_name">
-                                    <span>{items.product.name}</span>
-                                  </div>
-                                  {Object.keys(items.product.size).length > 0 &&
-                                    Object.values(items.product.size).every((e) => e !== '') && (
-                                      <div className="miniCart_sizeName">
-                                        <span>{`Kích thước - ${items.product.size.name}`}</span>
-                                      </div>
-                                    )}
-
-                                  {items.product.soles.length > 0 && (
-                                    <div className="miniCart_soles">
-                                      <span>{`Đế - ${items.product.soles}`}</span>
-                                    </div>
-                                  )}
-                                  {Object.keys(items.product.more).length > 0 &&
-                                    Object.values(items.product.more).every((e) => e !== '') && (
-                                      <div className="miniCart_more">
-                                        <span>{`Thếm nhân - ${items.product.more.name}`}</span>
-                                      </div>
-                                    )}
-                                </div>
-                                <div
-                                  className="miniCart_delete"
-                                  onClick={() => handleDeleteCart(items.id)}
-                                >
-                                  <RiDeleteBin6Fill />
-                                </div>
-                              </div>
-                              <div className="miniCart_bottom">
-                                <div className="miniCart_quantity">
-                                  <span>Số lượng: 1</span>
-                                </div>
-                                <div className="miniCart_price">
-                                  <span>
-                                    {formatPrice(
-                                      (items.product.price +
-                                        (Object.keys(items.product.size).length > 0 &&
-                                          items.product.size.price) +
-                                        (Object.keys(items.product.more).length > 0 &&
-                                          items.product.more.price)) *
-                                        items.quantity
-                                    )}
-                                  </span>
-                                </div>
-                              </div>
-                              {/* <div className="miniCart_quantity">
-                          
-                            </div> */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <MinniCartItem
+                        items={items}
+                        key={index}
+                        handleDeleteCart={handleDeleteCart}
+                        checkCategory={checkCategory}
+                      />
                     ))}
                   </div>
                 )}
 
-                {dataCart.length > 0 && (
+                {dataCart.length > 0 && Object.keys(userInfor).length > 0 && (
                   <div className="miniCart_total">
                     <div className="miniCart_total-block">
                       <div className="minicart_title">

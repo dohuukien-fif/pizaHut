@@ -375,6 +375,15 @@
       align-items: flex-start;
 
       margin-bottom: 50px;
+
+      @include mobile {
+        flex-direction: column;
+
+        row-gap: 10px;
+      }
+      & > button:first-child {
+        background: green;
+      }
       & > button {
         padding: 10px 0;
 
@@ -396,6 +405,10 @@
         justify-content: center;
 
         cursor: pointer;
+
+        @include mobile {
+          width: 100%;
+        }
 
         & > svg:first-child {
           margin-right: 10px;

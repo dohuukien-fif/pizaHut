@@ -24,7 +24,7 @@ export default function BakedNoodlesList({ data, setIdPizza }: BakedNoodlesListP
           .filter((item) => item.category === 'BakedNoodles')
           .slice(0, isContinent)
           .map((items, index) => (
-            <BakedNoodlesItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <BakedNoodlesItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {isContinent <= data.filter((item) => item.category === 'BakedNoodles').length && (

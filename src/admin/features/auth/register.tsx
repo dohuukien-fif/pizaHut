@@ -5,7 +5,7 @@ import { GiJusticeStar } from 'react-icons/gi';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 // import { unwrap } from '@reduxjs/toolkit';
-import { register } from './../../../app/userRedux';
+import { register } from './../../../app/userReduxAdmin';
 import './register.scss';
 export interface RegisterFeaturesProps {}
 
@@ -27,7 +27,7 @@ export default function RegisterFeatures(props: RegisterFeaturesProps) {
       const user = await dispatch(action).unwrap();
       console.log(user);
 
-      navigate('/');
+      navigate('/admin');
       //close Dialog
       // const { closeDialog } = props;
       // if (closeDialog) {
@@ -68,7 +68,7 @@ export default function RegisterFeatures(props: RegisterFeaturesProps) {
                 required
               />
             </div> */}
-            <div className="form_group">
+            {/* <div className="form_group">
               <label>
                 E-mail <GiJusticeStar />
               </label>
@@ -77,7 +77,7 @@ export default function RegisterFeatures(props: RegisterFeaturesProps) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Nhập email của bạn tại đây"
               />
-            </div>
+            </div> */}
             <div className="form_group">
               <label>
                 Mật khẩu <GiJusticeStar />

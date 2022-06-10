@@ -21,7 +21,7 @@ export default function PizzaPerferList({ data, setIdPizza }: PizzaPerferListPro
           .filter((item) => item.category === 'piza')
 
           .map((items, index) => (
-            <PizzaPerferItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <PizzaPerferItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

@@ -9,22 +9,11 @@ export default function useSearchData(data: any) {
   React.useEffect(() => {
     setLoading(true);
     const setdaSearchApi = async () => {
-      const res: any = await ProductApi.get();
-      const newRess = await res.filter((items: any) =>
-        items.category
-          ?.toLowerCase()
-          .includes(data.replace('+', ' ')?.split('=')[1].trim().toLowerCase())
+      const res: any = await ProductApi.searchData(
+        data.replace('+', ' ')?.split('=')[1].trim().toLowerCase()
       );
 
-      console.log('resssssssssssssssss', newRess);
-
-      // const setdata = res.filter((items: any) =>
-      //   items.categories
-      //     ?.toLowerCase()
-      //     .includes(data.replace('+', ' ')?.split('=')[1]?.toLowerCase())
-      // );
-
-      setproduct(newRess);
+      setproduct(res.data);
       setLoading(false);
     };
     setdaSearchApi();

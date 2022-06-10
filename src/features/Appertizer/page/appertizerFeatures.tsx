@@ -12,7 +12,7 @@ import LoadingFeatures from '../../../component/loadingFeatures';
 import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import ProductApi from './../../../api/productApi';
 import Information from './../component/overlay/information';
-import Thumbnail from '../component/overlay/thumbnail';
+import Thumbnail from './../component/overlay/thumbnail';
 import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
@@ -27,7 +27,7 @@ export default function AppertizerFeatures(props: any) {
   const [isAccountion, setisAccountion] = useState<boolean>(false);
   const [detailProduct, setdetailProduct] = useState<any>({});
   const [isoverlay, setisoverlay] = useState<boolean>(false);
-  const [setPrice, setsetPrice] = useState<any>({
+  const [Price, setsetPrice] = useState<any>({
     priceSize: 0,
     priceMore: 0,
   });
@@ -37,15 +37,15 @@ export default function AppertizerFeatures(props: any) {
 
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
-  console.log('setPrice', setPrice);
+  console.log('setPrice', Price);
   const closeRef = useRef(null);
   useEffect(() => {
     (async () => {
       setLoadingappertizer(true);
       try {
         const res: any = await ProductApi.get();
-        console.log('des', res);
-        setDataPiza(res);
+        console.log('des', res.data);
+        setDataPiza(res.data);
         setLoadingappertizer(false);
       } catch (err) {}
     })();
@@ -99,7 +99,7 @@ export default function AppertizerFeatures(props: any) {
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.id === newId));
+        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
         setisoverlay(true);
         setLoading(false);
         resolve(true);
@@ -115,7 +115,7 @@ export default function AppertizerFeatures(props: any) {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
         const action = addProduct({
-          id: detailProduct.id,
+          id: detailProduct.orderId,
           product: {
             ...detailProduct,
             size: {},
@@ -186,7 +186,7 @@ export default function AppertizerFeatures(props: any) {
             </div>
             <div className="overlay_block">
               <div className="overlay_thumbanil">
-                <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                <Thumbnail detail={detailProduct} Price={Price} />
               </div>
               <div className="overlay_information">
                 <Information

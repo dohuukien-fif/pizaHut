@@ -20,7 +20,7 @@ export default function PizzaStuffingList({ data, setIdPizza }: PizzaStuffingLis
           .filter((item) => item.category === 'Stuffing')
 
           .map((items, index) => (
-            <PizzaStuffingItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <PizzaStuffingItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

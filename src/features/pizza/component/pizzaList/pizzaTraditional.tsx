@@ -18,7 +18,7 @@ export default function PizzaTraditional({ data, setIdPizza }: PizzaTraditionalP
         {data
           .filter((item) => item.category === 'Traditional')
           .map((items, index) => (
-            <TraditionItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <TraditionItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

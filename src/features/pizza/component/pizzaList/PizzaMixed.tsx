@@ -20,7 +20,7 @@ export default function PizzaMixedList({ data, setIdPizza }: PizzaMixedListProps
           .filter((item) => item.category === 'mixed')
 
           .map((items, index) => (
-            <PizzaMixedItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <PizzaMixedItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
     </>

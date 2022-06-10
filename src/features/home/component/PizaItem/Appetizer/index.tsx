@@ -17,7 +17,7 @@ export default function ApptizerItem({ items, handleIds }: ApptizerItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="appetizer_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="appetizer_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="appetizer_block">
         <div className="appetizer_aside">
           <img src={image} alt="" />

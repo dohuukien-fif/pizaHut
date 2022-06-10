@@ -10,7 +10,13 @@ export interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElem
   label?: string;
 }
 
-export default function InputFeild({ name, control, label, ...inputProps }: InputFieldProps) {
+export default function InputFeild({
+  name,
+  placeholder,
+  control,
+  label,
+  ...inputProps
+}: InputFieldProps) {
   const {
     field: { value, onChange, onBlur, ref },
     fieldState: { invalid, error },
@@ -21,7 +27,14 @@ export default function InputFeild({ name, control, label, ...inputProps }: Inpu
 
   return (
     <>
-      <input type="text" name={name} value={value} onChange={onChange} onBlur={onBlur} />
+      <input
+        type="text"
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        placeholder={placeholder}
+      />
     </>
   );
 }

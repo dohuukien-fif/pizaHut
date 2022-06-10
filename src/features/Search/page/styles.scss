@@ -1,5 +1,5 @@
 @use './../../../sass/index.scss' as *;
-.appertizer {
+.search {
   margin-top: 150px;
 
   // scroll-behavior: smooth;
@@ -14,15 +14,16 @@
   @include mobilesmall {
     width: 95%;
     margin: auto;
+
     // margin-top: 100px;
   }
-  .appertizer_container {
+  .search_container {
     width: 90%;
     margin: auto;
     @include mobilesmall {
       width: 100%;
     }
-    .appertizer_block {
+    .search_block {
       width: 82%;
       margin: auto;
       @include tablet {
@@ -75,7 +76,7 @@
 
         top: 50px;
       }
-      .appertizer_title {
+      .search_title {
         padding: 0px 10px 10px 10px;
         border-bottom: 1px solid rgb(208, 205, 205);
         margin-bottom: 40px;
@@ -92,7 +93,7 @@
           }
         }
       }
-      .appertizer_link {
+      .search_link {
         // padding: 5px;
         // padding-top: 40px;
         padding-bottom: 10px;
@@ -189,7 +190,7 @@
           }
         }
       }
-      .appertizer_new {
+      .search_new {
         .new {
           .new_title {
             border-bottom: 1px solid rgb(208, 205, 205);
@@ -223,7 +224,10 @@
     z-index: 7777;
     opacity: 0;
     visibility: hidden;
-    transition: all 300ms linear;
+
+    transform: scale(0);
+
+    transition: 0.3s ease-in-out !important;
 
     .overlay_wrapper {
       // margin-top: 10px;
@@ -306,9 +310,13 @@
       }
     }
   }
-  .activesOvelayappertizer {
+  .activesOvelaysearch {
     opacity: 1;
     visibility: visible;
+
+    transform: scale(0);
+
+    transition: 0.3s ease-in-out !important;
   }
 }
 .loading_featurees {

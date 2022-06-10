@@ -20,7 +20,7 @@ export default function SaladList({ data, setIdPizza }: SaladListProps) {
           .filter((item) => item.category === 'Salad')
           .slice(0, isContinent)
           .map((items, index) => (
-            <SaladItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <SaladItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {isContinent <= data.filter((item) => item.category === 'Salad').length && (

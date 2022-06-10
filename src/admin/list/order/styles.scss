@@ -1,0 +1,149 @@
+.orders {
+  width: 95%;
+  margin: 20px auto;
+
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .orders__swapper {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    padding: 15px;
+
+    font-size: 14px;
+
+    overflow-x: scroll;
+
+    display: flex;
+    flex-direction: column;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .orders__title {
+      padding: 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .order__title--left {
+        & > p {
+          font-size: 30px;
+          font-weight: 700;
+        }
+        & > span {
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+      .order__title--right {
+        & > button {
+          padding: 10px;
+
+          cursor: pointer;
+
+          border: none;
+
+          color: white;
+
+          background: blue;
+
+          display: flex;
+          align-items: center;
+
+          column-gap: 10px;
+
+          & > svg {
+            font-size: 25px;
+          }
+        }
+      }
+    }
+    .orders__table {
+      min-width: 800px;
+
+      overflow-x: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .product__none {
+        font-size: 16px;
+        font-weight: 700;
+
+        display: flex;
+        align-items: center;
+
+        column-gap: 10px;
+
+        & > svg {
+          font-size: 25px;
+
+          color: rgb(152, 152, 33);
+        }
+      }
+      .orders__table--title {
+        display: flex;
+        align-items: center;
+
+        padding: 15px;
+
+        border: 1px solid rgb(223, 217, 217);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-weight: 700;
+        .orders__left {
+          flex: 1;
+
+          display: flex;
+
+          & > span {
+            flex: 1;
+          }
+        }
+        .orders__right {
+          flex: 2;
+          display: flex;
+          & > span {
+            flex: 1;
+          }
+        }
+      }
+      .orders__list {
+        border: 1px solid gray;
+      }
+    }
+    .order__pagination {
+      margin-left: auto;
+
+      margin-top: 10px;
+
+      .activePagination {
+        background: blue;
+        color: white;
+
+        border: 1px solid rgb(17, 17, 165);
+      }
+      & > button {
+        height: 30px;
+        width: 30px;
+
+        margin-left: 5px;
+
+        background: white;
+
+        border: 1px solid rgb(196, 192, 192);
+
+        cursor: pointer;
+
+        font-size: 13px;
+      }
+    }
+  }
+}

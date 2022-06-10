@@ -105,7 +105,7 @@ export default function SearchFeatures(props: any) {
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.id === newId));
+        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
         setisoverlay(true);
         setLoading(false);
         resolve(true);
@@ -121,7 +121,7 @@ export default function SearchFeatures(props: any) {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
         const action = addProduct({
-          id: detailProduct.id,
+          id: detailProduct.orderId,
           product: {
             ...detailProduct,
             size: { name: newValue.sizeName, price: newValue.sizePrice },
@@ -154,16 +154,16 @@ export default function SearchFeatures(props: any) {
     return () => window.removeEventListener('click', hanndleWindowClose);
   }, []);
   return (
-    <div className="appertizer">
+    <div className="search">
       <Silder />{' '}
       {LoadingSearch ? (
         <LoadingFeatures />
       ) : (
         <>
           {' '}
-          <div className="appertizer_container">
-            <div className="appertizer_block">
-              <div className="appertizer_new" id="section1">
+          <div className="search_container">
+            <div className="search_block">
+              <div className="search_new" id="section1">
                 <div className="new">
                   <div className="new_title">
                     <span>{`Bạn đang muốn tìm: ${params.replace('+', ' ')?.split('=')[1]}`}</span>
@@ -176,10 +176,7 @@ export default function SearchFeatures(props: any) {
           {Loading ? (
             <LoadingFeatures />
           ) : (
-            <div
-              ref={closeRef}
-              className={isoverlay ? 'overlay activesOvelayappertizer' : 'overlay'}
-            >
+            <div ref={closeRef} className={isoverlay ? 'overlay activesOvelaysearch' : 'overlay'}>
               <div className="overlay_wrapper">
                 {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
                 <div className="overlay_closes">

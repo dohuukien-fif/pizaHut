@@ -1,7 +1,5 @@
 @use './../../../sass/index.scss' as *;
 .registerAdmin {
-  margin-top: 140px;
-
   min-height: 75vh;
 
   @include tablet {

@@ -1,16 +1,28 @@
 import * as React from 'react';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '../../../../utils';
 import { ProductListProps } from '../interface';
 
 export interface ProductItemProps {
   item: ProductListProps;
-  index: number;
+  getDelete: (id: any) => void;
 }
 
-export default function ProductItem({ item, index }: ProductItemProps) {
+export default function ProductItem({ item, getDelete }: ProductItemProps) {
+  const navigete = useNavigate();
+
+  const handleNavigeteId = (id: string) => {
+    console.log(id);
+    navigete(`/admin/product/${id}`);
+  };
+  const handleDeleteId = (id: any) => {
+    if (getDelete) {
+      getDelete(id);
+    }
+  };
   return (
-    <div className="product__item" key={index}>
+    <div className="product__item">
       <div className="product__item--left">
         <div className="product__id">
           <span>{item.id}</span>
@@ -27,11 +39,11 @@ export default function ProductItem({ item, index }: ProductItemProps) {
           <span>{formatPrice(item.price)}</span>
         </div>
         <div className="product__action">
-          <button>
+          <button onClick={() => handleNavigeteId(item.orderId)}>
             <span>Edit</span>
           </button>
           <div className="product__delete">
-            <RiDeleteBin5Line />
+            <RiDeleteBin5Line onClick={() => handleDeleteId(item.orderId)} />
           </div>
         </div>
       </div>

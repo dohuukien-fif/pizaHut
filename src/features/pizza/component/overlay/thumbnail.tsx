@@ -5,15 +5,17 @@ import './styles.scss';
 export interface ThumbnailProps {
   detail: PizzaFeaturesProps;
   setPrice: any;
-  setpriceMore: any;
+  setpriceMore: React.Dispatch<string>;
 }
 
 export default function Thumbnail({ detail, setPrice, setpriceMore }: ThumbnailProps) {
   const { image, price } = detail;
   const updatePrice =
-    setPrice.sizePrice !== 0 ? price + (setPrice.sizePrice + setPrice.morePrice) : price;
+    setPrice.sizePrice !== 0
+      ? price + (Number(setPrice.sizePrice || 0) + Number(setPrice.morePrice || 0))
+      : price;
 
-  console.log(price, setPrice, setpriceMore);
+  console.log(price, setPrice);
   return (
     <div className="thumbnail_aside">
       <div className="thumbnail_image">

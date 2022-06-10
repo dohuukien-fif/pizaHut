@@ -17,7 +17,7 @@ export default function DrinkItem({ items, handleIds }: DrinkItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="drink_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="drink_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="drink_block">
         <div className="drink_aside">
           <img src={image} alt="" />

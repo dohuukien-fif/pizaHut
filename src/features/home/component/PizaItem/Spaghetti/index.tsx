@@ -19,7 +19,7 @@ export default function SpaghettiItem({ items, handleIds }: SpaghettiItemProps) 
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="spaghetti_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="spaghetti_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="spaghetti_block">
         <div className="spaghetti_aside">
           <img src={image} alt="" />

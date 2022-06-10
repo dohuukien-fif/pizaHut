@@ -7,6 +7,8 @@ import InputFeild from '../../../component/formControl/inputFeild';
 import './styles.scss';
 import { uid } from '../../../utils';
 import TextFied from '../../../component/formControl/textFeild';
+import FormNewProduct from './formEdit';
+import ProductApi from '../../../api/productApi';
 export interface NewProductProps {}
 export interface FormProps {
   category: string;
@@ -26,6 +28,7 @@ export default function NewProduct(props: NewProductProps) {
     price: 0,
   });
   const [soles, setsoles] = React.useState<any>([]);
+  const [openMore, setopenMore] = React.useState<boolean>(false);
 
   const [item, setitem] = React.useState<any>([]);
   const { register, handleSubmit, control, reset } = useForm({
@@ -42,7 +45,9 @@ export default function NewProduct(props: NewProductProps) {
   });
 
   const id = uid();
-
+  const setOpenMore = () => {
+    setopenMore((x) => !x);
+  };
   const setOpenSize = () => {
     setopenSize((x) => !x);
   };
@@ -102,163 +107,25 @@ export default function NewProduct(props: NewProductProps) {
     setsoles([]);
     reset();
   };
+  const handleChangCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+  };
+  let orderId = Math.floor(Math.random() * 1000) + Date.now();
+
+  const handleSubmitForm = async (value: any) => {
+    if (Object.values(value).includes('')) return;
+    console.log('form', value);
+
+    await ProductApi.add(value);
+  };
+
   return (
     <div className="newProduct">
       <div className="newProduct__swapper">
         <div className="newProduct__title">
           <span>NewProduct</span>
         </div>
-        <form onSubmit={handleSubmit(handleFormSubmit)}>
-          <div className="newProduct__group">
-            <label>
-              Id <strong>*</strong>
-            </label>
-            <span>{id}</span>
-          </div>
-          <div className="newProduct__group">
-            <label>
-              Categories <strong>*</strong>
-            </label>
-            <InputFeild control={control} name="category" />
-          </div>
-          <div className="newProduct__group">
-            <label>
-              Image <strong>*</strong>
-            </label>
-            <input type="file" id="file" accept="image/*" onChange={handleChangeFiles} />
-
-            <label htmlFor="file">
-              <span>Upload File</span>
-            </label>
-
-            {image && <img src={image} alt="" />}
-          </div>
-          <div className="newProduct__group">
-            <label>
-              Name <strong>*</strong>
-            </label>
-            <InputFeild control={control} name="name" />
-          </div>
-          <div className="newProduct__group">
-            <label>
-              Price <strong>*</strong>
-            </label>
-            <InputFeild control={control} name="price" />
-          </div>
-          <div className="newProduct__group">
-            <label>
-              Spice <strong>*</strong>
-            </label>
-            <InputFeild control={control} name="spice" />
-          </div>
-          <div className="newProduct__group">
-            <label>
-              Description <strong>*</strong>
-            </label>
-            <TextFied control={control} name="detail" />
-          </div>
-          <div className="newProduct__coutine">
-            <div className="newProduct__group">
-              <div className="newProduct__checkbox">
-                <label>
-                  Size <strong>*</strong>
-                </label>
-                <input type="radio" name="size" id="" onClick={setOpenSize} />
-              </div>
-              {openSize && (
-                <div className="newProduct__input">
-                  <div className="newProduct__input--left">
-                    <label>
-                      name <strong>*</strong>
-                    </label>
-                    <input type="text" name="name" onChange={handleChage} />
-                    <label>
-                      price <strong>*</strong>
-                    </label>
-                    <input type="text" name="price" onChange={handleChage} />
-                    <button type="button" onClick={handlButton}>
-                      submit
-                    </button>
-                  </div>
-
-                  <div className="newProduct__input--right">
-                    <div className="newProduct__list">
-                      {size?.map((item, index) => (
-                        <div className="newProduct__item" key={index}>
-                          <div className="newProduct__index">
-                            <span>{index}</span>
-                          </div>
-                          <div
-                            className="newProduct__content
-                          "
-                          >
-                            <div className="newProduct__name">
-                              <span>Name:</span>
-                              <span>{item.name}</span>
-                            </div>
-                            <div className="newProduct__price">
-                              <span>Price:</span>
-                              <span>{item.price}</span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="newProduct__group">
-              <div className="newProduct__checkbox">
-                <label>
-                  Soles <strong>*</strong>
-                </label>
-                <input type="radio" name="" value={item} id="" onClick={setOpenSoles} />
-              </div>
-              {openSoles && (
-                <div className="newProduct__input">
-                  <div className="newProduct__input--left">
-                    {' '}
-                    <label>
-                      Item <strong>*</strong>
-                    </label>
-                    <input type="text" name="name" onChange={handleChageSoles} />
-                    <button type="button" onClick={handleButtonSoles}>
-                      submit
-                    </button>
-                  </div>
-                  <div className="newProduct__input--right">
-                    <div className="newProduct__list">
-                      {soles?.map((items: any, index: number) => (
-                        <div className="newProduct__item" key={index}>
-                          <div className="newProduct__index">
-                            <span>{index}</span>
-                          </div>
-                          <div
-                            className="newProduct__content
-                          "
-                          >
-                            <div className="newProduct__name">
-                              {items.item.map((itemss: Array<string>, index: number) => (
-                                <>
-                                  <span>Item:</span>
-                                  <span>{itemss}</span>
-                                </>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="newProduct__btn">
-            <button type="submit">submit</button>
-          </div>
-        </form>
+        <FormNewProduct onSubmit={handleSubmitForm} />
       </div>
     </div>
   );

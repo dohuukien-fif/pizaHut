@@ -1,0 +1,106 @@
+.orders__item:last-child {
+  border: none;
+}
+.orders__item {
+  display: flex;
+  align-items: center;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgb(223, 217, 217);
+
+  padding: 10px;
+
+  min-height: 80px;
+
+  .orders__left {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    .orders__tracking {
+      flex: 1;
+      font-weight: 700;
+    }
+    .orders__product {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+
+      & > img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+  .orders__right {
+    flex: 2;
+
+    display: flex;
+
+    .orders__status {
+      & > span {
+        padding: 10px;
+        background: #bc7f30;
+        border-radius: 5px;
+
+        color: white;
+      }
+      .refund {
+        background: #bc1309;
+      }
+
+      .shipping {
+        background: #30a544;
+      }
+
+      .succerss {
+        background: #2790f2;
+      }
+    }
+    .orders__date,
+    .orders__amount,
+    .orders__payment,
+    .orders__status,
+    .orders__action {
+      flex: 1;
+    }
+    .orders__action {
+      flex: 1;
+      display: flex;
+
+      column-gap: 10px;
+
+      & > select {
+        border-radius: 5px;
+
+        padding: 5px;
+
+        & > option {
+          margin: 10px;
+        }
+      }
+    }
+    .orders__amount {
+      & > span {
+        font-weight: 700;
+      }
+    }
+    .orders__payment {
+      & > span {
+        padding: 10px 5px;
+
+        background: green;
+
+        border-radius: 5px;
+
+        color: white;
+      }
+      .pickup {
+        background: rgb(217, 56, 56);
+      }
+    }
+  }
+}

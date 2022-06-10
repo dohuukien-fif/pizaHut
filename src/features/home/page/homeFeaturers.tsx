@@ -52,26 +52,40 @@ export default function HomeFeatures(props: any) {
     (async () => {
       try {
         const res: any = await ProductApi.get();
-        console.log('des', res);
-        setDataPiza(res);
+        console.log('des', res.data);
+        setDataPiza(res.data);
         setLoadingList(false);
       } catch (err) {}
     })();
   }, []);
 
   function setIdPizza(newId: number): any {
+    console.log(newId);
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.id === newId));
+        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
         setisoverlay(true);
         setLoading(false);
         resolve(true);
       }, 2000);
     });
   }
-
+  const checkCategory = ['piza', 'newDish'];
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    const checkCtegory = checkCategory.includes(detailProduct.category)
+      ? {
+          size: { name: newValue.sizeName, price: newValue.sizePrice },
+          soles: [newValue.soles],
+          more: { name: newValue.moreName, price: newValue.morePrice },
+        }
+      : {
+          size: {},
+          soles: [],
+          more: {},
+        };
+    console.log('checkCtegory', checkCtegory);
+
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
@@ -79,9 +93,7 @@ export default function HomeFeatures(props: any) {
           id: detailProduct.id,
           product: {
             ...detailProduct,
-            size: { name: newValue.sizeName, price: newValue.sizePrice },
-            soles: [newValue.soles],
-            more: { name: newValue.moreName, price: newValue.morePrice },
+            ...checkCtegory,
           },
           note: values,
           quantity: 1,
@@ -115,7 +127,7 @@ export default function HomeFeatures(props: any) {
       <div className="container_fuiter">
         <div className="container_aside">
           <div className="discount">
-            <SildesNew />
+            <SildesNew setIdPizza={setIdPizza} />
           </div>
         </div>
 

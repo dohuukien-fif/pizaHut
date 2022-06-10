@@ -33,6 +33,7 @@ function CartItem({ items }: CartItemProps) {
     const action = removeProduct(id);
     dispatch(action);
   };
+  const checkCategory = ['piza', 'newDish'];
   return (
     <div className="cart_item">
       <div className="cart_blocks">
@@ -51,7 +52,7 @@ function CartItem({ items }: CartItemProps) {
                   <span>{`Kích thước - ${product.size.name}`}</span>
                 </div>
               )}
-            {product.soles.length > 0 && (
+            {product.soles.length > 0 && !product.soles.includes(null) && (
               <div className="cart_soles">
                 <span>{`Đế - ${product.soles}`}</span>
               </div>
@@ -80,15 +81,18 @@ function CartItem({ items }: CartItemProps) {
               </button>
             </div>
             <div className="cart_price">
-              <span>
-                {' '}
-                {formatPrice(
-                  (items.product?.price +
-                    (Object.keys(items.product?.size).length > 0 && items.product?.size?.price) +
-                    (Object.keys(items.product?.more).length > 0 && items.product?.more?.price)) *
-                    items.quantity
-                )}
-              </span>
+              {checkCategory.includes(items.product.category) ? (
+                <span>
+                  {formatPrice(
+                    (Number(items.product.price) +
+                      (Object.keys(items.product.size).length > 0 && items.product.size.price) +
+                      (Object.keys(items.product.more).length > 0 && items.product.more.price)) *
+                      items.quantity
+                  )}
+                </span>
+              ) : (
+                <span>{formatPrice(Number(items.product.price) + items.quantity)}</span>
+              )}
             </div>
             <div className="cart_delete">
               <RiDeleteBin6Fill onClick={() => handleDeleteCart(items.id)} />

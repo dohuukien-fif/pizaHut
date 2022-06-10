@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -16,7 +17,9 @@ const cartSlice = createSlice({
       ? JSON.parse(localStorage.getItem('GOGO') || '')
       : undefined,
     checked: false,
+    updateCart: [],
   },
+
   reducers: {
     addCheckOut: (state: any, action) => {
       const newCart = action.payload;
@@ -37,7 +40,15 @@ const cartSlice = createSlice({
 
       state.order = newCart;
     },
+    UpdateCart: (state: any, action) => {
+      const newCart = action.payload;
+      const index = state.products.findIndex((x: any) => x.code === newCart);
 
+      if (index >= 0) {
+        state.updateCart = state.products[index].product;
+        state.products = state.products.filter((item: any) => item.code !== newCart);
+      }
+    },
     setAddress: (state: any, action) => {
       const newCart = action.payload;
       state.address = newCart;
@@ -55,5 +66,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { setOrder, setAddress, addCheckOut, setAddressOld, setStore } = cartSlice.actions;
+export const { UpdateCart, setAddress, addCheckOut, setAddressOld, setStore, setOrder } =
+  cartSlice.actions;
 export default cartSlice.reducer;

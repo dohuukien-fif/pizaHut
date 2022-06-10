@@ -12,4 +12,5 @@ export interface SpaghettiFeaturesProps {
   more: any[];
   vegetable: string;
   chill: string;
+  orderId: any;
 }

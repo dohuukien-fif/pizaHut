@@ -14,25 +14,53 @@ import DeliveryFeatures from './list/delivery';
 import ProductFeatures from './list/product';
 import UserFeatures from './list/user';
 import './styles.scss';
+import './component/theme/styles.scss';
+import OrderFeatures from './list/order';
+import EditFeatures from './features/EditProduct';
+import ViewOrderFeatues from './list/order/view';
+import ProfileAmindFeatues from './features/auth/profile';
+import ViewCustomers from './list/customer/view';
+
 export interface IAppProps {}
 
 export default function App(props: any) {
-  const userInnfor = useSelector((state: any) => state.user.current);
-
+  const userInnfor = useSelector((state: any) => state.userAdmin.current);
+  const [themeColor, setThemeColor] = React.useState<boolean>(false);
   const isUserInfor = Object.keys(userInnfor);
   console.log('[userInnfor', isUserInfor, userInnfor);
   const [open, setopen] = React.useState<boolean>(false);
-
+  const closeRef = React.useRef<any>();
   const handleOpenMenu = () => {
     setopen(true);
   };
   const handleCloseMenu = () => {
     setopen(false);
   };
+
+  const handleThemeColorDark = () => {
+    setThemeColor(true);
+  };
+  const handleThemeColorLight = () => {
+    setThemeColor(false);
+  };
+  React.useEffect(() => {
+    const hanndleWindowClose = (e: any) => {
+      if (e.target === closeRef.current) {
+        setopen(false);
+      }
+    };
+    window.addEventListener('click', hanndleWindowClose);
+
+    return () => window.removeEventListener('click', hanndleWindowClose);
+  }, []);
+  console.log(closeRef.current);
   return (
-    <div className="admin">
+    <div className={themeColor ? 'admin admin__dark' : 'admin '} ref={closeRef}>
       <div className={open ? 'admin__left active' : 'admin__left'}>
-        <SideBar />
+        <SideBar
+          handleThemeColorDark={handleThemeColorDark}
+          handleThemeColorLight={handleThemeColorLight}
+        />
       </div>
 
       <div className="admin__right">
@@ -58,13 +86,7 @@ export default function App(props: any) {
               {isUserInfor.length > 0 && (
                 <>
                   {' '}
-                  <img
-                    src={
-                      userInnfor.image ||
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxsIVGXUz77jSd-Zgau2ZqRpL_STVm4gbxWQ&usqp=CAU'
-                    }
-                    alt=""
-                  />
+                  <img src={userInnfor.image} alt={userInnfor.username} />
                   <span>{userInnfor.username}</span>
                 </>
               )}
@@ -85,6 +107,11 @@ export default function App(props: any) {
           <Route path="newProduct" element={<NewProduct />} />
           <Route path="login" element={<LoginFeatures />} />
           <Route path="register" element={<RegisterFeatures />} />
+          <Route path="order" element={<OrderFeatures />} />
+          <Route path="profile" element={<ProfileAmindFeatues />} />
+          <Route path="product/:productId" element={<EditFeatures />} />
+          <Route path="order/:orderId" element={<ViewOrderFeatues />} />
+          <Route path="Customers/:customersId" element={<ViewCustomers />} />
           {/* <Route path="/login">
           {user ? <Navigate replace to="Trang-chu" /> :element={<LoginFeatures />}}
         </Route> */}

@@ -22,6 +22,9 @@
 
     overflow-x: scroll;
 
+    display: flex;
+    flex-direction: column;
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -80,15 +83,59 @@
               border-radius: 5px;
             }
           }
+          .delivery__action {
+            & > button {
+              border: none;
+
+              background: transparent;
+
+              cursor: pointer;
+              & > span {
+                background: green;
+                color: white;
+
+                padding: 10px;
+
+                border-radius: 5px;
+              }
+            }
+          }
           .delivery__stt,
           .delivery__user,
           .delivery__email,
           .delivery__quatity,
           .delivery__price,
-          .delivery__status {
+          .delivery__status,
+          .delivery__action {
             flex: 1;
           }
         }
+      }
+    }
+    .delivery__pagination {
+      margin-left: auto;
+
+      margin-top: 10px;
+
+      .activePagination {
+        background: blue;
+        color: white;
+
+        border: 1px solid rgb(17, 17, 165);
+      }
+      & > button {
+        height: 30px;
+        width: 30px;
+
+        margin-left: 5px;
+
+        background: white;
+
+        border: 1px solid rgb(196, 192, 192);
+
+        cursor: pointer;
+
+        font-size: 13px;
       }
     }
   }

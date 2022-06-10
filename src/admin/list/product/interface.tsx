@@ -1,7 +1,8 @@
 export interface ProductListProps {
   category: string;
   image: string;
-  id: number;
+  id: any;
+  orderId: any;
   name: string;
   price: number;
   detail: string;

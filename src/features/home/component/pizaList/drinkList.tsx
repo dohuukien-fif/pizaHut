@@ -19,7 +19,7 @@ export default function drinkList({ data, setIdPizza }: drinkListProps) {
           .filter((item) => item.category === 'drink')
           .slice(0, isContinent)
           .map((items, index) => (
-            <DrinkItem key={items.id} items={items} handleIds={hanndleIdNew} />
+            <DrinkItem key={index} items={items} handleIds={hanndleIdNew} />
           ))}
       </div>
       {isContinent <= data.filter((item) => item.category === 'drink').length && (

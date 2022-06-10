@@ -9,15 +9,26 @@ import { IoMdNotificationsOutline } from 'react-icons/io';
 import { FiLogOut } from 'react-icons/fi';
 import { SiSimpleanalytics } from 'react-icons/si';
 import { CgProfile } from 'react-icons/cg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../app/userRedux';
-
-SideBarItem.propTypes = {};
-
-function SideBarItem(props: any) {
+import { Link, useNavigate } from 'react-router-dom';
+export interface SideBarItemProps {
+  handleLight: () => void;
+  handleDark: () => void;
+}
+function SideBarItem({ handleDark, handleLight }: SideBarItemProps) {
+  const checkUserAdmin = useSelector((state: any) => state.userAdmin.current);
   const dispatch = useDispatch();
+  const navigete = useNavigate();
   const hadleLogOut = () => {
     dispatch(logout());
+  };
+  const handleNavigeteProfile = () => {
+    if (Object.keys(checkUserAdmin).length === 0) {
+      alert('vui lòng đăng nhập trước khi thay đổi mật khẩu');
+      return;
+    }
+    navigete('/admin/profile');
   };
   return (
     <>
@@ -28,8 +39,10 @@ function SideBarItem(props: any) {
         {/* group */}
         <div className="sideBar__main--content">
           <div className="sideBar__main--group">
-            <MdOutlineDashboard />
-            <p>Dashboard</p>
+            <Link to="/admin">
+              <MdOutlineDashboard />
+              <p>Dashboard</p>
+            </Link>
           </div>
         </div>
       </div>
@@ -41,24 +54,34 @@ function SideBarItem(props: any) {
         {/* group */}
         <div className="sideBar__list--content">
           <div className="sideBar__list--group">
-            <FaRegUser />
-            <p>User</p>
+            <Link to="/admin/user">
+              <FaRegUser />
+              <p>User</p>
+            </Link>
           </div>
           <div className="sideBar__list--group">
-            <SiSimpleanalytics />
-            <p>Customers</p>
+            <Link to="/admin/customers">
+              <SiSimpleanalytics />
+              <p>Customers</p>
+            </Link>
           </div>
           <div className="sideBar__list--group">
-            <BsCreditCard />
-            <p>Order</p>
+            <Link to="/admin/order">
+              <BsCreditCard />
+              <p>Order</p>
+            </Link>
           </div>
           <div className="sideBar__list--group">
-            <MdOutlineLocalShipping />
-            <p>Delivery</p>
+            <Link to="/admin/delivery">
+              <MdOutlineLocalShipping />
+              <p>Delivery</p>
+            </Link>
           </div>
           <div className="sideBar__list--group">
-            <FaStoreAlt />
-            <p>Product</p>
+            <Link to="/admin/product">
+              <FaStoreAlt />
+              <p>Product</p>
+            </Link>
           </div>
         </div>
       </div>
@@ -69,8 +92,10 @@ function SideBarItem(props: any) {
         {/* group */}
         <div className="sideBar__useful--content">
           <div className="sideBar__useful--group">
-            <IoMdNotificationsOutline />
-            <p>Notification</p>
+            <Link to="/admin/notification">
+              <IoMdNotificationsOutline />
+              <p>Notification</p>
+            </Link>
           </div>
         </div>
       </div>
@@ -80,19 +105,23 @@ function SideBarItem(props: any) {
         </div>
         {/* group */}
         <div className="sideBar__user--content">
-          <div className="sideBar__user--group">
-            <CgProfile />
-            <p>Profile</p>
+          <div className="sideBar__user--group" onClick={handleNavigeteProfile}>
+            <div className="sideBar__user--link">
+              <CgProfile />
+              <p>Profile</p>
+            </div>
           </div>
           <div className="sideBar__user--group" onClick={hadleLogOut}>
-            <FiLogOut />
-            <p>Logout</p>
+            <Link to="/admin/profile">
+              <FiLogOut />
+              <p>Logout</p>
+            </Link>
           </div>
         </div>
       </div>
       <div className="sideBar__theme">
-        <button></button>
-        <button></button>
+        <button onClick={handleLight}></button>
+        <button onClick={handleDark}></button>
       </div>
     </>
   );
