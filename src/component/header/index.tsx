@@ -1,28 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  AiOutlineClose,
-  AiOutlineHome,
-  AiOutlineLoading3Quarters,
-  AiOutlineSearch,
-} from 'react-icons/ai';
+import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
-import { FaShippingFast, FaStore } from 'react-icons/fa';
-import { FcRating } from 'react-icons/fc';
-import { FiMenu } from 'react-icons/fi';
-import { MdOutlineAccountCircle, MdOutlinePlace } from 'react-icons/md';
-import { RiDeleteBin6Fill } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '../../utils';
+import { removeProduct } from './../../app/cartRedux';
 import { logout } from './../../app/userRedux';
 import { cartAddress, Cartitem, cartItemCount, cartItemSelector } from './../cart/cartSelected';
 import { setAddress, setOrder, setStore } from './../checkOut/checkOutRedux';
-import Menulink from './menuLink';
-import './styles.scss';
-import { removeProduct } from './../../app/cartRedux';
-import NavTop from './nav/navTop';
 import { StoreProps } from './interface';
+import Menulink from './menuLink';
 import MinniCartItem from './miniCartItem';
+import NavTop from './nav/navTop';
+import './styles.scss';
 export interface HeadersProps {}
 
 export default function Headers(props: HeadersProps) {
@@ -64,10 +54,11 @@ export default function Headers(props: HeadersProps) {
   const closeRef = useRef(null);
   const dataCart = useSelector(cartItemSelector);
   const CartAddress = useSelector(cartAddress);
-  const priceItem = useSelector(Cartitem);
+  const priceItem = useSelector(Cartitem) || 0;
   const deboun: any = useRef(null);
   const inputRef = useRef<any>('');
 
+  console.log('dataCart', dataCart);
   const handleOpenMenuAccount = () => {
     setopenMenuAccount((x) => !x);
   };

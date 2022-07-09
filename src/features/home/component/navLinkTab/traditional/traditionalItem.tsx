@@ -18,7 +18,7 @@ export default function App({ items, handleIds }: AppProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="traditional_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="traditional_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="traditional_block">
         <div className="traditional_aside">
           <img src={image} alt="" />

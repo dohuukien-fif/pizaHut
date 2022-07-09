@@ -13,7 +13,7 @@ import {
   cartItemSelector,
   cartItemTotal,
   cartAddress,
-  cartStore
+  cartStore,
 } from '../cartSelected';
 import { useSelector } from 'react-redux';
 import { formatPrice } from '../../../utils';
@@ -26,6 +26,7 @@ export default function CartFeatures(props: any) {
   const [Error, setError] = React.useState<string>('');
   const dataCart = useSelector(cartItemSelector);
   const CartAddress = useSelector(cartAddress);
+  const userInfor = useSelector((state: any) => state.user.current);
   console.log('priceItem', priceItem, total, count);
   const Errrr = React.useRef<any>();
   const navigate = useNavigate();
@@ -33,7 +34,11 @@ export default function CartFeatures(props: any) {
   const handleLinkCart = () => {
     navigate('/');
   };
+
   const handlePay = () => {
+    if (Object.keys(userInfor).length === 0) {
+      return setError('Vui lòng đăng nhập !');
+    }
     if (dataCart.length === 0) {
       return setError('vui lòng mua hàng ! ');
     }

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import queryString from 'query-string';
 const axiosClient = axios.create({
   // https://api-pizza-home.herokuapp.com/
-  baseURL: 'https://api-pizza-home.herokuapp.com/api',
+  baseURL: 'http://localhost:5000/api',
   headers: {
     'Content-type': 'application/json',
   },

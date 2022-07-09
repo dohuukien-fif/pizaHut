@@ -286,12 +286,12 @@
           flex: 1;
 
           .salad_name {
-            margin-top: auto;
+            margin-bottom: auto;
 
             font-family: Nunito, sans-serif;
             font-size: 18px;
             font-weight: 600;
-            margin-bottom: 25px;
+
             cursor: pointer;
             & > span {
               &:hover {
@@ -306,7 +306,7 @@
             }
           }
           .salad_detail {
-            margin-top: auto;
+            margin-bottom: auto;
 
             font-size: 13px;
 

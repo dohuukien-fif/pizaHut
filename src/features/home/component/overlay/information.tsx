@@ -28,7 +28,8 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
     moreName: '',
     morePrice: 0,
   });
-  const checkCategory = ['piza', 'newDish'];
+
+  const checkCategory = ['piza', 'newDish', 'mixed', 'Seafood', 'Stuffing', 'Traditional'];
   const moreRef = useRef<any>(false);
   const { name, size, soles, Spice, price, more, category } = detail;
   //handle thêm
@@ -129,13 +130,18 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
         <div className="overlay_name">
           <span>{name}</span>
         </div>
-        <div className="overlay_choose">
-          <p>
-            {`Kich thước ${
-              size !== undefined && new Array(size[indexSize]).map((item) => item.name)
-            } - ${(soles !== undefined && index) || 'Dày'}`}
-          </p>
-        </div>
+        {checkCategory.includes(category) && (
+          <div className="overlay_choose">
+            <p>
+              {size?.length > 0 && (
+                <>{`Kich thước ${
+                  size !== undefined && new Array(size[indexSize]).map((item) => item?.name)
+                } - ${(soles !== undefined && index) || 'Dày'}`}</>
+              )}
+            </p>
+          </div>
+        )}
+
         <div className="overlay_spice">
           <span>{Spice}</span>
         </div>

@@ -9,20 +9,25 @@ export interface DeliveryFeaturesProps {}
 
 export default function DeliveryFeatures(props: DeliveryFeaturesProps) {
   const [data, setData] = React.useState<OrderProps[]>();
+  
   const navigete = useNavigate();
+
   const [pagination, setPagination] = React.useState<any>({
     page: 1,
     limit: 10,
     totalRow: 1,
   });
+
   const [filter, setfilter] = React.useState<any>({
     page: 1,
     limit: 10,
   });
+
   React.useEffect(() => {
     (async () => {
       const res: any = await OrderApi.getParamDelivery(filter);
       console.log(res);
+
       setData(res.data);
       setPagination(res.pagination);
     })();

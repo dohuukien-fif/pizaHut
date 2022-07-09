@@ -1,5 +1,5 @@
 export interface SpaghettiFeaturesProps {
-  category: string;
+  category?: string;
   id: number;
   image: string;
   name: string;

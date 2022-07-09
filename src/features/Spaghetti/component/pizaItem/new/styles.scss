@@ -286,12 +286,12 @@
           flex: 1;
 
           .spaghetti_name {
-            margin-top: auto;
+            margin-bottom: auto;
 
             font-family: Nunito, sans-serif;
             font-size: 18px;
             font-weight: 600;
-            margin-bottom: 10px;
+
             cursor: pointer;
             & > span {
               &:hover {

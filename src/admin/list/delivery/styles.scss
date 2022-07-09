@@ -3,12 +3,6 @@
 
   width: 95%;
 
-  overflow-x: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   .delivery__swapper {
     box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
     border-radius: 10px;

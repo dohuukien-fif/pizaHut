@@ -1,0 +1,57 @@
+@use './../../../../sass/index.scss' as *;
+.manager__modal.active__manager--modal {
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  transform: scale(1) !important;
+}
+.manager__modal {
+  cursor: pointer;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 7777;
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(0);
+
+  transition: 0.3s ease-in-out !important;
+
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .manager__modal--swap {
+    position: absolute;
+
+    background: #2b3646;
+
+    border-radius: 8px;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 200px;
+
+    padding: 15px;
+
+    bottom: auto;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include tablet {
+      top: 0%;
+      left: 0%;
+      transform: translate(-0%, -0%);
+      width: 100%;
+    }
+  }
+}

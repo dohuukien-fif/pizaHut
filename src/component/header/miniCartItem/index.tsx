@@ -20,7 +20,7 @@ export default function MinniCartItem({
       <div className="miniCart_blocks">
         <div className="miniCart_left">
           <div className="miniCart_aside">
-            <img src={items.product.image} alt={items.product.name} />
+            <img src={items.product?.image} alt={items.product?.name} />
           </div>
         </div>
 
@@ -29,25 +29,25 @@ export default function MinniCartItem({
             <div className="miniCart_add">
               <div className="miniCart_add-left">
                 <div className="miniCart_name">
-                  <span>{items.product.name}</span>
+                  <span>{items.product?.name}</span>
                 </div>
 
-                {Object.keys(items.product.size).length > 0 &&
-                  Object.values(items.product.size).every((e) => e !== '') && (
+                {Object.keys(items.product?.size).length > 0 &&
+                  Object.values(items.product?.size).every((e) => e !== '') && (
                     <div className="miniCart_sizeName">
-                      <span>{`Kích thước - ${items.product.size.name}`}</span>
+                      <span>{`Kích thước - ${items.product?.size?.name}`}</span>
                     </div>
                   )}
 
-                {items.product.soles.length > 0 && !items.product.soles.includes(null) && (
+                {items.product.soles.length > 0 && !items.product?.soles.includes(null) && (
                   <div className="miniCart_soles">
-                    <span>{`Đế - ${items.product.soles}`}</span>
+                    <span>{`Đế - ${items.product?.soles}`}</span>
                   </div>
                 )}
-                {Object.keys(items.product.more).length > 0 &&
-                  Object.values(items.product.more).every((e) => e !== '') && (
+                {Object.keys(items.product?.more).length > 0 &&
+                  Object.values(items.product?.more).every((e) => e !== '') && (
                     <div className="miniCart_more">
-                      <span>{`Thếm nhân - ${items.product.more.name}`}</span>
+                      <span>{`Thếm nhân - ${items.product?.more?.name}`}</span>
                     </div>
                   )}
               </div>
@@ -64,8 +64,10 @@ export default function MinniCartItem({
                   <span>
                     {formatPrice(
                       (Number(items.product.price) +
-                        (Object.keys(items.product.size).length > 0 && items.product.size.price) +
-                        (Object.keys(items.product.more).length > 0 && items.product.more.price)) *
+                        ((Object.keys(items.product.size).length > 0 && items.product.size.price) ||
+                          0) +
+                        ((Object.keys(items.product.more).length > 0 && items.product.more.price) ||
+                          0)) *
                         items.quantity
                     )}
                   </span>

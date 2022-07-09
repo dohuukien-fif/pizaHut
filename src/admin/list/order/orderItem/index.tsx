@@ -40,11 +40,11 @@ export default function OrderItem({ item, onSubmitSales }: OrderProps) {
         </div>
         <div className="orders__product">
           {/* <span>{`${item.product.charAt(0).toLocaleUpperCase()}${item.product.slice(1)}`}</span> */}
-          {new Array(item?.products[0])?.map((items: any, idx: number) => (
-            <React.Fragment key={idx}>
-              <img src={items.product.image} alt="" />
+          {item?.products?.map((items: any, idx: number) => (
+            <div className="orders__product--group" key={idx}>
+              <img src={items?.product?.image} alt="" />
               <span>{items?.product?.name}</span>
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </div>

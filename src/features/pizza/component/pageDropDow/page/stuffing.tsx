@@ -1,5 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineLike, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductApi from '../../../../../api/productApi';
 import { addProduct } from '../../../../../app/cartRedux';
@@ -13,6 +14,7 @@ import PizzaStuffing from '../component/pizaList/stuffingList';
 import LoadingListss from './../../../../../component/loadingFeatures/loadingList/index';
 export default function PizaStuffingFeatures(props: any) {
   const dispatch = useDispatch();
+  const Errrr = React.useRef<any>();
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [isScroll, setisScroll] = useState<boolean>(false);
   const [setActiveScroll, setsetActiveScroll] = useState<string>('');
@@ -23,6 +25,7 @@ export default function PizaStuffingFeatures(props: any) {
     priceSize: 0,
     priceMore: 0,
   });
+  const [Error, setError] = React.useState<string>('');
   const userInfor = useSelector((state: any) => state.user.current);
   const [LoadingOverlay, setLoadingOverlay] = useState<boolean>(false);
   const [Loading, setLoading] = useState<boolean>(false);
@@ -84,11 +87,17 @@ export default function PizaStuffingFeatures(props: any) {
       setisAccountion(false);
     }
   }, [window.innerWidth]);
-  function setIdPizza(newId: number): any {
+  async function setIdPizza(newId: number) {
+    console.log('newId', newId);
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
+        const res = ProductApi.getById(newId)
+          .then((data: any) => setdetailProduct(data))
+          .catch((error) => error);
+
+        console.log(res);
+
         setisoverlay(true);
         setLoading(false);
         resolve(true);
@@ -97,8 +106,7 @@ export default function PizaStuffingFeatures(props: any) {
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
     if (Object.keys(userInfor).length === 0) {
-      alert('vui    long   đăng   nhập');
-      return;
+      return setError('Vui lòng  đăng nhập !');
     }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
@@ -137,9 +145,59 @@ export default function PizaStuffingFeatures(props: any) {
 
     return () => window.removeEventListener('click', hanndleWindowClose);
   }, []);
+  React.useEffect(() => {
+    if (Error !== '') {
+      Errrr.current = setTimeout(() => {
+        setError('');
+      }, 5000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [Error]);
+
+  const handleClickError = () => {
+    setError('');
+  };
+
+  const [like, setLikes] = useState<string>('');
+  const handleClickLike = async () => {
+    console.log(detailProduct.orderId);
+
+    await axios.put(`http://localhost:5000/api/products/${detailProduct.orderId}/like`, {
+      userId: userInfor._id,
+    });
+
+    alert('cảm ơn bạn đã đánh giá');
+  };
+
+  console.log(detailProduct);
+  console.log(detailProduct?.like?.includes(userInfor?._id));
+
+  console.log(detailProduct?.like);
+
+  const checkLike = like === '' ? detailProduct?.like?.includes(userInfor?._id) : like;
+
+  const handleClickLikes = (newValue: string) => {
+    handleClickLike();
+    if (like === newValue) {
+      setLikes('unlike');
+    } else {
+      setLikes(newValue);
+    }
+  };
+
+  const handleCloseModalPizza = () => {
+    setdetailProduct({});
+    setisoverlay(false);
+  };
   return (
     <div className="salads">
       <Silder />
+      {Error !== '' && (
+        <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
+          <AiOutlineClose onClick={handleClickError} />
+          <p>{Error}</p>
+        </div>
+      )}
       <div className="salad_container">
         <div className="salad_block">
           <div className="salad_new" id="section1">
@@ -161,6 +219,17 @@ export default function PizaStuffingFeatures(props: any) {
       ) : (
         <div ref={closeRef} className={isoverlay ? 'overlay activesOvelaySalad' : 'overlay'}>
           <div className="overlay_wrapper">
+            <div className="overlay__like">
+              <button onClick={() => handleClickLikes(userInfor._id)}>
+                <AiOutlineLike
+                  className={
+                    checkLike === true || checkLike === userInfor._id
+                      ? 'icon__like active__like'
+                      : 'icon__like'
+                  }
+                />
+              </button>
+            </div>
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
             <div className="overlay_closes">
               {LoadingOverlay ? (
@@ -169,13 +238,17 @@ export default function PizaStuffingFeatures(props: any) {
                 </div>
               ) : (
                 <>
-                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                  <AiOutlineClose onClick={handleCloseModalPizza} />
                 </>
               )}
             </div>
             <div className="overlay_block">
               <div className="overlay_thumbanil">
-                <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                {!detailProduct.image ? (
+                  <LoadingFeatures />
+                ) : (
+                  <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                )}
               </div>
               <div className="overlay_information">
                 <Information

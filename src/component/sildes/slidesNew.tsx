@@ -81,8 +81,8 @@ export default function SildesNew({ setIdPizza }: SildesNewProps) {
         ) : (
           DataPiza.filter((e: any) => e.category === 'piza').map(
             (item: HomeFeaturesProps, index: number) => (
-              <SwiperSlide key={index}>
-                <div className="slide_aside" onClick={() => hanndleIdNew(item.orderId)}>
+              <SwiperSlide key={index} onClick={() => hanndleIdNew(item.orderId)}>
+                <div className="slide_aside">
                   <img className="silderl_new" src={item.image} alt="" />
                 </div>
 

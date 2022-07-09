@@ -9,6 +9,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import SelectedField from '../../../../formControl/selectedFeild';
 import RadioField from '../../../../formControl/radioFeild';
 import { Button } from 'react-scroll';
+import axios, { Axios } from 'axios';
+import { CityProps } from '../../../../../model/city';
 export interface FormDeliveryProps {
   setinfors: React.Dispatch<React.SetStateAction<string>>;
   infors: any;
@@ -134,15 +136,36 @@ function FormDelivery({
       fullName: '',
       phone: '',
       home: '',
-      street: '',
+
       streets: '',
-      city: '',
-      coutry: '',
+
       time: '',
       // shipper: '' || 'giao ngay',
     },
   });
+  const [City, setCity] = React.useState({
+    city: '',
+    street: '',
+    coutry: '',
+  });
+  const [data, setdata] = React.useState<CityProps[]>([]);
 
+  const handleChan = (e: any) => {
+    const { name, value } = e.target;
+    setCity((prevCity) => ({
+      ...prevCity,
+      [name]: value,
+    }));
+  };
+
+  React.useEffect(() => {
+    const fetchApi = async () => {
+      const res = await axios.get('https://provinces.open-api.vn/api/?depth=3');
+      setdata(res.data);
+      console.log('dataCity', res);
+    };
+    fetchApi();
+  }, []);
   // const {
   //   control,
   //   handleSubmit,
@@ -159,7 +182,7 @@ function FormDelivery({
   const newValue = Object.values(values).includes('');
 
   const handleFormSubmit = async (formValues: any) => {
-    console.log('ngu heo', formValues);
+    console.log('ngu heo', { ...formValues }, City);
 
     // one submit index + 1 để check address old =>dialog
     setindex((prev) => prev + 1);
@@ -192,7 +215,8 @@ function FormDelivery({
       });
       return seterror('vui lòng  kiểm  tra thông   tin  còn thiếu');
     } else {
-      await onSubmits(formValues);
+      console.log('chimtooooo o', { ...formValues, ...City });
+      await onSubmits({ ...formValues, ...City });
       handleClic();
       // setvalue({
       //   fullName: '',
@@ -277,6 +301,9 @@ function FormDelivery({
       time: '',
     });
   };
+
+  console.log(City);
+
   return (
     <div className="infor_content">
       {error !== '' && (
@@ -333,19 +360,55 @@ function FormDelivery({
               <label>
                 Tỉnh thành: <strong>*</strong>
               </label>
-              <SelectedField control={control} name="city" options={Datacity} />
+              <select name="city" id="" onChange={handleChan}>
+                <option>Vui long chọn Tỉnh/Thành phố</option>{' '}
+                {data.map((item: any, index) => (
+                  <>
+                    <option value={item.name}>{item.name}</option>
+                  </>
+                ))}
+              </select>
             </div>
             <div className="form_group">
               <label>
                 Quận huyện: <strong>*</strong>
               </label>
-              <SelectedField control={control} name="coutry" options={Datacoutry} />
+              <select name="street" id="" onChange={handleChan}>
+                {City.city !== '' ? (
+                  <>
+                    {' '}
+                    <option>Vui long chọn Quận/Huyện</option>
+                    {data
+
+                      ?.find((e: any) => e.name === City.city)
+                      ?.districts?.map((item, idx) => (
+                        <option value={item.name}>{item.name}</option>
+                      ))}
+                  </>
+                ) : (
+                  <option>Vui long chọn Tỉnh/Thành phố</option>
+                )}
+              </select>
             </div>
             <div className="form_group">
               <label>
                 Phường xã: <strong>*</strong>
               </label>
-              <SelectedField control={control} name="street" options={Datastreet} />
+              <select name="coutry" id="" onChange={handleChan}>
+                {City.street !== '' ? (
+                  <>
+                    <option>Vui long chọn Phường/Xã</option>
+                    {data
+                      ?.find((e: any) => e.name === City.city)
+                      ?.districts.find((e) => e.name === City.street)
+                      ?.wards?.map((item: any, idx: number) => (
+                        <option value={item.name}>{item.name}</option>
+                      ))}
+                  </>
+                ) : (
+                  <option>Vui long chọn Quận/huyện</option>
+                )}
+              </select>
             </div>
             <div className="form_group">
               <label>

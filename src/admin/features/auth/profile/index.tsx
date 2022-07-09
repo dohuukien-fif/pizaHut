@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { unwrap } from '@reduxjs/toolkit';
 import { logout, profile } from './../../../../app/userReduxAdmin';
 import './styles.scss';
+import LoadingFile from '../../../../component/loadingFeatures/loadingFile/loadingInput';
+import axios from 'axios';
+import { BsCamera } from 'react-icons/bs';
 export interface ProfileAmindFeatuesProps {}
 
 export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
@@ -15,6 +18,9 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
   const [passwords, setPassword] = React.useState<any>();
   const [typePasswords, settypePassword] = React.useState<number>();
   const [newPasswords, setnewPassword] = React.useState<number>();
+  const [fileImage, setFileImage] = React.useState<string>('');
+  const [file, setFile] = React.useState<any>();
+  const [LoadingfileImage, setLoadingfileImage] = React.useState<boolean>(false);
   const dispatch = useDispatch();
   // const users = useSelector((state) => state.user);
   const password = Number(passwords);
@@ -31,7 +37,7 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
       const action = profile({ id: userId._id, username, password, typePassword, newPassword });
       const user = await dispatch(action).unwrap();
       console.log('user', user);
-    
+
       //close Dialog
       // const { closeDialog } = props;
       // if (closeDialog) {
@@ -50,6 +56,31 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
       alert('thay   đổi mật khẩu  thất  bại');
     }
   };
+  const handleChangeFiless = async (e: any) => {
+    setLoadingfileImage(true);
+    const file = e.target.files[0];
+    const data = new FormData();
+
+    data.append('file', file);
+    data.append('upload_preset', 'upload');
+
+    try {
+      const uploadRe = await axios.post(
+        'https://api.cloudinary.com/v1_1/huukien/image/upload',
+        data
+      );
+      console.log(data);
+      console.log(uploadRe.data);
+
+      const { url } = uploadRe.data;
+
+      setFileImage(url);
+      setLoadingfileImage(false);
+    } catch (error) {}
+  };
+
+  console.log(fileImage);
+
   return (
     <div className="profileAdmin">
       <div className="profileAdmin_container">
@@ -57,7 +88,46 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
           <div className="profileAdmin_title">
             <h2>Đổi mật khẩu</h2>
           </div>
+
           <form onSubmit={handleClick}>
+            <div className="form_group">
+              <label>
+                Ảnh đại diện <strong>*</strong>
+              </label>
+              <input
+                type="file"
+                id="file"
+                accept="image/*"
+                onChange={handleChangeFiless}
+                style={{ display: 'none' }}
+              />
+              {userId && fileImage === '' && (
+                <div className="form_group--file">
+                  {LoadingfileImage ? <LoadingFile /> : <img src={userId.image} />}
+                  <label htmlFor="file">
+                    <span>
+                      {' '}
+                      <BsCamera />
+                    </span>
+                  </label>
+                </div>
+              )}
+              {fileImage !== '' && (
+                <div className="form_group--file">
+                  {LoadingfileImage ? (
+                    <LoadingFile />
+                  ) : (
+                    <>{fileImage && <img src={fileImage} alt="" />}</>
+                  )}
+
+                  <label htmlFor="file">
+                    <span>
+                      <BsCamera />
+                    </span>
+                  </label>
+                </div>
+              )}
+            </div>
             <div className="form_group">
               <label>
                 Tên <GiJusticeStar />

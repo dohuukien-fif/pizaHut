@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SuccerFeatures from './succer';
 import { setAddress, setAddressOld } from '../checkOutRedux';
 import { boolean } from 'yup/lib/locale';
+import LoadingFeatures from '../../loadingFeatures';
 
 export interface CheckOutFeaturesProps {}
 
@@ -31,6 +32,7 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
   const [active, setActive] = React.useState<string>('active');
   const [number, setnumber] = React.useState<number>(0);
   const [isInfor, setisInfor] = React.useState<boolean>();
+  const [LoadingRedirest, setLoadingRedirest] = React.useState<boolean>(false);
   const [isDialogOrder, setisDialogOrder] = React.useState<boolean>(false);
 
   const [isform, setisform] = React.useState<any>({
@@ -118,15 +120,34 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
       if (number === 3 && INFORSTORE === false) {
         return setnumber(2);
       } else if (number === 3 && INFORSTORE == true) {
-        const action = setAddress(isform);
-        const actionOld = setAddressOld(isform);
-        dispatch(action);
-        dispatch(actionOld);
-        setActive('active');
-        return navigete('/CheckOut/Thanh-toan');
+        if (INFORVALUE) {
+          const action = setAddress(isStore);
+          const actionOld = setAddressOld(isStore);
+
+          dispatch(action);
+          dispatch(actionOld);
+          setActive('active');
+          return navigete('/CheckOut/Thanh-toan');
+        }
+        if (STOREVALUE) {
+          const action = setAddress(isform);
+          const actionOld = setAddressOld(isform);
+
+          dispatch(action);
+          dispatch(actionOld);
+          setActive('active');
+          return navigete('/CheckOut/Thanh-toan');
+        }
       }
       if (number === 4 && CartOrders !== '' && isUserInfor === true && CartAddresss !== '') {
-        return navigete('/CheckOut/Hoa-don');
+        return new Promise<boolean>((resolve, reject) => {
+          setLoadingRedirest(true);
+          setTimeout(() => {
+            navigete('/CheckOut/Hoa-don');
+            resolve(true);
+            setLoadingRedirest(false);
+          }, 2000);
+        });
       } else {
         setnumber(0);
         return navigete('/CheckOut');
@@ -141,12 +162,20 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
     }
   };
   const handleSubmits = (value: any) => {
+    console.log('fprmpick', value);
     setisStore(value);
   };
   const handleisDialogOrder = () => {
     setisDialogOrder(true);
   };
 
+  React.useEffect(() => {
+    if (cartItemSelectors.length === 0) {
+      return navigete('/');
+    }
+  }, []);
+
+  console.log('isfrom', isform, 'store', isStore);
   return (
     <div className="checkout">
       <div className="checkout_swapper">
@@ -186,6 +215,7 @@ export default function CheckOutFeatures(props: CheckOutFeaturesProps) {
           </div>
         </div>
         <div className="checkout_content">
+          {LoadingRedirest && <LoadingFeatures />}
           <Routes>
             <Route
               path="/*"

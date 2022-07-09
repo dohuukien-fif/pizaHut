@@ -33,7 +33,9 @@ function CartItem({ items }: CartItemProps) {
     const action = removeProduct(id);
     dispatch(action);
   };
-  const checkCategory = ['piza', 'newDish'];
+  const checkCategory = ['piza', 'newDish', 'mixed', 'Seafood', 'Stuffing', 'Traditional'];
+
+  console.log(product.price);
   return (
     <div className="cart_item">
       <div className="cart_blocks">

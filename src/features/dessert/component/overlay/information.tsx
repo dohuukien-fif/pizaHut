@@ -124,61 +124,6 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
         <div className="overlay_name">
           <span>{name}</span>
         </div>
-        <div className="overlay_choose">
-          <p>
-            {`Kich thước ${
-              size !== undefined && new Array(size[indexSize]).map((item) => item.name)
-            } - ${(soles !== undefined && index) || 'Dày'}`}
-          </p>
-        </div>
-        <div className="overlay_spice">
-          <span>{Spice}</span>
-        </div>
-        {getInfor.moreName !== '' && (
-          <div className="ovelay_coutinent">
-            <span>{`+ ${getInfor.moreName}`}</span>
-          </div>
-        )}
-
-        <div className="overlay_size">
-          <div className="size_title">
-            <p>KÍCH THƯỚC</p>
-          </div>
-          <div className="size_list">
-            {size?.map((items: DessertFeaturesProps, index: number) => (
-              <div
-                key={items.id}
-                className={getStyles(index)}
-                onClick={() => handleClickSize(items.price, items.name, index)}
-              >
-                <p>{items.name}</p>
-                <p> {items.price > 0 && `+ ${formatPrice(items.price)}`}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="overlay_soles">
-          <div className="soles_title">
-            <p>ĐẾ</p>
-          </div>
-          <div className="soles_list">
-            {soles
-              ?.filter((e: any) => e.items[newsoles])
-              ?.find((e: any) => e)
-              ?.items.map((item: any, index: number) => (
-                <div
-                  key={index}
-                  className="soles_item"
-                  onClick={() => handleClickSoles(item, index)}
-                >
-                  <div className="soles_checkbox">
-                    <BiRadioCircleMarked className={getStylesCheckBox(index)} />
-                  </div>
-                  <label>{item}</label>
-                </div>
-              ))}
-          </div>
-        </div>
 
         <div className="overlay_note">
           <div className="note_title">

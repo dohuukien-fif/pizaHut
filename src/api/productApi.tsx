@@ -30,7 +30,7 @@ const ProductApi = {
 
   update(data: Partial<Product>): Promise<Product> {
     const url = `/products/${data.id}`;
-    return axiosClient.patch(url, data);
+    return axiosClient.put(url, data);
   },
 
   remove(id: string): Promise<any> {

@@ -114,6 +114,7 @@
         flex-direction: column;
 
         flex: 1;
+
         .dessert_top {
           margin-bottom: 45px;
           display: flex;
@@ -122,13 +123,13 @@
           flex: 1;
 
           .dessert_name {
-            margin-top: auto;
-
             font-family: Nunito, sans-serif;
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 25px;
             cursor: pointer;
+
+            margin-bottom: auto;
             & > span {
               &:hover {
                 color: $green;

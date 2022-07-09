@@ -1,17 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './styles.scss';
-import { MdOutlineDashboard, MdOutlineLocalShipping } from 'react-icons/md';
-import { FaRegUser, FaStoreAlt } from 'react-icons/fa';
-import { BsCreditCard } from 'react-icons/bs';
-import { GrDeliver } from 'react-icons/gr';
-import { IoMdNotificationsOutline } from 'react-icons/io';
-import { FiLogOut } from 'react-icons/fi';
-import { SiSimpleanalytics } from 'react-icons/si';
+import { BsCreditCard, BsPeople } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
+import { FaRegUser, FaStoreAlt } from 'react-icons/fa';
+import { FiLogOut } from 'react-icons/fi';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import { MdOutlineDashboard, MdOutlineLocalShipping } from 'react-icons/md';
+import { SiSimpleanalytics } from 'react-icons/si';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../../app/userRedux';
 import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../../app/userRedux';
+import './styles.scss';
 export interface SideBarItemProps {
   handleLight: () => void;
   handleDark: () => void;
@@ -91,6 +89,12 @@ function SideBarItem({ handleDark, handleLight }: SideBarItemProps) {
         </div>
         {/* group */}
         <div className="sideBar__useful--content">
+          <div className="sideBar__useful--group">
+            <Link to="/admin/manager">
+              <BsPeople />
+              <p>Manager</p>
+            </Link>
+          </div>
           <div className="sideBar__useful--group">
             <Link to="/admin/notification">
               <IoMdNotificationsOutline />

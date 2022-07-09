@@ -18,8 +18,50 @@ export default function ViewOrderFeatues(props: ViewOrderFeatuesProps) {
     0
   );
 
+  console.log('data', data);
   return (
     <div className="view">
+      {data.order === 'Đặt giao hàng' && (
+        <div className="view__top">
+          <div className="view__top--group  ">
+            <span>Tình trạng:*</span>
+            <span className="view__top--order">{data.order}</span>
+          </div>
+          <div className="view__top--group">
+            <span>Họ và tên :*</span>
+            <span>{data.address.fullName}</span>
+          </div>
+          <div className="view__top--group">
+            <span>Số điện thoại :*</span>
+            <span>{data.address.phone}</span>
+          </div>
+          <div className="view__top--group">
+            <span>Địa chỉ :*</span>
+            <span>{`${data.address.streets}-${data.address.coutry}-${data.address.city}`}</span>
+          </div>
+        </div>
+      )}
+      {data.order === 'Đặt lấy hàng' && (
+        <div className="view__top">
+          <div className="view__top--group">
+            <span>Tình trạng:*</span>
+            <span className="view__top--order">{data.order}</span>
+          </div>
+          <div className="view__top--group">
+            <span>Họ và tên :*</span>
+            <span>{data.address.fullName}</span>
+          </div>
+          <div className="view__top--group">
+            <span>Cửa hàng :*</span>
+            <span>{data.store.store}</span>
+          </div>
+          <div className="view__top--group">
+            <span>Địa chỉ :*</span>
+            <span>{`${data.store.address}`}</span>
+          </div>
+        </div>
+      )}
+
       <div className="view__swapper">
         <div className="view__title--top">
           <span>View Order</span>

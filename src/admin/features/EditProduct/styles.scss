@@ -38,8 +38,19 @@
 
           margin-top: 10px;
 
+          & > input[type='file'] {
+            display: none;
+          }
           & > label {
             font-weight: 600;
+
+            & > span {
+              padding: 10px;
+
+              background: blue;
+
+              color: white;
+            }
           }
           & > input {
             height: 40px;

@@ -20,6 +20,7 @@ import EditFeatures from './features/EditProduct';
 import ViewOrderFeatues from './list/order/view';
 import ProfileAmindFeatues from './features/auth/profile';
 import ViewCustomers from './list/customer/view';
+import ManagerFeatures from './features/manager';
 
 export interface IAppProps {}
 
@@ -109,6 +110,7 @@ export default function App(props: any) {
           <Route path="register" element={<RegisterFeatures />} />
           <Route path="order" element={<OrderFeatures />} />
           <Route path="profile" element={<ProfileAmindFeatues />} />
+          <Route path="manager" element={<ManagerFeatures />} />
           <Route path="product/:productId" element={<EditFeatures />} />
           <Route path="order/:orderId" element={<ViewOrderFeatues />} />
           <Route path="Customers/:customersId" element={<ViewCustomers />} />

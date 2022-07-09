@@ -145,6 +145,8 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
         userName: userInfor.username,
       },
     });
+
+    dispatch(removeCart());
   };
   return (
     <div className="payload">

@@ -44,7 +44,7 @@ export default function Completed({ item, onSubmits }: CompletedProps) {
         </div>
         <div className="orders__product">
           {/* <span>{`${item.product.charAt(0).toLocaleUpperCase()}${item.product.slice(1)}`}</span> */}
-          {new Array(item?.products[0]).map((items: any, idx: number) => (
+          {item?.products.map((items: any, idx: number) => (
             <React.Fragment key={idx}>
               <img src={items.product.image} alt="" />
               <span>{items?.product?.name}</span>

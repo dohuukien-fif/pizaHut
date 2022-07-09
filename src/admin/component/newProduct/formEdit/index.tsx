@@ -7,6 +7,10 @@ import InputFeild from '../../../../component/formControl/inputFeild';
 import { uid } from '../../../../utils';
 import TextFied from '../../../../component/formControl/textFeild';
 import { iteratorSymbol } from 'immer/dist/internal';
+import axios from 'axios';
+import LoadingFeatures from '../../../../component/loadingFeatures';
+import LoadingInput from '../../../../component/loadingFeatures/loadingInput/loadingInput';
+import LoadingFile from '../../../../component/loadingFeatures/loadingFile/loadingInput';
 export interface FormNewProductProps {
   onSubmit: (value: any) => void;
 }
@@ -40,9 +44,11 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
   const [size, setSize] = React.useState<any>([]);
   const [more, setMore] = React.useState<any>([]);
   const [fileMore, setfileMore] = React.useState<any>();
-  const [image, setfile] = React.useState<string>('');
+  const [fileImage, setFileImage] = React.useState<string>('');
+  const [file, setFile] = React.useState<any>();
   const [category, setCategory] = React.useState<string>('');
-
+  const [LoadingMore, setLoadingMore] = React.useState<boolean>(false);
+  const [LoadingfileImage, setLoadingfileImage] = React.useState<boolean>(false);
   const Optionss = [
     { value: 'Chọn Category' },
     { value: 'piza' },
@@ -50,7 +56,7 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
       value: 'newDish',
     },
     {
-      value: 'appertizer',
+      value: 'Appertizer',
     },
     {
       value: 'dessert',
@@ -59,16 +65,16 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
       value: 'drink',
     },
     {
-      value: 'noodles',
+      value: 'Soodles',
     },
     {
-      value: 'salad',
+      value: 'Salad',
     },
     {
-      value: 'spaghetti',
+      value: 'Spaghetti',
     },
     {
-      value: 'salad',
+      value: 'Salad',
     },
   ];
 
@@ -116,9 +122,30 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
     setinputSize({ name: '', price: 0 });
   };
 
-  const handleChangeMoreFile = (e: any) => {
+  const handleChangeMoreFile = async (e: any) => {
+    setLoadingMore(true);
     const file = e.target.files[0];
-    setfileMore(URL.createObjectURL(file));
+    const data = new FormData();
+
+    data.append('file', file);
+    data.append('upload_preset', 'upload');
+
+    try {
+      const uploadRe = await axios.post(
+        'https://api.cloudinary.com/v1_1/huukien/image/upload',
+        data
+      );
+      console.log(data);
+      console.log(uploadRe.data);
+
+      const { url } = uploadRe.data;
+
+      setfileMore(url);
+      setLoadingMore(false);
+    } catch (error) {
+      setLoadingMore(false);
+      console.log('aaaaaaaaaaaaaaaaaaaaaaaa');
+    }
   };
   // const handleChangeFiles = (e: any) => {
   //   const file = e.target.files;
@@ -131,11 +158,28 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
   // };
 
   console.log('fileMore', fileMore);
-  const handleChangeFiles = (e: any) => {
+  const handleChangeFiles = async (e: React.ChangeEvent<any>) => {
+    setLoadingfileImage(true);
     const file = e.target.files[0];
 
-    setfile(URL.createObjectURL(file));
-    localStorage.setItem('fileImage', JSON.stringify(e.target.result));
+    const data = new FormData();
+
+    data.append('file', file);
+    data.append('upload_preset', 'upload');
+
+    try {
+      const uploadRe = await axios.post(
+        'https://api.cloudinary.com/v1_1/huukien/image/upload',
+        data
+      );
+      console.log(data);
+      console.log(uploadRe.data);
+
+      const { url } = uploadRe.data;
+
+      setFileImage(url);
+      setLoadingfileImage(false);
+    } catch (error) {}
   };
 
   const handleChangeMore = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,35 +205,22 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
 
     setfileMore('');
   };
-
+  console.log('file', inputMore);
   console.log('file', fileMore);
 
-  const handleFormSubmit = (value: any) => {
+  const handleFormSubmit = async (value: any) => {
     const newValue = {
       ...value,
       price: Number(value.price),
       more,
       size,
       soles,
-      image,
+      image: fileImage,
       orderId,
       category,
     };
 
-    console.log(newValue);
-
-    if (Object.values(newValue).includes('' || 0)) {
-      alert('kiểm tra lại thông tin ');
-      return;
-    }
-
-    onSubmit(newValue);
-
-    reset();
-
-    setSize([]);
-    setsoles([]);
-    setfile('');
+    await onSubmit(newValue);
   };
 
   const handleChangCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -197,7 +228,21 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
     console.log('ienn', value);
     setCategory(value);
   };
-  const checkPiza = ['piza', 'newDish'];
+  const checkPiza = ['piza', 'newDish', 'mixed', 'Seafood', 'Stuffing', 'Traditional'];
+  const checkCategory = [
+    'piza',
+    'newDish',
+    'mixed',
+    'Seafood',
+    'Stuffing',
+    'Traditional',
+    'Appertizer',
+    'dessert',
+    'drink',
+    'Noodles',
+    'Salad',
+    'Spaghetti',
+  ];
 
   console.log('[checkfile]', fileMore, inputMore, more);
   return (
@@ -216,228 +261,246 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
 
         <select onChange={handleChangCategory}>
           {Optionss.map((items, idx) => (
-            <option value={items.value}>{items.value}</option>
+            <React.Fragment key={idx}>
+              <option value={items.value}>{items.value}</option>
+            </React.Fragment>
           ))}
         </select>
       </div>
-      <div className="newProduct__group">
-        <label>
-          Image <strong>*</strong>
-        </label>
-        <input type="file" id="file" accept="image/*" onChange={handleChangeFiles} />
+      {checkCategory.includes(category) && (
+        <>
+          <div className="newProduct__group">
+            <label>
+              Image <strong>*</strong>
+            </label>
+            <input type="file" id="file" accept="image/*" onChange={handleChangeFiles} />
 
-        <label htmlFor="file">
-          <span>Upload File</span>
-        </label>
+            <label htmlFor="file">
+              <span>Upload File</span>
+            </label>
 
-        {image && <img src={image} alt="" />}
-      </div>
-      <div className="newProduct__group">
-        <label>
-          Name <strong>*</strong>
-        </label>
-        <InputFeild control={control} name="name" placeholder="" />
-      </div>
-      <div className="newProduct__group">
-        <label>
-          Price <strong>*</strong>
-        </label>
-        <InputFeild control={control} name="price" placeholder="" />
-      </div>
-      <div className="newProduct__group">
-        <label>
-          Detail <strong>*</strong>
-        </label>
-        <InputFeild control={control} name="detail" placeholder="" />
-      </div>
-      {/* <div className="newProduct__group">
+            <div className="newProduct__image">
+              {LoadingfileImage ? (
+                <LoadingFile />
+              ) : (
+                <>{fileImage && <img src={fileImage} alt="" />}</>
+              )}
+            </div>
+          </div>
+          <div className="newProduct__group">
+            <label>
+              Name <strong>*</strong>
+            </label>
+            <InputFeild control={control} name="name" placeholder="" />
+          </div>
+          <div className="newProduct__group">
+            <label>
+              Price <strong>*</strong>
+            </label>
+            <InputFeild control={control} name="price" placeholder="" />
+          </div>
+          <div className="newProduct__group">
+            <label>
+              Detail <strong>*</strong>
+            </label>
+            <InputFeild control={control} name="detail" placeholder="" />
+          </div>
+          {/* <div className="newProduct__group">
         <label>
           category <strong>*</strong>
         </label>
         <InputFeild control={control} name="category" placeholder={dataSearch.category} />
       </div> */}
-      <div className="newProduct__group">
-        <label>
-          Spice <strong>*</strong>
-        </label>
-        <InputFeild control={control} name="Spice" placeholder="" />
-      </div>
-      {checkPiza.includes(category) && (
-        <>
-          {' '}
-          {/* <div className="newProduct__group">
-            <label>
-              Vegetable: <strong>*</strong>
-            </label>
-            <InputFeild control={control} name="spice" placeholder={dataSearch.vegetable} />
-          </div>{' '}
           <div className="newProduct__group">
             <label>
-              Chill <strong>*</strong>
+              Spice <strong>*</strong>
             </label>
-            <InputFeild control={control} name="spice" placeholder={dataSearch.chill} />
-          </div> */}
-          <div className="newProduct__group--checkBox">
-            <label>
-              More <strong>*</strong>
-            </label>
-            <input type="radio" name="size" id="" onClick={setOpenMore} />
+            <InputFeild control={control} name="Spice" placeholder="" />
           </div>
-          {openMore && (
-            <div className="newProduct__input">
-              <div className="newProduct__input--left">
+          {checkPiza.includes(category) && (
+            <>
+              <div className="newProduct__group--checkBox">
                 <label>
-                  name <strong>*</strong>
+                  More <strong>*</strong>
                 </label>
-                <input type="text" name="name" onChange={handleChangeMore} />
-                <label>
-                  price <strong>*</strong>
-                </label>
-                <input type="number" name="price" onChange={handleChangeMore} />
-
-                {fileMore && (
-                  <div className="new_figures">
-                    <img src={fileMore} alt="" />
-                  </div>
-                )}
-                {!fileMore && (
-                  <>
-                    {' '}
-                    <input
-                      type="file"
-                      id="files"
-                      className="file"
-                      accept="image/*"
-                      onChange={handleChangeMoreFile}
-                    />
-                    <label htmlFor="files">
-                      <span>Upload File</span>
+                <input type="radio" name="size" id="" onClick={setOpenMore} />
+              </div>
+              {openMore && (
+                <div className="newProduct__input">
+                  <div className="newProduct__input--left">
+                    <label>
+                      name <strong>*</strong>
                     </label>
-                  </>
-                )}
-                <button type="button" onClick={handlButtonMore}>
-                  submit
-                </button>
-              </div>
+                    <input
+                      type="text"
+                      name="name"
+                      value={more.name !== '' ? more.name : ''}
+                      onChange={handleChangeMore}
+                    />
+                    <label>
+                      price <strong>*</strong>
+                    </label>
+                    <input
+                      type="number"
+                      name="price"
+                      value={more.price !== 0 ? more.price : 0}
+                      onChange={handleChangeMore}
+                    />
 
-              <div className="newProduct__input--right">
-                <div className="newProduct__list">
-                  {more?.map((item: any, index: number) => (
-                    <div className="newProduct__item" key={index}>
-                      <div className="newProduct__index">
-                        <span>{index}</span>
-                      </div>
-                      <div className="newProduct__content ">
-                        <div className="newProduct__name">
-                          <span>Name:</span>
-                          <span>{item.name}</span>
-                        </div>
-                        <div className="newProduct__price">
-                          <span>Price:</span>
-                          <span>{item.price}</span>
-                        </div>
-                        <div className="newProduct__figust">
-                          <span>Image:</span>
-                          <img src={item.image} alt="" />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-          <div className="newProduct__group--checkBox">
-            <label>
-              Size <strong>*</strong>
-            </label>
-            <input type="radio" name="size" id="" onClick={setOpenSize} />
-          </div>
-          {openSize && (
-            <div className="newProduct__input">
-              <div className="newProduct__input--left">
-                <label>
-                  name <strong>*</strong>
-                </label>
-                <input type="text" name="name" onChange={handleChage} />
-                <label>
-                  price <strong>*</strong>
-                </label>
-                <input type="number" name="price" onChange={handleChage} />
-                <button type="button" onClick={handlButton}>
-                  submit
-                </button>
-              </div>
+                    {LoadingMore ? (
+                      <LoadingFile />
+                    ) : (
+                      <>
+                        {' '}
+                        {fileMore && (
+                          <div className="new_figures">
+                            <img src={fileMore} alt="" />
+                          </div>
+                        )}
+                      </>
+                    )}
 
-              <div className="newProduct__input--right">
-                <div className="newProduct__list">
-                  {size?.map((item: any, index: number) => (
-                    <div className="newProduct__item" key={index}>
-                      <div className="newProduct__index">
-                        <span>{index}</span>
-                      </div>
-                      <div className="newProduct__content ">
-                        <div className="newProduct__name">
-                          <span>Name:</span>
-                          <span>{item.name}</span>
+                    {!fileMore && (
+                      <>
+                        {' '}
+                        <input
+                          type="file"
+                          id="files"
+                          className="file"
+                          accept="image/*"
+                          onChange={handleChangeMoreFile}
+                        />
+                        <label htmlFor="files">
+                          <span>Upload File</span>
+                        </label>
+                      </>
+                    )}
+                    <button type="button" onClick={handlButtonMore}>
+                      submit
+                    </button>
+                  </div>
+
+                  <div className="newProduct__input--right">
+                    <div className="newProduct__list">
+                      {more?.map((item: any, index: number) => (
+                        <div className="newProduct__item" key={index}>
+                          <div className="newProduct__index">
+                            <span>{index}</span>
+                          </div>
+                          <div className="newProduct__content ">
+                            <div className="newProduct__name">
+                              <span>Name:</span>
+                              <span>{item.name}</span>
+                            </div>
+                            <div className="newProduct__price">
+                              <span>Price:</span>
+                              <span>{item.price}</span>
+                            </div>
+                            <div className="newProduct__figust">
+                              <span>Image:</span>
+                              <img src={item.image} alt="" />
+                            </div>
+                          </div>
                         </div>
-                        <div className="newProduct__price">
-                          <span>Price:</span>
-                          <span>{item.price}</span>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          )}
-          <div className="newProduct__group--checkBox">
-            <label>
-              Soles <strong>*</strong>
-            </label>
-            <input type="radio" name="" value={item} id="" onClick={setOpenSoles} />
-          </div>
-          {openSoles && (
-            <div className="newProduct__input">
-              <div className="newProduct__input--left">
-                {' '}
+              )}
+              <div className="newProduct__group--checkBox">
                 <label>
-                  Item <strong>*</strong>
+                  Size <strong>*</strong>
                 </label>
-                <input type="text" name="name" onChange={handleChageSoles} />
-                <button type="button" onClick={handleButtonSoles}>
-                  submit
-                </button>
+                <input type="radio" name="size" id="" onClick={setOpenSize} />
               </div>
-              <div className="newProduct__input--right">
-                <div className="newProduct__list">
-                  {soles?.map((items: any, index: number) => (
-                    <div className="newProduct__item" key={index}>
-                      <div className="newProduct__index">
-                        <span>{index}</span>
-                      </div>
-                      <div
-                        className="newProduct__content
+              {openSize && (
+                <div className="newProduct__input">
+                  <div className="newProduct__input--left">
+                    <label>
+                      name <strong>*</strong>
+                    </label>
+                    <input type="text" name="name" onChange={handleChage} />
+                    <label>
+                      price <strong>*</strong>
+                    </label>
+                    <input type="number" name="price" onChange={handleChage} />
+                    <button type="button" onClick={handlButton}>
+                      submit
+                    </button>
+                  </div>
+
+                  <div className="newProduct__input--right">
+                    <div className="newProduct__list">
+                      {size?.map((item: any, index: number) => (
+                        <div className="newProduct__item" key={index}>
+                          <div className="newProduct__index">
+                            <span>{index}</span>
+                          </div>
+                          <div className="newProduct__content ">
+                            <div className="newProduct__name">
+                              <span>Name:</span>
+                              <span>{item.name}</span>
+                            </div>
+                            <div className="newProduct__price">
+                              <span>Price:</span>
+                              <span>{item.price}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div className="newProduct__group--checkBox">
+                <label>
+                  Soles <strong>*</strong>
+                </label>
+                <input type="radio" name="" value={item} id="" onClick={setOpenSoles} />
+              </div>
+              {openSoles && (
+                <div className="newProduct__input">
+                  <div className="newProduct__input--left">
+                    {' '}
+                    <label>
+                      Item <strong>*</strong>
+                    </label>
+                    <input type="text" name="name" onChange={handleChageSoles} />
+                    <button type="button" onClick={handleButtonSoles}>
+                      submit
+                    </button>
+                  </div>
+                  <div className="newProduct__input--right">
+                    <div className="newProduct__list">
+                      {soles?.map((items: any, index: number) => (
+                        <div className="newProduct__item" key={index}>
+                          <div className="newProduct__index">
+                            <span>{index}</span>
+                          </div>
+                          <div
+                            className="newProduct__content
                           "
-                      >
-                        <div className="newProduct__name">
-                          {items.item.map((itemss: Array<string>, index: number) => (
-                            <>
-                              <span>Item:</span>
-                              <span>{itemss}</span>
-                            </>
-                          ))}
+                          >
+                            <div className="newProduct__name">
+                              {items.item.map((itemss: Array<string>, index: number) => (
+                                <>
+                                  <span>Item:</span>
+                                  <span>{itemss}</span>
+                                </>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            </div>
+              )}
+            </>
           )}
         </>
       )}
+
       <div className="newProduct__btn">
         <button type="submit">Submit</button>
       </div>

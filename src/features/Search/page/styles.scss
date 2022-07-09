@@ -11,6 +11,54 @@
   // }
 
   min-height: 70vh;
+  .active_error {
+    visibility: visible !important;
+    opacity: 1 !important;
+    right: 30px !important;
+  }
+  .cart_Error {
+    position: fixed;
+    height: 60px;
+    width: 280px;
+
+    background: rgb(214, 24, 24);
+
+    // top: 50px;
+    // right: 50px;
+    // left: 0;
+    top: 20px;
+    right: -100%;
+
+    z-index: 100000;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition: 5s ease-in !important;
+    & > svg {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+
+      font-size: 15px;
+
+      color: $white;
+
+      cursor: pointer;
+    }
+    & > p {
+      position: absolute;
+
+      top: 30%;
+      left: 20%;
+      transform: translate(-20%, -20%);
+
+      color: white;
+
+      font-size: 14px;
+    }
+  }
   @include mobilesmall {
     width: 95%;
     margin: auto;
@@ -229,12 +277,33 @@
 
     transition: 0.3s ease-in-out !important;
 
+    .overlay__like {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+
+      & > button {
+        background: white;
+
+        border: none;
+
+        cursor: pointer;
+
+        .active__like {
+          color: blue;
+        }
+
+        & > svg {
+          font-size: 25px;
+        }
+      }
+    }
     .overlay_wrapper {
       // margin-top: 10px;
 
       position: absolute;
       width: 67%;
-      height: 97%;
+      height: auto;
       background: $white;
       top: 50%;
       left: 50%;
@@ -266,6 +335,8 @@
         }
         .overlay_thumbanil {
           flex: 1;
+
+          margin-bottom: 25px;
         }
         .overlay_information {
           overflow-y: auto;
@@ -311,10 +382,10 @@
     }
   }
   .activesOvelaysearch {
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
 
-    transform: scale(0);
+    transform: scale(1) !important ;
 
     transition: 0.3s ease-in-out !important;
   }

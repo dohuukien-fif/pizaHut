@@ -11,6 +11,7 @@ export interface table {
   status: string;
   products: any;
   day: string;
+  order: string;
 }
 
 export interface TableProps {
@@ -25,11 +26,11 @@ export default function Table({ item }: TableProps) {
           <span>{item.code}</span>
         </div>
         <div className="dashboard__table--product">
-          {new Array(item?.products[0]).map((items: any, idx: number) => (
-            <React.Fragment key={idx}>
+          {new Array(item?.products)[0]?.map((items: any, idx: number) => (
+            <div className="dashboard__table--product--group" key={idx}>
               <img src={items.product.image} alt="" />
               <span>{items?.product?.name}</span>
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </div>
@@ -40,17 +41,15 @@ export default function Table({ item }: TableProps) {
         <div className="dashboard__table--amount">
           <span>{formatPrice(item.amount)}</span>
         </div>
-        <div className="dashboard__table--payment">
-          <span>dat giao hang</span>
-        </div>
-        {item.payment === 'dat giao hang' && (
+
+        {item.order === 'Đặt giao hàng' && (
           <div className="dashboard__table--payment">
-            <span>{item.payment}</span>
+            <span>{item.order}</span>
           </div>
         )}
-        {item.payment === 'dat lay hang' && (
+        {item.order === 'Đặt lấy hàng' && (
           <div className="dashboard__table--payment  ">
-            <span className="pickup">{item.payment}</span>
+            <span className="pickup">{item.order}</span>
           </div>
         )}
 

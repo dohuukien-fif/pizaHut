@@ -11,6 +11,9 @@ export default function EditFeatures(props: EditProps) {
 
   const { dataSearch, LoadingSearch } = useEdit(Number(productId));
 
+  const handleOnsubmitUpdate = (value: any) => {
+    console.log('onnsubmit', value);
+  };
   return (
     <div className="edit">
       <div className="edit__swapper">
@@ -20,7 +23,7 @@ export default function EditFeatures(props: EditProps) {
           </span>
         </div>
         <div className="edit__form">
-          <FormEdit dataSearch={dataSearch} />
+          <FormEdit dataSearch={dataSearch} onSubmits={handleOnsubmitUpdate} />
         </div>
       </div>
     </div>

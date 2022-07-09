@@ -40,11 +40,13 @@
 
         row-gap: 5px;
 
-        & > img {
-          width: 300px;
+        .newProduct__image {
+          & > img {
+            width: 300px;
 
-          @include mobile {
-            width: 100%;
+            @include mobile {
+              width: 100%;
+            }
           }
         }
 

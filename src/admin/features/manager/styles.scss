@@ -1,0 +1,144 @@
+@use './../../../sass/index.scss' as *;
+.manager {
+  overflow: auto;
+
+  margin: 10px;
+
+  font-size: 14px;
+
+  .manager__btn {
+    margin: 20px 0;
+    & > button {
+      padding: 10px 15px;
+
+      background: rgb(28, 28, 82);
+
+      color: white;
+
+      cursor: pointer;
+
+      border: none;
+
+      display: flex;
+      align-items: center;
+
+      column-gap: 5px;
+    }
+  }
+  &__swap {
+    box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    background-color: #fff;
+
+    margin: 5px;
+
+    padding: 15px;
+
+    min-width: 850px;
+
+    width: auto;
+
+    .manager__title {
+      font-size: 25px;
+      font-weight: 700;
+
+      padding: 15px;
+    }
+    .manager__table {
+      min-width: 850px;
+
+      overflow-x: auto;
+
+      width: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .manager__top {
+        display: flex;
+        align-items: center;
+
+        border: 1px solid gray;
+
+        padding: 10px;
+
+        font-weight: 700;
+        font-size: 16px;
+        .manager__top--left {
+          flex: 2;
+
+          display: flex;
+
+          & > span {
+            flex: 1;
+          }
+        }
+        .manager__top--right {
+          flex: 1;
+          display: flex;
+
+          & > span:first-child {
+            flex: 2;
+          }
+          & > span:last-child {
+            flex: 1;
+          }
+        }
+      }
+      .manager__list {
+        .manager__item {
+          display: flex;
+          align-items: center;
+
+          padding: 10px 0;
+          .manager__left {
+            flex: 2;
+
+            display: flex;
+            align-items: center;
+
+            .manager__figust {
+              & > img {
+                width: 100px;
+                height: 100px;
+
+                border-radius: 10px;
+              }
+            }
+            .manager__figust,
+            .manager__name,
+            .manager__position,
+            .manager__telephone,
+            .manager__identification {
+              flex: 1;
+            }
+          }
+          .manager__right {
+            flex: 1;
+
+            display: flex;
+
+            .manager__address {
+              flex: 2;
+            }
+            .manager__action {
+              flex: 1;
+
+              & > button {
+                padding: 10px;
+
+                color: white;
+
+                cursor: pointer;
+
+                background: blue;
+
+                border: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

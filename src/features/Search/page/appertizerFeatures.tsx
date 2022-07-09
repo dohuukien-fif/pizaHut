@@ -10,10 +10,14 @@ import Thumbnail from '../component/overlay/thumbnail';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
+import ProductApi from '../../../api/productApi';
+import axios from 'axios';
 
 export default function SearchFeatures(props: any) {
   const params = location.search;
   console.log(params);
+  const Errrr = React.useRef<any>();
+  const [Error, setError] = React.useState<string>('');
   const dispatch = useDispatch();
   const [isloading, setisloading] = useState(true);
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
@@ -101,11 +105,17 @@ export default function SearchFeatures(props: any) {
       setisAccountion(false);
     }
   }, [window.innerWidth]);
-  function setIdPizza(newId: number): any {
+  async function setIdPizza(newId: number) {
+    console.log('newId', newId);
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
+        const res = ProductApi.getById(newId)
+          .then((data: any) => setdetailProduct(data))
+          .catch((error) => error);
+
+        console.log(res);
+
         setisoverlay(true);
         setLoading(false);
         resolve(true);
@@ -114,8 +124,7 @@ export default function SearchFeatures(props: any) {
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
     if (Object.keys(userInfor).length === 0) {
-      alert('vui    long   đăng   nhập');
-      return;
+      return setError('Vui lòng  đăng nhập !');
     }
     setLoadingOverlay(true);
     return new Promise<boolean>((resolve) => {
@@ -153,9 +162,58 @@ export default function SearchFeatures(props: any) {
 
     return () => window.removeEventListener('click', hanndleWindowClose);
   }, []);
+  React.useEffect(() => {
+    if (Error !== '') {
+      Errrr.current = setTimeout(() => {
+        setError('');
+      }, 5000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [Error]);
+
+  const handleClickError = () => {
+    setError('');
+  };
+  const [like, setLikes] = useState<string>('');
+  const handleClickLike = async () => {
+    console.log(detailProduct.orderId);
+
+    await axios.put(`http://localhost:5000/api/products/${detailProduct.orderId}/like`, {
+      userId: userInfor._id,
+    });
+
+    alert('cảm ơn bạn đã đánh giá');
+  };
+
+  console.log(detailProduct);
+  console.log(detailProduct?.like?.includes(userInfor?._id));
+
+  console.log(detailProduct?.like);
+
+  const checkLike = like === '' ? detailProduct?.like?.includes(userInfor?._id) : like;
+
+  const handleClickLikes = (newValue: string) => {
+    handleClickLike();
+    if (like === newValue) {
+      setLikes('unlike');
+    } else {
+      setLikes(newValue);
+    }
+  };
+
+  const handleCloseModalPizza = () => {
+    setdetailProduct({});
+    setisoverlay(false);
+  };
   return (
     <div className="search">
       <Silder />{' '}
+      {Error !== '' && (
+        <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
+          <AiOutlineClose onClick={handleClickError} />
+          <p>{Error}</p>
+        </div>
+      )}
       {LoadingSearch ? (
         <LoadingFeatures />
       ) : (
@@ -186,13 +244,17 @@ export default function SearchFeatures(props: any) {
                     </div>
                   ) : (
                     <>
-                      <AiOutlineClose onClick={() => setisoverlay(false)} />
+                      <AiOutlineClose onClick={handleCloseModalPizza} />
                     </>
                   )}
                 </div>
                 <div className="overlay_block">
                   <div className="overlay_thumbanil">
-                    <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                    {!detailProduct.image ? (
+                      <LoadingFeatures />
+                    ) : (
+                      <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                    )}
                   </div>
                   <div className="overlay_information">
                     <Information

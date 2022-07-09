@@ -54,6 +54,12 @@
     display: flex;
     flex-direction: column;
 
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     .admin__right--navTop {
       .admin__right--block {
         margin-left: auto;

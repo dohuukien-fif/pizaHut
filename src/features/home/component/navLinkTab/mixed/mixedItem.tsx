@@ -16,7 +16,7 @@ export default function MixedItem({ items, handleIds }: MixedItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="mixed_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="mixed_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="mixed_block">
         <div className="mixed_aside">
           <img src={image} alt="" />

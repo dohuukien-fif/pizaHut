@@ -10,13 +10,14 @@ import { dataLisst } from './../../../component/hooks/index';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { MdCheckBox } from 'react-icons/md';
 import LoadingFeatures from '../../../component/loadingFeatures';
-import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineLike, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Thumbnail from './../component/overlay/thumbnail';
 import ProductApi from './../../../api/productApi';
 import Information from './../component/overlay/information';
 import LoadingListss from './../../../component/loadingFeatures/loadingList/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
+import axios from 'axios';
 export default function DrinkFeatures(props: any) {
   const dispatch = useDispatch();
   const userInfor = useSelector((state: any) => state.user.current);
@@ -35,6 +36,8 @@ export default function DrinkFeatures(props: any) {
   const [Loading, setLoading] = useState<boolean>(false);
   const [LoadingList, setLoadingList] = useState<boolean>(true);
   const closeRef = useRef(null);
+  const [Error, setError] = React.useState<string>('');
+  const Errrr = React.useRef<any>();
   // const handLink = (e: any) => {
   //   e.preventDefault();
   //   const target = e.target.getAttribute('href');
@@ -91,11 +94,17 @@ export default function DrinkFeatures(props: any) {
       setisAccountion(false);
     }
   }, [window.innerWidth]);
-  function setIdPizza(newId: number): any {
+  async function setIdPizza(newId: number) {
+    console.log('newId', newId);
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
+        const res = ProductApi.getById(newId)
+          .then((data: any) => setdetailProduct(data))
+          .catch((error) => error);
+
+        console.log(res);
+
         setisoverlay(true);
         setLoading(false);
         resolve(true);
@@ -104,7 +113,7 @@ export default function DrinkFeatures(props: any) {
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
     if (Object.keys(userInfor).length === 0) {
-      alert('vui    long   đăng   nhập');
+      setError('vui long đăng nhập');
       return;
     }
     setLoadingOverlay(true);
@@ -143,9 +152,58 @@ export default function DrinkFeatures(props: any) {
 
     return () => window.removeEventListener('click', hanndleWindowClose);
   }, []);
+  React.useEffect(() => {
+    if (Error !== '') {
+      Errrr.current = setTimeout(() => {
+        setError('');
+      }, 5000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [Error]);
+
+  const handleClickError = () => {
+    setError('');
+  };
+  const [like, setLikes] = useState<string>('');
+  const handleClickLike = async () => {
+    console.log(detailProduct.orderId);
+
+    await axios.put(`http://localhost:5000/api/products/${detailProduct.orderId}/like`, {
+      userId: userInfor._id,
+    });
+
+    alert('cảm ơn bạn đã đánh giá');
+  };
+
+  console.log(detailProduct);
+  console.log(detailProduct?.like?.includes(userInfor?._id));
+
+  console.log(detailProduct?.like);
+
+  const checkLike = like === '' ? detailProduct?.like?.includes(userInfor?._id) : like;
+
+  const handleClickLikes = (newValue: string) => {
+    handleClickLike();
+    if (like === newValue) {
+      setLikes('unlike');
+    } else {
+      setLikes(newValue);
+    }
+  };
+
+  const handleCloseModalPizza = () => {
+    setdetailProduct({});
+    setisoverlay(false);
+  };
   return (
     <div className="drinks">
-      <Silder />
+      <Silder />{' '}
+      {Error !== '' && (
+        <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
+          <AiOutlineClose onClick={handleClickError} />
+          <p>{Error}</p>
+        </div>
+      )}
       <div className="drink_container">
         <div className="drink_block">
           <div className="drink_new" id="section1">
@@ -168,6 +226,17 @@ export default function DrinkFeatures(props: any) {
         <div ref={closeRef} className={isoverlay ? 'overlay activesOvelayDrink' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
+            <div className="overlay__like">
+              <button onClick={() => handleClickLikes(userInfor._id)}>
+                <AiOutlineLike
+                  className={
+                    checkLike === true || checkLike === userInfor._id
+                      ? 'icon__like active__like'
+                      : 'icon__like'
+                  }
+                />
+              </button>
+            </div>
             <div className="overlay_closes">
               {LoadingOverlay ? (
                 <div className="loading_featurees">
@@ -175,13 +244,17 @@ export default function DrinkFeatures(props: any) {
                 </div>
               ) : (
                 <>
-                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                  <AiOutlineClose onClick={handleCloseModalPizza} />
                 </>
               )}
             </div>
             <div className="overlay_block">
               <div className="overlay_thumbanil">
-                <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                {!detailProduct.image ? (
+                  <LoadingFeatures />
+                ) : (
+                  <Thumbnail detail={detailProduct} setPrice={setPrice} />
+                )}
               </div>
               <div className="overlay_information">
                 <Information

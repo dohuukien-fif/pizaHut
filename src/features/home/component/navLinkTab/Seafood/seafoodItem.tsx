@@ -18,7 +18,7 @@ export default function SeafoodItem({ items, handleIds }: SeafoodItemProps) {
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="seafood_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="seafood_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="seafood_block">
         <div className="seafood_aside">
           <img src={image} alt="" />

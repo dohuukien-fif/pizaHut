@@ -6,11 +6,14 @@ import * as yup from 'yup';
 import InputFeild from '../../../../component/formControl/inputFeild';
 import { uid } from '../../../../utils';
 import TextFied from '../../../../component/formControl/textFeild';
+import axios from 'axios';
+import LoadingFile from '../../../../component/loadingFeatures/loadingFile/loadingInput';
 export interface FormEditProps {
   dataSearch: any;
+  onSubmits: (value: any) => void;
 }
 
-export default function FormEdit({ dataSearch }: FormEditProps) {
+export default function FormEdit({ dataSearch, onSubmits }: FormEditProps) {
   const orderId = uid();
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
@@ -36,6 +39,9 @@ export default function FormEdit({ dataSearch }: FormEditProps) {
   const [soles, setsoles] = React.useState<any>([]);
   const [size, setSize] = React.useState<any>([]);
   const [image, setfile] = React.useState<string>('');
+  const [fileImage, setFileImage] = React.useState<string>('');
+  const [file, setFile] = React.useState<any>();
+  const [LoadingfileImage, setLoadingfileImage] = React.useState<boolean>(false);
   const setOpenSize = () => {
     setopenSize((x) => !x);
   };
@@ -79,18 +85,70 @@ export default function FormEdit({ dataSearch }: FormEditProps) {
     setinputSize({ name: '', price: 0 });
   };
   const checkPiza = ['piza', 'newDish'];
-  const handleChangeFiles = (e: any) => {
-    const file = e.target.files;
+  const handleChangeFiless = async (e: any) => {
+    const file = e.target.files[0];
+    const data = new FormData();
 
-    const reader = new FileReader();
-    reader.readAsDataURL(file[0]);
-    reader.onload = (e: any) => {
-      setfile(e.target.result);
-    };
+    data.append('file', file);
+    data.append('upload_preset', 'upload');
+
+    try {
+      const uploadRe = await axios.post(
+        'https://api.cloudinary.com/v1_1/huukien/image/upload',
+        data
+      );
+      console.log(data);
+      console.log(uploadRe.data);
+
+      const { url } = uploadRe.data;
+
+      setfile(url);
+    } catch (error) {}
   };
 
+  const handleChangeFiles = async (e: React.ChangeEvent<any>) => {
+    setLoadingfileImage(true);
+    const file = e.target.files[0];
+
+    const data = new FormData();
+
+    data.append('file', file);
+    data.append('upload_preset', 'upload');
+
+    try {
+      const uploadRe = await axios.post(
+        'https://api.cloudinary.com/v1_1/huukien/image/upload',
+        data
+      );
+      console.log(data);
+      console.log(uploadRe.data);
+
+      const { url } = uploadRe.data;
+
+      console.log(url);
+      setFileImage(url);
+      setLoadingfileImage(false);
+    } catch (error) {}
+  };
+
+  const handleFormSubmit = async (value: any) => {
+    const newValue = {
+      ...value,
+      id: dataSearch._id,
+      price: Number(value.price),
+      more: item.length > 0 ? item : [...dataSearch.more],
+      size: size.length > 0 ? size : [...dataSearch.size],
+      soles: soles.length > 0 ? soles : [...dataSearch.soles],
+      image: fileImage !== '' ? fileImage : dataSearch.image,
+    };
+
+    await onSubmits(newValue);
+  };
+
+  console.log(dataSearch);
+
   return (
-    <form action="">
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
       <div className="edit__group">
         <label>
           OrderId <strong>*</strong>
@@ -109,7 +167,16 @@ export default function FormEdit({ dataSearch }: FormEditProps) {
         <label>
           Image <strong>*</strong>
         </label>
-        <InputFeild control={control} name="image" placeholder={dataSearch.image} />
+        <input type="file" id="file" accept="image/*" onChange={handleChangeFiles} />
+        {fileImage === '' && (
+          <label htmlFor="file">
+            <span>Upload File</span>
+          </label>
+        )}
+
+        <div className="newProduct__image">
+          {LoadingfileImage ? <LoadingFile /> : <>{fileImage && <img src={fileImage} alt="" />}</>}
+        </div>
       </div>
       <div className="edit__group">
         <label>
@@ -139,7 +206,7 @@ export default function FormEdit({ dataSearch }: FormEditProps) {
         <label>
           Spice <strong>*</strong>
         </label>
-        <InputFeild control={control} name="spice" placeholder={dataSearch.Spice} />
+        <InputFeild control={control} name="Spice" placeholder={dataSearch.Spice} />
       </div>
       {checkPiza.includes(dataSearch.category) && (
         <>
@@ -182,7 +249,7 @@ export default function FormEdit({ dataSearch }: FormEditProps) {
                 {!image && (
                   <>
                     {' '}
-                    <input type="file" id="file" accept="image/*" onChange={handleChangeFiles} />
+                    <input type="file" id="file" accept="image/*" onChange={handleChangeFiless} />
                     <label htmlFor="file">
                       <span>Upload File</span>
                     </label>

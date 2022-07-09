@@ -1,0 +1,163 @@
+@use './../../../../sass/index.scss' as *;
+form {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  .manager__modal--group {
+    display: flex;
+    flex-direction: column;
+
+    .manager__modal--image {
+      & > img {
+        width: 200px;
+      }
+    }
+    & > label {
+      margin: 10px 0;
+
+      & > span {
+        padding: 10px;
+
+        cursor: pointer;
+
+        background: blue;
+
+        color: white;
+      }
+    }
+    & > input {
+      height: 40px;
+
+      border-radius: 7px;
+
+      padding-left: 15px;
+    }
+  }
+  .manager__modal--group--radio {
+    display: flex;
+
+    column-gap: 15px;
+
+    margin: 10px 0;
+  }
+  .manager__modal--group--btn {
+    margin-left: auto;
+
+    margin-top: 15px;
+
+    display: flex;
+
+    column-gap: 10px;
+
+    & > button {
+      padding: 10px;
+
+      color: white;
+
+      border: none;
+
+      cursor: pointer;
+    }
+    & > button:first-child {
+      background: red;
+    }
+    & > button:last-child {
+      background: green;
+    }
+  }
+}
+.confirms.active__confirm {
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  transform: scale(1) !important;
+}
+.confirms {
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 7777;
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(0);
+
+  transition: 0.3s ease-in-out !important;
+
+  overflow: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .confirm__swaps {
+    position: absolute;
+
+    background: white;
+
+    border-radius: 8px;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 200px;
+
+    padding: 15px;
+
+    bottom: auto;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include tablet {
+  
+    }
+    .confirm__top {
+      padding: 20px;
+
+      border-bottom: 2px solid rgb(210, 205, 205);
+
+      display: flex;
+      justify-content: center;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      color: black;
+    }
+
+    .confirm__bottom {
+      display: flex;
+      justify-content: center;
+
+      margin-top: 20px;
+
+      column-gap: 10px;
+
+      & > button {
+        padding: 10px;
+
+        cursor: pointer;
+
+        border: none;
+
+        color: white;
+      }
+      & > button:first-child {
+        background-color: red;
+      }
+      & > button:last-child {
+        background-color: green;
+      }
+    }
+  }
+}

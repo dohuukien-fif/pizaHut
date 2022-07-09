@@ -17,7 +17,7 @@ export default function StuiffingItem({ items, handleIds }: StuiffingItemProps) 
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="stuffing_item" onClick={() => hanndleIdNew(items.id)}>
+    <div className="stuffing_item" onClick={() => hanndleIdNew(items.orderId)}>
       <div className="stuffing_block">
         <div className="stuffing_aside">
           <img src={image} alt="" />

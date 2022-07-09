@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { AiOutlineClose, AiOutlineLike, AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
@@ -25,6 +26,7 @@ import LoadingListss from './../../../component/loadingFeatures/loadingList/inde
 // import SildesNew from '../component/sildes/slidesNew';
 import './styles.scss';
 export default function HomeFeatures(props: any) {
+  const Errrr = React.useRef<any>();
   const dispatch = useDispatch();
   const [DataPiza, setDataPiza] = useState<any>([]);
   const [activeTab, setactiveTab] = useState('1');
@@ -39,6 +41,8 @@ export default function HomeFeatures(props: any) {
   });
 
   console.log('setPrice', setPrice);
+  const [Error, setError] = React.useState<string>('');
+  const userInfor = useSelector((state: any) => state.user.current);
   const [setpriceMore, setsetpriceMore] = useState<any>(0);
   const [Loading, setLoading] = useState<boolean>(false);
 
@@ -59,20 +63,30 @@ export default function HomeFeatures(props: any) {
     })();
   }, []);
 
-  function setIdPizza(newId: number): any {
-    console.log(newId);
+  async function setIdPizza(newId: number) {
+    console.log('newId', newId);
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-        setdetailProduct(DataPiza.find((item: any, index: number) => item.orderId === newId));
+        const res = ProductApi.getById(newId)
+          .then((data: any) => setdetailProduct(data))
+          .catch((error) => error);
+
+        console.log(res);
+
         setisoverlay(true);
         setLoading(false);
         resolve(true);
       }, 2000);
     });
   }
-  const checkCategory = ['piza', 'newDish'];
+  const checkCategory = ['piza', 'newDish', 'mixed', 'Seafood', 'Stuffing', 'Traditional'];
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
+    if (Object.keys(userInfor).length === 0) {
+      return setError('Vui lòng  đăng nhập !');
+    }
+
+    console.log('newValue', newValue);
     const checkCtegory = checkCategory.includes(detailProduct.category)
       ? {
           size: { name: newValue.sizeName, price: newValue.sizePrice },
@@ -90,7 +104,7 @@ export default function HomeFeatures(props: any) {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => {
         const action = addProduct({
-          id: detailProduct.id,
+          id: detailProduct.orderId,
           product: {
             ...detailProduct,
             ...checkCtegory,
@@ -115,15 +129,65 @@ export default function HomeFeatures(props: any) {
     const hanndleWindowClose = (e: any) => {
       if (e.target === closeRef.current) {
         setisoverlay(false);
+        setdetailProduct({});
       }
     };
     window.addEventListener('click', hanndleWindowClose);
 
     return () => window.removeEventListener('click', hanndleWindowClose);
   }, []);
+  React.useEffect(() => {
+    if (Error !== '') {
+      Errrr.current = setTimeout(() => {
+        setError('');
+      }, 5000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [Error]);
+
+  const handleClickError = () => {
+    setError('');
+  };
+  const [like, setLikes] = useState<string>('');
+  const handleClickLike = async () => {
+    console.log(detailProduct.orderId);
+
+    await axios.put(`http://localhost:5000/api/products/${detailProduct.orderId}/like`, {
+      userId: userInfor._id,
+    });
+
+    alert('cảm ơn bạn đã đánh giá');
+  };
+
+  console.log(detailProduct);
+  console.log(detailProduct?.like?.includes(userInfor?._id));
+
+  console.log(detailProduct?.like);
+
+  const checkLike = like === '' ? detailProduct?.like?.includes(userInfor?._id) : like;
+
+  const handleClickLikes = (newValue: string) => {
+    handleClickLike();
+    if (like === newValue) {
+      setLikes('unlike');
+    } else {
+      setLikes(newValue);
+    }
+  };
+
+  const handleCloseModalPizza = () => {
+    setdetailProduct({});
+    setisoverlay(false);
+  };
   return (
     <div className="container">
       <Silder />
+      {Error !== '' && (
+        <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
+          <AiOutlineClose onClick={handleClickError} />
+          <p>{Error}</p>
+        </div>
+      )}
       <div className="container_fuiter">
         <div className="container_aside">
           <div className="discount">
@@ -243,6 +307,17 @@ export default function HomeFeatures(props: any) {
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
 
+            <div className="overlay__like">
+              <button onClick={() => handleClickLikes(userInfor._id)}>
+                <AiOutlineLike
+                  className={
+                    checkLike === true || checkLike === userInfor._id
+                      ? 'icon__like active__like'
+                      : 'icon__like'
+                  }
+                />
+              </button>
+            </div>
             <div className="overlay_closes">
               {LoadingOverlay ? (
                 <div className="loading_featurees">
@@ -250,14 +325,22 @@ export default function HomeFeatures(props: any) {
                 </div>
               ) : (
                 <>
-                  <AiOutlineClose onClick={() => setisoverlay(false)} />
+                  <AiOutlineClose onClick={handleCloseModalPizza} />
                 </>
               )}
             </div>
             <div className="overlay_block">
               {' '}
               <div className="overlay_thumbanil">
-                <Thumbnail detail={detailProduct} setPrice={setPrice} setpriceMore={setpriceMore} />
+                {!detailProduct.image ? (
+                  <LoadingFeatures />
+                ) : (
+                  <Thumbnail
+                    detail={detailProduct}
+                    setPrice={setPrice}
+                    setpriceMore={setpriceMore}
+                  />
+                )}
               </div>
               <div className="overlay_information">
                 <Information

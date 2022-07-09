@@ -195,8 +195,6 @@ export default function FormPickup({
     const action = setStore({ store, address });
 
     dispatch(action);
-
-    console.log('store', store, address);
   };
 
   const handleFormSubmit = (formValues: any) => {
