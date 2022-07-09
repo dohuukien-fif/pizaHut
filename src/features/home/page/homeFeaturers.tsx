@@ -167,6 +167,10 @@ export default function HomeFeatures(props: any) {
   const checkLike = like === '' ? detailProduct?.like?.includes(userInfor?._id) : like;
 
   const handleClickLikes = (newValue: string) => {
+    console.log(newValue);
+    if (Object.keys(userInfor).length === 0) {
+      return setError('Vui lòng  đăng nhập !');
+    }
     handleClickLike();
     if (like === newValue) {
       setLikes('unlike');
@@ -179,6 +183,8 @@ export default function HomeFeatures(props: any) {
     setdetailProduct({});
     setisoverlay(false);
   };
+
+  console.log(checkLike, userInfor);
   return (
     <div className="container">
       <Silder />
