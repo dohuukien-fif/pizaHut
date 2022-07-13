@@ -2,10 +2,11 @@
 .ovelay_info {
   padding: 30px;
   // overflow-y: auto;
+
   @include mobilesmall {
     padding: 0px;
     width: 85%;
-    margin: auto;
+    margin: 30px auto;
   }
   .overlay_name {
     margin-bottom: 10px;

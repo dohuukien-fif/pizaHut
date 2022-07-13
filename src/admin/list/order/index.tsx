@@ -3,6 +3,7 @@ import { AiOutlineWarning } from 'react-icons/ai';
 import { MdOutlineDeleteSweep } from 'react-icons/md';
 import CustomersApi from '../../../api/customersApi';
 import OrderApi from '../../../api/OrderApi';
+import LoadingFeatures from '../../../component/loadingFeatures';
 import Table from '../../features/dashboard/table';
 import Completed from './copletedItem';
 import OrderItem from './orderItem';
@@ -14,6 +15,7 @@ export default function OrderFeatures(props: OrderFeaturesProps) {
   const [indexTab, setIndexTav] = React.useState<number>(0);
   const [data, setData] = React.useState<any[]>();
   const [customers, setCustomers] = React.useState<any[]>();
+  const [Loading, setLoading] = React.useState<boolean>(false);
   const [pagination, setPagination] = React.useState<any>({
     page: 1,
     limit: 10,
@@ -25,10 +27,12 @@ export default function OrderFeatures(props: OrderFeaturesProps) {
   });
   React.useEffect(() => {
     (async () => {
+      setLoading(true);
       const res: any = await OrderApi.getParam(filter);
       setData(res.data);
       setPagination(res.pagination);
       console.log(res);
+      setLoading(false);
     })();
   }, [filter]);
 
@@ -93,6 +97,7 @@ export default function OrderFeatures(props: OrderFeaturesProps) {
   return (
     <div className="orders">
       <div className="orders__swapper">
+        {Loading && <LoadingFeatures />}
         <div className="orders__title">
           <div className="order__title--left">
             <p>Order</p>

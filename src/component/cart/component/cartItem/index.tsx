@@ -93,7 +93,7 @@ function CartItem({ items }: CartItemProps) {
                   )}
                 </span>
               ) : (
-                <span>{formatPrice(Number(items.product.price) + items.quantity)}</span>
+                <span>{formatPrice(Number(items.product.price) * items.quantity)}</span>
               )}
             </div>
             <div className="cart_delete">

@@ -12,6 +12,9 @@
   flex-direction: column;
   flex-basis: calc(25% - 15px);
   margin-bottom: 20px;
+
+  padding: 10px 0;
+
   @include mobile {
     flex-basis: calc(50% - 15px);
   }
@@ -20,7 +23,6 @@
 
     // padding-bottom: 50px;
 
-    height: 250px;
     border-top: 1px solid rgb(233, 231, 231);
   }
   .appertizer_block {

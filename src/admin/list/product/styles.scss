@@ -90,6 +90,8 @@
       background-color: #fff;
 
       flex: 1;
+
+      min-width: 700px;
       .product__talet--title {
         display: flex;
 
@@ -98,11 +100,25 @@
         border-top-right-radius: 5px;
 
         padding: 10px;
-        & > span {
-          flex: 1;
+        .product__talet--title--left {
+          flex: 2;
+          display: flex;
+          & > span {
+            flex: 1;
 
-          font-weight: 700;
-          font-size: 16px;
+            font-weight: 700;
+            font-size: 16px;
+          }
+        }
+        .product__talet--title--right {
+          flex: 1;
+          display: flex;
+          & > span {
+            flex: 1;
+
+            font-weight: 700;
+            font-size: 16px;
+          }
         }
       }
       .product__table--list {
@@ -117,13 +133,19 @@
           border-bottom: 1px solid gray;
 
           padding: 10px;
+
+          column-gap: 10px;
           .product__item--left {
-            flex: 1;
             display: flex;
+
+            column-gap: 5px;
+
+            flex: 2;
             .product__id {
               flex: 1;
 
               font-weight: 600;
+              font-size: 13px;
             }
             .product__product {
               flex: 2;
@@ -133,10 +155,18 @@
               column-gap: 10px;
 
               .product__figust {
+                flex: 1;
                 & > img {
-                  width: 50px;
-                  height: 50px;
+                  width: 100px;
+                  height: 100px;
+
+                  object-fit: fill;
                 }
+              }
+              & > span {
+                flex: 1;
+                font-size: 15px;
+                font-weight: 700;
               }
             }
           }
@@ -145,11 +175,13 @@
 
             display: flex;
 
+            column-gap: 5px;
+
             .product__price {
               flex: 1;
 
-              font-weight: 600;
-              font-size: 16px;
+              font-weight: 700;
+              font-size: 17px;
             }
             .product__action {
               flex: 1;

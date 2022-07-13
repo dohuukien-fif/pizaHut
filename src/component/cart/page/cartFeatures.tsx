@@ -18,6 +18,7 @@ import {
 import { useSelector } from 'react-redux';
 import { formatPrice } from '../../../utils';
 import { useNavigate } from 'react-router-dom';
+import { BsCart4 } from 'react-icons/bs';
 export default function CartFeatures(props: any) {
   const priceItem = useSelector(Cartitem);
   const total = useSelector(cartItemTotal);
@@ -75,6 +76,7 @@ export default function CartFeatures(props: any) {
       <div className="cart_wrapper">
         <div className="cart_block">
           <div className="cart_title">
+            <BsCart4 />
             <span>Sản phẩm</span>
           </div>
           <CartList dataCart={dataCart} />

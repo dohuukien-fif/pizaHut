@@ -1,6 +1,7 @@
 @use './../../sass/index.scss/' as *;
 
 .mySwipers {
+  width: 100%;
   .swiper-button-prev,
   .swiper-button-next {
     &::after {

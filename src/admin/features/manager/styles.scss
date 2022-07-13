@@ -1,7 +1,5 @@
 @use './../../../sass/index.scss' as *;
 .manager {
-  overflow: auto;
-
   margin: 10px;
 
   font-size: 14px;
@@ -38,6 +36,10 @@
 
     width: auto;
 
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
     .manager__title {
       font-size: 25px;
       font-weight: 700;
@@ -138,6 +140,32 @@
             }
           }
         }
+      }
+    }
+    .manager__pagination {
+      margin-left: auto;
+
+      margin-top: 10px;
+
+      .activePagination {
+        background: blue;
+        color: white;
+
+        border: 1px solid rgb(17, 17, 165);
+      }
+      & > button {
+        height: 30px;
+        width: 30px;
+
+        margin-left: 5px;
+
+        background: white;
+
+        border: 1px solid rgb(196, 192, 192);
+
+        cursor: pointer;
+
+        font-size: 13px;
       }
     }
   }

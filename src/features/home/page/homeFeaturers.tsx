@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 import SildesNew from '../../../component/sildes/slidesNew';
 import NavLinkTab from '../component/navLinkTab';
 import MixedList from '../component/navLinkTab/mixed';
@@ -187,7 +188,7 @@ export default function HomeFeatures(props: any) {
   console.log(checkLike, userInfor);
   return (
     <div className="container">
-      <Silder />
+      <SliderFeatures />
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

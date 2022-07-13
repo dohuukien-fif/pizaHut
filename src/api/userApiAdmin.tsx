@@ -13,5 +13,9 @@ const userApi = {
     const url = `/user/admin/${data.id}`;
     return axiosClient.patch(url, data);
   },
+  updateImage(data: any) {
+    const url = `/user/admin/image/${data.id}`;
+    return axiosClient.patch(url, data);
+  },
 };
 export default userApi;

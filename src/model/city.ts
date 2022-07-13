@@ -20,4 +20,7 @@ export interface CityProps {
   division_type: string;
   phone_code: number;
   districts: DistrictsProps[];
+  city: any;
+  street: any;
+  coutry: any;
 }

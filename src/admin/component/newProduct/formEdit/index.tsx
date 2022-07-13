@@ -68,7 +68,16 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
       value: 'Soodles',
     },
     {
-      value: 'Salad',
+      value: 'mixed',
+    },
+    {
+      value: 'Seafood',
+    },
+    {
+      value: 'Stuffing',
+    },
+    {
+      value: 'Tranditional',
     },
     {
       value: 'Spaghetti',
@@ -205,10 +214,18 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
 
     setfileMore('');
   };
+  const handleChangCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    console.log('ienn', value);
+    setCategory(value);
+  };
   console.log('file', inputMore);
   console.log('file', fileMore);
 
   const handleFormSubmit = async (value: any) => {
+    if (fileImage === '') {
+      return console.log('vui lòng chọn ảnh đại diện');
+    }
     const newValue = {
       ...value,
       price: Number(value.price),
@@ -219,15 +236,18 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
       orderId,
       category,
     };
+    setMore([]);
+    setSize([]);
+    setsoles([]);
+    setFileImage('');
 
+    reset();
     await onSubmit(newValue);
+
+    console.log('[newValie]', newValue);
   };
 
-  const handleChangCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target;
-    console.log('ienn', value);
-    setCategory(value);
-  };
+  console.log(more, size, soles);
   const checkPiza = ['piza', 'newDish', 'mixed', 'Seafood', 'Stuffing', 'Traditional'];
   const checkCategory = [
     'piza',
@@ -334,7 +354,7 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
                     <input
                       type="text"
                       name="name"
-                      value={more.name !== '' ? more.name : ''}
+                      value={inputMore.name}
                       onChange={handleChangeMore}
                     />
                     <label>
@@ -343,7 +363,7 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
                     <input
                       type="number"
                       name="price"
-                      value={more.price !== 0 ? more.price : 0}
+                      value={inputMore.price}
                       onChange={handleChangeMore}
                     />
 
@@ -419,11 +439,16 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
                     <label>
                       name <strong>*</strong>
                     </label>
-                    <input type="text" name="name" onChange={handleChage} />
+                    <input type="text" name="name" value={inputSize.name} onChange={handleChage} />
                     <label>
                       price <strong>*</strong>
                     </label>
-                    <input type="number" name="price" onChange={handleChage} />
+                    <input
+                      type="number"
+                      name="price"
+                      value={inputSize.price}
+                      onChange={handleChage}
+                    />
                     <button type="button" onClick={handlButton}>
                       submit
                     </button>
@@ -483,10 +508,10 @@ export default function FormNewProduct({ onSubmit }: FormNewProductProps) {
                           >
                             <div className="newProduct__name">
                               {items.item.map((itemss: Array<string>, index: number) => (
-                                <>
+                                <React.Fragment key={index}>
                                   <span>Item:</span>
                                   <span>{itemss}</span>
-                                </>
+                                </React.Fragment>
                               ))}
                             </div>
                           </div>

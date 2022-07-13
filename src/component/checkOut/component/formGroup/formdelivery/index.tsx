@@ -211,7 +211,7 @@ function FormDelivery({
         street: '',
         city: '',
         coutry: '',
-        store: '',
+        time: '',
       });
       return seterror('vui lòng  kiểm  tra thông   tin  còn thiếu');
     } else {
@@ -348,13 +348,21 @@ function FormDelivery({
               <label>
                 Họ và tên: <strong>*</strong>
               </label>
-              <Inputfeild control={control} name="fullName" />
+              <Inputfeild
+                control={control}
+                name="fullName"
+                placeholder="Vui lòng nhập họ và tên của bạn..."
+              />
             </div>
             <div className="form_group">
               <label>
                 Số điện thoại: <strong>*</strong>
               </label>
-              <Inputfeild control={control} name="phone" />
+              <Inputfeild
+                control={control}
+                name="phone"
+                placeholder="Vui lòng nhập số điện thoại của bạn..."
+              />
             </div>
             <div className="form_group">
               <label>
@@ -414,13 +422,21 @@ function FormDelivery({
               <label>
                 Số nhà hẽm: <strong>*</strong>
               </label>
-              <Inputfeild control={control} name="home" />
+              <Inputfeild
+                control={control}
+                name="home"
+                placeholder="Vui lòng nhập số hẽm của bạn..."
+              />
             </div>
             <div className="form_group">
               <label>
                 Tên đường: <strong>*</strong>
               </label>
-              <Inputfeild control={control} name="streets" />
+              <Inputfeild
+                control={control}
+                name="streets"
+                placeholder="Vui lòng nhập tên đường của bạn..."
+              />
             </div>
           </div>
         </div>
@@ -450,6 +466,7 @@ function FormDelivery({
               type="checkbox"
               id="cb1"
               name="time"
+
               // value={values.time}
               // onChange={hanndleChange}
             />
@@ -458,7 +475,11 @@ function FormDelivery({
 
           {infors === 'time' && (
             <div className="form_time">
-              <Inputfeild control={control} name="time" />
+              <Inputfeild
+                control={control}
+                name="time"
+                placeholder="Vui lòng nhập thời  gian  giao hàng cho bạn..."
+              />
               {/* <input
                 type="text"
                 placeholder="Nhập thời gian giao hàng"

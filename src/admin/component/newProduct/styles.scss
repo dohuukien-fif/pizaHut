@@ -9,6 +9,73 @@
   &::-webkit-scrollbar {
     display: none;
   }
+  .active_error {
+    visibility: visible !important;
+    opacity: 1 !important;
+    right: 30px !important;
+  }
+  .newProduct_Error {
+    position: fixed;
+    height: 60px;
+    width: 280px;
+
+    background: rgb(214, 24, 24);
+
+    // top: 50px;
+    // right: 50px;
+    // left: 0;
+    top: 20px;
+    right: -100%;
+
+    z-index: 100000;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition: 5s ease-in !important;
+    & > svg {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+
+      font-size: 15px;
+
+      color: $white;
+
+      cursor: pointer;
+    }
+    & > p {
+      position: absolute;
+
+      top: 30%;
+      left: 20%;
+      transform: translate(-20%, -20%);
+
+      color: white;
+
+      font-size: 14px;
+    }
+  }
+  .newProduct__back {
+    & > button {
+      padding: 10px;
+
+      cursor: pointer;
+
+      border: none;
+
+      margin: 10px;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      display: flex;
+      align-items: center;
+
+      column-gap: 5px;
+    }
+  }
   &__swapper {
     box-shadow: 0 7px 24px rgb(0 0 0 / 9%);
     border-radius: 10px;
@@ -26,6 +93,8 @@
     .newProduct__title {
       font-size: 20px;
       font-weight: 700;
+
+      margin: 10px;
     }
 
     & > form {
@@ -96,6 +165,17 @@
           }
         }
       }
+      .newProduct__group--checkBox {
+        & > label {
+          font-weight: 700;
+          font-size: 16px;
+
+          margin: 10px 0;
+          & > strong {
+            color: red;
+          }
+        }
+      }
       .newProduct__input {
         display: flex;
 
@@ -105,6 +185,9 @@
 
         width: 100%;
 
+        @include mobile {
+          flex-direction: column;
+        }
         .newProduct__input--left {
           display: flex;
           flex-direction: column;
@@ -159,17 +242,24 @@
           flex: 1;
 
           .newProduct__list {
+            display: flex;
+            flex-wrap: wrap;
+
+            column-gap: 5px;
+
             .newProduct__item {
               display: flex;
               align-items: flex-start;
               justify-content: center;
               flex-direction: row;
 
-              column-gap: 10px;
+              column-gap: 15px;
 
               margin-top: 10px;
 
               padding: 5px;
+
+              flex-basis: calc(25% - 20px);
 
               .newProduct__index {
                 background: green;
@@ -196,6 +286,9 @@
                 }
                 .newProduct__figust {
                   display: flex;
+                  @include mobile {
+                    flex-direction: column;
+                  }
                   & > span:first-child {
                     font-weight: 700;
                     margin-right: 5px;
@@ -223,6 +316,7 @@
         flex-direction: column;
 
         row-gap: 20px;
+
         .newProduct__group {
           display: flex;
           flex-direction: column;

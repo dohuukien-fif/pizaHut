@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { BsCart3 } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { formatPrice } from '../../utils';
 import { removeProduct } from './../../app/cartRedux';
 import { logout } from './../../app/userRedux';
@@ -68,6 +68,7 @@ export default function Headers(props: HeadersProps) {
     dispatch(action);
   };
 
+  const location = useLocation();
   const activeTranForm = (value?: string) => {
     if (value === 'l') {
       setsetActive('active_left');
@@ -124,6 +125,7 @@ export default function Headers(props: HeadersProps) {
     // navigate({ search: SearchTerm.trim("") });
     // location.search(`${SearchTerm}`);
   };
+  const sizeRef: any = useRef();
   const handleChangeselected = (e: any) => {
     const values = e.target.value;
 
@@ -181,8 +183,26 @@ export default function Headers(props: HeadersProps) {
   }, [window.innerWidth]);
   const checkCategory = ['piza', 'newDish'];
 
+  useEffect(() => {
+    const hanndleWindowClose = (e: any) => {};
+
+    const classScroll = document.getElementsByClassName('nav');
+
+    console.log(classScroll);
+    window.addEventListener('resize', hanndleWindowClose);
+
+    return () => window.removeEventListener('resize', hanndleWindowClose);
+  }, []);
+
+  // document.getElementsByClassName('active_scroll').style.background = '10px';
+
+  //.style.top = `${sizeRef.current.clientHeight}px`;
+
+  useEffect(() => {
+    setisopen(false);
+  }, [location.pathname]);
   return (
-    <nav className={isScroll ? 'nav activeNav' : 'nav'}>
+    <nav className={isScroll ? 'nav activeNav' : 'nav'} ref={sizeRef}>
       <div className="nav_block">
         <NavTop
           closeRef={closeRef}
@@ -215,34 +235,12 @@ export default function Headers(props: HeadersProps) {
             activeTranForm={activeTranForm}
             isorder={isorder}
             activeIco={activeIco}
+            handleOpenMenuAccount={handleOpenMenuAccount}
+            openMenuAccount={openMenuAccount}
+            hanleLooutClick={hanleLooutClick}
           />
           {/* menu cart tablet =>laptop */}
           <div className="nav_carts">
-            <div className="search_pizza">
-              <AiOutlineSearch onClick={() => setisOpenSearch((x) => !x)} />
-              {isOpenSearch && (
-                <form onSubmit={handleSubmit}>
-                  <div className="form_add">
-                    <input
-                      type="text"
-                      placeholder="Tìm kiếm sản phẩm"
-                      value={SearchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <button type="submit">
-                      {' '}
-                      {loading ? (
-                        <div className="loading_featurees">
-                          <AiOutlineLoading3Quarters />
-                        </div>
-                      ) : (
-                        <AiOutlineSearch />
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
             <div className="nav_cart" onClick={handleClickLinkCart}>
               <BsCart3 />
 

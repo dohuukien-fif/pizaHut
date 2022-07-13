@@ -3,7 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FiMenu } from 'react-icons/fi';
 import { MdOutlineDarkMode } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import NewProduct from './component/newProduct';
 import SideBar from './component/sidebar';
 import LoginFeatures from './features/auth/login';
@@ -21,10 +21,12 @@ import ViewOrderFeatues from './list/order/view';
 import ProfileAmindFeatues from './features/auth/profile';
 import ViewCustomers from './list/customer/view';
 import ManagerFeatures from './features/manager';
+import ViewDeliveryFeatues from './list/delivery/view';
 
 export interface IAppProps {}
 
 export default function App(props: any) {
+  const location = useLocation();
   const userInnfor = useSelector((state: any) => state.userAdmin.current);
   const [themeColor, setThemeColor] = React.useState<boolean>(false);
   const isUserInfor = Object.keys(userInnfor);
@@ -40,9 +42,11 @@ export default function App(props: any) {
 
   const handleThemeColorDark = () => {
     setThemeColor(true);
+    setopen(false);
   };
   const handleThemeColorLight = () => {
     setThemeColor(false);
+    setopen(false);
   };
   React.useEffect(() => {
     const hanndleWindowClose = (e: any) => {
@@ -55,6 +59,10 @@ export default function App(props: any) {
     return () => window.removeEventListener('click', hanndleWindowClose);
   }, []);
   console.log(closeRef.current);
+
+  React.useEffect(() => {
+    setopen(false);
+  }, [location.pathname]);
   return (
     <div className={themeColor ? 'admin admin__dark' : 'admin '} ref={closeRef}>
       <div className={open ? 'admin__left active' : 'admin__left'}>
@@ -68,7 +76,7 @@ export default function App(props: any) {
         <div className="admin__right--navTop">
           <div className="admin__right--block">
             <div className="admin__right--theme">
-              <MdOutlineDarkMode />
+              <MdOutlineDarkMode onClick={() => setThemeColor((x) => !x)} />
             </div>
             <div className="admin__right--account">
               {isUserInfor.length === 0 && (
@@ -114,6 +122,7 @@ export default function App(props: any) {
           <Route path="product/:productId" element={<EditFeatures />} />
           <Route path="order/:orderId" element={<ViewOrderFeatues />} />
           <Route path="Customers/:customersId" element={<ViewCustomers />} />
+          <Route path="delivery/:deliveryId" element={<ViewDeliveryFeatues />} />
           {/* <Route path="/login">
           {user ? <Navigate replace to="Trang-chu" /> :element={<LoginFeatures />}}
         </Route> */}

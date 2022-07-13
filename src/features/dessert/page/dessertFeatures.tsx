@@ -12,6 +12,7 @@ import LoadingListss from './../../../component/loadingFeatures/loadingList/inde
 import { addProduct } from '../../../app/cartRedux';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 export default function DessertFeatures(props: any) {
   const [DataPiza, setDataPiza] = useState<any>(dataLisst);
   const [isScroll, setisScroll] = useState<boolean>(false);
@@ -193,7 +194,7 @@ export default function DessertFeatures(props: any) {
   };
   return (
     <div className="dessert">
-      <Silder />{' '}
+      <SliderFeatures />{' '}
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

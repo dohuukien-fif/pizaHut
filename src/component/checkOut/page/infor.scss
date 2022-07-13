@@ -16,6 +16,9 @@
     width: 100%;
     height: 100%;
 
+    @include mobile {
+      padding: 10px;
+    }
     .infor_content {
       .active_error {
         visibility: visible !important;
@@ -241,6 +244,8 @@
           background: rgb(252, 251, 251);
 
           font-size: 14px;
+
+          padding-left: 15px;
         }
         & > select {
           height: 45px;
@@ -480,6 +485,10 @@
           border: 1px solid rgb(194, 190, 190);
 
           background: rgb(253, 253, 253);
+
+          padding-left: 15px;
+
+          font-size: 14px;
         }
         & > select {
           height: 45px;

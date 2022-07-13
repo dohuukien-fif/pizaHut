@@ -12,6 +12,7 @@ import './styles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 import axios from 'axios';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 export default function SaladFeatures(props: any) {
   const dispatch = useDispatch();
   const [DataPiza, setDataPiza] = useState<any>([]);
@@ -192,7 +193,7 @@ export default function SaladFeatures(props: any) {
   };
   return (
     <div className="salads">
-      <Silder />
+      <SliderFeatures />
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

@@ -5,11 +5,13 @@ import './styles.scss';
 
 import { OrderProps } from '../../../model';
 import { useNavigate } from 'react-router-dom';
+import LoadingFeatures from '../../../component/loadingFeatures';
 export interface DeliveryFeaturesProps {}
 
 export default function DeliveryFeatures(props: DeliveryFeaturesProps) {
   const [data, setData] = React.useState<OrderProps[]>();
-  
+  const [Loading, setLoading] = React.useState<boolean>(false);
+
   const navigete = useNavigate();
 
   const [pagination, setPagination] = React.useState<any>({
@@ -25,11 +27,13 @@ export default function DeliveryFeatures(props: DeliveryFeaturesProps) {
 
   React.useEffect(() => {
     (async () => {
+      setLoading(true);
       const res: any = await OrderApi.getParamDelivery(filter);
       console.log(res);
 
       setData(res.data);
       setPagination(res.pagination);
+      setLoading(false);
     })();
   }, [filter]);
   console.log(data);
@@ -40,12 +44,13 @@ export default function DeliveryFeatures(props: DeliveryFeaturesProps) {
       page: newPage,
     }));
   };
-  const handleIdOrder = (id: string) => {
-    console.log(id);
+  const handleIdOrder = async (id: string) => {
+    navigete(`/admin/delivery/${id}`);
   };
   return (
     <div className="delivery">
       <div className="delivery__swapper">
+        {Loading && <LoadingFeatures />}
         <div className="delivery__title">
           <span>Delivery</span>
         </div>
@@ -86,7 +91,7 @@ export default function DeliveryFeatures(props: DeliveryFeaturesProps) {
                           <span>{item.status}</span>
                         </div>
                         <div className="delivery__action">
-                          <button onClick={() => handleIdOrder(items._id)}>
+                          <button onClick={() => handleIdOrder(item._id)}>
                             <span>View</span>
                           </button>
                         </div>

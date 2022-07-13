@@ -12,6 +12,7 @@ import { dataLisst } from './../../../component/hooks/index';
 import './styles.scss';
 import ProductApi from '../../../api/productApi';
 import axios from 'axios';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 
 export default function SearchFeatures(props: any) {
   const params = location.search;
@@ -207,7 +208,7 @@ export default function SearchFeatures(props: any) {
   };
   return (
     <div className="search">
-      <Silder />{' '}
+      <SliderFeatures />{' '}
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

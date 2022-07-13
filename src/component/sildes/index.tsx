@@ -18,7 +18,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/swiper.scss'; // core Swiper
-import './styles.scss';
+
 SwiperCore.use([FreeMode, Zoom, Keyboard, Pagination, Navigation, Autoplay, EffectFade]);
 
 // import Slider from "react-slick";

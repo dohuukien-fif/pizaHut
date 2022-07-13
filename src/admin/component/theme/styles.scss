@@ -59,6 +59,11 @@
             .sideBar__user--group {
               background-color: #212022;
 
+              .sideBar__user--link {
+                & > p {
+                  color: white;
+                }
+              }
               &:hover {
                 background: #7f6be1;
                 color: white;
@@ -180,6 +185,11 @@
       .product__title {
         color: white;
       }
+      .product__filter {
+        background-color: #2e2d2e;
+
+        color: white;
+      }
       .product__body {
         .product__table {
           background-color: #2e2d2e;
@@ -218,6 +228,13 @@
     //newProduct
     .newProduct {
       .newProduct__swapper {
+        background-color: #2e2d2e;
+        color: white;
+      }
+    }
+    ///manager
+    .manager {
+      .manager__swap {
         background-color: #2e2d2e;
         color: white;
       }

@@ -74,6 +74,28 @@
           margin-bottom: 15px;
           margin-top: 15px;
 
+          .form_group--file {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            & > img {
+              width: 150px;
+              height: 150px;
+
+              border-radius: 50%;
+            }
+            & > label {
+              position: absolute;
+              right: 0;
+              top: 90%;
+              & > span {
+                & > svg {
+                  font-size: 25px;
+                }
+              }
+            }
+          }
+
           & > label {
             font-weight: 600;
 

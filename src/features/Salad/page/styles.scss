@@ -9,6 +9,14 @@
   // .active {
   //   background: red;
   // }
+  @include mobile {
+    margin: 100px auto auto auto;
+  }
+  @include mobilesmall {
+    width: 100%;
+    margin: 70px auto auto auto;
+    // margin-top: 100px;
+  }
   .active_error {
     visibility: visible !important;
     opacity: 1 !important;
@@ -57,11 +65,7 @@
       font-size: 14px;
     }
   }
-  @include mobilesmall {
-    width: 95%;
-    margin: auto;
-    // margin-top: 100px;
-  }
+
   .salad_container {
     width: 90%;
     margin: auto;
@@ -74,53 +78,7 @@
       @include tablet {
         width: 100%;
       }
-      .active_scroll {
-        position: fixed;
-        right: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        padding-top: 0px;
 
-        width: 75%;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 130px;
-
-        @include mobile {
-          top: 70px;
-        }
-        @include mobilesmall {
-          top: 60px;
-        }
-      }
-      .active_scrollTabletBig {
-        position: fixed;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 140px;
-      }
-      .active_scrollTabletSmall {
-        position: fixed;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 70px;
-      }
-      .active_scrollmobile {
-        position: fixed;
-        left: 0;
-        right: 0;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 50px;
-      }
       .salad_title {
         padding: 0px 10px 10px 10px;
         border-bottom: 1px solid rgb(208, 205, 205);

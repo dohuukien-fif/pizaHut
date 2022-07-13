@@ -8,6 +8,7 @@ import { checkProducts, cartItemTotal } from './../../../cart/cartSelected';
 import { UpdateCart } from './../../../../component/checkOut/checkOutRedux';
 import { useNavigate } from 'react-router-dom';
 import { updateProduct } from '../../../../app/cartRedux';
+import OrderApi from '../../../../api/OrderApi';
 export interface DetailOrderProps {}
 
 export default function DetailOrder(props: any) {
@@ -15,6 +16,7 @@ export default function DetailOrder(props: any) {
   const dispatch = useDispatch();
   const navigete = useNavigate();
   console.log('checkProductss', checkProductss);
+  const [dataOrder, setDataOrder] = React.useState<any[]>([]);
 
   const dates = new Date();
   const dataday = `${dates.getDate()}/${dates.getMonth() + 1}/${dates.getFullYear()}`;
@@ -50,6 +52,18 @@ export default function DetailOrder(props: any) {
     })();
   }, [setProduct]);
 
+  //fetchApi   Order
+
+  React.useEffect(() => {
+    (async () => {
+      const reponse = await OrderApi.getAll();
+
+      setDataOrder(reponse.data);
+
+      console.log(reponse.data);
+    })();
+  }, []);
+  const checkCategory = ['piza', 'newDish', 'mixed', 'Seafood', 'Stuffing', 'Traditional'];
   return (
     <>
       <div className="detailOrder">
@@ -60,7 +74,16 @@ export default function DetailOrder(props: any) {
                 <h3>Chi tiết đơn hàng #{items?.code}</h3>
               </div>
               <div className="detailOrder_confim">
-                <span>Chờ xác nhận</span>
+                {dataOrder.find((e) => e.code === 1002)?.status === 'pending' && (
+                  <span>Chờ xác nhận</span>
+                )}
+                {dataOrder.find((e) => e.code === 1002)?.status === 'Success' && (
+                  <span>Thành công</span>
+                )}
+                {dataOrder.find((e) => e.code === 1002)?.status === 'Shipping' && (
+                  <span>Đang giao </span>
+                )}
+                {dataOrder.find((e) => e.code === 1002)?.status === 'Reful' && <span>Đơn hủy</span>}
 
                 <span>
                   Ngày đặt hàng: {items?.day} {items?.time}{' '}
@@ -106,7 +129,19 @@ export default function DetailOrder(props: any) {
                   </div>
                   <div className="detailOrder_pay-infor">
                     <p>Thanh toán khi nhận hàng</p>
-                    <p>Đang chờ xử lý</p>
+
+                    {dataOrder.find((e) => e.code === 1002)?.status === 'pending' && (
+                      <p>Đang chờ xử lý...</p>
+                    )}
+                    {dataOrder.find((e) => e.code === 1002)?.status === 'Success' && (
+                      <p>Đang chờ vận chuyển...</p>
+                    )}
+                    {dataOrder.find((e) => e.code === 1002)?.status === 'Shipping' && (
+                      <p>Đang giao hàng...</p>
+                    )}
+                    {dataOrder.find((e) => e.code === 1002)?.status === 'Reful' && (
+                      <p>Đơn hàng đã hủy...</p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -136,37 +171,46 @@ export default function DetailOrder(props: any) {
                           </div>
                           <div className="detaiOrder_bottom-product">
                             <div className="detaiOrder_bottom-name">
-                              <span>Pizza rau củ</span>
+                              <span>{item.product.name}</span>
                               <span>x{item.quantity}</span>
                             </div>
-                            {Object.values(item.product.size).every((e) => e !== '') && (
-                              <div className="detaiOrder_bottom-size">
-                                <span>{`Kích thước - ${item.product.size.name}`}</span>
-                              </div>
-                            )}
-                            {item.product.soles.length > 0 && (
-                              <div className="detaiOrder_bottom-soles">
-                                <span>{`Đế - ${item.product.soles}`}</span>
-                              </div>
-                            )}
-                            {Object.values(item.product.more).every((e) => e !== '') && (
-                              <div className="detaiOrder_bottom-more">
-                                <span>{`Thêm nhân - ${item.product.more.name}`}</span>
-                              </div>
+                            {checkCategory.includes(item.product.category) && (
+                              <>
+                                {' '}
+                                {Object.values(item.product.size).every((e) => e !== '') && (
+                                  <div className="detaiOrder_bottom-size">
+                                    <span>{`Kích thước - ${item.product.size.name}`}</span>
+                                  </div>
+                                )}
+                                {item.product.soles.length > 0 && (
+                                  <div className="detaiOrder_bottom-soles">
+                                    <span>{`Đế - ${item.product.soles}`}</span>
+                                  </div>
+                                )}
+                                {Object.values(item.product.more).every((e) => e !== '') && (
+                                  <div className="detaiOrder_bottom-more">
+                                    <span>{`Thêm nhân - ${item.product.more.name}`}</span>
+                                  </div>
+                                )}
+                              </>
                             )}
                           </div>
                         </div>
                       </div>
                       <div className="detaiOrder_bottom-content-right">
                         <div className="detaiOrder_bottom-price">
-                          <span>
-                            {' '}
-                            {formatPrice(
-                              item.product?.price +
-                                item.product?.size?.price +
-                                item.product?.more?.price
-                            )}
-                          </span>
+                          <span> {formatPrice(item.product?.price)}</span>
+
+                          {Object.keys(item.product?.size).length > 0 && (
+                            <>
+                              <span>{`+ ${formatPrice(item.product?.size.price)}`}</span>
+                            </>
+                          )}
+                          {Object.keys(item.product?.more).length > 0 && (
+                            <>
+                              <span>{`+ ${formatPrice(item.product?.more.price)}`}</span>
+                            </>
+                          )}
                         </div>
                         <div className="detaiOrder_bottom-quantity">
                           <span>x{item.quantity}</span>
@@ -174,10 +218,18 @@ export default function DetailOrder(props: any) {
                         <div className="detaiOrder_bottom-provisional">
                           <span>
                             {formatPrice(
-                              (item.product?.price +
-                                item.product?.size?.price +
-                                item.product?.more?.price) *
-                                item.quantity
+                              item.product?.price +
+                                Number(
+                                  Object.keys(item.product?.size).length > 0
+                                    ? item.product?.size?.price
+                                    : 0
+                                ) +
+                                Number(
+                                  Object.keys(item.product?.more).length > 0
+                                    ? item.product?.more?.price
+                                    : 0
+                                ) *
+                                  item.quantity
                             )}
                           </span>
                         </div>

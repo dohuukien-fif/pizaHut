@@ -62,6 +62,7 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
     },
   ]);
 
+  const freeShip = 15000;
   // console.log('taoal', Total - 200000);
 
   const DISCOUTPIZZA = discounts.map((e) => e.name).includes(codeDiscount)
@@ -72,7 +73,7 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
         })
     : console.log(' ngu dux  z');
 
-  const NEWTOAL = Boolean(DISCOUTPIZZA) ? Total - DISCOUTPIZZA?.price : Total;
+  const NEWTOAL = Boolean(DISCOUTPIZZA) ? Total - DISCOUTPIZZA?.price + freeShip : Total;
 
   console.log('NNEWTOTAL', discounts.map((e) => e.name).includes(codeDiscount));
   // console.log(
@@ -111,35 +112,62 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
   const hanndleClick = () => {
     setcodeDiscount(ValueRef.current.value);
   };
+  const uidCode = Date.now();
   const setCheckOutData = async () => {
     handleClic();
 
     const action = await addCheckOut({
-      code: Math.floor(Math.random() * 4000) + 100,
-      day: dataday,
-      time: datahour,
-      product: DataCart,
-      total: NEWTOAL < 0 ? 0 : NEWTOAL,
-      discount: Total - NEWTOAL,
-      order: cartOrders,
-      store: cartStores,
-      address: cartcheckeds ? CartAddresss : cartAddressOlds,
-    });
-    dispatch(action);
-    // dispatch(removeCart());
+      // code:uidCode,
+      // day: dataday,
+      // time: datahour,
 
-    await OrderApi.add({
+      // product: DataCart,
+
+      // total: NEWTOAL < 0 ? 0 : NEWTOAL,
+      // discount: Total - NEWTOAL,
+
+      // order: cartOrders,
+      // store: cartStores,
+
+      // address: cartcheckeds ? CartAddresss : cartAddressOlds,
+
       userId: userInfor._id,
-      code: Math.floor(Math.random() * 4000) + 100,
+      code: uidCode,
       day: dataday,
       time: datahour,
 
       products: DataCart,
       amount: NEWTOAL < 0 ? 0 : NEWTOAL,
       discount: Total - NEWTOAL,
+
       order: cartOrders,
       store: cartStores,
+
       address: cartcheckeds ? CartAddresss : cartAddressOlds,
+
+      status: 'pending',
+      user: {
+        userName: userInfor.username,
+      },
+    });
+    dispatch(action);
+    // dispatch(removeCart());
+
+    await OrderApi.add({
+      userId: userInfor._id,
+      code: uidCode,
+      day: dataday,
+      time: datahour,
+
+      products: DataCart,
+      amount: NEWTOAL < 0 ? 0 : NEWTOAL,
+      discount: Total - NEWTOAL,
+
+      order: cartOrders,
+      store: cartStores,
+
+      address: cartcheckeds ? CartAddresss : cartAddressOlds,
+
       status: 'pending',
       user: {
         userName: userInfor.username,
@@ -148,6 +176,8 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
 
     dispatch(removeCart());
   };
+
+  console.log('[newTotal]', NEWTOAL);
   return (
     <div className="payload">
       <div className="payload_swapper">
@@ -206,7 +236,7 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
                     </div>
                   </div>
                 </div>
-                <div className="payload_left-pay-content">
+                {/* <div className="payload_left-pay-content">
                   {active !== 'momo' ? (
                     <input type="radio" value="momo" name="pay" onChange={handlecheck} />
                   ) : (
@@ -231,7 +261,7 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
                       <p>Bạn sẽ được dẫn hướng đến trang của Momo để thực hiện thanh toán</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -324,7 +354,7 @@ export default function PayloadFeatures({ numbers, handleClic, handleBackbefore 
                     <span>Phí giao hàng</span>
                   </div>
                   <div className="payload_right-bottom-group-price">
-                    <span>0đ</span>
+                    <span>{` ${formatPrice(freeShip)}`}</span>
                   </div>
                 </div>
               </div>

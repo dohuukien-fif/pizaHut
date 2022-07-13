@@ -258,6 +258,7 @@
 
         margin-bottom: 10px;
 
+        padding: 10px;
         .detaiOrder_bottom-content-left {
           flex: 2;
 
@@ -282,6 +283,8 @@
           .detaiOrder_bottom-infor {
             display: flex;
             column-gap: 10px;
+
+            margin-top: 10px;
 
             .detaiOrder_bottom-length {
               height: 20px;
@@ -353,9 +356,15 @@
       padding: 0;
     }
 
+    .detaiOrder_bottom-price {
+      display: flex;
+      flex-direction: column;
+    }
     .detaiOrder_bottom-provisional {
       font-weight: 750;
       font-size: 16px;
+
+      color: red;
     }
   }
   .detailOrder_end {

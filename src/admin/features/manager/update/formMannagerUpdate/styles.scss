@@ -112,6 +112,8 @@ form {
     flex-direction: column;
 
     min-height: 200px;
+    height: 100px;
+    width: 100%;
 
     padding: 15px;
 
@@ -121,7 +123,6 @@ form {
     left: 50%;
     transform: translate(-50%, -50%);
     @include tablet {
-      top: 0;
       bottom: 0;
       width: 100%;
     }

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-scroll';
 import { addProduct } from '../../../app/cartRedux';
 import Silder from '../../../component/sildes';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 import Information from '../component/overlay/information';
 import Thumbnail from '../component/overlay/thumbnail';
 import PizzaMixedList from '../component/pizzaList/PizzaMixed';
@@ -220,7 +221,7 @@ export default function PizzaFeatures(props: any) {
   };
   return (
     <div className="pizza">
-      <Silder />
+      <SliderFeatures />
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

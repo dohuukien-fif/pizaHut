@@ -12,6 +12,8 @@ import Inputfeild from '../../../../formControl/inputFeild';
 import RadioField from '../../../../formControl/radioFeild';
 import SelectedField from '../../../../formControl/selectedFeild';
 import { cartStore } from './../../../../cart/cartSelected';
+import axios from 'axios';
+import { CityProps } from '../../../../../model/city';
 export interface FormPickupProps {
   onSubmits: any;
   setinfors: React.Dispatch<React.SetStateAction<string>>;
@@ -38,6 +40,12 @@ export default function FormPickup({
   setisforms,
 }: FormPickupProps) {
   const Errrr = React.useRef<any>();
+  const [data, setdata] = React.useState<CityProps[]>([]);
+  const [City, setCity] = React.useState<any>({
+    city: '',
+    street: '',
+    coutry: '',
+  });
   const dispatch = useDispatch();
   const CARTSTORE = useSelector(cartStore);
   const [values, setvalue] = React.useState<any>({
@@ -175,13 +183,26 @@ export default function FormPickup({
 
       // street: '',
       // streets: '',
-      city: '',
-      coutry: '',
+
       time: '',
       // shipper: '' || 'giao ngay',
     },
   });
-
+  const handleChan = (e: any) => {
+    const { name, value } = e.target;
+    setCity((prevCity: CityProps) => ({
+      ...prevCity,
+      [name]: value,
+    }));
+  };
+  React.useEffect(() => {
+    const fetchApi = async () => {
+      const res = await axios.get('https://provinces.open-api.vn/api/?depth=3');
+      setdata(res.data);
+      console.log('dataCity', res);
+    };
+    fetchApi();
+  }, []);
   // const hanndleChange = (e: any) => {
   //   const { value, name } = e.target;
   //   setvalue((prev: any) => ({
@@ -218,10 +239,12 @@ export default function FormPickup({
         city: '',
         coutry: '',
         time: '',
+        streets: '',
       });
       return seterror('vui lòng  kiểm  tra thông   tin  còn thiếu');
     } else {
-      onSubmits(formValues);
+      console.log('[{ ...formValues, ...City }]', { ...formValues, ...City });
+      onSubmits({ ...formValues, ...City });
       handleClic();
     }
   };
@@ -235,6 +258,9 @@ export default function FormPickup({
     return () => clearTimeout(Errrr.current);
   }, [error]);
   // const { isSubmitting } = form.formState;
+  //fetchApi   City
+
+  console.log('City', City);
   return (
     <div className="receiver_content">
       {error !== '' && (
@@ -253,13 +279,21 @@ export default function FormPickup({
               <label>
                 Họ và tên: <strong>*</strong>
               </label>
-              <Inputfeild control={control} name="fullName" />
+              <Inputfeild
+                control={control}
+                name="fullName"
+                placeholder="Vui lòng nhập họ và tên của bạn..."
+              />
             </div>
             <div className="form_group">
               <label>
                 Số điện thoại: <strong>*</strong>
               </label>
-              <Inputfeild control={control} name="phone" />
+              <Inputfeild
+                control={control}
+                name="phone"
+                placeholder="Vui lòng nhập số điện thoại của bạn..."
+              />
             </div>
 
             <div className="receiver_time">
@@ -282,7 +316,11 @@ export default function FormPickup({
             </div>
             {infors === 'time' && (
               <div className="form_group" style={{ marginTop: '20px' }}>
-                <Inputfeild control={control} name="time" />
+                <Inputfeild
+                  control={control}
+                  name="time"
+                  placeholder="Vui lòng nhập thời gian lấy hàng..."
+                />
               </div>
             )}
           </div>
@@ -292,30 +330,72 @@ export default function FormPickup({
           <div className="receiver_right-title">
             <span>chọn cửa hàng nhận</span>
           </div>
+
           <div className="receiver_right-content">
             <div className="form_group">
               <label>
-                Tỉnh/Thành: <strong>*</strong>
+                Tỉnh thành: <strong>*</strong>
               </label>
-              <SelectedField control={control} name="city" options={Datacity} />
+              <select name="city" id="" onChange={handleChan}>
+                <option>Vui long chọn Tỉnh/Thành phố</option>{' '}
+                {data.map((item: any, index) => (
+                  <React.Fragment key={index}>
+                    <option value={item.name}>{item.name}</option>
+                  </React.Fragment>
+                ))}
+              </select>
             </div>
             <div className="form_group">
               <label>
-                Quận/Huyện: <strong>*</strong>
+                Quận huyện: <strong>*</strong>
               </label>
-              <SelectedField control={control} name="coutry" options={Datacoutry} />
-            </div>
-            <div className="form_group">
-              <label>
-                Cửa hàng: <strong>*</strong>
-              </label>
-              <input type="text" placeholder="Nhập tên cửa hàng" />
-              <AiOutlineSearch />
+              <select name="street" id="" onChange={handleChan}>
+                {City.city !== '' ? (
+                  <>
+                    {' '}
+                    <option>Vui long chọn Quận/Huyện</option>
+                    {data
+
+                      ?.find((e: any) => e.name === City.city)
+                      ?.districts?.map((item, idx) => (
+                        <React.Fragment key={idx}>
+                          {' '}
+                          <option value={item.name}>{item.name}</option>
+                        </React.Fragment>
+                      ))}
+                  </>
+                ) : (
+                  <option>Vui long chọn Tỉnh/Thành phố</option>
+                )}
+              </select>
             </div>
 
+            <div className="form_group">
+              <label>
+                Phường xã: <strong>*</strong>
+              </label>
+              <select name="coutry" id="" onChange={handleChan}>
+                {City.street !== '' ? (
+                  <>
+                    <option>Vui long chọn Phường/Xã</option>
+                    {data
+                      ?.find((e: any) => e.name === City.city)
+                      ?.districts.find((e) => e.name === City.street)
+                      ?.wards?.map((item: any, idx: number) => (
+                        <React.Fragment key={idx}>
+                          <option value={item.name}>{item.name}</option>
+                        </React.Fragment>
+                      ))}
+                  </>
+                ) : (
+                  <option>Vui long chọn Quận/huyện</option>
+                )}
+              </select>
+            </div>
             <div className="receiver_store">
               <div className="receiver_store-btn">
                 <button
+                  type="button"
                   className={
                     istab === 'near'
                       ? 'receiver_store-btn-near activeTab'
@@ -326,6 +406,7 @@ export default function FormPickup({
                   <span>Cửa hàng gần bạn</span>
                 </button>
                 <button
+                  type="button"
                   className={
                     istab === 'filter'
                       ? 'receiver_store-btn-near activeTab'

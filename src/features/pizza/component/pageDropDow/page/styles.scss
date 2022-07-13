@@ -26,53 +26,7 @@
       @include tablet {
         width: 100%;
       }
-      .active_scroll {
-        position: fixed;
-        right: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        padding-top: 0px;
 
-        width: 75%;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 130px;
-
-        @include mobile {
-          top: 70px;
-        }
-        @include mobilesmall {
-          top: 60px;
-        }
-      }
-      .active_scrollTabletBig {
-        position: fixed;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 140px;
-      }
-      .active_scrollTabletSmall {
-        position: fixed;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 70px;
-      }
-      .active_scrollmobile {
-        position: fixed;
-        left: 0;
-        right: 0;
-        // top: 0;
-        z-index: 500;
-        // top: 60px;
-
-        top: 50px;
-      }
       .salad_title {
         padding: 0px 10px 10px 10px;
         border-bottom: 1px solid rgb(208, 205, 205);
@@ -190,7 +144,7 @@
       .salad_new {
         .new {
           .new_title {
-            border-bottom: 1px solid rgb(208, 205, 205);
+            border-bottom: 3px solid rgb(208, 205, 205);
             padding: 10px 10px 15px 10px;
 
             margin-bottom: 20px;
@@ -222,6 +176,8 @@
     opacity: 0;
     visibility: hidden;
     transition: all 300ms linear;
+
+    margin-bottom: 20px;
 
     .overlay__like {
       position: absolute;

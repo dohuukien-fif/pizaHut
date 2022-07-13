@@ -58,6 +58,7 @@ export default function DashBoard(props: DashBoardProps) {
 
   const totalOrder = data?.reduce((total, item) => total + Number(item.amount), 0);
   console.log(totalOrder, data);
+
   return (
     <div className="dashboard">
       <DashboardTop user={user} data={data} income={income} totalOrder={totalOrder} />

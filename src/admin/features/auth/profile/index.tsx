@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { GiJusticeStar } from 'react-icons/gi';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { AiOutlineArrowRight, AiOutlineRollback } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 // import { unwrap } from '@reduxjs/toolkit';
 import { logout, profile } from './../../../../app/userReduxAdmin';
@@ -10,6 +10,7 @@ import './styles.scss';
 import LoadingFile from '../../../../component/loadingFeatures/loadingFile/loadingInput';
 import axios from 'axios';
 import { BsCamera } from 'react-icons/bs';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 export interface ProfileAmindFeatuesProps {}
 
 export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
@@ -18,7 +19,7 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
   const [passwords, setPassword] = React.useState<any>();
   const [typePasswords, settypePassword] = React.useState<number>();
   const [newPasswords, setnewPassword] = React.useState<number>();
-  const [fileImage, setFileImage] = React.useState<string>('');
+  const [newImage, setFileImage] = React.useState<string>('');
   const [file, setFile] = React.useState<any>();
   const [LoadingfileImage, setLoadingfileImage] = React.useState<boolean>(false);
   const dispatch = useDispatch();
@@ -29,33 +30,6 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
   console.log(typeof password);
   console.log(typeof username);
   const navigate = useNavigate();
-  const handleClick = async (e: any) => {
-    e.preventDefault();
-    try {
-      //set userName = email
-
-      const action = profile({ id: userId._id, username, password, typePassword, newPassword });
-      const user = await dispatch(action).unwrap();
-      console.log('user', user);
-
-      //close Dialog
-      // const { closeDialog } = props;
-      // if (closeDialog) {
-      //   closeDialog();
-      // }
-      const actionLogout = logout();
-
-      dispatch(actionLogout);
-
-      navigate('/admin/login');
-
-      alert('thay   đổi mật khẩu  thành công');
-    } catch (error: any) {
-      // enqueueSnackbar(error.message, { variant: 'error' });
-      console.log('esss', error.message);
-      alert('thay   đổi mật khẩu  thất  bại');
-    }
-  };
   const handleChangeFiless = async (e: any) => {
     setLoadingfileImage(true);
     const file = e.target.files[0];
@@ -78,11 +52,56 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
       setLoadingfileImage(false);
     } catch (error) {}
   };
+  const handleClick = async (e: any) => {
+    e.preventDefault();
+    try {
+      //set userName = email
 
-  console.log(fileImage);
+      const action = profile({
+        id: userId._id,
+        username,
+        password,
+        typePassword,
+        newPassword,
+        newImage,
+      });
+      const user = await dispatch(action).unwrap();
+      console.log('user', user);
+
+      //close Dialog
+      // const { closeDialog } = props;
+      // if (closeDialog) {
+      //   closeDialog();
+      // }
+      const actionLogout = logout();
+
+      dispatch(actionLogout);
+
+      navigate('/admin/login');
+
+      alert('thay   đổi mật khẩu  thành công');
+    } catch (error: any) {
+      // enqueueSnackbar(error.message, { variant: 'error' });
+      console.log('esss', error.message);
+      alert('thay   đổi mật khẩu  thất  bại');
+    }
+  };
+
+  console.log(newImage);
+
+  const handleClicBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="profileAdmin">
+      <div className="profileAdmin__back">
+        <button onClick={handleClicBack}>
+          {' '}
+          <IoMdArrowRoundBack />
+          <span>Trở về</span>
+        </button>
+      </div>
       <div className="profileAdmin_container">
         <div className="profileAdmin_block">
           <div className="profileAdmin_title">
@@ -101,7 +120,7 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
                 onChange={handleChangeFiless}
                 style={{ display: 'none' }}
               />
-              {userId && fileImage === '' && (
+              {userId && newImage === '' && (
                 <div className="form_group--file">
                   {LoadingfileImage ? <LoadingFile /> : <img src={userId.image} />}
                   <label htmlFor="file">
@@ -112,12 +131,12 @@ export default function ProfileAmindFeatues(props: ProfileAmindFeatuesProps) {
                   </label>
                 </div>
               )}
-              {fileImage !== '' && (
+              {newImage !== '' && (
                 <div className="form_group--file">
                   {LoadingfileImage ? (
                     <LoadingFile />
                   ) : (
-                    <>{fileImage && <img src={fileImage} alt="" />}</>
+                    <>{newImage && <img src={newImage} alt="" />}</>
                   )}
 
                   <label htmlFor="file">

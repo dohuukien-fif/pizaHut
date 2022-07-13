@@ -9,4 +9,5 @@ export interface ProductListProps {
   spice: string;
   size: Array<any>;
   soles: Array<any>;
+  _id: string | number;
 }

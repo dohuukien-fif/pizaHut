@@ -25,7 +25,7 @@ export default function ProductItem({ item, getDelete }: ProductItemProps) {
     <div className="product__item">
       <div className="product__item--left">
         <div className="product__id">
-          <span>{item.id}</span>
+          <span>{item._id}</span>
         </div>
         <div className="product__product">
           <div className="product__figust">

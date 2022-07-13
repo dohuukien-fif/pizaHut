@@ -1,4 +1,48 @@
 @use './../../sass/index.scss' as *;
+.nav_account--mobile--figust {
+  display: flex;
+
+  column-gap: 10px;
+  position: relative;
+
+  .active_menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    height: 100% !important;
+  }
+  .nav_acount-menu {
+    position: absolute;
+    top: 100%;
+
+    width: 300%;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+
+    margin-top: 10px;
+
+    height: 0;
+
+    & > p {
+      padding: 10px 0;
+
+      cursor: pointer;
+
+      background: green;
+      &:hover {
+        background: rgb(31, 180, 31);
+      }
+    }
+  }
+
+  & > img {
+    width: 50px;
+
+    margin-right: 10px;
+  }
+}
 .activeNav {
   box-shadow: 1px 0 20px 0 rgb(0 0 0 / 10%);
 }
@@ -320,6 +364,8 @@
 
       cursor: pointer;
 
+      margin-bottom: 50px;
+
       .nav_account_figust {
         position: relative;
         width: 30px;
@@ -528,6 +574,12 @@
 
     // opacity: 0;
     // visibility: hidden;
+
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
     @include mobile {
       display: none;
     }

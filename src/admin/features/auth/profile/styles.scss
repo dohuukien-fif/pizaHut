@@ -2,7 +2,6 @@
 .profileAdmin {
   min-height: 55vh;
 
-  overflow: auto;
   @include tablet {
     min-height: 60vh;
   }
@@ -10,7 +9,26 @@
     min-height: 50vh;
   }
   @include mobilesmall {
-    min-height: 75vh;
+    height: 100%;
+  }
+  .profileAdmin__back {
+    & > button {
+      padding: 10px;
+
+      cursor: pointer;
+
+      border: none;
+
+      margin: 20px;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      display: flex;
+      align-items: center;
+
+      column-gap: 5px;
+    }
   }
   .profileAdmin_container {
     margin: 50px auto 20px auto;
@@ -29,18 +47,28 @@
       margin: 80px auto;
     }
     @include mobilesmall {
-      margin: 100px auto auto auto;
-      width: 90%;
+      margin: 30px auto;
+
+      width: 95%;
     }
     .profileAdmin_block {
       padding: 40px 30px 50px;
 
       cursor: pointer;
 
+      @include mobilesmall {
+        padding: 5px;
+      }
+
       .profileAdmin_title {
+        @include mobilesmall {
+          text-align: center;
+          padding-top: 10px;
+        }
         & > h2 {
           font-size: 30px;
           position: relative;
+
           &::before {
             position: absolute;
             content: '';
@@ -72,13 +100,14 @@
 
           .form_group--file {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
 
             border-radius: 50%;
+
             & > img {
-              width: 100px;
-              height: 100px;
+              width: 150px;
+              height: 150px;
               border-radius: 50%;
 
               object-fit: cover;
@@ -89,6 +118,11 @@
               bottom: 0;
 
               cursor: pointer;
+              & > span {
+                & > svg {
+                  font-size: 25px;
+                }
+              }
             }
           }
           & > label {
@@ -115,6 +149,8 @@
 
             outline: none;
 
+            height: 45px;
+
             &::placeholder {
               // padding-left: 15px;
               font-style: italic;
@@ -137,6 +173,8 @@
           font-size: 14px;
 
           margin-bottom: 15px;
+
+          margin-left: auto;
           & > span {
             & > a {
               color: #00addf;
@@ -165,6 +203,8 @@
           border: 1px solid $green;
 
           cursor: pointer;
+
+          margin-bottom: 20px;
           &:hover {
             background: white;
 

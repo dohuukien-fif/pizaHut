@@ -1,149 +1,149 @@
-@use './../../sass/index.scss' as *;
-.swiper {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
-}
-.mySwiperHome {
-  height: 450px;
-
-  // background: red;
-
-  // width: 80% !important;
-  // z-index: -1 !important;
-  @include tablet {
-    height: 400px;
-  }
-  @include mobilesmall {
-    height: 200px;
-  }
-  .swiper-slide-active {
-    opacity: 1 !important;
-
-    transition: 2s all ease-in-out !important;
-    -webkit-animation: scale-in-hor-right 0.5s linear !important;
-    animation: scale-in-hor-right 0.5s linear !important;
-    @-webkit-keyframes scale-in-hor-right {
-      0% {
-        opacity: 0.8;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-  }
-  .swiper-slide {
-    // transition: 2s all ease-in-out !important;
-    text-align: center;
-    font-size: 18px;
-    //   background-color: rgba(0, 0, 0, 0.5);
-    min-height: 400px;
-
-    width: 80% !important;
-
-    margin: auto;
-    // margin: auto !important;
-    //   opacity: 0.5;
-    //   padding: 20px;
-
-    //   background: transparent;
-
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-
-    // overflow: hidden;
-    z-index: -1 !important;
-
-    opacity: 0.5;
-    @include tablet {
-      width: 100% !important;
-    }
-  }
-}
-.swiper {
-  // width: 90%;
-  // height: 450px;
-  // z-index: -1 !important;
-  // background-color: red;
-  @include mobile {
-    // width: 100%;
-    // height: 200px;
-  }
-}
-
-.swiper-slide img {
-  display: block;
-  width: 92%;
-  height: 100%;
-
-  opacity: 1;
-
-  z-index: -1 !important;
-
-  border-radius: 18px;
-
-  overflow: hidden;
-
-  @include tablet {
-    width: 100%;
-    border-radius: 0px;
-  }
-  //   object-fit: cover;
-  //   @include mobile {
-  //     height: 340px;
-  //   }
-  //   @include tablets {
-  //     height: 340px;
-  //   }
-  //   @include tablet {
-  //     height: 420px;
-  //   }
-}
-.swiper-button-prev,
-.swiper-button-next {
-  &::after {
-    color: white !important;
-    /* background: radial-gradient(black, transparent); */
-
-    font-size: 20px !important;
-
-    font-weight: 900 !important;
-  }
-}
-.swiper-button-prev {
-  left: 7% !important;
-}
-.swiper-button-next {
-  right: 7% !important;
-}
-.swiper-button-prev,
-.swiper-button-next {
-  //   box-shadow: 0 2px 10px rgb(54 54 54 / 15%);
-  top: 50% !important;
-  width: 45px !important;
-
-  background: rgba(0, 0, 0, 0.3) !important;
-  border-radius: 50% !important;
-  height: 45px !important;
-  // z-index: 1 !important;
-  &:hover {
-    background: #32a44c !important;
-  }
-}
-// .cc {
-//   opacity: 0.5;
-
-//   z-index: 5;
+// @use './../../sass/index.scss' as *;
+// .swiper {
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-bottom: 2rem;
 // }
+// .mySwiperHome {
+//   height: 450px;
+
+//   // background: red;
+
+//   // width: 80% !important;
+//   // z-index: -1 !important;
+//   @include tablet {
+//     height: 400px;
+//   }
+//   @include mobilesmall {
+//     height: 200px;
+//   }
+//   .swiper-slide-active {
+//     opacity: 1 !important;
+
+//     transition: 2s all ease-in-out !important;
+//     -webkit-animation: scale-in-hor-right 0.5s linear !important;
+//     animation: scale-in-hor-right 0.5s linear !important;
+//     @-webkit-keyframes scale-in-hor-right {
+//       0% {
+//         opacity: 0.8;
+//       }
+//       100% {
+//         opacity: 1;
+//       }
+//     }
+//   }
+//   .swiper-slide {
+//     // transition: 2s all ease-in-out !important;
+//     text-align: center;
+//     font-size: 18px;
+//     //   background-color: rgba(0, 0, 0, 0.5);
+//     min-height: 400px;
+
+//     width: 80% !important;
+
+//     margin: auto;
+//     // margin: auto !important;
+//     //   opacity: 0.5;
+//     //   padding: 20px;
+
+//     //   background: transparent;
+
+//     /* Center slide text vertically */
+//     display: -webkit-box;
+//     display: -ms-flexbox;
+//     display: -webkit-flex;
+//     display: flex;
+//     flex-direction: column;
+//     -webkit-box-pack: center;
+//     -ms-flex-pack: center;
+//     -webkit-justify-content: center;
+//     justify-content: center;
+//     -webkit-box-align: center;
+//     -ms-flex-align: center;
+//     -webkit-align-items: center;
+//     align-items: center;
+
+//     // overflow: hidden;
+//     z-index: -1 !important;
+
+//     opacity: 0.5;
+//     @include tablet {
+//       width: 100% !important;
+//     }
+//   }
+// }
+// .swiper {
+//   // width: 90%;
+//   // height: 450px;
+//   // z-index: -1 !important;
+//   // background-color: red;
+//   @include mobile {
+//     // width: 100%;
+//     // height: 200px;
+//   }
+// }
+
+// .swiper-slide img {
+//   display: block;
+//   width: 92%;
+//   height: 100%;
+
+//   opacity: 1;
+
+//   z-index: -1 !important;
+
+//   border-radius: 18px;
+
+//   overflow: hidden;
+
+//   @include tablet {
+//     width: 100%;
+//     border-radius: 0px;
+//   }
+//   //   object-fit: cover;
+//   //   @include mobile {
+//   //     height: 340px;
+//   //   }
+//   //   @include tablets {
+//   //     height: 340px;
+//   //   }
+//   //   @include tablet {
+//   //     height: 420px;
+//   //   }
+// }
+// .swiper-button-prev,
+// .swiper-button-next {
+//   &::after {
+//     color: white !important;
+//     /* background: radial-gradient(black, transparent); */
+
+//     font-size: 20px !important;
+
+//     font-weight: 900 !important;
+//   }
+// }
+// .swiper-button-prev {
+//   left: 7% !important;
+// }
+// .swiper-button-next {
+//   right: 7% !important;
+// }
+// .swiper-button-prev,
+// .swiper-button-next {
+//   //   box-shadow: 0 2px 10px rgb(54 54 54 / 15%);
+//   top: 50% !important;
+//   width: 45px !important;
+
+//   background: rgba(0, 0, 0, 0.3) !important;
+//   border-radius: 50% !important;
+//   height: 45px !important;
+//   // z-index: 1 !important;
+//   &:hover {
+//     background: #32a44c !important;
+//   }
+// }
+// // .cc {
+// //   opacity: 0.5;
+
+// //   z-index: 5;
+// // }

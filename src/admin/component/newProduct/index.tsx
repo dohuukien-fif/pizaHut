@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import InputFeild from '../../../component/formControl/inputFeild';
-import './styles.scss';
-import { uid } from '../../../utils';
-import TextFied from '../../../component/formControl/textFeild';
-import FormNewProduct from './formEdit';
+import { AiOutlineClose } from 'react-icons/ai';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 import ProductApi from '../../../api/productApi';
+import { uid } from '../../../utils';
+import FormNewProduct from './formEdit';
+import './styles.scss';
 export interface NewProductProps {}
 export interface FormProps {
   category: string;
@@ -29,7 +28,9 @@ export default function NewProduct(props: NewProductProps) {
   });
   const [soles, setsoles] = React.useState<any>([]);
   const [openMore, setopenMore] = React.useState<boolean>(false);
-
+  const navigete = useNavigate();
+  const [error, setError] = React.useState<string>('');
+  const Errrr = React.useRef<any>(null);
   const [item, setitem] = React.useState<any>([]);
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
@@ -111,16 +112,47 @@ export default function NewProduct(props: NewProductProps) {
     console.log(e.target.value);
   };
   let orderId = Math.floor(Math.random() * 1000) + Date.now();
-
-  const handleSubmitForm = async (value: any) => {
-    if (Object.values(value).includes('')) return;
-    console.log('form', value);
-
-    await ProductApi.add(value);
+  const handleClickError = () => {
+    setError('');
   };
 
+  React.useEffect(() => {
+    if (error !== '') {
+      Errrr.current = setTimeout(() => {
+        setError('');
+      }, 3000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [error]);
+
+  const handleSubmitForm = async (value: any) => {
+    try {
+      if (Object.values(value).includes('')) return;
+      console.log('form', value);
+
+      await ProductApi.add(value);
+    } catch (error) {
+      setError('bạn đã nhập trùng name hoặc detail');
+    }
+  };
+
+  const handleClickNavigeteBack = () => {
+    navigete(-1);
+  };
   return (
     <div className="newProduct">
+      {error !== '' && (
+        <div className={error !== '' ? 'newProduct_Error active_error' : 'newProduct_Error'}>
+          <AiOutlineClose onClick={handleClickError} />
+          <p>{error}</p>
+        </div>
+      )}
+      <div className="newProduct__back">
+        <button onClick={handleClickNavigeteBack}>
+          <IoMdArrowRoundBack />
+          <span>Trở về</span>
+        </button>
+      </div>
       <div className="newProduct__swapper">
         <div className="newProduct__title">
           <span>NewProduct</span>

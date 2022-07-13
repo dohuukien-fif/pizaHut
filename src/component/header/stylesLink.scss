@@ -37,8 +37,10 @@
 
     z-index: 3;
 
+    padding: 3px 0;
+
     @include mobilesmall {
-      padding-top: 10px;
+      padding: 10px 0;
       width: 100%;
       text-align: center;
     }
@@ -76,7 +78,7 @@
       display: none;
 
       position: absolute;
-      top: 160%;
+      top: 130%;
       left: 0;
       background: #125a25;
       width: 300%;

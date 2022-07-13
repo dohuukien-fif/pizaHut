@@ -126,7 +126,7 @@ export default function Information({ detail, setsetPrice, onSubmits }: Informat
         </div>
 
         <div className="overlay_spice">
-          <span>{Spice}</span>
+          <span>{detail.detail}</span>
         </div>
 
         <div className="overlay_note">

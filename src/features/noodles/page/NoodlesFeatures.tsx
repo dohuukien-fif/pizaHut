@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 import LoadingFeatures from '../../../component/loadingFeatures';
 import Silder from '../../../component/sildes';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 import Information from '../component/overlay/information';
 import PizzaNewList from '../component/pizzaList/pizzaNew';
 import ProductApi from './../../../api/productApi';
@@ -191,7 +192,7 @@ export default function NoodleFeatures(props: any) {
   };
   return (
     <div className="noodles">
-      <Silder />
+      <SliderFeatures />
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

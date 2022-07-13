@@ -24,7 +24,7 @@ export interface DashBoardTopProps {
 export default function DashboardTop({ user, data, income, totalOrder }: DashBoardTopProps) {
   return (
     <div className="dashboard__top">
-      <div className="dashboard__group">
+      <div className="dashboard__group dashboard__group--user">
         <div className="dashboard__group--left">
           <div className="dashboard__group--title">
             <span>USER</span>
@@ -48,7 +48,7 @@ export default function DashboardTop({ user, data, income, totalOrder }: DashBoa
           </div>
         </div>
       </div>
-      <div className="dashboard__group">
+      <div className="dashboard__group dashboard__group--order">
         <div className="dashboard__group--left">
           <div className="dashboard__group--title">
             <span>ORDER</span>
@@ -73,13 +73,19 @@ export default function DashboardTop({ user, data, income, totalOrder }: DashBoa
           </div>
         </div>
       </div>
-      <div className="dashboard__group">
+      <div className="dashboard__group dashboard__group--income">
         <div className="dashboard__group--left">
           <div className="dashboard__group--title">
             <span>TOTAL INCOME</span>
           </div>
           <div className="dashboard__group--quantity">
             <span>${formatPrice(income)}</span>
+          </div>
+          <div className="dashboard__group--all">
+            <span>
+              {' '}
+              <Link to="/admin/customer">See all order</Link>
+            </span>
           </div>
           {/* <div className="dashboard__group--all">
        <span>See all earnings</span>
@@ -95,13 +101,19 @@ export default function DashboardTop({ user, data, income, totalOrder }: DashBoa
           </div>
         </div>
       </div>
-      <div className="dashboard__group">
+      <div className="dashboard__group dashboard__group--totalOrder">
         <div className="dashboard__group--left">
           <div className="dashboard__group--title">
             <span>TOTAL ORDER</span>
           </div>
           <div className="dashboard__group--quantity">
             <span>{formatPrice(totalOrder)}</span>
+          </div>
+          <div className="dashboard__group--all">
+            <span>
+              {' '}
+              <Link to="/admin/order">See all order</Link>
+            </span>
           </div>
         </div>
         <div className="dashboard__group--right">

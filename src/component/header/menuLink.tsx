@@ -3,15 +3,48 @@ import './stylesLink.scss';
 import { FaShippingFast, FaStore } from 'react-icons/fa';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 import { FcRating } from 'react-icons/fc';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 export interface IAppProps {
   isorder: boolean;
   setActive: string;
   activeIco: string;
   activeTranForm: (value: string) => {};
+  handleOpenMenuAccount: () => void;
+  openMenuAccount: boolean;
+  hanleLooutClick: () => void;
 }
 
-export default function App({ setActive, activeTranForm, activeIco, isorder }: IAppProps) {
+export default function App({
+  setActive,
+  activeTranForm,
+  activeIco,
+  isorder,
+  handleOpenMenuAccount,
+  openMenuAccount,
+  hanleLooutClick,
+}: IAppProps) {
+  const userInfor = useSelector((state: any) => state.user.current);
+  const isUserInfor = Boolean(Object.keys(userInfor).length);
+  const navigate = useNavigate();
+
+  console.log('[location[', location);
+
+  const handleNavigateLogin = () => {
+    localStorage.setItem('URL__REDIREST', JSON.stringify(location.pathname));
+    navigate('/login');
+  };
+
+  const handleNavigateRegister = () => {
+    localStorage.setItem('URL__REDIREST', JSON.stringify(location.pathname));
+    navigate('/register');
+  };
+  const handleNavigeteProfile = () => {
+    navigate('/profile');
+  };
+  const handleNavigeteAccount = () => {
+    navigate('/tai-khoan/chi-tiet-don-hang');
+  };
   return (
     <div className="nav_Link-block">
       {/* menu link  */}
@@ -136,8 +169,38 @@ export default function App({ setActive, activeTranForm, activeIco, isorder }: I
           )}
         </div>
         <div className="nav_account">
-          <MdOutlineAccountCircle />
-          <span> Đăng nhập</span>/<span>Tạo tài khoản</span> <FcRating />
+          {isUserInfor && (
+            <>
+              <div className="nav_account--mobile--figust">
+                <img
+                  src={
+                    userInfor?.image ||
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxsIVGXUz77jSd-Zgau2ZqRpL_STVm4gbxWQ&usqp=CAU'
+                  }
+                  alt=""
+                  onClick={handleOpenMenuAccount}
+                />
+                <div
+                  className={openMenuAccount ? 'nav_acount-menu active_menu' : 'nav_acount-menu'}
+                >
+                  <p onClick={handleNavigeteAccount}>Thông tin</p>
+
+                  <p onClick={hanleLooutClick}>Logout</p>
+
+                  <p onClick={handleNavigeteProfile}>Profile</p>
+                </div>
+              </div>
+              <h3>{userInfor?.username}</h3>
+            </>
+          )}
+          {!isUserInfor && (
+            <>
+              {' '}
+              <MdOutlineAccountCircle />
+              <span onClick={handleNavigateLogin}> Đăng nhập</span>/
+              <span onClick={handleNavigateRegister}>Tạo tài khoản</span> <FcRating />
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -82,10 +82,14 @@ export default function ProductFeatures(props: ProductFeaturesProps) {
         ) : (
           <div className="product__table">
             <div className="product__talet--title">
-              <span>Id</span>
-              <span>Product</span>
-              <span>Price</span>
-              <span>Action</span>
+              <div className="product__talet--title--left">
+                <span>Id</span>
+                <span>Product</span>
+              </div>
+              <div className="product__talet--title--right">
+                <span>Price</span>
+                <span>Action</span>
+              </div>
             </div>
             <div className="product__table--list">
               {dataProduct.map((item: any, index: number) => (

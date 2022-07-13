@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { AiOutlineClose } from 'react-icons/ai';
 import InputFeild from '../../../../component/formControl/inputFeild';
 import LoadingFile from '../../../../component/loadingFeatures/loadingFile/loadingInput';
 import './styles.scss';
@@ -12,12 +13,15 @@ export interface FormManagerProps {
 export default function FormManager({ onSubmitValue, handleCloseModal }: FormManagerProps) {
   const [fileImage, setFileImage] = React.useState<string>('');
   const [file, setFile] = React.useState<any>();
+  const [dataForm, setdataForm] = React.useState<any>({});
   const [LoadingfileImage, setLoadingfileImage] = React.useState<boolean>(false);
   const [values, setValue] = React.useState<any>({
     gender: '',
     date: '',
   });
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string>('');
+  const Errrr = React.useRef<any>(null);
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
       fullName: '',
@@ -67,35 +71,67 @@ export default function FormManager({ onSubmitValue, handleCloseModal }: FormMan
   };
 
   const handleSubmitForm = async (value: any) => {
-    if (onSubmitValue) {
-      const newValue = {
-        ...value,
-
-        telephone: Number(value.telephone),
-        identification: Number(value.identification),
-        ...values,
-        image:
-          fileImage !== ''
-            ? fileImage
-            : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwWuvJHLqnpwQKedQusejSFEL-9Y3grrH4vQ&usqp=CAU',
-      };
-      await onSubmitValue(newValue);
+    if (Object.values(value).includes('')) {
+      return setError('kiểm tra thông tin');
     }
+    if (fileImage === '') {
+      return setError('vui lòng chọn ảnh đại diện');
+    }
+    if (Object.values(values).includes('')) {
+      return setError('vui lòng chọn giới tính và ngày');
+    }
+    const newValue = {
+      ...value,
+
+      telephone: Number(value.telephone),
+      identification: Number(value.identification),
+      ...values,
+      image:
+        fileImage !== ''
+          ? fileImage
+          : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwWuvJHLqnpwQKedQusejSFEL-9Y3grrH4vQ&usqp=CAU',
+    };
+    setdataForm(newValue);
+    setIsOpen(true);
+  };
+
+  const handleCheckSubbmitBroveApi = async () => {
+    console.log('dataForm', dataForm);
+
+    if (onSubmitValue) {
+      await onSubmitValue(dataForm);
+    }
+    setIsOpen(false);
+    setFileImage('');
 
     setValue({
       gender: '',
       date: '',
     });
-
-    setIsOpen(false);
-
-    setFileImage('');
     reset();
   };
 
-  console.log(values);
+  const handleClickError = () => {
+    setError('');
+  };
+
+  React.useEffect(() => {
+    if (error !== '') {
+      Errrr.current = setTimeout(() => {
+        setError('');
+      }, 3000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [error]);
+
   return (
     <>
+      {error !== '' && (
+        <div className={error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
+          <AiOutlineClose onClick={handleClickError} />
+          <p>{error}</p>
+        </div>
+      )}
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         <div className="manager__update--group">
           <label>Họ và tên :*</label>
@@ -144,7 +180,7 @@ export default function FormManager({ onSubmitValue, handleCloseModal }: FormMan
         </div>
         <div className="manager__update--group">
           <label>Giày sinh :*</label>
-          <input type="date" name="date" onChange={handChangeInput} />
+          <input type="date" name="date" onChange={handChangeInput} value={values.date} />
         </div>
         <div className="manager__update--group">
           <label>Chức vụ :*</label>
@@ -175,9 +211,7 @@ export default function FormManager({ onSubmitValue, handleCloseModal }: FormMan
           <InputFeild name="address" control={control} placeholder="Vui lòng nhập địa bạn..." />
         </div>
         <div className="manager__update--group--btn">
-          <button type="button" onClick={handleIsopen}>
-            Xác nhận
-          </button>
+          <button type="submit">Xác nhận</button>
           <button type="button" onClick={handleCloseModal}>
             Đóng
           </button>
@@ -188,7 +222,9 @@ export default function FormManager({ onSubmitValue, handleCloseModal }: FormMan
               <span>Bạn có muốn thêm vào danh sách</span>
             </div>
             <div className="confirm__bottom">
-              <button type="submit">Đồng ý</button>
+              <button type="button" onClick={handleCheckSubbmitBroveApi}>
+                Đồng ý
+              </button>
               <button type="button">Đóng</button>
             </div>
           </div>

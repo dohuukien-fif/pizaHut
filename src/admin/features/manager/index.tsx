@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import ManagerApi from '../../../api/managerApi';
+import LoadingFeatures from '../../../component/loadingFeatures';
 import ManagerList from './managerList';
 import ModalManager from './modal';
 import './styles.scss';
@@ -23,7 +24,17 @@ export interface DataProps {
 export interface ManagerFeaturesProps {}
 
 export default function ManagerFeatures(props: ManagerFeaturesProps) {
+  const [pagination, setPagination] = React.useState<any>({
+    page: 1,
+    limit: 10,
+    totalRow: 10,
+  });
+  const [filter, setfilter] = React.useState<any>({
+    page: 1,
+    limit: 10,
+  });
   const [modal, setModal] = React.useState<boolean>(false);
+  const [Loading, setLoading] = React.useState<boolean>(false);
   const [isUpdate, setisUpdate] = React.useState<boolean>(false);
   const [data, setData] = React.useState<Array<DataProps[]>>([]);
   const [dataUpdate, setDataUpdate] = React.useState<DataProps>();
@@ -31,14 +42,16 @@ export default function ManagerFeatures(props: ManagerFeaturesProps) {
   const closeUpdateRef = React.useRef(null);
   React.useEffect(() => {
     const fetchApi = async () => {
-      const res = await ManagerApi.getAll();
+      setLoading(true);
+      const res: any = await ManagerApi.getParam(filter);
 
       setData(res.data);
-
+      setPagination(res.pagination);
+      setLoading(false);
       console.log('data', res.data);
     };
     fetchApi();
-  }, []);
+  }, [filter]);
   const handleOpenModal = () => {
     setModal(true);
   };
@@ -92,6 +105,14 @@ export default function ManagerFeatures(props: ManagerFeaturesProps) {
     setisUpdate(true);
     console.log(id);
   };
+
+  const handleChanPage = (newPage: number) => {
+    console.log(newPage);
+    setfilter((prev: any) => ({
+      ...prev,
+      page: newPage,
+    }));
+  };
   return (
     <div className="manager">
       <div className="manager__btn">
@@ -100,6 +121,7 @@ export default function ManagerFeatures(props: ManagerFeaturesProps) {
         </button>
       </div>
       <div className="manager__swap">
+        {Loading && <LoadingFeatures />}
         <div className="manager__title">
           <span>Quản lý nhân viên</span>
         </div>
@@ -123,6 +145,20 @@ export default function ManagerFeatures(props: ManagerFeaturesProps) {
             handleOpenModalUpdate={handleOpenModalUpdate}
             handleGetIdManager={handleGetIdManager}
           />
+        </div>
+        <div className="manager__pagination">
+          {Array.from({ length: Math.ceil(pagination.totalRow / pagination.limit + 1) }, (v, i) => (
+            <>
+              {i > 0 && (
+                <button
+                  className={pagination.page === i ? 'activePagination' : ''}
+                  onClick={() => handleChanPage(i)}
+                >
+                  {i}
+                </button>
+              )}
+            </>
+          ))}
         </div>
       </div>
       <ModalManager

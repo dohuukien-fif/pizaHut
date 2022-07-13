@@ -13,6 +13,10 @@
 
   .tab_Link {
     //  width: 150px;
+
+    border: 1px solid white;
+    border-radius: 25px;
+
     @include mobilesmall {
       width: calc(50% - 10px);
     }
@@ -30,6 +34,7 @@
       padding: 5px;
 
       color: $black;
+
       @include mobilesmall {
         font-size: 14px;
       }
@@ -47,7 +52,7 @@
 .active_Tab {
   // background: green;
 
-  border: 1px solid $red;
+  border: 1px solid $red !important;
 
   border-radius: 25px;
   & > span {

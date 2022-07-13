@@ -1,4 +1,8 @@
 @use './../../../sass/index.scss' as *;
+.active_scroll > .mobile_accountion {
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
 .pizza {
   margin-top: 150px;
 
@@ -13,6 +17,14 @@
 
   min-height: 100vh;
 
+  @include mobile {
+    margin: 100px auto auto auto;
+  }
+  @include mobilesmall {
+    width: 100%;
+    margin: 70px auto auto auto;
+    // margin-top: 100px;
+  }
   .active_error {
     visibility: visible !important;
     opacity: 1 !important;
@@ -61,11 +73,7 @@
       font-size: 14px;
     }
   }
-  @include mobilesmall {
-    width: 95%;
-    margin: auto;
-    // margin-top: 100px;
-  }
+
   .pizza_container {
     width: 90%;
     margin: auto;
@@ -100,8 +108,12 @@
 
         top: 140px;
 
+        @include tablet {
+          width: 100%;
+        }
         @include mobile {
           top: 70px;
+          width: 100%;
         }
         @include mobilesmall {
           top: 60px;
@@ -117,6 +129,8 @@
 
         left: 0;
         right: 0;
+
+        width: 75%;
       }
       .active_scrollTabletSmall {
         position: fixed;
@@ -128,6 +142,7 @@
 
         left: 0;
         right: 0;
+        width: 75%;
       }
       .active_scrollmobile {
         position: fixed;
@@ -138,6 +153,7 @@
         // top: 60px;
 
         top: 50px;
+        width: 75%;
       }
       .pizza_title {
         padding: 0px 10px 10px 10px;
@@ -266,7 +282,7 @@
       .pizza_new {
         .new {
           .new_title {
-            border-bottom: 1px solid rgb(208, 205, 205);
+            border-bottom: 3px solid rgb(208, 205, 205);
             padding: 10px 10px 15px 10px;
 
             margin-bottom: 20px;

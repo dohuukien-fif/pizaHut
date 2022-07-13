@@ -12,6 +12,7 @@ import LoadingListss from './../../../component/loadingFeatures/loadingList/inde
 import ProductApi from './../../../api/productApi';
 import { addProduct } from '../../../app/cartRedux';
 import axios from 'axios';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 export default function SpaghettiFeatures(props: any) {
   const dispatch = useDispatch();
   const [DataPiza, setDataPiza] = useState<any>([]);
@@ -190,7 +191,7 @@ export default function SpaghettiFeatures(props: any) {
   };
   return (
     <div className="spaghetti">
-      <Silder />
+      <SliderFeatures />
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

@@ -18,6 +18,7 @@ import LoadingListss from './../../../component/loadingFeatures/loadingList/inde
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../../app/cartRedux';
 import axios from 'axios';
+import SliderFeatures from '../../../component/sildes/sliderBanner';
 export default function DrinkFeatures(props: any) {
   const dispatch = useDispatch();
   const userInfor = useSelector((state: any) => state.user.current);
@@ -197,7 +198,7 @@ export default function DrinkFeatures(props: any) {
   };
   return (
     <div className="drinks">
-      <Silder />{' '}
+      <SliderFeatures />{' '}
       {Error !== '' && (
         <div className={Error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
           <AiOutlineClose onClick={handleClickError} />

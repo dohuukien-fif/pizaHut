@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { AiOutlineClose } from 'react-icons/ai';
 import { DataProps } from '../..';
 import InputFeild from '../../../../../component/formControl/inputFeild';
 import LoadingFile from '../../../../../component/loadingFeatures/loadingFile/loadingInput';
@@ -24,6 +25,9 @@ export default function FormUpdateManager({
     gender: '',
     date: '',
   });
+  const [dataForm, setdataForm] = React.useState<any>({});
+  const [error, setError] = React.useState<string>('');
+  const Errrr = React.useRef<any>(null);
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
@@ -79,42 +83,65 @@ export default function FormUpdateManager({
   const handleSubmitForm = async (value: any) => {
     console.log('value', value);
 
+    const newValue = {
+      ...value,
+      id: dataUpdate._id,
+      position: value.position !== '' ? value.position : dataUpdate.position,
+      address: value.address !== '' ? value.address : dataUpdate.address,
+
+      fullName: value.fullName !== '' ? value.fullName : dataUpdate.fullName,
+      telephone: value.telephone !== '' ? Number(value.telephone) : dataUpdate.telephone,
+      identification:
+        value.identification !== '' ? Number(value.identification) : dataUpdate.identification,
+
+      date: values.date !== '' ? values.date : dataUpdate?.date,
+      gender: values.date !== '' ? values.gender : dataUpdate?.gender,
+      image: fileImage !== '' ? fileImage : dataUpdate?.image,
+    };
+
+    setdataForm(newValue);
+    setIsOpen(true);
+  };
+
+  console.log('[newDataForm]ư', dataForm);
+
+  const handleCheckSubbmitBroveApi = async () => {
+    console.log('dataForm', dataForm);
+
     if (onSubmitValue) {
-      const newValue = {
-        ...value,
-        id: dataUpdate._id,
-        position: value.position !== '' ? value.position : dataUpdate.position,
-        address: value.address !== '' ? value.address : dataUpdate.address,
-
-        fullName: value.fullName !== '' ? value.fullName : dataUpdate.fullName,
-        telephone: value.telephone !== '' ? Number(value.telephone) : dataUpdate.telephone,
-        identification:
-          value.identification !== '' ? Number(value.identification) : dataUpdate.identification,
-
-        date: values.date !== '' ? values.date : dataUpdate?.date,
-        gender: values.date !== '' ? values.gender : dataUpdate?.gender,
-        image: fileImage !== '' ? fileImage : dataUpdate?.image,
-      };
-      onSubmitValue(newValue);
+      await onSubmitValue(dataForm);
     }
+    setIsOpen(false);
+    setFileImages('');
 
     setValue({
       gender: '',
       date: '',
     });
-
-    setIsOpen(false);
-
-    setFileImages('');
     reset();
   };
 
-  console.log(values);
+  const handleClickError = () => {
+    setError('');
+  };
 
-  console.log('fileImage', fileImage);
+  React.useEffect(() => {
+    if (error !== '') {
+      Errrr.current = setTimeout(() => {
+        setError('');
+      }, 3000);
+    }
+    return () => clearTimeout(Errrr.current);
+  }, [error]);
 
   return (
     <>
+      {error !== '' && (
+        <div className={error !== '' ? 'cart_Error active_error' : 'cart_Error'}>
+          <AiOutlineClose onClick={handleClickError} />
+          <p>{error}</p>
+        </div>
+      )}
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         <div className="manager__update--group">
           <label>Họ và tên :*</label>
@@ -182,7 +209,7 @@ export default function FormUpdateManager({
           <InputFeild name="address" control={control} placeholder={dataUpdate?.address} />
         </div>
         <div className="manager__update--group--btn">
-          <button type="button" onClick={handleIsopen}>
+          <button type="submit" onClick={handleIsopen}>
             Xác nhận
           </button>
           <button type="button" onClick={handleCloseModal}>
@@ -195,7 +222,9 @@ export default function FormUpdateManager({
               <span>Bạn có muốn thêm vào danh sách</span>
             </div>
             <div className="confirm__bottom">
-              <button type="submit">Đồng ý</button>
+              <button type="button" onClick={handleCheckSubbmitBroveApi}>
+                Đồng ý
+              </button>
               <button type="button" onClick={handleIsClose}>
                 Đóng
               </button>

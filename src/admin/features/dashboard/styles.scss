@@ -19,6 +19,19 @@
 
       row-gap: 20px;
     }
+    .dashboard__group--user {
+      background-color: #4b77e8 !important;
+    }
+    .dashboard__group--order {
+      background-color: #7cc5fb !important;
+    }
+    .dashboard__group--income {
+      background-color: #9e71cf !important;
+    }
+    .dashboard__group--totalOrder {
+      background-color: #1e7653 !important;
+    }
+
     .dashboard__group {
       flex: 1;
 
@@ -36,11 +49,17 @@
       .dashboard__group--left {
         line-height: 4.5rem;
 
+        flex: 1;
+
+        display: block;
+
         .dashboard__group--title {
           font-size: 20px;
           font-weight: 600;
 
           color: rgb(81, 80, 80);
+
+          margin-bottom: auto;
         }
         .dashboard__group--quantity {
           font-size: 30px;
@@ -48,6 +67,8 @@
         .dashboard__group--all {
           & > span {
             border-bottom: 1px solid gray;
+
+            margin-top: auto;
 
             & > a {
               text-decoration: none;
