@@ -95,7 +95,7 @@ export default function SaladFeatures(props: any) {
   }
   const handleSubmitDispachToCart = (newValue: any, values: string) => {
     if (Object.keys(userInfor).length === 0) {
-      alert('vui    long   đăng   nhập');
+      alert('vui long đăng nhập');
       return;
     }
     setLoadingOverlay(true);
