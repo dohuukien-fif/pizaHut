@@ -575,7 +575,9 @@
     // opacity: 0;
     // visibility: hidden;
 
-    overflow: auto;
+    @include tablet {
+      overflow-y: scroll;
+    }
 
     &::-webkit-scrollbar {
       display: none;
