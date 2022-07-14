@@ -29,15 +29,9 @@ export default function DetailOrder(props: any) {
   console.log('[setcheckout]', setcheckout);
   console.log('[setCart]', setCart);
   const handleClickUpdateCart = (code: number) => {
+    console.log(code);
     const action = UpdateCart(code);
-    dispatch(action);
-
-    return new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        navigete('/checkOut');
-        resolve(true);
-      }, 2000);
-    });
+    console.log(code);
   };
 
   const handleClickGoBack = () => {
@@ -67,8 +61,8 @@ export default function DetailOrder(props: any) {
   return (
     <>
       <div className="detailOrder">
-        {checkProductss.length > 0 &&
-          checkProductss.map((items: any, index: number) => (
+        {checkProductss?.length > 0 &&
+          checkProductss?.map((items: any, index: number) => (
             <div className="detailOrder_item" key={items?.code}>
               <div className="detailOrder_title">
                 <h3>Chi tiết đơn hàng #{items?.code}</h3>
@@ -159,7 +153,7 @@ export default function DetailOrder(props: any) {
                 </div>
                 {/* MAP ITEM CART */}
                 <div className="detaiOrder_bottom-block-list">
-                  {items.product.map((item: CheckOutFeaturesProps, index: any) => (
+                  {items?.products?.map((item: CheckOutFeaturesProps, index: any) => (
                     <div className="detaiOrder_bottom-content" key={index}>
                       <div className="detaiOrder_bottom-content-left">
                         <div className="detaiOrder_bottom-adside">
@@ -246,7 +240,7 @@ export default function DetailOrder(props: any) {
                     <span>Quay lại</span>
                   </button>
 
-                  <button onClick={() => handleClickUpdateCart(items?.code)}>
+                  <button onClick={() => handleClickUpdateCart(items?.product)}>
                     <AiOutlineArrowLeft />
                     <span>Đặt lại đơn hàng</span>
                   </button>
@@ -256,7 +250,7 @@ export default function DetailOrder(props: any) {
                     <div className="detailOrder_total-top">
                       <div className="detailOrder_total-group">
                         <span>Tạm tính (X1)</span>
-                        <span>{formatPrice(items.total)}</span>
+                        <span>{formatPrice(items.amount)}</span>
                       </div>
                       <div className="detailOrder_total-group">
                         <span>Giảm giá</span>
@@ -267,7 +261,7 @@ export default function DetailOrder(props: any) {
                     <div className="detailOrder_total-bottom">
                       <div className="detailOrder_total-group">
                         <span>Tổng tiền</span>
-                        <span>{formatPrice(items.total)}</span>
+                        <span>{formatPrice(items.amount)}</span>
                       </div>
                     </div>
                   </div>

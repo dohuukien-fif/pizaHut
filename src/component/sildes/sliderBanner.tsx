@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
+import { Navigation, Autoplay, Pagination, Mousewheel, Keyboard } from 'swiper';
 import './slidebaner.scss';
 export interface ISliderFeaturesProps {}
 
@@ -13,13 +13,19 @@ export default function SliderFeatures(props: ISliderFeaturesProps) {
   return (
     <>
       <Swiper
-        cssMode={true}
         navigation={true}
+        loop={true}
+        slidesPerView={'auto'}
+        cssMode={true}
         pagination={true}
         mousewheel={true}
         keyboard={true}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
         className="mySwiper"
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
       >
         <SwiperSlide>
           <img
