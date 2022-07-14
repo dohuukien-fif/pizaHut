@@ -139,9 +139,10 @@
             font-weight: 700;
             margin-bottom: 15px;
 
+            font-family: Nunito, sans-serif;
+
             cursor: pointer;
             & > span {
-              color: rgb(68, 66, 66);
               &:hover {
                 color: $green;
                 text-decoration: underline;
