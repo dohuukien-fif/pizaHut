@@ -68,7 +68,6 @@ function App() {
         {/* <Route ></Route> */}
         <Route path="login" element={<LoginFeatures />} />
         <Route path="/profile" element={<Prodfile />} />
-        <Route path="/" element={<Navigate replace to="trang-chu" />} />
         <Route path="/register" element={<RegisterFeatures />} />{' '}
         <Route path="/search/*" element={<SearchFeatures />} />
         <Route path="/pizza/*" element={<PizzaFeatures />} />
