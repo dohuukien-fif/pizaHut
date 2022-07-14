@@ -22,9 +22,10 @@
       &::before {
         position: absolute;
         content: '';
-        height: 1px;
+        height: 3px;
+        width: 15%;
         background: $green;
-        width: 10%;
+
         top: 0;
         // margin-bottom: 20px;
       }

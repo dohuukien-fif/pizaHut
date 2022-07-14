@@ -17,9 +17,41 @@
   @include mobile {
     margin-top: 80px;
   }
+  & > h3 {
+    display: flex;
+    align-items: center;
 
+    font-size: 20px;
+
+    column-gap: 10px;
+
+    margin-top: 20px;
+    & > svg {
+      font-size: 25px;
+      color: rgb(200, 200, 50);
+    }
+  }
   &_title {
     font-size: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .detailOrder_delete {
+      & > button {
+        background: white;
+
+        border: none;
+
+        cursor: pointer;
+        & > svg {
+          font-size: 30px;
+
+          color: rgb(224, 77, 77);
+        }
+      }
+    }
   }
   &_confim {
     margin: 15px 0;

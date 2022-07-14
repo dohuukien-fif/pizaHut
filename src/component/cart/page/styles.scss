@@ -213,6 +213,34 @@
           margin-left: auto;
           margin-right: auto;
         }
+        .total_payload--btn {
+          position: relative;
+
+          &::before {
+            position: absolute;
+            content: '';
+
+            left: -100%;
+
+            top: 0;
+            bottom: 0;
+
+            background: rgb(100, 208, 99);
+
+            opacity: 0.8;
+
+            border-radius: 8px;
+
+            transition: 2s ease-in-out !important;
+          }
+        }
+        .active__Loading--pay {
+          &::before {
+            left: 0;
+
+            right: 0;
+          }
+        }
         & > button {
           padding: 12px 30px 12px 30px;
 

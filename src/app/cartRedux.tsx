@@ -35,6 +35,7 @@ const cartSlice = createSlice({
     updateProduct: (state: any, action) => {
       const updateCart = action.payload;
 
+      console.log('cartreduccer');
       state.products.push(...updateCart);
       localStorage.setItem('DATACART', JSON.stringify(state.products));
     },

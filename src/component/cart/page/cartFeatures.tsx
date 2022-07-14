@@ -29,6 +29,7 @@ export default function CartFeatures(props: any) {
   const CartAddress = useSelector(cartAddress);
   const userInfor = useSelector((state: any) => state.user.current);
   console.log('priceItem', priceItem, total, count);
+  const [Loading, setLoading] = React.useState<boolean>(false);
   const Errrr = React.useRef<any>();
   const navigate = useNavigate();
 
@@ -37,20 +38,27 @@ export default function CartFeatures(props: any) {
   };
 
   const handlePay = () => {
-    if (Object.keys(userInfor).length === 0) {
-      return setError('Vui lòng đăng nhập !');
-    }
-    if (dataCart.length === 0) {
-      return setError('vui lòng mua hàng ! ');
-    }
-    // if (cartStore === '') {
-    //   return setError('vui lòng nhập địa chỉ của bạn !');
-    // }
-    if (dataCart.length > 0) {
-      navigate('/CheckOut');
-    }
+    setLoading(true);
+    return new Promise<boolean>((resolve) => {
+      setTimeout(() => {
+        if (Object.keys(userInfor).length === 0) {
+          return setError('Vui lòng đăng nhập !');
+        }
+        if (dataCart.length === 0) {
+          return setError('vui lòng mua hàng ! ');
+        }
+        // if (cartStore === '') {
+        //   return setError('vui lòng nhập địa chỉ của bạn !');
+        // }
 
-    return setError('');
+        if (dataCart.length > 0) {
+          navigate('/CheckOut');
+        }
+        resolve(true);
+        setLoading(false);
+        return setError('');
+      }, 2000);
+    });
   };
 
   React.useEffect(() => {
@@ -90,7 +98,10 @@ export default function CartFeatures(props: any) {
               <AiOutlineArrowLeft />
               <span>Tiếp tục mua hàng</span>
             </button>
-            <button onClick={handlePay}>
+            <button
+              className={Loading ? 'total_payload--btn active__Loading--pay' : ''}
+              onClick={handlePay}
+            >
               <span>Thanh toán</span>
               <AiOutlineArrowRight />
             </button>

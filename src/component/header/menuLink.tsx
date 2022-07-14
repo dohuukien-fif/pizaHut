@@ -45,6 +45,10 @@ export default function App({
   const handleNavigeteAccount = () => {
     navigate('/tai-khoan/chi-tiet-don-hang');
   };
+
+  const handleNavigeteAdmin = () => {
+    navigate('/admin');
+  };
   return (
     <div className="nav_Link-block">
       {/* menu link  */}
@@ -188,6 +192,7 @@ export default function App({
                   <p onClick={hanleLooutClick}>Logout</p>
 
                   <p onClick={handleNavigeteProfile}>Profile</p>
+                  <p onClick={handleNavigeteAdmin}>Profile</p>
                 </div>
               </div>
               <h3>{userInfor?.username}</h3>

@@ -364,7 +364,9 @@
 
       cursor: pointer;
 
-      margin-bottom: 50px;
+      @include mobile {
+        margin-bottom: 50px;
+      }
 
       .nav_account_figust {
         position: relative;
@@ -575,7 +577,7 @@
     // opacity: 0;
     // visibility: hidden;
 
-    @include tablet {
+    @include mobile {
       overflow-y: scroll;
     }
 

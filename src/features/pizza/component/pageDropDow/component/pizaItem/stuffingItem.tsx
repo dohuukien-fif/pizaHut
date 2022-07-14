@@ -16,7 +16,7 @@ export default function PizzaStuffingItem({ items, handleIds }: PizzaNewItemProp
     if (handleIds) handleIds(newIds);
   };
   return (
-    <div className="salad_item" onClick={() => handleIds(items.id)}>
+    <div className="salad_item" onClick={() => handleIds(items.orderId)}>
       <div className="salad_block">
         <div className="salad_aside">
           <img src={image} alt="" />

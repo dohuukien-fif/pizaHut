@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { AiOutlineClose, AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineLike, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductApi from '../../../../../api/productApi';
 import { addProduct } from '../../../../../app/cartRedux';
@@ -162,9 +162,12 @@ export default function PizaSeafoodFeatures(props: any) {
   const handleClickLike = async () => {
     console.log(detailProduct.orderId);
 
-    await axios.put(`http://localhost:5000/api/products/${detailProduct.orderId}/like`, {
-      userId: userInfor._id,
-    });
+    await axios.put(
+      `https://api-pizza-home.herokuapp.com/api/products/${detailProduct.orderId}/like`,
+      {
+        userId: userInfor._id,
+      }
+    );
 
     alert('cảm ơn bạn đã đánh giá');
   };
@@ -220,6 +223,17 @@ export default function PizaSeafoodFeatures(props: any) {
         <div ref={closeRef} className={isoverlay ? 'overlay activesOvelaySalad' : 'overlay'}>
           <div className="overlay_wrapper">
             {/* <h1 onClick={() => setisoverlay(false)}> Xoa</h1> */}
+            <div className="overlay__like">
+              <button onClick={() => handleClickLikes(userInfor._id)}>
+                <AiOutlineLike
+                  className={
+                    checkLike === true || checkLike === userInfor._id
+                      ? 'icon__like active__like'
+                      : 'icon__like'
+                  }
+                />
+              </button>
+            </div>
             <div className="overlay_closes">
               {LoadingOverlay ? (
                 <div className="loading_featurees">

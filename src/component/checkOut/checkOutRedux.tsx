@@ -40,13 +40,13 @@ const cartSlice = createSlice({
 
       state.order = newCart;
     },
-    UpdateCart: (state: any, action) => {
+    deleteCode: (state: any, action) => {
       const newCart = action.payload;
       const index = state.products.findIndex((x: any) => x.code === newCart);
 
       if (index >= 0) {
-        state.updateCart = state.products[index].product;
         state.products = state.products.filter((item: any) => item.code !== newCart);
+        localStorage.setItem('DATAOUT', JSON.stringify(state.products));
       }
     },
     setAddress: (state: any, action) => {
@@ -66,6 +66,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { UpdateCart, setAddress, addCheckOut, setAddressOld, setStore, setOrder } =
+export const { deleteCode, setAddress, addCheckOut, setAddressOld, setStore, setOrder } =
   cartSlice.actions;
 export default cartSlice.reducer;

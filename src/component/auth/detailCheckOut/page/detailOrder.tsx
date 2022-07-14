@@ -5,10 +5,12 @@ import { formatPrice } from '../../../../utils';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkProducts, cartItemTotal } from './../../../cart/cartSelected';
-import { UpdateCart } from './../../../../component/checkOut/checkOutRedux';
+import { deleteCode } from './../../../../component/checkOut/checkOutRedux';
 import { useNavigate } from 'react-router-dom';
 import { updateProduct } from '../../../../app/cartRedux';
 import OrderApi from '../../../../api/OrderApi';
+import { BiErrorCircle } from 'react-icons/bi';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 export interface DetailOrderProps {}
 
 export default function DetailOrder(props: any) {
@@ -28,23 +30,24 @@ export default function DetailOrder(props: any) {
   console.log('[setProduct]', setProduct);
   console.log('[setcheckout]', setcheckout);
   console.log('[setCart]', setCart);
-  const handleClickUpdateCart = (code: number) => {
+  const handleClickUpdateCart = async (product: any, code: number, id: string) => {
     console.log(code);
-    const action = UpdateCart(code);
+    console.log(code);
+    const actionCart = await updateProduct(product);
+
+    dispatch(actionCart);
+
+    const action = await deleteCode(code);
+
+    dispatch(action);
+
+    await OrderApi.delete(id);
     console.log(code);
   };
 
   const handleClickGoBack = () => {
     navigete(-1);
   };
-
-  React.useEffect(() => {
-    (() => {
-      const actionCart = updateProduct(setProduct);
-
-      dispatch(actionCart);
-    })();
-  }, [setProduct]);
 
   //fetchApi   Order
 
@@ -58,26 +61,49 @@ export default function DetailOrder(props: any) {
     })();
   }, []);
   const checkCategory = ['piza', 'newDish', 'mixed', 'Seafood', 'Stuffing', 'Traditional'];
+
+  const handleDeleteOrder = async (code: number, id: string) => {
+    const action = deleteCode(code);
+
+    dispatch(action);
+
+    await OrderApi.delete(id);
+  };
   return (
     <>
       <div className="detailOrder">
+        {checkProductss.length === 0 && (
+          <h3>
+            {' '}
+            <BiErrorCircle />
+            Không có đơn hàng
+          </h3>
+        )}
         {checkProductss?.length > 0 &&
           checkProductss?.map((items: any, index: number) => (
             <div className="detailOrder_item" key={items?.code}>
               <div className="detailOrder_title">
                 <h3>Chi tiết đơn hàng #{items?.code}</h3>
+
+                <div className="detailOrder_delete">
+                  <button onClick={() => handleDeleteOrder(items.code, items._id)}>
+                    <RiDeleteBin5Line />
+                  </button>
+                </div>
               </div>
               <div className="detailOrder_confim">
-                {dataOrder.find((e) => e.code === 1002)?.status === 'pending' && (
+                {dataOrder.find((e) => e.code === items.code)?.status === 'pending' && (
                   <span>Chờ xác nhận</span>
                 )}
-                {dataOrder.find((e) => e.code === 1002)?.status === 'Success' && (
+                {dataOrder.find((e) => e.code === items.code)?.status === 'Success' && (
                   <span>Thành công</span>
                 )}
-                {dataOrder.find((e) => e.code === 1002)?.status === 'Shipping' && (
+                {dataOrder.find((e) => e.code === items.code)?.status === 'Shipping' && (
                   <span>Đang giao </span>
                 )}
-                {dataOrder.find((e) => e.code === 1002)?.status === 'Reful' && <span>Đơn hủy</span>}
+                {dataOrder.find((e) => e.code === items.code)?.status === 'Reful' && (
+                  <span>Đơn hủy</span>
+                )}
 
                 <span>
                   Ngày đặt hàng: {items?.day} {items?.time}{' '}
@@ -240,7 +266,9 @@ export default function DetailOrder(props: any) {
                     <span>Quay lại</span>
                   </button>
 
-                  <button onClick={() => handleClickUpdateCart(items?.product)}>
+                  <button
+                    onClick={() => handleClickUpdateCart(items?.products, items.code, items._id)}
+                  >
                     <AiOutlineArrowLeft />
                     <span>Đặt lại đơn hàng</span>
                   </button>

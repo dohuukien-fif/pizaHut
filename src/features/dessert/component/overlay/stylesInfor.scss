@@ -13,6 +13,7 @@
     margin-top: 15px;
 
     text-transform: none;
+
     & > span {
       font-size: 25px;
       font-weight: 700 !important;
@@ -25,9 +26,10 @@
       &::before {
         position: absolute;
         content: '';
-        height: 1px;
+        height: 3px;
+        width: 15%;
         background: $green;
-        width: 10%;
+
         top: 0;
         // margin-bottom: 20px;
       }

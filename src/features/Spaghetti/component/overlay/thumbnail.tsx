@@ -9,7 +9,8 @@ export interface ThumbnailProps {
 
 export default function Thumbnail({ detail, setPrice }: ThumbnailProps) {
   const { image, price } = detail;
-  const updatePrice = setPrice !== 0 ? price + (setPrice.priceSize + setPrice.priceMore) : price;
+  const updatePrice =
+    setPrice !== 0 ? price + (setPrice.priceSize || 0 + setPrice.priceMore || 0) : price;
   return (
     <div className="thumbnail_asidess">
       <div className="thumbnail_image">

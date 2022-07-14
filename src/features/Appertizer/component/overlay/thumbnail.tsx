@@ -11,7 +11,7 @@ export default function Thumbnail({ detail, Price }: ThumbnailProps) {
   const { image, price } = detail;
   const updatePrice =
     (Price.priceSize && Price.priceMore) !== 0
-      ? price + (Number(Price.priceSize) + Number(Price.priceMore))
+      ? price + (Number(Price.priceSize || 0) + Number(Price.priceMore || 0))
       : price;
 
   console.log('setPrice', Price);

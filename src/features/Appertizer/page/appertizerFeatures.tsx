@@ -174,9 +174,12 @@ export default function AppertizerFeatures(props: any) {
   const handleClickLike = async () => {
     console.log(detailProduct.orderId);
 
-    await axios.put(`http://localhost:5000/api/products/${detailProduct.orderId}/like`, {
-      userId: userInfor._id,
-    });
+    await axios.put(
+      `https://api-pizza-home.herokuapp.com/api/products/${detailProduct.orderId}/like`,
+      {
+        userId: userInfor._id,
+      }
+    );
 
     alert('cảm ơn bạn đã đánh giá');
   };
