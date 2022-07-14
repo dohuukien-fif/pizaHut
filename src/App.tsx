@@ -60,11 +60,10 @@ function App() {
     <div>
       <Headers />
       <Routes>
-        <Route path="Trang-chu/*" element={<HomePiza />} />
-        <Route path="/" element={<Navigate replace to="Trang-chu" />} />
+        <Route path="/*" element={<HomePiza />} />
         {/* <Route path="/login">
           {user ? <Navigate replace to="Trang-chu" /> :element={<LoginFeatures />}}
-        </Route> */}
+        </Route>   <Route path="/" element={<Navigate replace to="Trang-chu" />} /> */}
         {/* <Route ></Route> */}
         <Route path="login" element={<LoginFeatures />} />
         <Route path="/profile" element={<Prodfile />} />
