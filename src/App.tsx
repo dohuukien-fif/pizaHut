@@ -61,7 +61,7 @@ function App() {
       <Headers />
       <Routes>
         <Route path="trang-chu/*" element={<HomePiza />} />
-        <Route path="/" element={<Navigate replace to="Trang-chu" />} />
+        <Route path="/" element={<Navigate replace to="trang-chu" />} />
         {/* <Route path="/login">
           {user ? <Navigate replace to="Trang-chu" /> :element={<LoginFeatures />}}
         </Route> */}
