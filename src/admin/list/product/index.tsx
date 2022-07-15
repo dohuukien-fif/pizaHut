@@ -22,6 +22,8 @@ export default function ProductFeatures(props: ProductFeaturesProps) {
   const [filters, setfilters] = React.useState<any>({
     page: 1,
     limit: 10,
+    _order: 'desc',
+    _sort: 'price',
   });
   React.useEffect(() => {
     setloading(true);

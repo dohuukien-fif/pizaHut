@@ -947,6 +947,12 @@
         transform: translateX(-50%);
 
         margin-bottom: 50px;
+
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
       }
       .nav_orderMobile {
         display: none;

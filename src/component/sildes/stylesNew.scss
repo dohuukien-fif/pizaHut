@@ -117,6 +117,7 @@
       }
       header {
         width: 100%;
+        margin-bottom: auto;
         .slide_top {
           font-size: 13px;
 
@@ -163,6 +164,8 @@
       //footer
       footer {
         width: 100%;
+
+        margin-top: auto;
         .slide_bottom {
           display: flex;
           flex-direction: row;
@@ -170,6 +173,7 @@
           align-items: center;
 
           margin-top: auto;
+          margin-bottom: 25px;
           @include mobilesmall {
             justify-content: flex-start;
             align-items: flex-start;

@@ -192,7 +192,7 @@ export default function App({
                   <p onClick={hanleLooutClick}>Logout</p>
 
                   <p onClick={handleNavigeteProfile}>Profile</p>
-                  <p onClick={handleNavigeteAdmin}>Profile</p>
+                  <p onClick={handleNavigeteAdmin}>Admin</p>
                 </div>
               </div>
               <h3>{userInfor?.username}</h3>

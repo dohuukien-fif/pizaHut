@@ -28,6 +28,7 @@ export default function FilterCategories({ onChangeCategories }: FilterCategorie
         <span>Chọn Category</span>
       </div>
       <select name="category" onChange={handleCategories}>
+        <option value="">chọn Category</option>
         {dataCategory.map((item, index) => (
           <React.Fragment key={index}>
             <option value={item}>{item}</option>
